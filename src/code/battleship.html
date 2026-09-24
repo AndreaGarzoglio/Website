@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Classic naval rules staged as a network intrusion." />
+  <title>Battleship — Andrea Garzoglio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Doto:wght@400..900&family=JetBrains+Mono:wght@300;400;500&family=Outfit:wght@400;500;600&display=swap"
+    rel="stylesheet" />
+</head>
+
+<body id="top" data-page="code">
+  <canvas class="ascii-field" aria-hidden="true"></canvas>
+
+  <nav class="nav">
+    <div class="shell nav-inner">
+      <a class="nav-mark" href="../index.html">Andrea Garzoglio</a>
+      <ul class="nav-links">
+        <li><a href="../index.html">résumé</a></li>
+        <li><a href="../code.html" aria-current="page">code</a></li>
+        <li><a href="../art.html">art</a></li>
+        <li><a href="../index.html#contact">contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="subnav">
+    <div class="shell subnav-inner">
+      <span class="subnav-label">Code</span>
+      <ul class="subnav-links">
+          <li><a href="../code.html">Overview</a></li>
+          <li><a href="battleship.html" aria-current="page">Battleship</a></li>
+          <li><a href="game-vault.html">Game Vault</a></li>
+          <li><a href="todo-list.html">Todo List</a></li>
+          <li><a href="weather-report.html">Weather Report</a></li>
+          <li><a href="knight-travails.html">Knight Travails</a></li>
+          <li><a href="binary-search-trees.html">Binary Search Trees</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <main>
+    <article class="zone zone--page project" data-zone="code">
+      <div class="shell">
+      <nav class="crumbs" aria-label="Breadcrumb">
+        <a href="../index.html">Résumé</a>
+        <span class="crumb-sep" aria-hidden="true">/</span>
+        <a href="../code.html">Code</a>
+        <span class="crumb-sep" aria-hidden="true">/</span>
+        <span aria-current="page">Battleship</span>
+      </nav>
+
+        <header class="project-head">
+          <img class="project-mark" src="../assets/favicon-battleship.svg" alt="" />
+          <h1 class="project-title">Battleship</h1>
+          <p class="project-tagline">Classic naval rules staged as a network intrusion.</p>
+          <p class="project-lead">The game logic lives entirely apart from the DOM, so it could be
+            built and tested before any interface existed, then wired up to three
+            modes: against the computer, hotseat, or the computer playing itself.</p>
+          <div class="project-actions">
+              <a class="button" href="https://andreagarzoglio.github.io/Battleship/" target="_blank" rel="noopener">Open the live version ↗</a>
+              <a class="button button--ghost" href="https://github.com/AndreaGarzoglio/Battleship" target="_blank" rel="noopener">Read the code ↗</a>
+          </div>
+        </header>
+      </div>
+
+      <div class="shell">
+        <figure class="project-shot frame">
+          <img src="../assets/battleship.png" alt="Screenshot of the Battleship game" />
+        </figure>
+      </div>
+
+      <div class="shell">
+        <div class="project-grid">
+          <div class="project-notes">
+          <section class="note">
+            <h2>Why the logic comes first</h2>
+            <p>Ships, boards and turns are plain objects that know nothing about
+                 the page. That separation is what made the three game modes cheap to
+                 add: the computer playing itself is the same engine with a different
+                 caller.</p>
+          </section>
+
+          <section class="note">
+            <h2>Tested before it was visible</h2>
+            <p>Because none of the rules touch the DOM, the whole rulebook is
+                 covered by Jest — hits, misses, sunk ships and game over were all
+                 passing before the first square was drawn.</p>
+          </section>
+          </div>
+
+          <aside class="project-side frame">
+            <h2 class="side-title">Built with</h2>
+            <ul class="chips">
+              <li class="chip">JavaScript ES6</li>
+              <li class="chip">Webpack</li>
+              <li class="chip">Jest</li>
+              <li class="chip">GitHub Pages</li>
+            </ul>
+            <h2 class="side-title">Links</h2>
+            <ul class="link-col">
+              <li><a class="text-link" href="https://github.com/AndreaGarzoglio/Battleship" target="_blank" rel="noopener">Repository ↗</a></li>
+              <li><a class="text-link" href="https://andreagarzoglio.github.io/Battleship/" target="_blank" rel="noopener">Live version ↗</a></li>
+              <li><a class="text-link" href="../code.html">All code projects</a></li>
+            </ul>
+          </aside>
+        </div>
+      </div>
+
+      <div class="shell">
+      <nav class="pager" aria-label="Pagination">
+        <a class="pager-link pager-prev" href="../code.html">
+          <span class="pager-dir">← Previous</span>
+          <span class="pager-name">All projects</span>
+        </a>
+        <a class="pager-link pager-next" href="game-vault.html">
+          <span class="pager-dir">Next →</span>
+          <span class="pager-name">Game Vault</span>
+        </a>
+      </nav>
+      </div>
+    </article>
+  </main>
+
+  <footer class="footer">
+    <div class="shell footer-inner">
+      <span>Andrea Garzoglio</span>
+      <nav class="footer-nav" aria-label="Footer">
+        <a href="../index.html">Résumé</a>
+        <a href="../code.html">Code</a>
+        <a href="../art.html">Art</a>
+        <a href="../index.html#contact">Contact</a>
+      </nav>
+      <span>Genoa, 2026</span>
+    </div>
+  </footer>
+</body>
+
+</html>

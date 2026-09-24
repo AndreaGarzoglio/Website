@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Click two squares and watch the knight take the shortest route." />
+  <title>Knight Travails — Andrea Garzoglio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Doto:wght@400..900&family=JetBrains+Mono:wght@300;400;500&family=Outfit:wght@400;500;600&display=swap"
+    rel="stylesheet" />
+</head>
+
+<body id="top" data-page="code">
+  <canvas class="ascii-field" aria-hidden="true"></canvas>
+
+  <nav class="nav">
+    <div class="shell nav-inner">
+      <a class="nav-mark" href="../index.html">Andrea Garzoglio</a>
+      <ul class="nav-links">
+        <li><a href="../index.html">résumé</a></li>
+        <li><a href="../code.html" aria-current="page">code</a></li>
+        <li><a href="../art.html">art</a></li>
+        <li><a href="../index.html#contact">contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="subnav">
+    <div class="shell subnav-inner">
+      <span class="subnav-label">Code</span>
+      <ul class="subnav-links">
+          <li><a href="../code.html">Overview</a></li>
+          <li><a href="battleship.html">Battleship</a></li>
+          <li><a href="game-vault.html">Game Vault</a></li>
+          <li><a href="todo-list.html">Todo List</a></li>
+          <li><a href="weather-report.html">Weather Report</a></li>
+          <li><a href="knight-travails.html" aria-current="page">Knight Travails</a></li>
+          <li><a href="binary-search-trees.html">Binary Search Trees</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <main>
+    <article class="zone zone--page project" data-zone="code">
+      <div class="shell">
+      <nav class="crumbs" aria-label="Breadcrumb">
+        <a href="../index.html">Résumé</a>
+        <span class="crumb-sep" aria-hidden="true">/</span>
+        <a href="../code.html">Code</a>
+        <span class="crumb-sep" aria-hidden="true">/</span>
+        <span aria-current="page">Knight Travails</span>
+      </nav>
+
+        <header class="project-head">
+          <img class="project-mark" src="../assets/favicon-knight-travails.svg" alt="" />
+          <h1 class="project-title">Knight Travails</h1>
+          <p class="project-tagline">Click two squares and watch the knight take the shortest route.</p>
+          <p class="project-lead">The path is found with a breadth-first search, and the solver ships
+            with an annotated copy of itself you can read from the page.</p>
+          <div class="project-actions">
+              <a class="button" href="https://andreagarzoglio.github.io/Knight-Travails/" target="_blank" rel="noopener">Open the live version ↗</a>
+              <a class="button button--ghost" href="https://github.com/AndreaGarzoglio/Knight-Travails" target="_blank" rel="noopener">Read the code ↗</a>
+          </div>
+        </header>
+      </div>
+
+      <div class="shell">
+        <figure class="project-shot frame">
+          <img src="../assets/knight-travails.png" alt="Screenshot of the Knight Travails app" />
+        </figure>
+      </div>
+
+      <div class="shell">
+        <div class="project-grid">
+          <div class="project-notes">
+          <section class="note">
+            <h2>Why breadth-first</h2>
+            <p>A knight's moves are all the same length, so the first time the
+                 search reaches a square it has reached it by the shortest route. No
+                 weighting, no heuristic, no second pass.</p>
+          </section>
+
+          <section class="note">
+            <h2>The code is part of the page</h2>
+            <p>You can read the annotated solver without leaving the app, which is
+                 the point: the algorithm is the thing on display, not the
+                 chessboard.</p>
+          </section>
+          </div>
+
+          <aside class="project-side frame">
+            <h2 class="side-title">Built with</h2>
+            <ul class="chips">
+              <li class="chip">JavaScript ES6</li>
+              <li class="chip">Breadth-first search</li>
+              <li class="chip">Graphs</li>
+              <li class="chip">GitHub Pages</li>
+            </ul>
+            <h2 class="side-title">Links</h2>
+            <ul class="link-col">
+              <li><a class="text-link" href="https://github.com/AndreaGarzoglio/Knight-Travails" target="_blank" rel="noopener">Repository ↗</a></li>
+              <li><a class="text-link" href="https://andreagarzoglio.github.io/Knight-Travails/" target="_blank" rel="noopener">Live version ↗</a></li>
+              <li><a class="text-link" href="../code.html">All code projects</a></li>
+            </ul>
+          </aside>
+        </div>
+      </div>
+
+      <div class="shell">
+      <nav class="pager" aria-label="Pagination">
+        <a class="pager-link pager-prev" href="weather-report.html">
+          <span class="pager-dir">← Previous</span>
+          <span class="pager-name">Weather Report</span>
+        </a>
+        <a class="pager-link pager-next" href="binary-search-trees.html">
+          <span class="pager-dir">Next →</span>
+          <span class="pager-name">Binary Search Trees</span>
+        </a>
+      </nav>
+      </div>
+    </article>
+  </main>
+
+  <footer class="footer">
+    <div class="shell footer-inner">
+      <span>Andrea Garzoglio</span>
+      <nav class="footer-nav" aria-label="Footer">
+        <a href="../index.html">Résumé</a>
+        <a href="../code.html">Code</a>
+        <a href="../art.html">Art</a>
+        <a href="../index.html#contact">Contact</a>
+      </nav>
+      <span>Genoa, 2026</span>
+    </div>
+  </footer>
+</body>
+
+</html>

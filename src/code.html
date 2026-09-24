@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Six projects built from scratch while working through The Odin Project: games, algorithms and interfaces." />
+  <title>Code — Andrea Garzoglio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Doto:wght@400..900&family=JetBrains+Mono:wght@300;400;500&family=Outfit:wght@400;500;600&display=swap"
+    rel="stylesheet" />
+</head>
+
+<body id="top" data-page="code">
+  <canvas class="ascii-field" aria-hidden="true"></canvas>
+
+  <nav class="nav">
+    <div class="shell nav-inner">
+      <a class="nav-mark" href="index.html">Andrea Garzoglio</a>
+      <ul class="nav-links">
+        <li><a href="index.html">résumé</a></li>
+        <li><a href="code.html" aria-current="page">code</a></li>
+        <li><a href="art.html">art</a></li>
+        <li><a href="index.html#contact">contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="subnav">
+    <div class="shell subnav-inner">
+      <span class="subnav-label">Code</span>
+      <ul class="subnav-links">
+          <li><a href="code.html" aria-current='page'>Overview</a></li>
+          <li><a href="code/battleship.html">Battleship</a></li>
+          <li><a href="code/game-vault.html">Game Vault</a></li>
+          <li><a href="code/todo-list.html">Todo List</a></li>
+          <li><a href="code/weather-report.html">Weather Report</a></li>
+          <li><a href="code/knight-travails.html">Knight Travails</a></li>
+          <li><a href="code/binary-search-trees.html">Binary Search Trees</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <main>
+    <section class="zone zone--page" data-zone="code">
+      <div class="shell">
+      <nav class="crumbs" aria-label="Breadcrumb">
+        <a href="index.html">Résumé</a>
+        <span class="crumb-sep" aria-hidden="true">/</span>
+        <span aria-current="page">Code</span>
+      </nav>
+
+        <div class="zone-head">
+          <span class="zone-index" aria-hidden="true">01</span>
+          <h1 class="zone-title">Code</h1>
+          <p class="zone-lead">
+            I started The Odin Project in June 2025, out of curiosity, and
+            stayed for the feeling of building something out of nothing.
+          </p>
+          <p class="zone-body">
+            Ten years of art turned out to be surprisingly portable. Designing
+            a creature and designing an interface ask the same question — what
+            does someone understand in the first second? — and the discipline of
+            working to a brief is the same discipline as working to a spec. So
+            I give every project a world of its own: a naval battle staged as a
+            network intrusion, a to-do list run like a bureau of classified
+            case files, a search tree you can watch redraw itself. Underneath
+            the themes I care about the unglamorous parts: logic kept away from
+            the DOM, tests where they earn their keep, and no framework until I
+            understand what it would be doing for me.
+          </p>
+        </div>
+      </div>
+
+      <!-- Filled from src/content/code.js by src/render.js -->
+      <section class="timeline-block">
+        <div class="shell">
+          <div class="block-head">
+            <h2>The path so far</h2>
+            <span class="block-meta">06.25 — today</span>
+          </div>
+          <div class="timeline" data-timeline="code"></div>
+        </div>
+      </section>
+
+      <section class="work">
+        <div class="shell">
+          <div class="block-head">
+            <h2>The Odin Project</h2>
+            <span class="block-meta">06 projects · one page each</span>
+          </div>
+
+          <article class="featured frame">
+            <div class="featured-media">
+              <img src="assets/battleship.png" alt="Screenshot of the Battleship game" />
+            </div>
+            <div class="featured-body">
+              <div class="card-head">
+                <img class="card-mark" src="assets/favicon-battleship.svg" alt="" />
+                <h3><a class="card-link" href="code/battleship.html">Battleship</a></h3>
+              </div>
+              <p>Classic naval rules staged as a network intrusion. The game logic lives entirely apart from the DOM, so it could be
+            built and tested before any interface existed, then wired up to three
+            modes: against the computer, hotseat, or the computer playing itself.</p>
+              <div class="card-links">
+                <a href="https://github.com/AndreaGarzoglio/Battleship" target="_blank" rel="noopener">code</a>
+                <a href="https://andreagarzoglio.github.io/Battleship/" target="_blank" rel="noopener">live</a>
+              </div>
+            </div>
+          </article>
+
+          <div class="work-grid">
+            <article class="card frame">
+              <div class="card-media">
+                <img src="assets/game-vault.png" alt="Screenshot of the Game Vault app" loading="lazy" decoding="async" />
+              </div>
+              <div class="card-body">
+                <div class="card-head">
+                  <img class="card-mark" src="assets/favicon-game-vault.svg" alt="" />
+                  <h3><a class="card-link" href="code/game-vault.html">Game Vault</a></h3>
+                </div>
+                <p>A tracker for the games I've played and the ones I mean to.</p>
+                <div class="card-links">
+                  <a href="https://github.com/AndreaGarzoglio/game-vault" target="_blank" rel="noopener">code</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="card frame">
+              <div class="card-media">
+                <img src="assets/todo-list.png" alt="Screenshot of the Todo List app" loading="lazy" decoding="async" />
+              </div>
+              <div class="card-body">
+                <div class="card-head">
+                  <img class="card-mark" src="assets/favicon-todo-list.svg" alt="" />
+                  <h3><a class="card-link" href="code/todo-list.html">Todo List</a></h3>
+                </div>
+                <p>A to-do list disguised as a classified archive.</p>
+                <div class="card-links">
+                  <a href="https://github.com/AndreaGarzoglio/to-do-list" target="_blank" rel="noopener">code</a>
+                  <a href="https://andreagarzoglio.github.io/to-do-list/" target="_blank" rel="noopener">live</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="card frame">
+              <div class="card-media">
+                <img src="assets/weather-report.png" alt="Screenshot of the Weather Report app" loading="lazy" decoding="async" />
+              </div>
+              <div class="card-body">
+                <div class="card-head">
+                  <img class="card-mark" src="assets/favicon-weather-report.svg" alt="" />
+                  <h3><a class="card-link" href="code/weather-report.html">Weather Report</a></h3>
+                </div>
+                <p>An hour-by-hour curve, an eight-day outlook, and a sky that matches.</p>
+                <div class="card-links">
+                  <a href="https://github.com/AndreaGarzoglio/Weather-Report" target="_blank" rel="noopener">code</a>
+                  <a href="https://andreagarzoglio.github.io/Weather-Report/" target="_blank" rel="noopener">live</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="card frame">
+              <div class="card-media">
+                <img src="assets/knight-travails.png" alt="Screenshot of the Knight Travails app" loading="lazy" decoding="async" />
+              </div>
+              <div class="card-body">
+                <div class="card-head">
+                  <img class="card-mark" src="assets/favicon-knight-travails.svg" alt="" />
+                  <h3><a class="card-link" href="code/knight-travails.html">Knight Travails</a></h3>
+                </div>
+                <p>Click two squares and watch the knight take the shortest route.</p>
+                <div class="card-links">
+                  <a href="https://github.com/AndreaGarzoglio/Knight-Travails" target="_blank" rel="noopener">code</a>
+                  <a href="https://andreagarzoglio.github.io/Knight-Travails/" target="_blank" rel="noopener">live</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="card frame">
+              <div class="card-media">
+                <img src="assets/binary-search-trees.png" alt="Screenshot of the Binary Search Trees app" loading="lazy" decoding="async" />
+              </div>
+              <div class="card-body">
+                <div class="card-head">
+                  <img class="card-mark" src="assets/favicon-binary-search-trees.svg" alt="" />
+                  <h3><a class="card-link" href="code/binary-search-trees.html">Binary Search Trees</a></h3>
+                </div>
+                <p>A balanced tree written from scratch, redrawing as you change it.</p>
+                <div class="card-links">
+                  <a href="https://github.com/AndreaGarzoglio/Binary-Search-Trees" target="_blank" rel="noopener">code</a>
+                  <a href="https://andreagarzoglio.github.io/Binary-Search-Trees/" target="_blank" rel="noopener">live</a>
+                </div>
+              </div>
+            </article>
+
+            <a class="tile frame" href="https://github.com/AndreaGarzoglio" target="_blank" rel="noopener">
+              <span class="tile-title">More on GitHub</span>
+              <span class="tile-meta">All repositories</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="toolbox">
+        <div class="shell">
+          <div class="block-head">
+            <h2>Toolbox</h2>
+            <span class="block-meta">what the work above runs on</span>
+          </div>
+
+          <dl class="tool-grid">
+            <div class="tool">
+              <dt>Language</dt>
+              <dd>JavaScript, ES6 modules and classes. HTML and CSS by hand, no UI framework.</dd>
+            </div>
+            <div class="tool">
+              <dt>Build</dt>
+              <dd>Webpack and npm scripts, with Babel where the tests need it.</dd>
+            </div>
+            <div class="tool">
+              <dt>Testing</dt>
+              <dd>Jest, on the logic that can be separated from the interface.</dd>
+            </div>
+            <div class="tool">
+              <dt>Quality</dt>
+              <dd>ESLint and Prettier, run on commit through Husky hooks.</dd>
+            </div>
+            <div class="tool">
+              <dt>Data</dt>
+              <dd>REST APIs, localStorage, and a small Node server when a key has to stay private.</dd>
+            </div>
+            <div class="tool">
+              <dt>Deploy</dt>
+              <dd>GitHub Pages, published by a GitHub Actions workflow.</dd>
+            </div>
+          </dl>
+        </div>
+      </section>
+
+      <div class="shell">
+      <nav class="pager" aria-label="Pagination">
+        <span></span>
+        <a class="pager-link pager-next" href="art.html">
+          <span class="pager-dir">Next →</span>
+          <span class="pager-name">Art</span>
+        </a>
+      </nav>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="shell footer-inner">
+      <span>Andrea Garzoglio</span>
+      <nav class="footer-nav" aria-label="Footer">
+        <a href="index.html">Résumé</a>
+        <a href="code.html">Code</a>
+        <a href="art.html">Art</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+      <span>Genoa, 2026</span>
+    </div>
+  </footer>
+</body>
+
+</html>

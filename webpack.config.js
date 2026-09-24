@@ -1,6 +1,19 @@
 import path from "node:path";
 import HtmlWebpackPlugin from "html-webpack-plugin";
 
+/* Every page in the site. Keep this list in sync with src/**.html — it drives
+   both the build output and what the dev server watches. */
+const pages = [
+  "index.html",
+  "code.html",
+  "code/battleship.html",
+  "code/game-vault.html",
+  "code/todo-list.html",
+  "code/weather-report.html",
+  "code/knight-travails.html",
+  "code/binary-search-trees.html",
+];
+
 export default {
   mode: "development",
   entry: "./src/index.js",
@@ -11,13 +24,15 @@ export default {
   },
   devtool: "eval-source-map",
   devServer: {
-    watchFiles: ["./src/index.html"],
+    watchFiles: ["./src/**/*.html"],
   },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: "./src/index.html",
-    }),
-  ],
+  plugins: pages.map(
+    (page) =>
+      new HtmlWebpackPlugin({
+        template: `./src/${page}`,
+        filename: page,
+      }),
+  ),
   module: {
     rules: [
       {

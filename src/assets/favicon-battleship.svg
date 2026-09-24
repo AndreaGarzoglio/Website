@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <rect width="32" height="32" rx="6" fill="#030407"/>
+  <rect x="1" y="1" width="30" height="30" rx="5" fill="none" stroke="#22252f" stroke-width="1"/>
+
+  <text x="16" y="14" text-anchor="middle" font-family="'Courier New', monospace"
+        font-size="7" font-weight="700" fill="#a855f7"
+        textLength="26" lengthAdjust="spacingAndGlyphs">&lt;|ᵔᵕᵔ|&gt;</text>
+
+  <text x="16" y="25" text-anchor="middle" font-family="'Courier New', monospace"
+        font-size="7" font-weight="700" fill="#ef4444"
+        textLength="26" lengthAdjust="spacingAndGlyphs">&lt;|x_x|&gt;</text>
+</svg>
