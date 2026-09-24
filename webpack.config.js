@@ -6,12 +6,18 @@ import HtmlWebpackPlugin from "html-webpack-plugin";
 const pages = [
   "index.html",
   "code.html",
+  "art.html",
   "code/battleship.html",
   "code/game-vault.html",
   "code/todo-list.html",
   "code/weather-report.html",
   "code/knight-travails.html",
   "code/binary-search-trees.html",
+  "art/msr.html",
+  "art/personal.html",
+  "art/nemixar.html",
+  "art/ymdir.html",
+  "art/project.html",
 ];
 
 export default {
