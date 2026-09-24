@@ -1,11 +1,13 @@
 import { series, order, artTimeline } from "./content/art.js";
 import { codeTimeline } from "./content/code.js";
+import { pics } from "./content/pics.js";
 
 /* Fills the pages that are built from src/content/. The HTML files only carry
    the chrome (nav, subnav, footer) and a hook:
      <main data-series="msr">      a series page (art/msr.html …)
      <main data-project>           art/project.html?s=<series>&p=<project>
      <div data-timeline="art">     a timeline, on art.html / code.html
+     <div data-shots="code/…">     a collage of one Drive folder (code pages)
    Everything here runs before motion.js, so reveals see the finished DOM. */
 
 const RATIO = { wide: 16 / 9, tall: 3 / 4, square: 1, banner: 16 / 7 };
@@ -14,9 +16,9 @@ const PREVIEW = 8;
 
 const paras = (list = []) => list.map((p) => `<p>${p}</p>`).join("");
 
-const media = (img) =>
+const media = (img, alt = img.alt ?? img.label) =>
   img.src
-    ? `<img src="${img.src}" alt="${img.alt ?? img.label}" loading="lazy" decoding="async" />`
+    ? `<img src="${img.src}" alt="${alt}" loading="lazy" decoding="async" />`
     : `<div class="ph ph--${img.ratio}"><span>${img.label}</span></div>`;
 
 const crumbs = (trail) => `
@@ -61,13 +63,16 @@ const count = (n, word) => `${String(n).padStart(2, "0")} ${word}`;
 /* A collage of pieces. Every piece is a button that opens the lightbox on the
    whole group; its caption only exists there, so the grid stays quiet. */
 function shots(images, { label, limit = PREVIEW } = {}) {
+  // Folding away just one or two pieces costs a click for nothing.
+  if (images.length <= limit + 2) limit = images.length;
   const items = images
     .map(
       (img, i) => `
-      <li class="shot${img.size ? ` shot--${img.size}` : ""}"${i >= limit ? " hidden" : ""}>
+      <li class="shot${img.size ? ` shot--${img.size}` : ""}${img.fit ? " shot--fit" : ""}"${i >= limit ? " hidden" : ""}>
         <button type="button" class="shot-open" data-caption="${img.caption ?? ""}"
-          data-title="${img.label}" data-ratio="${RATIO[img.ratio] ?? RATIO.wide}"
-          aria-label="Open ${img.label} full screen">${media(img)}</button>
+          data-title="${img.label}" data-ratio="${img.ar ?? RATIO[img.ratio] ?? RATIO.wide}"
+          ${img.full ? `data-full="${img.full}"` : ""}
+          aria-label="Open ${img.label} full screen">${media(img, "")}</button>
       </li>`,
     )
     .join("");
@@ -85,7 +90,7 @@ function projectCards(sid, projects) {
     .map(
       (p) => `
       <article class="card frame">
-        <div class="card-media">${media({ ...p.images[0], ratio: p.cover, label: p.title })}</div>
+        <div class="card-media">${media({ ...p.images[0], label: p.title })}</div>
         <div class="card-body">
           <div class="card-head"><h3><a class="card-link" href="${projectHref(sid, p.id)}">${p.title}</a></h3></div>
           <p>${p.note}</p>
@@ -288,6 +293,9 @@ export function renderPage() {
   if (main?.dataset.series) renderSeries(main, main.dataset.series);
   else if (main?.hasAttribute("data-project")) renderProject(main);
   document.querySelectorAll("[data-timeline]").forEach(renderTimeline);
+  document.querySelectorAll("[data-shots]").forEach((el) => {
+    el.innerHTML = shots(pics(el.dataset.shots), { label: el.dataset.label });
+  });
 
   // "Show all" just unhides the rest of its own collage.
   document.addEventListener("click", (e) => {

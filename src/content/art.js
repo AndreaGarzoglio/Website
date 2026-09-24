@@ -1,57 +1,29 @@
 /* Everything the Art pages show lives here, not in the HTML. A series page and
    a project page are the same markup filled with different entries, so adding
-   a project is adding an object, never a file.
+   a project is adding an object, never a file. Images come from the Drive
+   folder named by each key — see pics.js. */
 
-   Images: until the real files are in, an entry without `src` renders as a
-   placeholder at the right aspect ratio. `ratio` is wide | tall | square |
-   banner; `size` lets a piece take more room in a collage (wide | tall | big). */
+import { pics } from "./pics.js";
 
 const LOREM =
   "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.";
 const LOREM_SHORT = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.";
-const LOREM_CAPTION =
-  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio, praesent libero sed cursus ante dapibus diam.";
 
-const shot = (label, ratio = "wide", size) => ({
-  label,
-  ratio,
-  size,
-  caption: LOREM_CAPTION,
-});
-
-// A quick run of placeholder shots with a varied rhythm, so collages look like
-// collages before the real art arrives.
-const RHYTHM = [
-  ["wide", "wide"],
-  ["tall"],
-  ["square"],
-  ["tall", "tall"],
-  ["wide"],
-  ["square"],
-  ["wide", "big"],
-  ["tall"],
-  ["square"],
-  ["wide"],
-];
-const shots = (prefix, n) =>
-  Array.from({ length: n }, (_, i) => {
-    const [ratio, size] = RHYTHM[i % RHYTHM.length];
-    return shot(`${prefix} ${String(i + 1).padStart(2, "0")}`, ratio, size);
-  });
-
-const project = (id, title, n, cover = "wide") => ({
-  id,
-  title,
-  note: LOREM_SHORT,
-  cover,
-  concept: [LOREM, LOREM],
-  brief: [
-    ["Year", "20XX"],
-    ["Medium", "Lorem ipsum"],
-    ["Pieces", String(n).padStart(2, "0")],
-  ],
-  images: shots(title, n),
-});
+const project = (id, title, key) => {
+  const imgs = pics(key);
+  return {
+    id,
+    title,
+    note: LOREM_SHORT,
+    concept: [LOREM, LOREM],
+    brief: [
+      ["Year", "20XX"],
+      ["Medium", "Lorem ipsum"],
+      ["Pieces", String(imgs.length).padStart(2, "0")],
+    ],
+    images: imgs,
+  };
+};
 
 export const series = {
   msr: {
@@ -68,10 +40,10 @@ export const series = {
     ],
     projectsTitle: "The project",
     projects: [
-      project("presentation", "Presentation", 6, "banner"),
-      project("blackhat", "BlackHat", 12),
-      project("greyhat", "GreyHat", 12),
-      project("whitehat", "WhiteHat", 12),
+      project("presentation", "Presentation", "art/msr/presentation"),
+      project("blackhat", "BlackHat", "art/msr/blackhat"),
+      project("greyhat", "GreyHat", "art/msr/greyhat"),
+      project("whitehat", "WhiteHat", "art/msr/whitehat"),
     ],
   },
 
@@ -90,8 +62,8 @@ export const series = {
     ],
     projectsTitle: "The campaigns",
     projects: [
-      project("characters", "Characters", 10, "tall"),
-      project("land-invasion", "Land Invasion", 10),
+      project("characters", "Characters", "art/nemixar/characters"),
+      project("land-invasion", "Land Invasion", "art/nemixar/land-invasion"),
     ],
   },
 
@@ -104,18 +76,18 @@ export const series = {
     body: [LOREM],
     projectsTitle: "Characters",
     projects: [
-      project("nora", "Nora", 8, "tall"),
-      project("genista", "Genista", 8, "tall"),
-      project("kurowo", "Kurowo", 8, "tall"),
-      project("arcaster", "Arcaster", 8, "tall"),
-      project("non", "Non", 8, "tall"),
+      project("nora", "Nora", "art/personal-drawings/nora"),
+      project("genista", "Genista", "art/personal-drawings/genista"),
+      project("kurowo", "Kurowo", "art/personal-drawings/kurowo"),
+      project("arcaster", "Arcaster", "art/personal-drawings/arcaster"),
+      project("non", "Non", "art/personal-drawings/non"),
     ],
     studiesTitle: "Studies",
     studies: [
-      { title: "Shading Study", note: LOREM_SHORT, images: shots("Shading", 7) },
-      { title: "Material Study", note: LOREM_SHORT, images: shots("Material", 7) },
-      { title: "Rendering Study", note: LOREM_SHORT, images: shots("Rendering", 5) },
-      { title: "Creature Study", note: LOREM_SHORT, images: shots("Creature", 6) },
+      { title: "Shading Study", note: LOREM_SHORT, images: pics("art/personal-drawings/shading-study") },
+      { title: "Material Study", note: LOREM_SHORT, images: pics("art/personal-drawings/material-study") },
+      { title: "Rendering Study", note: LOREM_SHORT, images: pics("art/personal-drawings/rendering-study") },
+      { title: "Creature Study", note: LOREM_SHORT, images: pics("art/personal-drawings/creature-study") },
     ],
   },
 
@@ -139,24 +111,24 @@ export const series = {
       {
         title: "Designs",
         note: LOREM,
-        before: shots("Old design", 4),
-        after: shots("Design", 4),
+        before: pics("art/ymdir/old-designs"),
+        after: pics("art/ymdir/designs"),
       },
       {
         title: "Map & UI",
         note: LOREM,
-        before: shots("Old UI", 3),
-        after: shots("Map & UI", 4),
+        before: pics("art/ymdir/old-ui"),
+        after: pics("art/ymdir/map-and-ui"),
       },
       {
         title: "Dice",
         note: LOREM,
-        before: shots("Old dice", 3),
-        after: shots("Dice", 3),
+        before: pics("art/ymdir/old-dice"),
+        after: pics("art/ymdir/dice"),
       },
     ],
     extraTitle: "VFX",
-    extra: { note: LOREM_SHORT, images: shots("VFX", 6) },
+    extra: { note: LOREM_SHORT, images: pics("art/ymdir/vfx") },
   },
 };
 

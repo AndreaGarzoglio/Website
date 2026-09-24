@@ -62,9 +62,16 @@ function show(i) {
   index = (i + group.length) % group.length;
   const btn = group[index];
   const media = dialog.querySelector(".lb-media");
-  media.replaceChildren(btn.firstElementChild.cloneNode(true));
+  // Real pieces load their full-size file; placeholders are just copied over.
+  if (btn.dataset.full) {
+    const img = new Image();
+    img.src = btn.dataset.full;
+    img.alt = btn.dataset.title;
+    media.replaceChildren(img);
+  } else {
+    media.replaceChildren(btn.firstElementChild.cloneNode(true));
+  }
   media.style.setProperty("--ar", btn.dataset.ratio);
-  media.querySelector("img")?.removeAttribute("loading");
 
   dialog.querySelector(".lb-title").textContent = btn.dataset.title;
   dialog.querySelector(".lb-text").textContent = btn.dataset.caption;

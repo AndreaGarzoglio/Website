@@ -2171,7 +2171,12 @@ main,
   transform: scale(1.03);
 }
 
+.shot--fit .shot-open > img {
+  object-fit: contain;
+}
+
 .shots-more {
+  align-self: flex-start;
   margin-top: 16px;
 }
 
