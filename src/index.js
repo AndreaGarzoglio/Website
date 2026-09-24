@@ -1,5 +1,5 @@
 import "./styles.css";
+import { initAsciiField } from "./ascii/index.js";
 
-console.log("Welcome to your project!");
-
-// Your code goes here
+const field = document.querySelector(".ascii-field");
+if (field) initAsciiField(field);
