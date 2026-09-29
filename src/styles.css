@@ -3196,11 +3196,23 @@ main,
   gap: 4px 12px;
 }
 
-.entry-logo {
+/* The mark links to the school's or studio's own page. */
+.entry-logo-link {
   position: absolute;
   z-index: 1;
   right: clamp(14px, 2.4vw, 28px);
   bottom: clamp(14px, 2vw, 24px);
+  display: block;
+  transition: transform 0.25s ease;
+}
+
+.entry-logo-link:hover,
+.entry-logo-link:focus-visible {
+  transform: scale(1.06);
+}
+
+.entry-logo {
+  display: block;
   width: auto;
   height: auto;
   max-width: 170px;
@@ -3662,7 +3674,7 @@ button.button {
   }
 
   .entry-bg,
-  .entry-logo,
+  .entry-logo-link,
   .entry--card::before {
     display: none !important;
   }
