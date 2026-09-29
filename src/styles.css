@@ -2715,10 +2715,23 @@ main,
 
 .glance li {
   display: flex;
+  background: var(--black);
+}
+
+/* Each number opens the part of the site that backs it up, in the colour
+   that part has on the timeline. */
+.glance-item {
+  display: flex;
+  flex: 1;
   flex-direction: column;
   gap: 4px;
   padding: 14px 16px;
-  background: var(--black);
+  transition: background-color 0.2s ease;
+}
+
+.glance-item:hover,
+.glance-item:focus-visible {
+  background: color-mix(in srgb, var(--c) 10%, var(--black));
 }
 
 .glance-value {
@@ -2726,7 +2739,7 @@ main,
   font-size: clamp(1.25rem, 2.6vw, 1.6rem);
   font-weight: 500;
   line-height: 1.1;
-  color: var(--accent-lt);
+  color: color-mix(in srgb, var(--c, var(--accent)) 80%, #fff);
 }
 
 .glance-label {
