@@ -1,150 +1,274 @@
-/* Everything the Art pages show lives here, not in the HTML. A series page and
-   a project page are the same markup filled with different entries, so adding
-   a project is adding an object, never a file. Images come from the Drive
-   folder named by each key — see pics.js. */
+/* Everything the Art pages show lives here, not in the HTML. A collection page
+   is the same markup filled with a different entry, so adding a project is
+   adding an object, never a file. This file is plain data on purpose:
+   webpack.config.js reads it too, to build one page per collection. Pictures
+   are named by their Drive folder key and looked up in images.js (see pics.js).
 
-import { pics } from "./pics.js";
+   The texts are drafts written from the pieces themselves: names, years and
+   story details are there to be corrected. */
 
-const LOREM =
-  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.";
-const LOREM_SHORT = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.";
+const project = (id, title, images, { note, concept, brief }) => ({
+  id,
+  title,
+  note,
+  concept,
+  brief,
+  images,
+});
 
-const project = (id, title, key) => {
-  const imgs = pics(key);
-  return {
-    id,
-    title,
-    note: LOREM_SHORT,
-    concept: [LOREM, LOREM],
-    brief: [
-      ["Year", "20XX"],
-      ["Medium", "Lorem ipsum"],
-      ["Pieces", String(imgs.length).padStart(2, "0")],
-    ],
-    images: imgs,
-  };
+export const intro = {
+  index: "02",
+  title: "Art",
+  lead: "It started with a manga summer school in 2017, and it has not stopped since.",
+  body: [
+    "Almost everything here went through the same loop: a moodboard and a pile of references, a page of silhouettes, a few sketches that survive, palette explorations, and only then the final render. Event Horizon taught me to trust that process. Working in teams taught me that the process is also how other people understand what I am doing, so I keep the in-between steps and show them.",
+    "There are four collections: MSR, my own universe; the campaigns I drew for Nemixar; the characters and studies I make for myself; and YMDIR, the game I am building with Mad Burger Studio.",
+  ],
+  stats: [
+    ["2017", "first put a pen down, seriously"],
+    ["27/30", "Concept Artist, Event Horizon School"],
+    ["05+", "years freelancing for clients"],
+  ],
 };
 
 export const series = {
   msr: {
     index: "02.1",
     title: "MSR",
-    template: "case",
-    tagline: "Lorem ipsum dolor sit amet.",
-    lead: LOREM_SHORT,
-    body: [LOREM],
-    brief: [
-      ["Year", "20XX"],
-      ["Role", "Lorem ipsum"],
-      ["Context", "Lorem ipsum dolor"],
+    tagline: "My Subjective Reality: my own universe, introduced by three hackers.",
+    cover: "art/msr/presentation",
+    lead: "MSR is the world I keep coming back to. The Hat Hackers are its way in: three characters, three ways of breaking a system.",
+    body: [
+      "My Subjective Reality started as the comic I have been writing for years. This is the first time I pitched it the way a studio would: a board for the world, then every character through design sheet, turnaround and final render.",
+      "The story needed its three leads to read as a set before anyone learned their names, so each one owns a hat, a colour and a symbol. WhiteHat is cold blue light, GreyHat is red and feathers, BlackHat is shadow and gold. The rest of each design grew out of that one decision.",
     ],
-    projectsTitle: "The project",
+    brief: [
+      ["Years", "2022 - 2023"],
+      ["Role", "Worldbuilding, character design, writing"],
+      ["Context", "Personal IP, pitched as a presentation"],
+    ],
     projects: [
-      project("presentation", "Presentation", "art/msr/presentation"),
-      project("blackhat", "BlackHat", "art/msr/blackhat"),
-      project("greyhat", "GreyHat", "art/msr/greyhat"),
-      project("whitehat", "WhiteHat", "art/msr/whitehat"),
+      project("presentation", "Presentation", "art/msr/presentation", {
+        note: "The whole pitch, board by board.",
+        concept: [
+          "Read in order, the deck is the fastest way into MSR: the world of Trinity and its three factions first, then each hacker from character design to turnaround to the final render. I laid it out like a studio document, one idea per board, so it could be read in a meeting as easily as on a screen.",
+        ],
+        brief: [
+          ["Year", "2023"],
+          ["Format", "12 presentation boards"],
+        ],
+      }),
+      project("blackhat", "BlackHat", "art/msr/blackhat", {
+        note: "Morgan Blake, and what is left of him.",
+        concept: [
+          "BlackHat was the hardest of the three to pin down, because he is mostly a threat. I started from the silhouette of a gentleman, suit and hat, and let the armoured form eat into it, so the elegant version and the monstrous one still read as the same person.",
+        ],
+        brief: [
+          ["Year", "2022"],
+          ["Medium", "Digital painting"],
+        ],
+      }),
+      project("greyhat", "GreyHat", "art/msr/greyhat", {
+        note: "Brendan Reid: a grin with feathers.",
+        concept: [
+          "GreyHat is the unpredictable one, so he gets the loudest palette in the set: reds and magentas, broken wings, blades made of the same material as his feathers. The face sheet came first. Everything else had to live up to that grin.",
+        ],
+        brief: [
+          ["Year", "2022"],
+          ["Medium", "Digital painting"],
+        ],
+      }),
+      project("whitehat", "WhiteHat", "art/msr/whitehat", {
+        note: "Hiro Akasaki, the one who keeps the lights on.",
+        concept: [
+          "WhiteHat had to look calm and not quite human at the same time. The helmet is built around a single symbol that repeats on the tome and the halo, and the light is the only warm thing in the design.",
+        ],
+        brief: [
+          ["Year", "2022"],
+          ["Medium", "Digital painting"],
+        ],
+      }),
     ],
   },
 
   nemixar: {
     index: "02.2",
     title: "Nemixar",
-    template: "case",
     tagline: "Social campaigns for Undo Studios, 2024.",
-    lead: "Social campaigns made for Undo Studios SA — the first time my drawing had to answer to a metric instead of a mood.",
-    body: [LOREM],
+    cover: "art/nemixar/characters",
+    coverPos: "50% 60%",
+    lead: "Six months of campaigns for Undo Studios SA, the first time my drawing had to answer to a metric instead of a mood.",
+    body: [
+      "For half of 2024 I was the person turning the game's world into content: one splash illustration per character, the season pass artwork, and a guide for the Land Invasion mode.",
+      "The process was different from anything I do for myself. There was a brief, a calendar, and a date on which every piece had to go live, and feedback came back as numbers. I learned to pitch a scene in one thumbnail, to plan the logo and the crop before painting a single stroke, and to let go of a piece once it did its job.",
+    ],
     brief: [
       ["Role", "Artist & Media Designer"],
       ["Client", "Undo Studios SA, Milan"],
-      ["Period", "June — December 2024"],
+      ["Period", "June to December 2024"],
+      ["Contract", "Paid internship, full time"],
       ["Brief", "Build engagement for the game through social channels"],
     ],
-    projectsTitle: "The campaigns",
     projects: [
-      project("characters", "Characters", "art/nemixar/characters"),
-      project("land-invasion", "Land Invasion", "art/nemixar/land-invasion"),
+      project("characters", "Characters", "art/nemixar/characters", {
+        note: "One scene per character, made to stop a scroll.",
+        concept: [
+          "Each character got a single illustration that had to say who they are before anyone read the name: Cassie caught on a security camera, Captain Bonechuckle on a pirate beach, Flashey in the middle of a heist. I pitched each scene as a thumbnail, sketched it straight to the social format, then rendered with the space for the logo already planned.",
+        ],
+        brief: [
+          ["Year", "2024"],
+          ["Medium", "Digital illustration, social formats"],
+        ],
+      }),
+      project("land-invasion", "Land Invasion", "art/nemixar/land-invasion", {
+        note: "A game guide people actually read.",
+        concept: [
+          "Eight pages covering lore, factions, a quick start and the controls for PC and mobile. Most of the work was editorial: deciding what belongs in a screenshot and what in a sentence, and keeping the layout in the same visual language as the game.",
+        ],
+        brief: [
+          ["Year", "2024"],
+          ["Medium", "Layout, illustration, UI"],
+        ],
+      }),
     ],
   },
 
   personal: {
     index: "02.3",
     title: "Personal Drawings",
-    template: "studies",
     tagline: "Drawing when nobody is asking me to draw anything.",
-    lead: LOREM_SHORT,
-    body: [LOREM],
-    projectsTitle: "Characters",
-    projects: [
-      project("nora", "Nora", "art/personal-drawings/nora"),
-      project("genista", "Genista", "art/personal-drawings/genista"),
-      project("kurowo", "Kurowo", "art/personal-drawings/kurowo"),
-      project("arcaster", "Arcaster", "art/personal-drawings/arcaster"),
-      project("non", "Non", "art/personal-drawings/non"),
+    cover: "art/personal-drawings/arcaster",
+    coverPos: "50% 35%",
+    lead: "The characters I design for myself, and the studies that keep my hands honest.",
+    body: [
+      "This is where the process shows the most, because nobody asked for any of it. Every character goes through the same stages: an inspiration board and a page of shapes, sketches and lineart, palette explorations, and the final render. I keep all of them here, because the unglamorous steps are the part I am proudest of.",
+      "The studies are older and plainer: light on cubes and spheres, the same sphere in eight materials, a portrait pushed until it stops looking flat. They are the reason the characters work.",
     ],
-    studiesTitle: "Studies",
+    projects: [
+      project("nora", "Nora", "art/personal-drawings/nora", {
+        note: "A painter who surfs on her own paint.",
+        concept: [
+          "Nora started from one question: what if a paintbrush were also a vehicle? The silhouettes were all about the oversized trousers and the brush; the palettes were about finding colours that glow against a night sky without turning into a rainbow.",
+        ],
+        brief: [
+          ["Stages", "Inspiration, sketch, palettes, render"],
+          ["Medium", "Digital painting"],
+        ],
+      }),
+      project("genista", "Genista", "art/personal-drawings/genista", {
+        note: "Cyberpunk, with something growing through it.",
+        concept: [
+          "Genista is a study in contrast: hard armour and a plant motif, a cold palette broken by magenta light. I tried a toxic green and a neon cyan version before the red scene settled it.",
+        ],
+        brief: [
+          ["Stages", "Sketch, palettes, render"],
+          ["Medium", "Digital painting"],
+        ],
+      }),
+      project("kurowo", "Kurowo", "art/personal-drawings/kurowo", {
+        note: "Adventurer of the Afterworld, and the house he lives in.",
+        concept: [
+          "Kurowo is a small crow knight with a snail shell for a helmet, designed from shapes first: I wanted him readable as a silhouette before he had a single detail. Then I built his home the same way, from moodboard to thumbnails to a finished environment, to see whether the character's world held up as well as he did.",
+        ],
+        brief: [
+          ["Stages", "Moodboard, shapes, sketch, palettes, render"],
+          ["Medium", "Character and environment design"],
+        ],
+      }),
+      project("arcaster", "Arcaster", "art/personal-drawings/arcaster", {
+        note: "A duelist with a sword too big to be polite.",
+        concept: [
+          "Arcaster came from wanting to paint something darker and more ornate: gothic tailoring, gold trim, and a violet blade that drips light. The inspiration sheet mixes fashion references with armour; the details page is where the costume actually got solved.",
+        ],
+        brief: [
+          ["Stages", "Inspiration, details, render"],
+          ["Medium", "Digital painting"],
+        ],
+      }),
+      project("non", "Non", "art/personal-drawings/non", {
+        note: "Modern fantasy: a witch with a very normal bedroom.",
+        concept: [
+          "Non is my favourite exercise in context. On her own she is a witch with a cursed hand; her room, a cosy mess of fairy lights, books and a summoning circle on the rug, says more about her than any costume could. Both went through moodboard, sketch, palette and final render.",
+        ],
+        brief: [
+          ["Stages", "Moodboard, sketch, palettes, render, room"],
+          ["Medium", "Character and interior design"],
+        ],
+      }),
+    ],
     studies: [
-      { title: "Shading Study", note: LOREM_SHORT, images: pics("art/personal-drawings/shading-study") },
-      { title: "Material Study", note: LOREM_SHORT, images: pics("art/personal-drawings/material-study") },
-      { title: "Rendering Study", note: LOREM_SHORT, images: pics("art/personal-drawings/rendering-study") },
-      { title: "Creature Study", note: LOREM_SHORT, images: pics("art/personal-drawings/creature-study") },
+      { id: "shading-study", title: "Shading Study", note: "Where it started: light on simple shapes, one source at a time.", images: "art/personal-drawings/shading-study" },
+      { id: "material-study", title: "Material Study", note: "Metal, glass, wood, liquid: the same sphere, again and again, until each one reads at a glance.", images: "art/personal-drawings/material-study" },
+      { id: "rendering-study", title: "Rendering Study", note: "Taking a flat colour sketch all the way to a finished portrait.", images: "art/personal-drawings/rendering-study" },
+      { id: "creature-study", title: "Creature Study", note: "Animals that do not exist, built out of animals that do.", images: "art/personal-drawings/creature-study" },
     ],
   },
 
   ymdir: {
     index: "02.4",
     title: "YMDIR",
-    template: "process",
     status: "in development",
-    tagline: "The indie game I am making with a team.",
-    lead: LOREM_SHORT,
-    body: [LOREM],
+    tagline: "The dice roguelike I am making with Mad Burger Studio.",
+    cover: "art/ymdir/designs",
+    coverAt: 1,
+    coverPos: "50% 35%",
+    lead: "Designing a game from the inside: creatures, dice, map, interface, and the effects that make a hit feel like a hit.",
+    body: [
+      "YMDIR is where everything I know gets used at once. I design the creatures and the bosses, the dice and their faces, the map and the interface, and I write the world they belong to, in constant back and forth with the people who have to animate, program and balance all of it.",
+      "The pages below are organised as before and now, because the most honest way to show a game in development is to show how much it has changed. The first designs were busy and drawn to impress; the current ones are cleaner, readable at a glance on a small screen, and built to be animated in Unreal.",
+    ],
     brief: [
-      ["Team", "Lorem ipsum"],
-      ["Role", "Concept art, UI"],
+      ["Team", "Mad Burger Studio"],
+      ["Role", "Concept art, UI/UX, writing"],
+      ["Engine", "Unreal Engine"],
       ["Status", "In development"],
     ],
     // Each pair is one thread of the game read from where it started to where
     // it is now. The Drive folders already come in these pairs.
-    pairsTitle: "From first pass to now",
     pairs: [
       {
+        id: "designs",
         title: "Designs",
-        note: LOREM,
-        before: pics("art/ymdir/old-designs"),
-        after: pics("art/ymdir/designs"),
+        note: "The bestiary, before and after we knew what the game was. The early creatures were drawn to impress; the new ones are drawn to be read: one strong silhouette, one colour story, and an attack you can guess from the shape.",
+        before: "art/ymdir/old-designs",
+        after: "art/ymdir/designs",
       },
       {
+        id: "map-and-ui",
         title: "Map & UI",
-        note: LOREM,
-        before: pics("art/ymdir/old-ui"),
-        after: pics("art/ymdir/map-and-ui"),
+        note: "The first interface was a set of icons; the new one is a map you travel across and a screen that lets the dice do the talking. Most of the iterations here were about taking things away.",
+        before: "art/ymdir/old-ui",
+        after: "art/ymdir/map-and-ui",
       },
       {
+        id: "dice",
         title: "Dice",
-        note: LOREM,
-        before: pics("art/ymdir/old-dice"),
-        after: pics("art/ymdir/dice"),
+        note: "Every skill lives on a die face, so each icon has to work at thumbnail size and still hint at what it does. The old dice were whole objects; the new ones are flat faces in a shared frame, so a player learns the system once.",
+        before: "art/ymdir/old-dice",
+        after: "art/ymdir/dice",
       },
     ],
-    extraTitle: "VFX",
-    extra: { note: LOREM_SHORT, images: pics("art/ymdir/vfx") },
+    extra: {
+      id: "vfx",
+      title: "VFX",
+      note: "Effect sheets for the enemies: how a hit, a buff or a death looks, step by step, handed to the team as reference for Unreal.",
+      images: "art/ymdir/vfx",
+    },
   },
 };
 
 export const order = ["msr", "nemixar", "personal", "ymdir"];
 
-/* Placeholder dates: every box is positioned on a 10-column year axis with
-   --from / --to (grid lines, so a single year is n → n+1). */
+/* Dates are best guesses: every box is positioned on a 10-column year axis
+   with --from / --to (grid lines, so a single year is n → n+1). */
 export const artTimeline = {
   years: ["2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024", "2025", "2026"],
   lanes: [
     {
       name: "MSR",
       items: [
-        { from: 5, to: 6, when: "2021", what: "Presentation", where: "Lorem ipsum", href: "art/project.html?s=msr&p=presentation" },
-        { from: 6, to: 7, when: "2022", what: "BlackHat", where: "Lorem ipsum", href: "art/project.html?s=msr&p=blackhat" },
-        { from: 7, to: 8, when: "2023", what: "GreyHat · WhiteHat", where: "Lorem ipsum", href: "art/msr.html" },
+        { from: 6, to: 8, when: "2022 - 2023", what: "BlackHat · GreyHat · WhiteHat", where: "Character design", href: "art/msr.html#blackhat" },
+        { from: 7, to: 8, when: "2023", what: "The Hat Hackers", where: "Pitch presentation", href: "art/msr.html#presentation" },
       ],
     },
     {
@@ -156,16 +280,16 @@ export const artTimeline = {
     {
       name: "Personal",
       items: [
-        { from: 1, to: 5, when: "2017 — 2020", what: "Material · Shading studies", where: "Lorem ipsum", href: "art/personal.html#studies" },
-        { from: 4, to: 8, when: "2020 — 2023", what: "Nora · Genista · Kurowo", where: "Lorem ipsum", href: "art/personal.html" },
-        { from: 8, to: -1, when: "2024 — today", what: "Arcaster · Non", where: "Lorem ipsum", href: "art/personal.html", live: true },
+        { from: 1, to: 5, when: "2017 - 2020", what: "Material · Shading studies", where: "Light, form, surfaces", href: "art/personal.html#shading-study" },
+        { from: 4, to: 8, when: "2020 - 2023", what: "Nora · Genista · Kurowo", where: "Characters, start to finish", href: "art/personal.html#nora" },
+        { from: 8, to: -1, when: "2024 - today", what: "Arcaster · Non", where: "Current personal work", href: "art/personal.html#arcaster", live: true },
       ],
     },
     {
       name: "YMDIR",
       items: [
-        { from: 8, to: 9, when: "2024", what: "Old designs · Old UI", where: "First pass", href: "art/ymdir.html" },
-        { from: 9, to: -1, when: "2025 — today", what: "Designs · Map & UI · Dice", where: "In development", href: "art/ymdir.html", live: true },
+        { from: 8, to: 9, when: "2024", what: "Old designs · Old UI", where: "First pass", href: "art/ymdir.html#designs" },
+        { from: 9, to: -1, when: "2025 - today", what: "Designs · Map & UI · Dice", where: "In development", href: "art/ymdir.html#map-and-ui", live: true },
       ],
     },
   ],

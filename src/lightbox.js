@@ -1,6 +1,9 @@
-/* One <dialog> for the whole site. Any .shot-open inside a [data-lightbox]
-   list opens it on that list, so arrows walk the collage the piece came from.
-   The description is folded away by default — the piece gets the full screen,
+import { selectThumb } from "./gallery.js";
+
+/* One <dialog> for the whole site. The stage of any gallery opens it on that
+   gallery's set, so arrows walk the pieces the stage came from, and closing it
+   leaves the stage on the last piece seen.
+   The description is folded away by default: the piece gets the full screen,
    and "info" (or the i key) slides the text in; that choice sticks while
    browsing. */
 
@@ -42,13 +45,28 @@ function build() {
     if (e.target === dialog) dialog.close();
   });
 
+  // On a phone a sideways swipe walks the set.
+  let startX = null;
+  dialog.addEventListener("touchstart", (e) => (startX = e.touches[0].clientX), { passive: true });
+  dialog.addEventListener("touchend", (e) => {
+    if (startX === null) return;
+    const dx = e.changedTouches[0].clientX - startX;
+    startX = null;
+    if (Math.abs(dx) > 50 && group.length > 1) show(index + (dx < 0 ? 1 : -1));
+  });
+
   dialog.addEventListener("keydown", (e) => {
     if (e.key === "ArrowLeft") show(index - 1);
     else if (e.key === "ArrowRight") show(index + 1);
     else if (e.key === "i") toggleInfo();
   });
 
-  dialog.addEventListener("close", () => group[index]?.focus());
+  dialog.addEventListener("close", () => {
+    const thumb = group[index];
+    if (!thumb) return;
+    selectThumb(thumb);
+    thumb.closest(".gallery").querySelector(".gallery-open").focus();
+  });
 }
 
 function toggleInfo() {
@@ -75,6 +93,8 @@ function show(i) {
 
   dialog.querySelector(".lb-title").textContent = btn.dataset.title;
   dialog.querySelector(".lb-text").textContent = btn.dataset.caption;
+  // Nothing to unfold when a piece has no words yet.
+  dialog.querySelector(".lb-info").hidden = !btn.dataset.caption;
   dialog.querySelector(".lb-count").textContent =
     `${String(index + 1).padStart(2, "0")} / ${String(group.length).padStart(2, "0")}`;
   const single = group.length < 2;
@@ -83,13 +103,13 @@ function show(i) {
 
 export function initLightbox() {
   document.addEventListener("click", (e) => {
-    const btn = e.target.closest(".shot-open");
-    if (!btn) return;
-    const list = btn.closest("[data-lightbox]");
+    const stage = e.target.closest(".gallery-open");
+    if (!stage) return;
+    const gallery = stage.closest(".gallery");
     if (!dialog) build();
-    group = [...list.querySelectorAll(".shot-open")];
-    dialog.querySelector(".lb-group").textContent = list.dataset.lightbox;
-    show(group.indexOf(btn));
+    group = [...gallery.querySelectorAll(".gallery-thumb")];
+    dialog.querySelector(".lb-group").textContent = gallery.dataset.lightbox;
+    show(Number(gallery.dataset.index ?? 0));
     dialog.showModal();
   });
 }

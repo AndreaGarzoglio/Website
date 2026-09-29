@@ -1,6 +1,6 @@
 import ghost from "../../assets/ghost.txt";
 
-/* Résumé — indigo, leaning a touch violet, warming under the pointer.
+/* Résumé: indigo, leaning a touch violet, warming under the pointer.
    Two ghosts: a big one cropped down the right edge, a small mirrored one
    grazing the top-left corner. */
 export default {

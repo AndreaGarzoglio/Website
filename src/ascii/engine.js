@@ -119,8 +119,8 @@ for (let h = 0; h < HEAT_STEPS; h++) {
  * is empty, so an all-zero row or column simply never stamps anything.
  *
  * Empty cells reachable from outside the art are ordinary background and stay
- * animated. Whatever is left over is enclosed — the eyes of a ghost, the gap
- * between fingers — and gets held open, so the field can never drift in and
+ * animated. Whatever is left over is enclosed (the eyes of a ghost, the gap
+ * between fingers) and gets held open, so the field can never drift in and
  * fill the shape. */
 const ART_CACHE = new Map();
 
@@ -184,7 +184,7 @@ function parseArt(source) {
 
 /* Ambient glyphs run from the theme's low colour to its high colour with
  * density; the pointer and clicks pull them toward the theme's heat colour.
- * Ink — the stamped art — runs on its own pair so it reads as something
+ * Ink (the stamped art) runs on its own pair so it reads as something
  * standing behind the field rather than another swell in it.
  *
  * Colours are quantised into a palette so each frame still draws in a handful

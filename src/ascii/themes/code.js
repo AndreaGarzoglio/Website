@@ -1,7 +1,7 @@
 import handLeft from "../../assets/hand-left.txt";
 import handRight from "../../assets/hand-right.txt";
 
-/* Code — a magenta field with the hands drawn lighter but no less saturated
+/* Code: a magenta field with the hands drawn lighter but no less saturated
    over it, flaring hot pink under the pointer.
 
    The drawing's two hands are stamped as separate pieces, each anchored to its

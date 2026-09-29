@@ -9,7 +9,7 @@ const LOAD_TITLES = ".hero-name, .zone-title, .project-title";
 const LOAD_LEADS = ".hero-lead, .zone-lead, .project-lead";
 const SCROLL_TITLES = ".cv-title, .side-title, .contact-email";
 const REVEALS =
-  ".entry, .card, .gateway, .skill-group, .gallery figure, .stat, .featured, .tile, .fact, .hero-portrait, .contact-photo, .shot, .pair-side";
+  ".entry, .card, .offer-card, .gateway, .skill-group, .stat, .featured, .tile, .fact, .hero-portrait, .contact-photo, .gallery, .pair-side, .work-tile, .piece-text";
 
 // How long one letter spends cycling through the ramp before it settles.
 const DECODE_MS = 190;

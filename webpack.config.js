@@ -1,24 +1,14 @@
 import path from "node:path";
 import HtmlWebpackPlugin from "html-webpack-plugin";
 
-/* Every page in the site. Keep this list in sync with src/**.html — it drives
-   both the build output and what the dev server watches. */
-const pages = [
-  "index.html",
-  "code.html",
-  "art.html",
-  "code/battleship.html",
-  "code/game-vault.html",
-  "code/todo-list.html",
-  "code/weather-report.html",
-  "code/knight-travails.html",
-  "code/binary-search-trees.html",
-  "art/msr.html",
-  "art/personal.html",
-  "art/nemixar.html",
-  "art/ymdir.html",
-  "art/project.html",
-];
+import { pages } from "./src/layout.js";
+
+/* The home page is written by hand; every Art and Code page is generated from
+   src/content/ through src/layout.js, so adding a project or a collection
+   there adds its page here. Restart the dev server after editing layout.js or
+   the page list — webpack only reads this file once. */
+const generated = pages();
+const FAVICON = "./src/assets/favicon.svg";
 
 export default {
   mode: "development",
@@ -30,15 +20,15 @@ export default {
   },
   devtool: "eval-source-map",
   devServer: {
-    watchFiles: ["./src/**/*.html"],
+    watchFiles: ["./src/index.html"],
   },
-  plugins: pages.map(
-    (page) =>
-      new HtmlWebpackPlugin({
-        template: `./src/${page}`,
-        filename: page,
-      }),
-  ),
+  plugins: [
+    new HtmlWebpackPlugin({ template: "./src/index.html", filename: "index.html", favicon: FAVICON }),
+    ...generated.map(
+      ({ filename, html }) =>
+        new HtmlWebpackPlugin({ templateContent: html, filename, favicon: FAVICON }),
+    ),
+  ],
   module: {
     rules: [
       {

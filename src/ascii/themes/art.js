@@ -1,6 +1,6 @@
 import adam from "../../assets/adam.txt";
 
-/* Art — a violet field with the drawing lighter but no less saturated over
+/* Art: a violet field with the drawing lighter but no less saturated over
    it, flaring bright violet under the pointer.
 
    One drawing this time: both hands already composed against each other at

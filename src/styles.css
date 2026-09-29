@@ -22,6 +22,15 @@
   --glow-a: rgba(106, 94, 224, 0.12);
   --glow-b: rgba(138, 124, 255, 0.08);
 
+  /* The home timeline colours a bar by what kind of thing it was. Art and
+     code match their own pages. */
+  --c-school: #ff8a3d;
+  --c-art: #aa60ff;
+  --c-lang: #4d8dff;
+  --c-media: #ffd23f;
+  --c-games: #2fd9ec;
+  --c-code: #ff2e88;
+
   --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
   --dot: "Doto", "JetBrains Mono", monospace;
   /* Only the page-level titles step out of the terminal voice. Outfit is a
@@ -117,7 +126,7 @@ h1,
 h2,
 h3 {
   font-family: var(--dot);
-  font-weight: 600;
+  font-weight: 800;
   color: var(--accent-lt);
   line-height: 1.3;
 }
@@ -135,8 +144,9 @@ h3 {
   color: var(--accent-2);
 }
 
+/* Paragraphs fill the column they are given; the columns set the measure. */
 p {
-  max-width: 60ch;
+  max-width: none;
 }
 
 /* ---- Animated ascii field ---- */
@@ -163,6 +173,26 @@ p {
         rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.58) 60%, rgba(0, 0, 0, 0.9) 100%);
     mask-image: radial-gradient(ellipse 130% 60% at 50% 50%,
         rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.58) 60%, rgba(0, 0, 0, 0.9) 100%);
+  }
+}
+
+/* A soft veil between the field and the copy. It darkens the column the text
+   reads down and clears toward the edges, where the drawings are meant to be
+   seen. */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: linear-gradient(90deg,
+      transparent 0%, rgba(8, 8, 10, 0.5) 16%,
+      rgba(8, 8, 10, 0.5) 58%, transparent 88%);
+}
+
+@media (max-width: 720px) {
+  body::after {
+    background: rgba(8, 8, 10, 0.35);
   }
 }
 
@@ -275,7 +305,7 @@ main,
 
 .nav-mark {
   font-family: var(--dot);
-  font-weight: 700;
+  font-weight: 800;
   font-size: 0.8125rem;
   letter-spacing: 0.04em;
   color: var(--text);
@@ -330,7 +360,7 @@ main,
 /* Bridges the gap between the display-size name and the small body copy. */
 .hero-lead {
   margin-top: clamp(18px, 2.5vw, 26px);
-  max-width: 44ch;
+  max-width: 58ch;
   font-size: clamp(0.9375rem, 2.1vw, 1.2rem);
   line-height: 1.6;
   color: var(--text);
@@ -378,7 +408,7 @@ main,
 
 @media (min-width: 760px) {
   .hero-grid {
-    grid-template-columns: 210px minmax(0, 1fr);
+    grid-template-columns: 230px minmax(0, 1fr);
     align-items: start;
   }
 
@@ -462,7 +492,9 @@ main,
 .tile {
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
   gap: 6px;
   padding: clamp(18px, 2.4vw, 24px);
   min-height: 140px;
@@ -476,9 +508,24 @@ main,
   color: var(--accent-lt);
 }
 
+/* The arrow is drawn in the same dot face as the headings. */
+.tile-arrow {
+  font-family: var(--dot);
+  font-weight: 800;
+  font-size: 2.6rem;
+  line-height: 1;
+  color: var(--accent);
+  transition: color 0.25s ease, transform 0.35s ease;
+}
+
+.tile:hover .tile-arrow {
+  color: var(--accent-lt);
+  transform: translate(4px, -4px);
+}
+
 .tile-title {
   font-family: var(--dot);
-  font-weight: 700;
+  font-weight: 800;
   font-size: 0.9375rem;
   color: var(--text);
 }
@@ -491,6 +538,28 @@ main,
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
   gap: clamp(20px, 3vw, 30px);
+}
+
+/* The exercises sit on a quieter, denser shelf under the real projects. */
+.practice {
+  margin-top: clamp(56px, 7vw, 88px);
+}
+
+.practice-note {
+  margin: -14px 0 clamp(20px, 3vw, 28px);
+  max-width: 70ch;
+  font-size: 0.8125rem;
+  line-height: 1.75;
+}
+
+.work-grid--practice {
+  grid-template-columns: repeat(auto-fit, minmax(min(210px, 100%), 1fr));
+  gap: clamp(14px, 2vw, 20px);
+}
+
+.work-grid--practice .card-media img {
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
 }
 
 .card {
@@ -628,7 +697,7 @@ main,
 
 .tool dt {
   font-family: var(--dot);
-  font-weight: 700;
+  font-weight: 800;
   font-size: 0.8125rem;
   letter-spacing: 0.02em;
   color: var(--text);
@@ -651,7 +720,7 @@ main,
 .contact-grid {
   display: grid;
   gap: clamp(32px, 5vw, 64px);
-  align-items: center;
+  align-items: start;
 }
 
 .contact-body {
@@ -706,11 +775,40 @@ main,
   color: var(--text-faint);
 }
 
+/* Name, inbox, map, place: the way out of every page is also the way in to
+   the contact details. */
 .footer .shell {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
   justify-content: space-between;
-  gap: 8px;
+  gap: 14px 28px;
+}
+
+.footer-id {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.footer-name {
+  font-family: var(--dot);
+  font-weight: 800;
+  font-size: 0.8125rem;
+  color: var(--text);
+}
+
+.footer-mail {
+  font-size: 0.8125rem;
+  color: var(--text);
+  border-bottom: 1px solid var(--line-strong);
+  padding-bottom: 2px;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.footer-mail:hover {
+  color: var(--accent-lt);
+  border-color: var(--accent-2);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -729,7 +827,7 @@ main,
   scroll-margin-top: calc(var(--nav-h) + 24px);
 }
 
-/* A visible seam between zones — you should feel the crossing. */
+/* A visible seam between zones: you should feel the crossing. */
 .zone + .zone {
   padding-top: var(--section-y);
   border-top: 1px solid var(--line);
@@ -755,16 +853,40 @@ main,
 
 .zone-lead {
   margin-top: clamp(14px, 2vw, 22px);
-  max-width: 46ch;
+  max-width: 52ch;
   font-size: clamp(0.9375rem, 2.1vw, 1.2rem);
   line-height: 1.6;
   color: var(--text);
 }
 
 .zone-body {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
   margin-top: 20px;
   font-size: 0.875rem;
   line-height: 1.85;
+}
+
+/* On wide screens the title and its lead take the left half and the longer
+   text sits beside them, instead of one long column under a big title. */
+@media (min-width: 960px) {
+  .zone-head--split {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    column-gap: clamp(40px, 6vw, 88px);
+    align-items: end;
+  }
+
+  .zone-head--split .zone-body {
+    margin-top: 0;
+    padding-left: clamp(20px, 2.5vw, 32px);
+    border-left: 1px solid var(--line);
+  }
+
+  .zone-head--split .stat-row {
+    grid-column: 1 / -1;
+  }
 }
 
 /* Marks copy that is still waiting on real content. */
@@ -833,11 +955,11 @@ main,
 .tl-lane-name {
   font-family: var(--dot);
   font-size: 0.6875rem;
-  font-weight: 500;
+  font-weight: 800;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: 10px;
+  color: var(--accent-lt);
+  margin-bottom: 12px;
 }
 
 .tl-track {
@@ -877,7 +999,7 @@ main,
 
 .tl-what {
   font-family: var(--dot);
-  font-weight: 700;
+  font-weight: 800;
   font-size: 0.8125rem;
   color: var(--text);
   line-height: 1.35;
@@ -888,31 +1010,178 @@ main,
   line-height: 1.5;
 }
 
-/* Past this width there is room to lay the years out as an axis and let
-   each entry sit on the span of time it actually occupies. */
+/* Past this width there is room to lay the years out as an axis: a Gantt
+   chart, one entry per row. The bar covers exactly the span of time; the
+   label starts where the bar does and may run on to the end of the axis, so a
+   single year never has to squeeze its name into one column. */
 @media (min-width: 880px) {
   .tl-years {
     display: grid;
-    grid-template-columns: repeat(var(--cols, 10), 1fr);
+    grid-template-columns: repeat(var(--cols, 10), minmax(0, 1fr));
     padding-bottom: 8px;
-    margin-bottom: 20px;
+    margin-bottom: 22px;
     border-bottom: 1px solid var(--line);
     font-size: 0.625rem;
     letter-spacing: 0.08em;
     color: var(--text-faint);
   }
 
+  .tl-years span {
+    padding-left: 6px;
+    border-left: 1px solid var(--line-strong);
+  }
+
+  /* Faint year lines run down every lane, lined up with the axis above. */
   .tl-track {
-    grid-template-columns: repeat(var(--cols, 10), 1fr);
-    gap: 6px;
+    gap: 16px;
+    padding-block: 4px;
+    background-image: linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size: calc(100% / var(--cols, 10)) 100%;
   }
 
   .tl-item {
+    display: grid;
+    grid-template-columns: repeat(var(--cols, 10), minmax(0, 1fr));
+    row-gap: 3px;
+    padding: 0;
+    border: 0;
+    background: none;
+    overflow-wrap: normal;
+  }
+
+  .tl-item::before {
+    content: "";
+    grid-row: 1;
     grid-column: var(--from) / var(--to);
+    height: 6px;
+    margin-bottom: 7px;
+    border-radius: 1px;
+    background: color-mix(in srgb, var(--accent) 45%, transparent);
+    transition: background-color 0.25s ease;
+  }
+
+  /* Still running: the bar is lit and trails off past today. */
+  .tl-item--live::before {
+    background: linear-gradient(90deg, var(--accent) 0%, var(--accent-2) 80%, transparent);
+  }
+
+  .tl-item:hover {
+    background: none;
+  }
+
+  .tl-item:hover::before {
+    background-color: var(--accent-2);
+  }
+
+  .tl-item > * {
+    grid-column: var(--from) / -1;
+    padding-left: 1px;
+  }
+
+  .tl-what {
+    grid-row: 2;
+    transition: color 0.2s ease;
+  }
+
+  .tl-where {
+    grid-row: 3;
+    color: var(--text-faint);
+  }
+
+  .tl-item:hover .tl-what {
+    color: var(--accent-lt);
   }
 
   .tl-when {
     display: none;
+  }
+}
+
+/* ---- Home: one axis, coloured by kind ----
+   Each bar carries its own colour in --c. A plain bar is a thin, muted line;
+   --major and --key are the ones that mattered, so they are thicker and lit.
+   What is still running trails off to the right, and what started before
+   2017 fades in from the left. */
+.tl-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  margin: -10px 0 26px;
+  font-size: 0.6875rem;
+  color: var(--text-faint);
+}
+
+.tl-legend li {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.tl-legend li::before {
+  content: "";
+  width: 14px;
+  height: 6px;
+  border-radius: 1px;
+  background: var(--c);
+}
+
+.timeline--home .tl-item {
+  --c: var(--accent);
+  --bar: color-mix(in srgb, var(--c) 42%, transparent);
+  --h: 6px;
+  border-left-color: var(--bar);
+}
+
+.timeline--home .tl-item--major {
+  --bar: var(--c);
+  --h: 8px;
+}
+
+.timeline--home .tl-item--key {
+  --bar: var(--c);
+  --h: 11px;
+}
+
+.timeline--home .tl-item:hover {
+  border-color: var(--line);
+  border-left-color: var(--bar);
+  background: var(--surface);
+}
+
+.timeline--home .tl-item:hover .tl-what {
+  color: color-mix(in srgb, var(--c) 55%, #fff);
+}
+
+@media (min-width: 880px) {
+  .timeline--home .tl-track {
+    gap: 18px;
+  }
+
+  .timeline--home .tl-item::before {
+    height: var(--h);
+    background: var(--bar);
+    transition: filter 0.25s ease;
+  }
+
+  .timeline--home .tl-item--live::before {
+    background: linear-gradient(90deg, var(--bar) 72%, transparent);
+  }
+
+  .timeline--home .tl-item--earlier::before {
+    background: linear-gradient(90deg, transparent, var(--bar) 75%);
+  }
+
+  /* Hovering only colours the words; every bar stays as it is. */
+  .timeline--home .tl-item:hover {
+    background: none;
+  }
+
+  .timeline--home .tl-item:hover::before {
+    background-color: transparent;
+  }
+
+  .timeline--home .tl-item:hover .tl-where {
+    color: color-mix(in srgb, var(--c) 45%, var(--text-faint));
   }
 }
 
@@ -928,11 +1197,12 @@ main,
 }
 
 .gateway {
+  --pad: clamp(26px, 4vw, 44px);
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 10px;
-  padding: clamp(26px, 4vw, 44px);
+  padding: var(--pad);
   border: 1px solid var(--line);
   background: var(--surface);
   backdrop-filter: blur(8px);
@@ -948,6 +1218,24 @@ main,
 .gateway:hover::before,
 .gateway:hover::after {
   border-color: var(--accent-2);
+}
+
+/* A door shows what is behind it: the cover runs edge to edge across the top
+   of the card and comes into full colour when the door is chosen. */
+.gateway-cover {
+  width: calc(100% + 2 * var(--pad));
+  max-width: none;
+  margin: calc(-1 * var(--pad)) calc(-1 * var(--pad)) 14px;
+  aspect-ratio: 16 / 8;
+  object-fit: cover;
+  border-bottom: 1px solid var(--line);
+  filter: grayscale(0.55) brightness(0.8) contrast(1.05);
+  transition: filter 0.45s ease;
+}
+
+.gateway:hover .gateway-cover,
+.gateway:focus-visible .gateway-cover {
+  filter: none;
 }
 
 .gateway-index {
@@ -1004,7 +1292,7 @@ main,
 
 .stat-value {
   font-family: var(--dot);
-  font-weight: 700;
+  font-weight: 800;
   font-size: clamp(1.25rem, 3.5vw, 1.75rem);
   color: var(--text);
 }
@@ -1022,81 +1310,8 @@ main,
   line-height: 1.8;
 }
 
-/* ---- Art: personal work gallery ---- */
-
-.gallery-block {
-  padding-block: 0 var(--section-y);
-}
-
-.gallery {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
-  gap: clamp(20px, 3vw, 30px);
-}
-
-.gallery figure {
-  border: 1px solid var(--line);
-  background: var(--surface);
-}
-
-.gallery figcaption {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  padding: 14px 16px 18px;
-  border-top: 1px solid var(--line);
-  font-size: 0.75rem;
-  line-height: 1.6;
-}
-
-.gallery figcaption strong {
-  font-family: var(--dot);
-  font-weight: 700;
-  font-size: 0.8125rem;
-  color: var(--text);
-}
-
-/* A six-column field lets some pieces run wider than others, which is the
-   difference between a gallery and a grid of thumbnails. */
-@media (min-width: 880px) {
-  .gallery {
-    grid-template-columns: repeat(6, 1fr);
-  }
-
-  .gallery-item {
-    grid-column: span 2;
-  }
-
-  .gallery-item--wide {
-    grid-column: span 3;
-  }
-}
-
-/* ---- Art: Nemixar campaign ---- */
-
-.campaign-block {
-  padding-block: 0 var(--section-y);
-}
-
-.campaign {
-  display: grid;
-  gap: clamp(24px, 4vw, 44px);
-  align-items: start;
-}
-
-.campaign-media {
-  border: 1px solid var(--line);
-}
-
-.campaign-body {
-  display: flex;
-  flex-direction: column;
-  gap: 22px;
-  font-size: 0.875rem;
-  line-height: 1.8;
-}
-
-/* Client work answers a brief, so the brief is part of the piece. */
+/* ---- Facts panel ----
+   Client work answers a brief, so the brief is part of the piece. */
 .brief {
   width: 100%;
 }
@@ -1123,38 +1338,6 @@ main,
   color: var(--text);
 }
 
-.campaign-strip {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(150px, 100%), 1fr));
-  gap: clamp(14px, 2vw, 22px);
-  margin-top: clamp(24px, 3vw, 34px);
-}
-
-@media (min-width: 880px) {
-  .campaign {
-    grid-template-columns: 1.05fr 1fr;
-  }
-}
-
-/* ---- Art: YMDIR case study ---- */
-
-.case-block {
-  padding-block: 0 var(--section-y);
-}
-
-/* Runs the full width of the viewport — this is the one that gets to shout. */
-.case-hero {
-  margin-bottom: clamp(30px, 5vw, 60px);
-}
-
-.case-hero .ph {
-  border-inline: 0;
-}
-
-.case-head {
-  margin-bottom: clamp(32px, 5vw, 56px);
-}
-
 .case-status {
   display: inline-block;
   padding: 3px 10px;
@@ -1163,73 +1346,6 @@ main,
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--accent-lt);
-}
-
-.case-title {
-  margin-top: 16px;
-  font-size: clamp(1.75rem, 7vw, 3.25rem);
-  font-weight: 700;
-  line-height: 1.05;
-}
-
-.case-lead {
-  margin-top: 14px;
-  max-width: 46ch;
-  font-size: clamp(0.9375rem, 2vw, 1.125rem);
-  line-height: 1.65;
-  color: var(--text);
-}
-
-.case-grid {
-  display: grid;
-  gap: clamp(28px, 4vw, 48px);
-  align-items: start;
-}
-
-.case-body {
-  font-size: 0.875rem;
-  line-height: 1.85;
-}
-
-.case-body h3 {
-  font-size: 0.875rem;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  margin-bottom: 8px;
-}
-
-.case-body h3 + p {
-  margin-bottom: 26px;
-}
-
-.case-side {
-  padding: clamp(18px, 2.4vw, 26px);
-  border: 1px solid var(--line);
-  background: var(--surface);
-}
-
-/* The first row's border would double up with the panel's own edge. */
-.case-side .brief-row:first-child {
-  border-top: 0;
-  padding-top: 0;
-}
-
-.case-strip {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr));
-  gap: clamp(16px, 2.5vw, 26px);
-  margin-top: clamp(30px, 4vw, 48px);
-}
-
-@media (min-width: 880px) {
-  .case-grid {
-    grid-template-columns: minmax(0, 1fr) 300px;
-  }
-
-  .case-side {
-    position: sticky;
-    top: calc(var(--nav-h) + 24px);
-  }
 }
 
 /* Longer section metadata (a client, a date, a platform) will not fit on one
@@ -1249,11 +1365,24 @@ main,
    ============================================================ */
 
 /* The details a recruiter checks first, kept out of the prose. */
+/* They sit in the photo's column, one under the other. */
+.hero-side {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  min-width: 0;
+}
+
 .facts {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(190px, 100%), 1fr));
-  gap: clamp(16px, 2.5vw, 30px);
-  margin-top: clamp(36px, 5vw, 56px);
+  grid-template-columns: repeat(auto-fit, minmax(min(150px, 100%), 1fr));
+  gap: 14px 20px;
+}
+
+@media (min-width: 760px) {
+  .facts {
+    grid-template-columns: minmax(0, 1fr);
+  }
 }
 
 .fact {
@@ -1284,9 +1413,14 @@ main,
   line-height: 1.05;
 }
 
+/* A phrase wearing its timeline colour. */
+.hl {
+  color: color-mix(in srgb, var(--c) 72%, #fff);
+}
+
 .cv-lead {
   margin-top: 12px;
-  max-width: 46ch;
+  max-width: 72ch;
   font-size: clamp(0.9375rem, 2vw, 1.125rem);
   line-height: 1.6;
   color: var(--text);
@@ -1390,7 +1524,7 @@ main,
 }
 
 .entry-notes li::before {
-  content: "—";
+  content: "-";
   position: absolute;
   left: 0;
   color: var(--text-faint);
@@ -1445,10 +1579,10 @@ main,
 
 .skill-group h3 {
   font-size: 0.6875rem;
-  font-weight: 500;
+  font-weight: 800;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--text-faint);
+  color: var(--accent-lt);
   padding-bottom: 10px;
   margin-bottom: 14px;
   border-bottom: 1px solid var(--line);
@@ -1524,7 +1658,7 @@ main,
 .subnav-label {
   flex-shrink: 0;
   font-family: var(--dot);
-  font-weight: 700;
+  font-weight: 800;
   font-size: 0.625rem;
   letter-spacing: 0.22em;
   text-transform: uppercase;
@@ -1624,7 +1758,7 @@ main,
 
 .pager-name {
   font-family: var(--dot);
-  font-weight: 700;
+  font-weight: 800;
   font-size: 0.9375rem;
   color: var(--text);
   transition: color 0.2s ease;
@@ -1736,21 +1870,6 @@ main,
   border-color: var(--line-strong);
 }
 
-.project-shot {
-  border: 1px solid var(--line);
-  margin-bottom: clamp(32px, 5vw, 56px);
-}
-
-.project-shot img {
-  width: 100%;
-  filter: grayscale(0.4) contrast(1.05);
-  transition: filter 0.45s ease;
-}
-
-.project-shot:hover img {
-  filter: grayscale(0) contrast(1);
-}
-
 .project-grid {
   display: grid;
   gap: clamp(28px, 4vw, 48px);
@@ -1814,17 +1933,10 @@ main,
 }
 
 /* Pages carry a second nav bar, so anything sticky has to clear both. */
-.zone--page .case-side,
 .zone--page .cv-block,
 .zone--page .work,
 .zone--page[id] {
   scroll-margin-top: calc(var(--nav-h) + 42px + 24px);
-}
-
-@media (min-width: 880px) {
-  .zone--page .case-side {
-    top: calc(var(--nav-h) + 42px + 24px);
-  }
 }
 
 /* Four top-level destinations plus the wordmark is a tight fit on the
@@ -1847,8 +1959,9 @@ main,
    art and its colours live in src/ascii/themes/.
    ============================================================ */
 
-/* Code — magenta. */
-[data-page="code"] {
+/* Code: magenta. The home's selected-work shelves borrow each page's palette. */
+[data-page="code"],
+.tone-code {
   --accent: #c9327a;
   --accent-lt: #ff7ab8;
   --accent-2: #ff2e88;
@@ -1856,8 +1969,9 @@ main,
   --glow-b: rgba(255, 46, 136, 0.09);
 }
 
-/* Art — violet. */
-[data-page="art"] {
+/* Art: violet. */
+[data-page="art"],
+.tone-art {
   --accent: #8a5ae0;
   --accent-lt: #c6a8ff;
   --accent-2: #aa60ff;
@@ -1868,7 +1982,7 @@ main,
 /* ============================================================
    Motion
    Everything here is scoped to .motion, which src/motion.js only
-   sets when the reader has not asked for reduced motion — without
+   sets when the reader has not asked for reduced motion. Without
    it the page renders complete and still.
    ============================================================ */
 
@@ -1900,7 +2014,7 @@ main,
   inset: 0;
   text-align: center;
   font-family: var(--dot);
-  font-weight: 700;
+  font-weight: 800;
   color: var(--accent-lt);
   opacity: 0.85;
 }
@@ -2006,16 +2120,44 @@ main,
 
 /* A timeline bar is a length of time, so it grows rather than fades. The
    bars are small, which keeps the clip cheap. */
-.motion .tl-item {
-  clip-path: inset(0 100% 0 0);
-  transition:
-    clip-path 1.1s cubic-bezier(0.2, 0.7, 0.2, 1) calc(var(--i, 0) * 140ms),
-    border-color 0.25s ease,
-    background-color 0.25s ease;
+@media (max-width: 879px) {
+  .motion .tl-item {
+    clip-path: inset(0 100% 0 0);
+    transition:
+      clip-path 1.1s cubic-bezier(0.2, 0.7, 0.2, 1) calc(var(--i, 0) * 140ms),
+      border-color 0.25s ease,
+      background-color 0.25s ease;
+  }
+
+  .motion .tl-lane.is-in .tl-item {
+    clip-path: inset(0 0 0 0);
+  }
 }
 
-.motion .tl-lane.is-in .tl-item {
-  clip-path: inset(0 0 0 0);
+/* On the axis only the bar grows; its label follows once it has landed. */
+@media (min-width: 880px) {
+  .motion .tl-item::before {
+    transform: scaleX(0);
+    transform-origin: left;
+    transition:
+      transform 1.1s cubic-bezier(0.2, 0.7, 0.2, 1) calc(var(--i, 0) * 140ms),
+      background-color 0.25s ease;
+  }
+
+  .motion .tl-item > * {
+    opacity: 0;
+    transition:
+      opacity 0.6s ease calc(0.35s + var(--i, 0) * 140ms),
+      color 0.2s ease;
+  }
+
+  .motion .tl-lane.is-in .tl-item::before {
+    transform: none;
+  }
+
+  .motion .tl-lane.is-in .tl-item > * {
+    opacity: 1;
+  }
 }
 
 /* ============================================================
@@ -2056,7 +2198,6 @@ main,
   display: flex;
   flex-direction: column;
   gap: 1.1em;
-  max-width: 68ch;
   font-size: 0.875rem;
   line-height: 1.85;
 }
@@ -2106,42 +2247,36 @@ main,
   color: var(--text-faint);
 }
 
-/* ---- Collage ----
-   Dense packing lets tall and wide pieces lock together without gaps, so the
-   run reads as a wall of work rather than a spreadsheet of thumbnails. */
-.shots {
-  list-style: none;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(min(150px, 100%), 1fr));
-  grid-auto-rows: 120px;
-  grid-auto-flow: dense;
-  gap: clamp(8px, 1.2vw, 14px);
-}
-
-.shot {
+/* ---- Gallery ----
+   One piece large on a stage, the rest as a strip of thumbnails under it.
+   The stage keeps one shape per set (--stage-ar, from render.js) and every
+   piece is contained inside it, so a presentation board is never cropped
+   through its lettering and a tall character sheet is never cut at the
+   knees. The full file comes back in the lightbox. */
+.gallery {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
   min-width: 0;
 }
 
-.shot--wide {
-  grid-column: span 2;
+.gallery-stage {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
-.shot--tall {
-  grid-row: span 2;
-}
-
-.shot--big {
-  grid-column: span 2;
-  grid-row: span 2;
-}
-
-.shot-open {
-  display: block;
+.gallery-open {
+  display: grid;
+  place-items: center;
   width: 100%;
-  height: 100%;
+  aspect-ratio: var(--stage-ar, 4 / 3);
+  max-height: 78vh;
   padding: 0;
   border: 1px solid var(--line);
-  background: var(--surface);
+  background:
+    radial-gradient(ellipse at 50% 40%, color-mix(in srgb, var(--accent) 10%, transparent), transparent 70%),
+    var(--surface);
   color: inherit;
   font: inherit;
   cursor: zoom-in;
@@ -2149,40 +2284,128 @@ main,
   transition: border-color 0.25s ease;
 }
 
-.shot-open:hover,
-.shot-open:focus-visible {
+.gallery-open:hover,
+.gallery-open:focus-visible {
   border-color: var(--accent-2);
   outline: none;
 }
 
-/* In the collage every piece fills its cell; the true proportions come back
-   in the lightbox. */
-.shot-open > .ph,
-.shot-open > img {
+.gallery-open > img {
   width: 100%;
   height: 100%;
-  aspect-ratio: auto;
+  object-fit: contain;
+  animation: stage-in 0.35s ease;
+}
+
+.gallery-open > .ph {
+  height: 100%;
+}
+
+@keyframes stage-in {
+  from {
+    opacity: 0;
+  }
+}
+
+.gallery-caption {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  font-size: 0.6875rem;
+  color: var(--text-faint);
+}
+
+.gallery-count {
+  color: var(--accent-lt);
+  letter-spacing: 0.08em;
+}
+
+.gallery-title {
+  color: var(--text);
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.gallery-hint {
+  margin-left: auto;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-size: 0.5625rem;
+  white-space: nowrap;
+}
+
+/* Thumbnails keep their own proportions at one height, so a row reads as the
+   set it is: boards wide, sheets tall. A long set scrolls sideways like a
+   film strip instead of piling up rows under the stage. */
+.gallery-strip {
+  position: relative;
+  display: flex;
+  gap: 6px;
+  padding-bottom: 6px;
+  overflow-x: auto;
+  scroll-snap-type: x proximity;
+  scrollbar-width: thin;
+}
+
+.gallery-strip li {
+  flex: none;
+  scroll-snap-align: start;
+}
+
+.gallery-thumb {
+  display: block;
+  height: 60px;
+  aspect-ratio: var(--ar);
+  max-width: 140px;
+  padding: 0;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  cursor: pointer;
+  overflow: hidden;
+  opacity: 0.55;
+  transition: opacity 0.2s ease, border-color 0.2s ease;
+}
+
+.gallery-thumb > img,
+.gallery-thumb > .ph {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   border: 0;
-  transition: transform 0.6s ease;
 }
 
-.shot-open:hover > * {
-  transform: scale(1.03);
+.gallery-thumb > .ph span {
+  display: none;
 }
 
-.shot--fit .shot-open > img {
-  object-fit: contain;
+.gallery-thumb:hover,
+.gallery-thumb:focus-visible {
+  opacity: 0.9;
+  outline: none;
 }
 
-.shots-more {
-  align-self: flex-start;
-  margin-top: 16px;
+.gallery-thumb[aria-current="true"] {
+  opacity: 1;
+  border-color: var(--accent-2);
 }
 
-@media (max-width: 480px) {
-  .shots {
-    grid-auto-rows: 90px;
+.gallery--compact .gallery-thumb {
+  height: 44px;
+}
+
+.gallery--compact .gallery-hint {
+  display: none;
+}
+
+@media (max-width: 559px) {
+  .gallery-thumb {
+    height: 46px;
+  }
+
+  .gallery-hint {
+    display: none;
   }
 }
 
@@ -2201,7 +2424,7 @@ main,
 .study-head h3 {
   font-family: var(--dot);
   font-size: 1rem;
-  font-weight: 700;
+  font-weight: 800;
   color: var(--text);
 }
 
@@ -2223,11 +2446,6 @@ main,
   min-width: 0;
 }
 
-.pair-side .shots {
-  grid-template-columns: repeat(auto-fill, minmax(min(110px, 100%), 1fr));
-  grid-auto-rows: 100px;
-}
-
 .pair-tag {
   font-size: 0.625rem;
   letter-spacing: 0.2em;
@@ -2240,12 +2458,12 @@ main,
 }
 
 /* The older half is quieter, so the eye lands on where it ended up. */
-.pair-side:first-child .shot-open {
+.pair-side:first-child .gallery-open > * {
   opacity: 0.7;
-  transition: opacity 0.25s ease, border-color 0.25s ease;
+  transition: opacity 0.25s ease;
 }
 
-.pair-side:first-child .shot-open:hover {
+.pair-side:first-child .gallery-open:hover > * {
   opacity: 1;
 }
 
@@ -2371,7 +2589,7 @@ main,
 .lb-title {
   font-family: var(--dot);
   font-size: 0.875rem;
-  font-weight: 700;
+  font-weight: 800;
 }
 
 /* The description folds away; "info" slides it back in. */
@@ -2407,4 +2625,1153 @@ main,
 
 .lb-next {
   right: 10px;
+}
+
+/* Hidden until a keyboard user tabs to it. */
+.skip-link {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  z-index: 100;
+  padding: 8px 14px;
+  border: 1px solid var(--accent);
+  background: var(--black);
+  color: var(--text);
+  font-size: 0.75rem;
+  transform: translateY(-150%);
+  transition: transform 0.2s ease;
+}
+
+.skip-link:focus {
+  transform: none;
+}
+
+/* ---- Home: availability and the first two actions ---- */
+.hero-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 22px;
+  padding: 6px 12px;
+  border: 1px solid var(--line-strong);
+  background: var(--surface);
+  font-size: 0.75rem;
+  color: var(--text);
+}
+
+.status-dot {
+  flex: none;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #3ddc84;
+  box-shadow: 0 0 0 3px rgba(61, 220, 132, 0.18);
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+/* Social profiles as marks rather than words. */
+.social-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.social {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  color: var(--text-dim);
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.social svg {
+  width: 22px;
+  height: 22px;
+  fill: currentColor;
+}
+
+.social:hover,
+.social:focus-visible {
+  color: var(--accent-lt);
+  transform: translateY(-2px);
+}
+
+/* The record in four numbers. */
+.glance {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1px;
+  margin-top: 22px;
+  border: 1px solid var(--line);
+  background: var(--line);
+}
+
+.glance li {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 14px 16px;
+  background: var(--black);
+}
+
+.glance-value {
+  font-family: var(--display);
+  font-size: clamp(1.25rem, 2.6vw, 1.6rem);
+  font-weight: 500;
+  line-height: 1.1;
+  color: var(--accent-lt);
+}
+
+.glance-label {
+  font-size: 0.6875rem;
+  line-height: 1.5;
+  color: var(--text-dim);
+}
+
+@media (min-width: 900px) {
+  .glance {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+/* ---- Home: what I can do for you ----
+   One card per kind of reader, each wearing the colour its work has on the
+   timeline. */
+.offer {
+  padding-block: 0 var(--section-y);
+  scroll-margin-top: calc(var(--nav-h) + 24px);
+}
+
+.offer-grid {
+  display: grid;
+  gap: clamp(16px, 2.4vw, 24px);
+}
+
+@media (min-width: 760px) {
+  .offer-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.offer-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: clamp(20px, 2.6vw, 28px);
+  border: 1px solid var(--line);
+  border-top: 3px solid var(--c);
+  background: var(--surface);
+  font-size: 0.8125rem;
+  line-height: 1.75;
+  transition: border-color 0.25s ease, background-color 0.25s ease;
+}
+
+.offer-card:hover {
+  border-color: color-mix(in srgb, var(--c) 45%, var(--line));
+  border-top-color: var(--c);
+  background: var(--surface-hi);
+}
+
+.offer-kind {
+  font-size: 0.625rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--c) 70%, #fff);
+}
+
+.offer-title {
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: 1.1875rem;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  color: var(--text);
+}
+
+.offer-proof {
+  margin-top: auto;
+  color: var(--text);
+}
+
+.offer-proof .text-link:hover {
+  color: color-mix(in srgb, var(--c) 70%, #fff);
+  border-color: var(--c);
+}
+
+.offer-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.offer-tags li {
+  padding: 2px 8px;
+  border: 1px solid var(--line);
+  font-size: 0.625rem;
+  letter-spacing: 0.06em;
+  color: var(--text-faint);
+}
+
+/* ============================================================
+   Home: selected work
+   Every project on the site as a tile, grouped by section. The
+   section's own blurb sits beside its row, so the grid reads as
+   two captioned shelves rather than one wall.
+   ============================================================ */
+
+.showcase {
+  padding-block: 0 var(--section-y);
+  scroll-margin-top: calc(var(--nav-h) + 24px);
+}
+
+.showcase-group {
+  display: grid;
+  gap: 22px;
+}
+
+.showcase-group + .showcase-group {
+  margin-top: clamp(44px, 6vw, 72px);
+}
+
+.showcase-head {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.showcase-title {
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: clamp(1.7rem, 4vw, 2.4rem);
+  letter-spacing: -0.025em;
+  line-height: 1.1;
+  color: var(--accent-2);
+}
+
+.showcase-title a:hover {
+  color: var(--accent-lt);
+}
+
+.showcase-note {
+  max-width: 40ch;
+  font-size: 0.8125rem;
+  line-height: 1.7;
+}
+
+.showcase-head .text-link {
+  margin-top: 6px;
+}
+
+.tiles {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(14px, 1.8vw, 20px) clamp(10px, 1.6vw, 18px);
+}
+
+@media (min-width: 760px) {
+  .tiles {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+/* One tile per shelf leads: full width on phones, a 2x2 block once the row
+   has four columns. Its picture stretches to whatever height the small tiles
+   beside it add up to. */
+.tile-featured {
+  grid-column: 1 / -1;
+  display: flex;
+}
+
+.tile-featured > .work-tile {
+  flex: 1;
+}
+
+.tile-featured img {
+  aspect-ratio: 16 / 9;
+}
+
+.tile-featured .work-tile-name {
+  font-size: 1rem;
+}
+
+@media (min-width: 760px) {
+  .tile-featured {
+    grid-column: span 2;
+    grid-row: span 2;
+  }
+
+  .tile-featured img {
+    flex: 1 1 0;
+    min-height: 0;
+    aspect-ratio: auto;
+  }
+}
+
+/* The last cell of each shelf is the way into the whole section. */
+.work-tile-all {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  aspect-ratio: 4 / 3;
+  border: 1px solid var(--line-strong);
+  font-family: var(--dot);
+  font-weight: 800;
+  font-size: 0.8125rem;
+  color: var(--accent-lt);
+  transition: border-color 0.25s ease, background-color 0.25s ease;
+}
+
+.work-tile-all:hover,
+.work-tile-all:focus-visible {
+  color: var(--accent-2);
+}
+
+@media (min-width: 960px) {
+  .showcase-group {
+    grid-template-columns: 230px minmax(0, 1fr);
+    gap: clamp(28px, 4vw, 48px);
+    align-items: start;
+  }
+}
+
+.work-tile {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.work-tile img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  margin-bottom: 6px;
+  border: 1px solid var(--line);
+  filter: grayscale(0.5) brightness(0.85);
+  transition: filter 0.4s ease, border-color 0.25s ease;
+}
+
+.work-tile:hover img,
+.work-tile:focus-visible img {
+  filter: none;
+  border-color: var(--accent-2);
+}
+
+.work-tile-name {
+  font-family: var(--dot);
+  font-weight: 800;
+  font-size: 0.8125rem;
+  line-height: 1.3;
+  color: var(--text);
+  transition: color 0.2s ease;
+}
+
+.work-tile:hover .work-tile-name {
+  color: var(--accent-lt);
+}
+
+.work-tile-meta {
+  font-size: 0.6875rem;
+  line-height: 1.45;
+  color: var(--text-faint);
+}
+
+/* ---- Home: résumé sections ----
+   One under the other, each folding away behind its own heading. Closed,
+   they sit close together like a table of contents. */
+.cv-stack {
+  padding-bottom: clamp(56px, 8vw, 96px);
+}
+
+.cv-fold {
+  padding-bottom: 0;
+}
+
+.cv-fold + .cv-fold {
+  margin-top: 6px;
+}
+
+.cv-fold[open] {
+  padding-bottom: clamp(48px, 6vw, 80px);
+}
+
+/* The timeline links land on single entries; keep them clear of the nav. */
+.cv-fold .entry {
+  scroll-margin-top: calc(var(--nav-h) + 24px);
+}
+
+.cv-fold > summary {
+  list-style: none;
+  cursor: pointer;
+  margin-bottom: 0;
+  padding-top: 14px;
+  align-items: center;
+}
+
+.cv-fold > summary::-webkit-details-marker {
+  display: none;
+}
+
+.cv-fold[open] > summary {
+  margin-bottom: clamp(26px, 4vw, 42px);
+}
+
+.cv-fold > summary h2 {
+  transition: color 0.2s ease;
+}
+
+.cv-fold > summary:hover h2 {
+  color: var(--accent-lt);
+}
+
+/* The meta line and a [+] / [-] mark share the right-hand side. */
+.cv-fold > summary .block-meta {
+  margin-left: auto;
+}
+
+.cv-fold > summary::before {
+  content: "[+]";
+  order: 2;
+  font-size: 0.75rem;
+  color: var(--accent-lt);
+  white-space: nowrap;
+}
+
+.cv-fold[open] > summary::before {
+  content: "[-]";
+}
+
+/* Each entry wears its timeline colour: the swatch by the dates, the
+   role, the badge and the picture's edge. */
+.cv-fold .entry-dates {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.cv-fold .entry-dates::before {
+  content: "";
+  flex: none;
+  width: 14px;
+  height: 6px;
+  border-radius: 1px;
+  background: var(--c);
+}
+
+/* The role is the headline, in its timeline colour and in the display face,
+   since the dotted one breaks up at this size. The organisation under it
+   stays in the page's indigo. */
+.cv-fold .entry-role {
+  font-family: var(--display);
+  font-size: 1.125rem;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  line-height: 1.3;
+  color: color-mix(in srgb, var(--c) 70%, #fff);
+}
+
+.cv-fold .entry-org {
+  color: var(--indigo-lt);
+}
+
+.cv-fold .entry-flag {
+  border-color: color-mix(in srgb, var(--c) 45%, transparent);
+  color: color-mix(in srgb, var(--c) 70%, #fff);
+}
+
+/* ---- Résumé entries as cards ----
+   Every entry is a 16:9 panel with its picture behind it, darkened, and the
+   school's or studio's mark large in the bottom right. The words sit on a
+   see-through column a third of the card wide, flush with the left, top
+   and bottom edges, and a soft shade from the left keeps them readable. The panel grows if the words need more room than
+   16:9 gives them.
+   A picture either covers the whole card (--pos, and --zoom/--origin only
+   as far as the file stays sharp: an origin on the left pushes the subject
+   right), or, with .entry--side, sits on the right at --w of the width and
+   fades into the black from its left edge. --bright lifts a picture that is
+   dark to begin with. */
+.entries:has(> .entry--card) {
+  display: grid;
+  gap: clamp(14px, 2vw, 20px);
+  /* Lets a card size itself from this width (cqw) below. */
+  container-type: inline-size;
+}
+
+.entries > .entry--card.entry,
+.entries > .entry--card.entry:first-child {
+  position: relative;
+  isolation: isolate;
+  /* clip rather than hidden: hidden would make the panel a scroll container
+     and stop it from growing past 16:9 when its words need the room. */
+  overflow: clip;
+  display: flex;
+  align-items: stretch;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--c);
+  /* Each card's dark ground is its own timeline colour, deep enough to read
+     white on: violet for art, orange for the liceo, and so on. The violet is
+     the loudest of them, so art cards take less of it (--tint-mix). */
+  --tint: color-mix(in srgb, var(--c) var(--tint-mix, 14%), #050507);
+  background: var(--tint);
+}
+
+.entry-bg {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: var(--pos, 50% 50%);
+  transform: scale(var(--zoom, 1));
+  transform-origin: var(--origin, 0% 50%);
+  filter: brightness(var(--bright, 0.72)) saturate(0.95);
+  transition: filter 0.5s ease;
+}
+
+.entry--side .entry-bg {
+  left: auto;
+  width: var(--w, 72%);
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.35) 12%, rgba(0, 0, 0, 0.75) 24%, #000 36%);
+  mask-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.35) 12%, rgba(0, 0, 0, 0.75) 24%, #000 36%);
+}
+
+/* The same gradual blend on every card: the picture dissolves into the
+   card's tint from the left, densest behind the words and gone by 60% of
+   the width, so the picture shows clearly on the right. */
+.entry--card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--tint) 98%, transparent) 0%,
+    color-mix(in srgb, var(--tint) 88%, transparent) 14%,
+    color-mix(in srgb, var(--tint) 68%, transparent) 26%,
+    color-mix(in srgb, var(--tint) 42%, transparent) 36%,
+    color-mix(in srgb, var(--tint) 18%, transparent) 45%,
+    color-mix(in srgb, var(--tint) 5%, transparent) 53%,
+    transparent 60%
+  );
+}
+
+.entry--card:hover .entry-bg {
+  filter: brightness(calc(var(--bright, 0.72) * 1.15)) saturate(1);
+}
+
+/* The words, on a column you can see the picture through. */
+.entry-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  padding: clamp(18px, 2.6vw, 30px);
+  padding-bottom: 116px;
+  /* A shade lighter and more saturated than the card's ground, whatever the
+     colour, so the pane always reads as its own surface. */
+  background: color-mix(in srgb, color-mix(in srgb, var(--c) 17%, #0c0c12) 62%, transparent);
+  /* The page-wide black glow behind text muddies a coloured ground. */
+  color: #c6c6ce;
+  text-shadow: 0 1px 2px color-mix(in srgb, var(--tint) 80%, #000);
+  -webkit-backdrop-filter: blur(3px);
+  backdrop-filter: blur(3px);
+}
+
+.entry-panel > .entry-when {
+  flex-direction: row;
+  align-items: baseline;
+  gap: 4px 12px;
+}
+
+.entry-logo {
+  position: absolute;
+  z-index: 1;
+  right: clamp(14px, 2.4vw, 28px);
+  bottom: clamp(14px, 2vw, 24px);
+  width: auto;
+  height: auto;
+  max-width: 170px;
+  max-height: 72px;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 16px rgba(0, 0, 0, 0.7));
+}
+
+/* A fine white mark on a pale photo needs a darker halo to read. */
+.entry-logo--halo {
+  filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.95)) drop-shadow(0 0 10px rgba(0, 0, 0, 0.85))
+    drop-shadow(0 4px 22px rgba(0, 0, 0, 0.8));
+}
+
+.entry-logo--round {
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.85);
+}
+
+/* With room to spare the card is 16:9, the column takes the left and the
+   right is left to the picture and the mark. On a phone the words need the
+   full width, so the column spans the card and the card fits them. */
+@media (min-width: 760px) {
+  /* On a tablet the words cannot fit a third of a 16:9 card, so there the
+     column is wider and the card may grow. */
+  .entries > .entry--card.entry,
+  .entries > .entry--card.entry:first-child {
+    min-height: calc(100cqw * 9 / 16);
+  }
+
+  .entry-panel {
+    flex: none;
+    width: 58%;
+    padding-bottom: clamp(18px, 2.6vw, 30px);
+  }
+
+  .entry-logo {
+    max-width: 220px;
+    max-height: 126px;
+  }
+}
+
+/* Full width: every card exactly 16:9, the column a third of it. A card
+   with more to say widens its column (--panel) instead of growing taller. */
+@media (min-width: 1100px) {
+  .entries > .entry--card.entry,
+  .entries > .entry--card.entry:first-child {
+    height: calc(100cqw * 9 / 16);
+  }
+
+  .entry-panel {
+    width: var(--panel, 34%);
+  }
+}
+
+.skill-how {
+  margin-bottom: 14px;
+  font-size: 0.75rem;
+  line-height: 1.7;
+  color: var(--text-faint);
+}
+
+/* Interests: a topic on the left, its list on the right. */
+.interest-table {
+  display: grid;
+  border-top: 1px solid var(--line);
+}
+
+.interest-row {
+  display: grid;
+  gap: 10px;
+  padding-block: 16px;
+  border-bottom: 1px solid var(--line);
+}
+
+.interest-row dt {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-family: var(--display);
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text);
+}
+
+.interest-sub {
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  font-weight: 300;
+  color: var(--text-faint);
+}
+
+.interest-aside {
+  margin-top: 8px;
+  font-size: 0.75rem;
+  font-style: italic;
+  color: var(--text-faint);
+}
+
+.top-ten {
+  display: grid;
+  gap: 6px 20px;
+  list-style: none;
+  counter-reset: top;
+  font-size: 0.8125rem;
+  color: var(--text);
+}
+
+.top-ten li {
+  counter-increment: top;
+  display: flex;
+  gap: 10px;
+}
+
+.top-ten li::before {
+  content: counter(top, decimal-leading-zero);
+  color: var(--accent-lt);
+  font-size: 0.75rem;
+}
+
+@media (min-width: 760px) {
+  .interest-row {
+    grid-template-columns: 220px minmax(0, 1fr);
+    gap: 24px;
+    align-items: start;
+  }
+
+  /* Read down each column: 1 to 4, then 5 to 8, then the rest. */
+  .top-ten {
+    grid-template-rows: repeat(4, auto);
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(0, 1fr);
+  }
+}
+
+.interest p {
+  font-size: 0.8125rem;
+  line-height: 1.75;
+}
+
+/* ============================================================
+   Collection pages
+   Each project is one spread: its words on the left, its pieces
+   on the right. A before/after pair needs the full width, so its
+   words go on top instead.
+   ============================================================ */
+
+.jump {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 8px;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+}
+
+.jump-group {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px 14px;
+}
+
+.jump-label {
+  min-width: 9ch;
+  font-size: 0.625rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+
+.jump-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 16px;
+}
+
+.jump-links a {
+  font-size: 0.8125rem;
+  color: var(--text);
+  border-bottom: 1px solid var(--line-strong);
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.jump-links a:hover {
+  color: var(--accent-lt);
+  border-color: var(--accent-2);
+}
+
+.piece {
+  margin-bottom: clamp(56px, 8vw, 104px);
+  scroll-margin-top: calc(var(--nav-h) + 42px + 20px);
+}
+
+.piece-body {
+  display: grid;
+  gap: clamp(20px, 3vw, 32px);
+  align-items: start;
+}
+
+.piece-text {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  font-size: 0.8125rem;
+  line-height: 1.8;
+}
+
+.piece-lead {
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--text);
+}
+
+.piece-text .brief {
+  margin-top: 4px;
+}
+
+@media (min-width: 960px) {
+  .piece:not(.piece--wide) .piece-body {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 2.2fr);
+  }
+
+  .piece:not(.piece--wide) .piece-text {
+    position: sticky;
+    top: calc(var(--nav-h) + 42px + 24px);
+  }
+}
+
+/* ============================================================
+   Small helpers added for the résumé
+   ============================================================ */
+
+/* A real <button> wearing the link-button look. */
+button.button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.contact-mail {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.copy-btn {
+  padding: 3px 10px;
+  border: 1px solid var(--line-strong);
+  background: var(--surface);
+  color: var(--text-faint);
+  font: inherit;
+  font-size: 0.625rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.copy-btn:hover {
+  color: var(--accent-lt);
+  border-color: var(--accent-2);
+}
+
+.contact-meta {
+  margin-top: -10px;
+  font-size: 0.6875rem;
+  color: var(--text-faint);
+}
+
+/* What a code project proves, as a short checklist beside its stack. */
+.shows {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 22px;
+  font-size: 0.75rem;
+  line-height: 1.5;
+  color: var(--text);
+}
+
+.shows li {
+  position: relative;
+  padding-left: 18px;
+}
+
+.shows li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--accent-lt);
+}
+
+/* ============================================================
+   Print
+   "Save résumé as PDF" (or any print) gives a plain, light CV: the
+   words and dates only, every section open (src/folds.js), no
+   background art, no pictures, no navigation.
+   ============================================================ */
+@media print {
+  @page {
+    margin: 14mm 14mm 16mm;
+  }
+
+  :root {
+    --text: #111;
+    --text-dim: #2a2a2a;
+    --text-faint: #5a5a5a;
+    --line: #d4d4d4;
+    --line-strong: #a8a8a8;
+    --surface: transparent;
+    --surface-hi: transparent;
+    --accent: #4b3fc4;
+    --accent-lt: #4b3fc4;
+    --accent-2: #4b3fc4;
+    --section-y: 14pt;
+  }
+
+  html,
+  body {
+    background: #fff !important;
+  }
+
+  /* The vignette over the ascii field. */
+  body::after {
+    display: none;
+  }
+
+  /* Titles still waiting to be typed in print as plain text. */
+  .ch.is-pending,
+  .ch.is-decoding {
+    color: inherit !important;
+  }
+
+  .ch::before,
+  .ch::after {
+    display: none !important;
+  }
+
+  .contact .social-row {
+    display: none !important;
+  }
+
+  /* Grid rows split badly across pages; plain blocks break cleanly. */
+  .entries:has(> .entry--card) {
+    display: block;
+  }
+
+  .entries > .entry--card.entry + .entry--card.entry {
+    margin-top: 8pt;
+  }
+
+  /* A heading never ends a page on its own. */
+  .block-head,
+  .cv-fold > summary {
+    break-after: avoid;
+  }
+
+  .cv-fold .entry-org {
+    color: var(--accent);
+  }
+
+  .cv-fold .entry-flag {
+    color: color-mix(in srgb, var(--c) 60%, #000);
+    border-color: color-mix(in srgb, var(--c) 60%, #000);
+  }
+
+  body {
+    color: var(--text-dim);
+    font-size: 9.5pt;
+    line-height: 1.5;
+    text-shadow: none;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .ascii-field,
+  .nav,
+  .subnav,
+  .skip-link,
+  .hero-actions,
+  .hero-portrait,
+  .showcase,
+  .offer,
+  .timeline-block,
+  .entry-media,
+  .entry-link,
+  .cv-jump,
+  .zone-index,
+  .contact-photo,
+  .copy-btn,
+  .footer {
+    display: none !important;
+  }
+
+  /* Anything still waiting for its scroll reveal prints as it will look. */
+  .motion *,
+  .motion *::before,
+  .motion *::after {
+    opacity: 1 !important;
+    transform: none !important;
+    clip-path: none !important;
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .shell {
+    max-width: none;
+    padding-inline: 0;
+  }
+
+  .hero {
+    padding: 0 0 10pt;
+  }
+
+  .hero-name {
+    font-size: 24pt;
+    color: #111;
+  }
+
+  .hero-lead {
+    font-size: 11pt;
+  }
+
+  .hero-grid {
+    display: block;
+    margin-top: 10pt;
+  }
+
+  .hero-bio {
+    font-size: 9.5pt;
+    line-height: 1.55;
+  }
+
+  .hero-body {
+    gap: 6pt;
+  }
+
+  /* External profiles print as their address, since nobody can click paper. */
+  .social-row {
+    display: block;
+  }
+
+  .social {
+    display: block;
+    width: auto;
+    height: auto;
+    border: 0;
+  }
+
+  .social svg {
+    display: none;
+  }
+
+  .social::after {
+    content: attr(title) ": " attr(href);
+    font-size: 8pt;
+    color: var(--text-faint);
+  }
+
+  .entry-bg,
+  .entry-logo,
+  .entry--card::before {
+    display: none !important;
+  }
+
+  .entry-panel {
+    width: auto;
+    padding: 0;
+    border: 0;
+    background: none;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+
+  .hero-side {
+    display: block;
+  }
+
+  .facts {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    margin-top: 10pt;
+  }
+
+  .interest-row {
+    grid-template-columns: 120pt minmax(0, 1fr);
+    padding-block: 5pt;
+    break-inside: avoid;
+  }
+
+  .entries > .entry--card.entry,
+  .entries > .entry--card.entry:first-child {
+    aspect-ratio: auto;
+    padding: 6pt 0 6pt 8pt;
+    background: none;
+  }
+
+  .entry--card > .entry-when,
+  .entry--card > .entry-main {
+    max-width: none;
+  }
+
+  .glance li {
+    background: #fff;
+    padding: 6pt 8pt;
+  }
+
+  .facts {
+    margin-top: 10pt;
+  }
+
+  .cv-head {
+    padding-bottom: 8pt;
+  }
+
+  .cv-title {
+    font-size: 18pt;
+  }
+
+  .cv-fold,
+  .cv-fold[open] {
+    padding-bottom: 10pt;
+  }
+
+  .cv-fold > summary::before {
+    display: none;
+  }
+
+  .cv-fold[open] > summary,
+  .block-head {
+    margin-bottom: 8pt;
+    padding-bottom: 4pt;
+  }
+
+  .entry {
+    padding-top: 8pt;
+    margin-top: 8pt;
+    break-inside: avoid;
+  }
+
+    .cv-fold .entry-role {
+    font-size: 11pt;
+    color: color-mix(in srgb, var(--c) 65%, #000);
+  }
+
+  .entry-main {
+    gap: 4pt;
+  }
+
+  .entry-main > p,
+  .entry-notes {
+    font-size: 9pt;
+    line-height: 1.5;
+  }
+
+  .skill-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10pt;
+  }
+
+  .skill-group,
+  .interest {
+    break-inside: avoid;
+  }
+
+  .chip {
+    padding: 1pt 5pt;
+    font-size: 8pt;
+  }
+
+  .contact {
+    padding: 0;
+  }
 }

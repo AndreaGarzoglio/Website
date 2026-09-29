@@ -3,9 +3,15 @@ import { initAsciiField } from "./ascii/index.js";
 import { initMotion } from "./motion.js";
 import { renderPage } from "./render.js";
 import { initLightbox } from "./lightbox.js";
+import { initFolds } from "./folds.js";
+import { initGalleries } from "./gallery.js";
+import { initCopy } from "./copy.js";
 
 const field = document.querySelector(".ascii-field");
 if (field) initAsciiField(field);
 renderPage();
 initLightbox();
+initFolds();
+initGalleries();
+initCopy();
 initMotion();
