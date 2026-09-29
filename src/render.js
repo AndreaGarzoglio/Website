@@ -1,5 +1,5 @@
 import { intro as artIntro, series, order, artTimeline } from "./content/art.js";
-import { intro as codeIntro, projects, toolbox, codeTimeline } from "./content/code.js";
+import { intro as codeIntro, projects, toolbox, path, nextUp, GH } from "./content/code.js";
 import { covers, marks } from "./content/media.js";
 import { pics } from "./content/pics.js";
 import { ratioOf, stageImg } from "./gallery.js";
@@ -65,9 +65,10 @@ function pager(here, root) {
   </nav>`;
 }
 
-// Page title block shared by both overviews and every collection.
-const zoneHead = ({ index, title, lead, body, status, stats }) => `
-  <div class="zone-head${body ? " zone-head--split" : ""}">
+/* Page title block shared by both overviews and every collection. The longer
+   text sits beside the title on wide screens, or under it with `stacked`. */
+const zoneHead = ({ index, title, lead, body, status, stats, stacked }) => `
+  <div class="zone-head${body ? (stacked ? " zone-head--stacked" : " zone-head--split") : ""}">
     <div class="zone-head-main">
       ${status ? `<span class="case-status">${status}</span>` : ""}
       <span class="zone-index" aria-hidden="true">${index}</span>
@@ -356,31 +357,171 @@ const card = (p) => `
     </div>
   </article>`;
 
+/* The apps, laid out like the résumé's experience cards: the screen on the
+   right, fading into the project's own colour, the words on the left and
+   the app's mark in the corner. */
+const out = (href, label) => `<a class="text-link" href="${href}" target="_blank" rel="noopener">${label}</a>`;
+
+const appCard = (p) => `
+  <article class="entry entry--card entry--side" id="${p.id}" style="--c: ${p.hue}; --panel: 40%; --w: 74%; --bright: 0.85">
+    <img class="entry-bg" src="${coverFor(p)}" alt="" loading="lazy" decoding="async" />
+    ${
+      marks[p.id]
+        ? `<a class="entry-logo-link" href="code/${p.id}.html" aria-label="${p.title} project page" title="${p.title}">
+      <img class="entry-logo entry-logo--mark" src="${marks[p.id]}" alt="${p.title}" loading="lazy" decoding="async" /></a>`
+        : ""
+    }
+    <div class="entry-panel">
+      <div class="entry-when">
+        <span class="entry-dates">${p.when}</span>
+        <span class="entry-place">${p.origin}</span>
+        <span class="entry-flag">${p.live ? "live" : "own server"}</span>
+      </div>
+      <div class="entry-main">
+        <h3 class="entry-role"><a href="code/${p.id}.html">${p.title}</a></h3>
+        <p class="entry-org">${p.tagline}</p>
+        <p>${p.lead}</p>
+        <ul class="entry-notes">${p.shows.map((x) => `<li>${x}</li>`).join("")}</ul>
+        <ul class="tag-row">${p.stack.map((x) => `<li class="tag">${x}</li>`).join("")}</ul>
+        <p class="entry-link">
+          <a class="text-link" href="code/${p.id}.html">Project page →</a>
+          ${out(p.repo, "code ↗")}
+          ${p.live ? out(p.live, "live ↗") : ""}
+        </p>
+      </div>
+    </div>
+  </article>`;
+
+/* ---- The path so far ----
+   One stage per section of the curriculum, each with its own axis. Dates
+   become positions on that axis (0 to 1); the labels under the bars are
+   stacked into rows by src/path.js once their widths are known. */
+
+const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+const dayOf = (d) => {
+  if (d === "today") return Date.now();
+  const [y, m, day = 1] = d.split("-").map(Number);
+  return Date.UTC(y, m - 1, day);
+};
+
+const parts = (d) => {
+  const t = new Date(dayOf(d));
+  return { y: t.getUTCFullYear(), m: t.getUTCMonth(), d: t.getUTCDate() };
+};
+
+// "Jul", or "mid Jan" when a date falls inside the month.
+const monthName = ({ m, d }) => `${d >= 10 ? "mid " : ""}${MONTHS[m]}`;
+
+function span(from, to) {
+  const a = parts(from);
+  if (to === "today") return `${monthName(a)} ${a.y} - today`;
+  const b = parts(to);
+  return a.y === b.y
+    ? `${monthName(a)} - ${monthName(b)} ${b.y}`
+    : `${monthName(a)} ${a.y} - ${monthName(b)} ${b.y}`;
+}
+
+const tickName = (d) => {
+  const { m, d: day } = parts(d);
+  return day === 1 ? MONTHS[m] : `${day} ${MONTHS[m]}`;
+};
+
+// Every 1st of the month on the axis, plus the first day when it is not one.
+function ticksOf(stage) {
+  if (stage.ticks) return stage.ticks;
+  const list = [];
+  const a = parts(stage.from);
+  if (a.d !== 1) list.push(stage.from);
+  const end = dayOf(stage.to);
+  for (let y = a.y, m = a.m + (a.d === 1 ? 0 : 1); ; m++) {
+    const d = `${y + Math.floor(m / 12)}-${String((m % 12) + 1).padStart(2, "0")}`;
+    if (dayOf(d) > end) break;
+    list.push(d);
+  }
+  return list;
+}
+
+const pct = (n) => `${(n * 100).toFixed(2)}%`;
+
+function renderStage(stage, i) {
+  const t0 = dayOf(stage.from);
+  const len = dayOf(stage.to) - t0;
+  const at = (d) => Math.min(1, Math.max(0, (dayOf(d) - t0) / len));
+
+  const point = (pt) => {
+    const project = pt.project && projects.find((x) => x.id === pt.project);
+    const href = project ? `code/${project.id}.html` : pt.repo ? GH + pt.repo : pt.href;
+    const external = /^https?:/.test(href);
+    const when = pt.at === "today" ? "today" : `${tickName(pt.at)} ${parts(pt.at).y}`;
+    return `
+      <a class="gantt-point${external ? "" : " gantt-point--here"}" style="--x: ${pct(at(pt.at))}" data-x="${at(pt.at)}"
+        href="${href}"${external ? ' target="_blank" rel="noopener"' : ""} title="${pt.label} · ${when}">
+        <span class="gantt-label">${pt.label}${external ? " ↗" : ""}</span></a>`;
+  };
+
+  const track = (tr) => `
+    <li class="gantt-row${tr.to === "today" ? " gantt-row--live" : ""}">
+      <span class="gantt-name">${tr.name}</span>
+      <div class="gantt-track" style="--rows: ${tr.points?.length ? 1 : 0}">
+        <span class="gantt-bar" style="--a: ${pct(at(tr.from))}; --b: ${pct(at(tr.to))}"></span>
+        ${(tr.points ?? []).map(point).join("")}
+      </div>
+    </li>`;
+
+  const ticks = ticksOf(stage);
+  return `
+    <li class="stage${stage.to === "today" ? " stage--live" : ""}">
+      <div class="stage-head">
+        <span class="stage-index">${pad(i + 1)}</span>
+        <h3 class="stage-title">${stage.title}</h3>
+        <span class="stage-when">${span(stage.from, stage.to)}</span>
+        ${stage.link ? out(stage.link, "the course ↗") : ""}
+      </div>
+      <div class="stage-text">${paras(stage.text)}</div>
+      <div class="gantt">
+        <div class="gantt-axis" aria-hidden="true">${ticks
+          .map(
+            (d) =>
+              `<span class="gantt-tick${at(d) > 0.97 ? " gantt-tick--end" : ""}" style="--x: ${pct(at(d))}">${tickName(d)}</span>`,
+          )
+          .join("")}${stage.to === "today" ? `<span class="gantt-tick gantt-tick--end" style="--x: 100%">today</span>` : ""}</div>
+        <div class="gantt-lines" aria-hidden="true">${ticks
+          .map((d) => `<span style="--x: ${pct(at(d))}"></span>`)
+          .join("")}</div>
+        <ul class="gantt-rows">${stage.tracks.map(track).join("")}</ul>
+      </div>
+    </li>`;
+}
+
+const pathSection = () => `
+  <ol class="path">
+    ${path.map(renderStage).join("")}
+    <li class="stage stage--next">
+      <div class="stage-head">
+        <span class="stage-index">${pad(path.length + 1)}</span>
+        <h3 class="stage-title">Coming soon</h3>
+      </div>
+      <div class="stage-text"><p>${nextUp.text}</p></div>
+      <ul class="next-up">${nextUp.courses.map((c) => `<li>${c}</li>`).join("")}</ul>
+    </li>
+  </ol>`;
+
 function renderCode(main) {
-  const featured = projects.filter((p) => !p.practice);
+  const apps = projects.filter((p) => !p.practice);
   const practice = projects.filter((p) => p.practice);
-  const [lead, ...rest] = featured;
   main.innerHTML = `
     <section class="zone zone--page" data-zone="code">
       <div class="shell">
         ${crumbs([["Résumé", "index.html"], ["Code"]])}
-        ${zoneHead(codeIntro)}
+        ${zoneHead({ ...codeIntro, stacked: true })}
       </div>
 
       <section class="work">
         <div class="shell">
-          ${head("Projects", `${count(featured.length, "apps & games")} · one page each`)}
+          ${head("Projects", `${count(apps.length, "apps & games")} · one page each`)}
 
-          <article class="featured frame">
-            <div class="featured-media">
-              <img src="${coverFor(lead)}" alt="Screenshot of ${lead.title}" />
-            </div>
-            <div class="featured-body">
-              ${projectHead(lead, `<p>${lead.tagline} ${lead.lead}</p>${codeLinks(lead)}`)}
-            </div>
-          </article>
-
-          <div class="work-grid">${rest.map(card).join("")}</div>
+          <div class="entries entries--apps">${apps.map(appCard).join("")}</div>
 
           <div class="practice">
             ${head("Practice", `${count(practice.length, "exercises")} · algorithms &amp; data structures`)}
@@ -402,8 +543,8 @@ function renderCode(main) {
 
       <section class="timeline-block">
         <div class="shell">
-          ${head("The path so far", `${codeTimeline.years[0]} - today`)}
-          <div class="timeline" data-timeline="code"></div>
+          ${head("The path so far", `${span(path[0].from, "today")}`)}
+          ${pathSection()}
         </div>
       </section>
 
@@ -474,7 +615,7 @@ function renderCodeProject(main, id) {
 
 /* ---- Timelines ---- */
 
-const TIMELINES = { art: artTimeline, code: codeTimeline };
+const TIMELINES = { art: artTimeline };
 
 function renderTimeline(el) {
   const t = TIMELINES[el.dataset.timeline];

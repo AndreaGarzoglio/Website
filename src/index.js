@@ -6,6 +6,7 @@ import { initLightbox } from "./lightbox.js";
 import { initFolds } from "./folds.js";
 import { initGalleries } from "./gallery.js";
 import { initCopy } from "./copy.js";
+import { initPath } from "./path.js";
 
 const field = document.querySelector(".ascii-field");
 if (field) initAsciiField(field);
@@ -14,4 +15,5 @@ initLightbox();
 initFolds();
 initGalleries();
 initCopy();
+initPath();
 initMotion();

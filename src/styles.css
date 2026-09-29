@@ -3017,7 +3017,8 @@ main,
 }
 
 /* The timeline links land on single entries; keep them clear of the nav. */
-.cv-fold .entry {
+.cv-fold .entry,
+.entries--apps .entry {
   scroll-margin-top: calc(var(--nav-h) + 24px);
 }
 
@@ -3064,13 +3065,15 @@ main,
 
 /* Each entry wears its timeline colour: the swatch by the dates, the
    role, the badge and the picture's edge. */
-.cv-fold .entry-dates {
+.cv-fold .entry-dates,
+.entries--apps .entry-dates {
   display: inline-flex;
   align-items: center;
   gap: 9px;
 }
 
-.cv-fold .entry-dates::before {
+.cv-fold .entry-dates::before,
+.entries--apps .entry-dates::before {
   content: "";
   flex: none;
   width: 14px;
@@ -3082,7 +3085,8 @@ main,
 /* The role is the headline, in its timeline colour and in the display face,
    since the dotted one breaks up at this size. The organisation under it
    stays in the page's indigo. */
-.cv-fold .entry-role {
+.cv-fold .entry-role,
+.entries--apps .entry-role {
   font-family: var(--display);
   font-size: 1.125rem;
   font-weight: 500;
@@ -3091,11 +3095,13 @@ main,
   color: color-mix(in srgb, var(--c) 70%, #fff);
 }
 
-.cv-fold .entry-org {
+.cv-fold .entry-org,
+.entries--apps .entry-org {
   color: var(--indigo-lt);
 }
 
-.cv-fold .entry-flag {
+.cv-fold .entry-flag,
+.entries--apps .entry-flag {
   border-color: color-mix(in srgb, var(--c) 45%, transparent);
   color: color-mix(in srgb, var(--c) 70%, #fff);
 }
@@ -3278,6 +3284,357 @@ main,
 
   .entry-panel {
     width: var(--panel, 34%);
+  }
+}
+
+/* ---- Code: the apps as cards ----
+   The same cards as the résumé, each in the app's own colour, with its
+   screen on the right and its pixel mark in the corner. */
+.entries--apps .entry-role a {
+  color: inherit;
+  transition: color 0.2s ease;
+}
+
+.entries--apps .entry-role a:hover {
+  color: #fff;
+}
+
+.entries--apps .entry-org {
+  color: color-mix(in srgb, var(--c) 40%, #d8d8e0);
+}
+
+.entries--apps .entry-link {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+}
+
+.entry-logo--mark {
+  width: 76px;
+  image-rendering: pixelated;
+}
+
+@media (min-width: 760px) {
+  .entry-logo--mark {
+    width: 104px;
+  }
+}
+
+/* ---- Code: title over its text ---- */
+.zone-head--stacked .zone-body {
+  margin-top: clamp(24px, 3.4vw, 40px);
+  padding-top: clamp(20px, 2.6vw, 28px);
+  border-top: 1px solid var(--line);
+}
+
+@media (min-width: 960px) {
+  .zone-head--stacked .zone-body {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(32px, 5vw, 72px);
+  }
+}
+
+/* ---- Code: the path so far ----
+   A spine down the left with one stage per section of the course. Each stage
+   carries its own small Gantt chart: the parts of the course as bars on an
+   axis of that stage's own months, the projects as dots, their names hung
+   underneath (rows assigned by src/path.js). */
+.path {
+  --name-w: 0px;
+  --row-h: 20px;
+  padding: 0;
+  list-style: none;
+}
+
+.stage {
+  position: relative;
+  padding: 0 0 clamp(48px, 7vw, 84px) clamp(20px, 3vw, 36px);
+  border-left: 1px solid var(--line-strong);
+}
+
+.stage::before {
+  content: "";
+  position: absolute;
+  top: 0.55em;
+  left: -5px;
+  width: 9px;
+  height: 9px;
+  background: var(--accent-2);
+  box-shadow: 0 0 14px color-mix(in srgb, var(--accent-2) 70%, transparent);
+}
+
+.stage-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px 16px;
+}
+
+.stage-index {
+  font-family: var(--dot);
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  color: var(--accent-lt);
+}
+
+.stage-title {
+  font-family: var(--display);
+  font-size: clamp(1.2rem, 2.8vw, 1.6rem);
+  font-weight: 500;
+  line-height: 1.2;
+  color: var(--text);
+}
+
+.stage-when {
+  font-size: 0.6875rem;
+  letter-spacing: 0.06em;
+  color: var(--text-faint);
+}
+
+.stage-head .text-link {
+  margin-left: auto;
+  font-size: 0.6875rem;
+}
+
+.stage-text {
+  max-width: 76ch;
+  margin: 14px 0 clamp(22px, 3vw, 32px);
+  font-size: 0.8125rem;
+  line-height: 1.85;
+}
+
+.gantt {
+  position: relative;
+}
+
+.gantt-axis {
+  position: relative;
+  height: 22px;
+  margin-left: var(--name-w);
+  margin-bottom: 14px;
+  border-bottom: 1px solid var(--line);
+  font-size: 0.625rem;
+  letter-spacing: 0.08em;
+  color: var(--text-faint);
+}
+
+.gantt-tick {
+  position: absolute;
+  bottom: 6px;
+  left: var(--x);
+  padding-left: 6px;
+  white-space: nowrap;
+}
+
+/* A tick at the far end would hang off the axis; it sits inside instead. */
+.gantt-tick--end {
+  padding-left: 0;
+  transform: translateX(-100%);
+}
+
+.gantt-lines {
+  position: absolute;
+  inset: 0 0 0 var(--name-w);
+  pointer-events: none;
+}
+
+.gantt-lines span {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: var(--x);
+  width: 1px;
+  background: var(--line);
+}
+
+.gantt-rows {
+  position: relative;
+  display: grid;
+  gap: 12px;
+}
+
+.gantt-row {
+  display: grid;
+  gap: 6px;
+}
+
+.gantt-name {
+  font-size: 0.6875rem;
+  line-height: 16px;
+  color: var(--text-dim);
+}
+
+.gantt-track {
+  position: relative;
+  height: calc(18px + var(--rows, 0) * var(--row-h));
+}
+
+.gantt-bar {
+  position: absolute;
+  top: 5px;
+  left: var(--a);
+  width: max(3px, calc(var(--b) - var(--a)));
+  height: 6px;
+  border-radius: 1px;
+  background: color-mix(in srgb, var(--accent-2) 55%, transparent);
+}
+
+.gantt-row:hover .gantt-bar {
+  background: var(--accent-2);
+}
+
+.gantt-row:hover .gantt-name {
+  color: var(--text);
+}
+
+/* Still going: the bar is lit and runs into today. */
+.gantt-row--live .gantt-bar {
+  background: linear-gradient(90deg, color-mix(in srgb, var(--accent-2) 55%, transparent), var(--accent-lt));
+  box-shadow: 0 0 12px color-mix(in srgb, var(--accent-2) 60%, transparent);
+}
+
+/* A project: a dot on the bar and its name hung below, on its row. The link
+   itself has no width, so the name can start or end exactly at the dot. */
+.gantt-point {
+  position: absolute;
+  top: 8px;
+  left: var(--x);
+  width: 0;
+  height: 0;
+}
+
+.gantt-point::before {
+  content: "";
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  width: 10px;
+  height: 10px;
+  border: 2px solid var(--accent-lt);
+  border-radius: 50%;
+  background: var(--black);
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+/* The stem from the dot down to the name. */
+.gantt-point::after {
+  content: "";
+  position: absolute;
+  top: 5px;
+  left: 0;
+  width: 1px;
+  height: calc(6px + var(--row, 0) * var(--row-h));
+  background: var(--line-strong);
+}
+
+.gantt-label {
+  position: absolute;
+  top: calc(11px + var(--row, 0) * var(--row-h));
+  left: -1px;
+  padding-left: 7px;
+  border-left: 1px solid var(--line-strong);
+  font-size: 0.6875rem;
+  line-height: 16px;
+  white-space: nowrap;
+  color: var(--text-faint);
+  transition: color 0.2s ease;
+}
+
+.gantt-point--end .gantt-label {
+  left: auto;
+  right: 0;
+  padding: 0 7px 0 0;
+  border-left: 0;
+  border-right: 1px solid var(--line-strong);
+}
+
+/* Projects with a page on this site are filled and lit. */
+.gantt-point--here::before {
+  border-color: var(--accent-2);
+  background: var(--accent-2);
+  box-shadow: 0 0 10px color-mix(in srgb, var(--accent-2) 70%, transparent);
+}
+
+.gantt-point--here .gantt-label {
+  color: var(--text);
+}
+
+.gantt-point:hover::before,
+.gantt-point:focus-visible::before {
+  transform: scale(1.3);
+  background: var(--accent-lt);
+}
+
+.gantt-point:hover .gantt-label,
+.gantt-point:focus-visible .gantt-label {
+  color: var(--accent-lt);
+}
+
+.gantt-point:focus-visible {
+  outline: none;
+}
+
+.gantt-point:focus-visible .gantt-label {
+  outline: 1px solid var(--accent-lt);
+  outline-offset: 2px;
+}
+
+/* What comes next: no dates yet, so no axis. */
+.stage--next {
+  border-left-style: dashed;
+  padding-bottom: 0;
+}
+
+.stage--next::before {
+  background: var(--black);
+  border: 1px solid var(--accent-lt);
+  box-shadow: none;
+}
+
+.next-up {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.next-up li {
+  padding: 6px 14px;
+  border: 1px dashed var(--line-strong);
+  font-size: 0.75rem;
+  color: var(--text-dim);
+}
+
+.next-up li::after {
+  content: " · coming soon";
+  color: var(--text-faint);
+}
+
+/* Today's dot breathes. */
+.motion .gantt-row--live .gantt-point::before {
+  animation: gantt-pulse 2.4s ease-in-out infinite;
+}
+
+@keyframes gantt-pulse {
+  50% {
+    box-shadow: 0 0 0 6px color-mix(in srgb, var(--accent-2) 0%, transparent),
+      0 0 18px color-mix(in srgb, var(--accent-2) 90%, transparent);
+  }
+}
+
+@media (min-width: 760px) {
+  .path {
+    --name-w: 220px;
+  }
+
+  .gantt-row {
+    grid-template-columns: var(--name-w) minmax(0, 1fr);
+    gap: 0;
+  }
+
+  .gantt-name {
+    padding-right: 16px;
   }
 }
 
