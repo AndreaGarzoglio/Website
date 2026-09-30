@@ -112,10 +112,18 @@ function gallery(images, { label = "", compact = false } = {}) {
   return `
   <div class="gallery${compact ? " gallery--compact" : ""}" data-lightbox="${esc(label)}" data-index="0">
     <figure class="gallery-stage">
-      <button type="button" class="gallery-open" style="--stage-ar: ${stageAr}"
-        aria-label="Open ${esc(first.label)} full screen">${
-          first.src ? stageImg({ ...first, alt: first.label }) : media(first, "")
-        }</button>
+      <div class="gallery-view">
+        <button type="button" class="gallery-open" style="--stage-ar: ${stageAr}"
+          aria-label="Open ${esc(first.label)} full screen">${
+            first.src ? stageImg({ ...first, alt: first.label }) : media(first, "")
+          }</button>${
+          images.length > 1
+            ? `
+        <button type="button" class="gallery-nav gallery-prev" data-step="-1" aria-label="Previous">←</button>
+        <button type="button" class="gallery-nav gallery-next" data-step="1" aria-label="Next">→</button>`
+            : ""
+        }
+      </div>
       <figcaption class="gallery-caption">
         <span class="gallery-count">01 / ${pad(images.length)}</span>
         <span class="gallery-title">${first.label}</span>

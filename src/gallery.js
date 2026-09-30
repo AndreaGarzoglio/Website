@@ -43,21 +43,26 @@ export function selectThumb(thumb) {
   }
 }
 
+// Moves the stage one piece along the set, wrapping at either end.
+function step(gallery, by) {
+  const thumbs = gallery.querySelectorAll(".gallery-thumb");
+  const next = (Number(gallery.dataset.index ?? 0) + by + thumbs.length) % thumbs.length;
+  selectThumb(thumbs[next]);
+}
+
 export function initGalleries() {
   document.addEventListener("click", (e) => {
     const thumb = e.target.closest(".gallery-thumb");
     if (thumb) selectThumb(thumb);
+    const nav = e.target.closest(".gallery-nav");
+    if (nav) step(nav.closest(".gallery"), Number(nav.dataset.step));
   });
 
-  // Left and right walk the set while the stage has focus.
+  // Left and right walk the set while the stage or an arrow has focus.
   document.addEventListener("keydown", (e) => {
-    const stage = e.target.closest?.(".gallery-open");
+    const stage = e.target.closest?.(".gallery-open, .gallery-nav");
     if (!stage || (e.key !== "ArrowLeft" && e.key !== "ArrowRight")) return;
-    const gallery = stage.closest(".gallery");
-    const thumbs = gallery.querySelectorAll(".gallery-thumb");
-    const step = e.key === "ArrowRight" ? 1 : -1;
-    const next = (Number(gallery.dataset.index ?? 0) + step + thumbs.length) % thumbs.length;
-    selectThumb(thumbs[next]);
+    step(stage.closest(".gallery"), e.key === "ArrowRight" ? 1 : -1);
     e.preventDefault();
   });
 }
