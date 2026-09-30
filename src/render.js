@@ -359,15 +359,18 @@ const card = (p) => `
 
 /* The apps, laid out like the résumé's experience cards: the screen on the
    right, fading into the project's own colour, the words on the left and
-   the app's mark in the corner. */
+   the app's mark in the corner. The whole card opens the project page; the
+   mark opens the app itself, or its code when there is no live site. */
 const out = (href, label) => `<a class="text-link" href="${href}" target="_blank" rel="noopener">${label}</a>`;
 
 const appCard = (p) => `
   <article class="entry entry--card entry--side" id="${p.id}" style="--c: ${p.hue}; --panel: 40%; --w: 74%; --bright: 0.85">
     <img class="entry-bg" src="${coverFor(p)}" alt="" loading="lazy" decoding="async" />
+    <a class="entry-cover" href="code/${p.id}.html" tabindex="-1" aria-hidden="true"></a>
     ${
       marks[p.id]
-        ? `<a class="entry-logo-link" href="code/${p.id}.html" aria-label="${p.title} project page" title="${p.title}">
+        ? `<a class="entry-logo-link" href="${p.live ?? p.repo}" target="_blank" rel="noopener"
+        aria-label="${p.title} ${p.live ? "live site" : "code"}" title="${p.live ? "Open the live site" : "Open the code"}">
       <img class="entry-logo entry-logo--mark" src="${marks[p.id]}" alt="${p.title}" loading="lazy" decoding="async" /></a>`
         : ""
     }

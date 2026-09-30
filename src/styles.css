@@ -3303,6 +3303,22 @@ main,
   color: color-mix(in srgb, var(--c) 40%, #d8d8e0);
 }
 
+/* The whole card is a link to the project page. The panel sits above it
+   but lets clicks through everywhere except its own links. */
+.entry-cover {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.entries--apps .entry-panel {
+  pointer-events: none;
+}
+
+.entries--apps .entry-panel a {
+  pointer-events: auto;
+}
+
 .entries--apps .entry-link {
   display: flex;
   flex-wrap: wrap;
@@ -4044,6 +4060,7 @@ button.button {
   }
 
   .entry-bg,
+  .entry-cover,
   .entry-logo-link,
   .entry--card::before {
     display: none !important;
