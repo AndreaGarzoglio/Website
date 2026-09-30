@@ -524,7 +524,9 @@ export function createAsciiField(canvas, theme) {
     for (const bucket of BUCKETS) bucket.length = 0;
 
     for (let i = ripples.length - 1; i >= 0; i--) {
-      const age = (time - ripples[i].start) / 1000;
+      // rAF stamps the frame start, which can precede the pointerdown that
+      // made the ripple; a negative age would drive heat below zero.
+      const age = Math.max(0, (time - ripples[i].start) / 1000);
       if (age > RIPPLE_LIFE) ripples.splice(i, 1);
       else {
         const ripple = ripples[i];
