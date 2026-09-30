@@ -31,12 +31,14 @@ export function initPath() {
   const layout = (gantt) => gantt.querySelectorAll(".gantt-track").forEach(layoutTrack);
   const all = () => gantts.forEach(layout);
   // Only a change of width moves the labels; the height changes because of them.
+  // The layout waits for the next frame: changing the observed element's size
+  // inside the callback is what the browser reports as a ResizeObserver loop.
   const widths = new WeakMap();
   const observer = new ResizeObserver((entries) =>
     entries.forEach(({ target }) => {
       if (widths.get(target) === target.clientWidth) return;
       widths.set(target, target.clientWidth);
-      layout(target);
+      requestAnimationFrame(() => layout(target));
     }),
   );
   gantts.forEach((g) => observer.observe(g));
