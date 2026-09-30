@@ -3567,7 +3567,8 @@ main,
 .gantt-label {
   position: absolute;
   top: calc(11px + var(--row, 0) * var(--row-h));
-  left: -1px;
+  /* The border sits on the same pixel column as the stem above it. */
+  left: 0;
   padding-left: 7px;
   border-left: 1px solid var(--line-strong);
   font-size: 0.6875rem;
@@ -3579,7 +3580,7 @@ main,
 
 .gantt-point--end .gantt-label {
   left: auto;
-  right: 0;
+  right: -1px;
   padding: 0 7px 0 0;
   border-left: 0;
   border-right: 1px solid var(--line-strong);
