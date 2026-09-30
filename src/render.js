@@ -329,11 +329,19 @@ function renderSeries(main, id) {
 
 const coverFor = (p) => covers[p.id] ?? pics(p.shots)[0]?.src;
 
-// A project's own cover leads its screens, when it has one.
-const screensOf = (p) => [
-  ...(covers[p.id] ? [{ src: covers[p.id], label: p.title, ar: 16 / 10, caption: p.tagline }] : []),
-  ...pics(p.shots),
-];
+/* A project page shows only the screens from its Drive folder. `screens`
+   in code.js can pick their order and names: each entry is the end of a
+   file's name and the label to show for it. */
+const screensOf = (p) => {
+  const all = pics(p.shots);
+  if (!p.screens) return all;
+  return p.screens
+    .map(([end, label]) => {
+      const pic = all.find((x) => x.label.toLowerCase().endsWith(end));
+      return pic && { ...pic, label };
+    })
+    .filter(Boolean);
+};
 
 const codeLinks = (p) => `
   <div class="card-links">

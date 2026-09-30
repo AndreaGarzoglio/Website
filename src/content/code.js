@@ -31,6 +31,13 @@ export const projects = [
     repo: `${GH}game-vault`,
     live: "https://game-vault-andreagarzoglio.vercel.app/",
     shots: "code/game-vault",
+    screens: [
+      ["library", "Library"],
+      ["focus", "Focus"],
+      ["about", "About"],
+      ["tier", "Tier maker"],
+      ["top", "Top list"],
+    ],
     shows: ["Working with a REST API", "Keeping an API key server-side", "Data modelling", "Interface design"],
     stack: ["JavaScript ES6", "Node.js", "IGDB API", "REST"],
     notes: [
