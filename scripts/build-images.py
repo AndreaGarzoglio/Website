@@ -4,9 +4,9 @@
 
 raw/ mirrors the Drive folder (Art/<Series>/<Project>/..., Code/<Project>/...)
 and stays out of git. For every image this writes two WebP files under
-src/assets/work/ (a thumbnail for collages and a full size for the lightbox)
-and regenerates src/content/images.js, which imports them so webpack hashes and
-ships them. Anything deeper than <Series>/<Project> (Presentation/Slides,
+src/assets/work/ (a thumbnail for strips and phones, a full size for wide
+screens and the lightbox) and regenerates src/content/images.js, which imports
+them so webpack hashes and ships them, with each file's slug as its id. Anything deeper than <Series>/<Project> (Presentation/Slides,
 Old Designs/Riam) is folded into its project. Re-running only encodes what
 changed and removes outputs whose source is gone.
 """
@@ -21,7 +21,7 @@ RAW = ROOT / "raw"
 OUT = ROOT / "src" / "assets" / "work"
 MODULE = ROOT / "src" / "content" / "images.js"
 
-THUMB = 720  # longest side, enough for a 2x2 collage cell on a retina screen
+THUMB = 720  # longest side: the stage on a phone, the strip everywhere
 FULL = 2000
 QUALITY = 80
 EXTS = {".png", ".jpg", ".jpeg", ".webp"}
@@ -35,12 +35,31 @@ def natural(text):
     return [int(t) if t.isdigit() else t.lower() for t in re.split(r"(\d+)", text)]
 
 
+# Drive names are working names: export prefixes, glued numbers, shorthand.
+# Applied in order after camelCase and underscores are split into words.
+RENAMES = [
+    (r"^Copy of ", ""),
+    (r"^S D ", ""),
+    (r"^TN[bs]p ", ""),
+    (r"^MSR- The Hat Hackers rw (\d+)$", lambda m: f"Board {int(m[1]):02}"),
+    (r"^LIguide 0$", "Cover"),
+    (r"^LIguide ", "Pages "),
+    (r"^Cpt ", "Captain "),
+    (r" NOBG$", ""),
+    (r"^vfx\b", "VFX"),
+    (r"\b(TA|ta|turn)$", "turnaround"),
+    (r"\bInspo\b", "Inspiration"),
+    (r"([a-z]{2,})(\d)", r"\1 \2"),
+]
+
+
 def pretty(stem):
-    """'Copy of S_D_BidingTime' -> 'Biding Time'."""
-    stem = re.sub(r"^Copy of ", "", stem)
-    stem = re.sub(r"^S_D_", "", stem)
-    stem = re.sub(r"(?<=[a-z])(?=[A-Z])", " ", stem)
-    return re.sub(r"[_\s]+", " ", stem).strip()
+    """'Copy of S_D_BidingTime' -> 'Biding Time', 'TNsp_Cassie' -> 'Cassie'."""
+    name = re.sub(r"(?<=[a-z])(?=[A-Z])", " ", stem)
+    name = re.sub(r"[_\s]+", " ", name).strip()
+    for find, put in RENAMES:
+        name = re.sub(find, put, name)
+    return name[:1].upper() + name[1:]
 
 
 def key_for(path):
@@ -50,14 +69,22 @@ def key_for(path):
     return "/".join(slug(p) for p in parts[:depth])
 
 
-def encode(src, dest, size):
-    if dest.exists() and dest.stat().st_mtime >= src.stat().st_mtime:
-        return
-    with Image.open(src) as im:
-        im = im.convert("RGBA" if im.mode in ("RGBA", "LA", "P") else "RGB")
-        im.thumbnail((size, size), Image.LANCZOS)
-        dest.parent.mkdir(parents=True, exist_ok=True)
-        im.save(dest, "WEBP", quality=QUALITY, method=6)
+def encode(src, outputs):
+    """Writes each (dest, size) that is older than src, decoding src once, and
+    returns the encoded (width, height) of every output."""
+    if any(not d.exists() or d.stat().st_mtime < src.stat().st_mtime for d, _ in outputs):
+        with Image.open(src) as im:
+            im = im.convert("RGBA" if im.mode in ("RGBA", "LA", "P") else "RGB")
+            for dest, size in outputs:
+                out = im.copy()
+                out.thumbnail((size, size), Image.LANCZOS)
+                dest.parent.mkdir(parents=True, exist_ok=True)
+                out.save(dest, "WEBP", quality=QUALITY, method=6)
+    sizes = []
+    for dest, _ in outputs:
+        with Image.open(dest) as im:
+            sizes.append(im.size)
+    return sizes
 
 
 def main():
@@ -78,12 +105,9 @@ def main():
             name = slug(f.stem)
             thumb = OUT / key / f"{name}-t.webp"
             full = OUT / key / f"{name}-f.webp"
-            encode(f, thumb, THUMB)
-            encode(f, full, FULL)
+            (tw, _), (fw, fh) = encode(f, [(thumb, THUMB), (full, FULL)])
             written.update((thumb, full))
-            with Image.open(f) as im:
-                w, h = im.size
-            entries[key].append((pretty(f.stem), thumb, full, w, h))
+            entries[key].append((name, pretty(f.stem), thumb, full, tw, fw, fh))
         print(f"{len(files):3}  {key}")
 
     for stale in OUT.rglob("*.webp"):
@@ -94,12 +118,14 @@ def main():
     n = 0
     for key, items in entries.items():
         rows = []
-        for name, thumb, full, w, h in items:
+        for id_, name, thumb, full, tw, fw, fh in items:
             t = thumb.relative_to(MODULE.parent.parent).as_posix()
             fu = full.relative_to(MODULE.parent.parent).as_posix()
             imports.append(f'import t{n} from "../{t}";\nimport f{n} from "../{fu}";')
             safe = name.replace('"', '\\"')
-            rows.append(f'    {{ name: "{safe}", thumb: t{n}, full: f{n}, w: {w}, h: {h} }},')
+            rows.append(
+                f'    {{ id: "{id_}", name: "{safe}", thumb: t{n}, full: f{n}, tw: {tw}, w: {fw}, h: {fh} }},'
+            )
             n += 1
         groups_js.append(f'  "{key}": [\n' + "\n".join(rows) + "\n  ],")
 

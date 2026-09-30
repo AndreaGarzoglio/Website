@@ -67,9 +67,12 @@ html {
 
 body {
   background-color: var(--black);
+  /* A page can move the top glow (--glow-a-x), narrow the right one
+     (--glow-b-w) and add a matching glow on the left (--glow-left). */
   background-image:
-    radial-gradient(ellipse 60% 45% at 12% 0%, var(--glow-a), transparent 70%),
-    radial-gradient(ellipse 55% 45% at 100% 60%, var(--glow-b), transparent 70%);
+    radial-gradient(ellipse 60% 45% at var(--glow-a-x, 12%) 0%, var(--glow-a), transparent 70%),
+    radial-gradient(ellipse var(--glow-b-w, 55%) 45% at 0% 60%, var(--glow-left, transparent), transparent 70%),
+    radial-gradient(ellipse var(--glow-b-w, 55%) 45% at 100% 60%, var(--glow-b), transparent 70%);
   background-repeat: no-repeat;
   background-attachment: fixed;
   color: var(--text-dim);
@@ -152,26 +155,22 @@ p {
 /* ---- Animated ascii field ---- */
 
 .ascii-field {
+  --mask: radial-gradient(ellipse 95% 85% at 50% 50%,
+      rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0.55) 25%,
+      rgba(0, 0, 0, 0.68) 45%, rgba(0, 0, 0, 0.82) 68%,
+      rgba(0, 0, 0, 0.93) 85%, #000 100%);
   position: fixed;
   inset: 0;
   z-index: 0;
   pointer-events: none;
-  -webkit-mask-image: radial-gradient(ellipse 95% 85% at 50% 50%,
-      rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0.55) 25%,
-      rgba(0, 0, 0, 0.68) 45%, rgba(0, 0, 0, 0.82) 68%,
-      rgba(0, 0, 0, 0.93) 85%, #000 100%);
-  mask-image: radial-gradient(ellipse 95% 85% at 50% 50%,
-      rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0.55) 25%,
-      rgba(0, 0, 0, 0.68) 45%, rgba(0, 0, 0, 0.82) 68%,
-      rgba(0, 0, 0, 0.93) 85%, #000 100%);
+  -webkit-mask-image: var(--mask);
+  mask-image: var(--mask);
 }
 
 /* Narrow screens leave no margin for texture, so keep it calmer there. */
 @media (max-width: 720px) {
   .ascii-field {
-    -webkit-mask-image: radial-gradient(ellipse 130% 60% at 50% 50%,
-        rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.58) 60%, rgba(0, 0, 0, 0.9) 100%);
-    mask-image: radial-gradient(ellipse 130% 60% at 50% 50%,
+    --mask: radial-gradient(ellipse 130% 60% at 50% 50%,
         rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.58) 60%, rgba(0, 0, 0, 0.9) 100%);
   }
 }
@@ -185,28 +184,10 @@ body::after {
   inset: 0;
   z-index: 0;
   pointer-events: none;
+  /* Where the shade is full, as two stops across the width. */
   background: linear-gradient(90deg,
-      transparent 0%, rgba(8, 8, 10, 0.5) 16%,
-      rgba(8, 8, 10, 0.5) 58%, transparent 88%);
-}
-
-/* Code hangs a hand in each bottom corner, so its veil and glow are
-   mirrored: both hands sit under the same shade and much the same light.
-   The left hand leaves more of its corner bare, where the glow shows
-   undiluted, so that side gets a fainter one to read the same. */
-@media (min-width: 721px) {
-  body[data-page="code"]::after {
-    background: linear-gradient(90deg,
-        transparent 0%, rgba(8, 8, 10, 0.5) 30%,
-        rgba(8, 8, 10, 0.5) 70%, transparent 100%);
-  }
-}
-
-body[data-page="code"] {
-  background-image:
-    radial-gradient(ellipse 60% 45% at 50% 0%, var(--glow-a), transparent 70%),
-    radial-gradient(ellipse 45% 45% at 0% 60%, color-mix(in srgb, var(--glow-b) 50%, transparent), transparent 70%),
-    radial-gradient(ellipse 45% 45% at 100% 60%, var(--glow-b), transparent 70%);
+      transparent 0%, rgba(8, 8, 10, 0.5) var(--veil-from, 16%),
+      rgba(8, 8, 10, 0.5) var(--veil-to, 58%), transparent var(--veil-end, 88%));
 }
 
 @media (max-width: 720px) {
@@ -281,7 +262,9 @@ main,
   border-width: 0 1px 1px 0;
 }
 
-.text-link {
+.text-link,
+.footer-mail,
+.jump-links a {
   font-size: 0.8125rem;
   color: var(--text);
   border-bottom: 1px solid var(--line-strong);
@@ -289,15 +272,11 @@ main,
   transition: color 0.2s ease, border-color 0.2s ease;
 }
 
-.text-link:hover {
+.text-link:hover,
+.footer-mail:hover,
+.jump-links a:hover {
   color: var(--accent-lt);
   border-color: var(--accent-2);
-}
-
-.link-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 22px;
 }
 
 /* ---- Nav ---- */
@@ -443,70 +422,6 @@ main,
   scroll-margin-top: calc(var(--nav-h) + 24px);
 }
 
-/* One project runs full width above the grid, so the section opens with a
-   focal point instead of six equal tiles. */
-.featured {
-  display: grid;
-  border: 1px solid var(--line);
-  background: var(--surface);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  margin-bottom: clamp(20px, 3vw, 30px);
-  transition: border-color 0.25s ease, background-color 0.25s ease;
-}
-
-.featured:hover {
-  border-color: var(--line-strong);
-  background: var(--surface-hi);
-}
-
-.featured-media {
-  overflow: hidden;
-  border-bottom: 1px solid var(--line);
-}
-
-.featured-media img {
-  width: 100%;
-  height: 100%;
-  min-height: 220px;
-  object-fit: cover;
-  filter: grayscale(0.5) contrast(1.05);
-  transition: filter 0.45s ease;
-}
-
-.featured:hover .featured-media img {
-  filter: grayscale(0) contrast(1);
-}
-
-.featured-body {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-  gap: 16px;
-  padding: clamp(22px, 3.5vw, 44px);
-}
-
-.featured-body h3 {
-  font-size: clamp(1.05rem, 2.4vw, 1.5rem);
-}
-
-.featured-body p {
-  font-size: 0.875rem;
-  line-height: 1.8;
-}
-
-@media (min-width: 860px) {
-  .featured {
-    grid-template-columns: 1.15fr 1fr;
-  }
-
-  .featured-media {
-    border-bottom: 0;
-    border-right: 1px solid var(--line);
-  }
-}
-
 /* Closes the second row of the grid and points at the rest of the work. */
 .tile {
   display: flex;
@@ -598,8 +513,6 @@ main,
 
 .card:hover::before,
 .card:hover::after,
-.featured:hover::before,
-.featured:hover::after,
 .tile:hover::before,
 .tile:hover::after {
   border-color: var(--accent-2);
@@ -817,19 +730,6 @@ main,
   color: var(--text);
 }
 
-.footer-mail {
-  font-size: 0.8125rem;
-  color: var(--text);
-  border-bottom: 1px solid var(--line-strong);
-  padding-bottom: 2px;
-  transition: color 0.2s ease, border-color 0.2s ease;
-}
-
-.footer-mail:hover {
-  color: var(--accent-lt);
-  border-color: var(--accent-2);
-}
-
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -842,18 +742,12 @@ main,
 
 /* ============================================================
    Zones
-   Three macro-sections, each with its own head. Per-zone theming
-   hangs off [data-zone] later; for now they only differ in rhythm.
+   The top-level sections, each with its own head. Colour comes from
+   data-page on <body>; zones only differ in rhythm.
    ============================================================ */
 
 .zone {
   scroll-margin-top: calc(var(--nav-h) + 24px);
-}
-
-/* A visible seam between zones: you should feel the crossing. */
-.zone + .zone {
-  padding-top: var(--section-y);
-  border-top: 1px solid var(--line);
 }
 
 .zone-head {
@@ -910,55 +804,6 @@ main,
   .zone-head--split .stat-row {
     grid-column: 1 / -1;
   }
-}
-
-/* Marks copy that is still waiting on real content. */
-.ph-text {
-  color: var(--text-faint);
-  font-style: italic;
-}
-
-/* Reserves space for artwork that does not exist yet, at the right
-   aspect ratio, so dropping the real files in shifts nothing. */
-.ph {
-  display: grid;
-  place-items: center;
-  width: 100%;
-  border: 1px dashed var(--line-strong);
-  background-image: repeating-linear-gradient(45deg,
-      rgba(255, 255, 255, 0.035) 0 10px,
-      transparent 10px 20px);
-  color: var(--text-faint);
-  font-size: 0.625rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  text-align: center;
-  padding: 10px;
-}
-
-.ph--wide {
-  aspect-ratio: 16 / 9;
-}
-
-.ph--tall {
-  aspect-ratio: 3 / 4;
-}
-
-.ph--square {
-  aspect-ratio: 1 / 1;
-}
-
-.ph--banner {
-  aspect-ratio: 16 / 7;
-}
-
-.tbd {
-  font-size: 0.5625rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--text-faint);
-  vertical-align: 0.35em;
-  margin-left: 3px;
 }
 
 /* ---- Home: three-track timeline ---- */
@@ -1208,7 +1053,7 @@ main,
   }
 }
 
-/* ---- Home: the two doors ---- */
+/* ---- Art: the collections, one door each ---- */
 
 .gateways {
   padding-block: 0 var(--section-y);
@@ -1298,7 +1143,7 @@ main,
   }
 }
 
-/* ---- Art: figures at the head of the zone ---- */
+/* ---- Figures at the head of a zone ---- */
 
 .stat-row {
   display: flex;
@@ -1325,12 +1170,6 @@ main,
   font-size: 0.6875rem;
   line-height: 1.6;
   color: var(--text-faint);
-}
-
-.section-intro {
-  margin-bottom: clamp(26px, 4vw, 40px);
-  font-size: 0.875rem;
-  line-height: 1.8;
 }
 
 /* ---- Facts panel ----
@@ -1464,21 +1303,6 @@ main,
 
 /* ---- Résumé entries ---- */
 
-.entry {
-  display: grid;
-  gap: 10px;
-  padding-top: clamp(20px, 3vw, 28px);
-  margin-top: clamp(20px, 3vw, 28px);
-  border-top: 1px solid var(--line);
-}
-
-/* The first entry sits right under the section rule already. */
-.entries > .entry:first-child {
-  padding-top: 0;
-  margin-top: 0;
-  border-top: 0;
-}
-
 .entry-when {
   display: flex;
   flex-wrap: wrap;
@@ -1486,10 +1310,24 @@ main,
   gap: 4px 12px;
 }
 
+/* Each entry wears its timeline colour (--c): the swatch by the dates, the
+   role, the badge and the picture's edge. */
 .entry-dates {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
   font-size: 0.75rem;
   letter-spacing: 0.06em;
   color: var(--text);
+}
+
+.entry-dates::before {
+  content: "";
+  flex: none;
+  width: 14px;
+  height: 6px;
+  border-radius: 1px;
+  background: var(--c);
 }
 
 .entry-place {
@@ -1501,11 +1339,11 @@ main,
    running, a final grade. */
 .entry-flag {
   padding: 2px 8px;
-  border: 1px solid var(--line-strong);
+  border: 1px solid color-mix(in srgb, var(--c) 45%, transparent);
   font-size: 0.5625rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--accent-lt);
+  color: color-mix(in srgb, var(--c) 70%, #fff);
   white-space: nowrap;
 }
 
@@ -1517,15 +1355,21 @@ main,
   min-width: 0;
 }
 
+/* The role is the headline, in its timeline colour and in the display face,
+   since the dotted one breaks up at this size. The organisation under it
+   stays in the page's indigo. */
 .entry-role {
-  font-size: 0.9375rem;
-  font-weight: 700;
-  letter-spacing: 0.02em;
+  font-family: var(--display);
+  font-size: 1.125rem;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  line-height: 1.3;
+  color: color-mix(in srgb, var(--c) 70%, #fff);
 }
 
 .entry-org {
   font-size: 0.8125rem;
-  color: var(--accent-lt);
+  color: var(--indigo-lt);
 }
 
 .entry-main > p {
@@ -1575,21 +1419,6 @@ main,
   font-size: 0.625rem;
   letter-spacing: 0.06em;
   color: var(--text-faint);
-}
-
-/* Dates get their own column once there is room, so the entries read as a
-   single timeline rather than a stack of blocks. */
-@media (min-width: 760px) {
-  .entry {
-    grid-template-columns: 160px minmax(0, 1fr);
-    gap: clamp(20px, 3vw, 36px);
-  }
-
-  .entry-when {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 6px;
-  }
 }
 
 /* ---- Skills ---- */
@@ -1800,16 +1629,6 @@ main,
   padding-top: clamp(20px, 3vw, 32px);
 }
 
-.gateway-grid--three {
-  grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
-}
-
-@media (min-width: 760px) {
-  .gateway-grid--three {
-    grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
-  }
-}
-
 /* ---- Footer ---- */
 
 .footer-nav {
@@ -1925,10 +1744,22 @@ main,
   line-height: 1.85;
 }
 
-.project-side {
-  padding: clamp(18px, 2.4vw, 26px);
+/* The framed column of facts beside a page's words: a Code project's side
+   panel, a collection's brief, an Art piece's facts. */
+.project-side,
+.intro-side,
+.piece-side {
   border: 1px solid var(--line);
   background: var(--surface);
+}
+
+.project-side {
+  padding: clamp(18px, 2.4vw, 26px);
+}
+
+.intro-side .brief-row:first-child,
+.piece-side .brief-row:first-child {
+  border-top: 0;
 }
 
 .side-title {
@@ -1999,6 +1830,19 @@ main,
   --accent-2: #ff2e88;
   --glow-a: rgba(201, 50, 122, 0.14);
   --glow-b: rgba(255, 46, 136, 0.09);
+}
+
+/* Code hangs a hand in each bottom corner, so its veil and glow are
+   mirrored: both hands sit under the same shade and much the same light.
+   The left hand leaves more of its corner bare, where the glow shows
+   undiluted, so that side gets a fainter one to read the same. */
+[data-page="code"] {
+  --glow-a-x: 50%;
+  --glow-b-w: 45%;
+  --glow-left: color-mix(in srgb, var(--glow-b) 50%, transparent);
+  --veil-from: 30%;
+  --veil-to: 70%;
+  --veil-end: 100%;
 }
 
 /* Art: violet. */
@@ -2194,7 +2038,7 @@ main,
 
 /* ============================================================
    Content-driven pages (src/render.js)
-   Series pages, project pages, collages and the lightbox. Shared by
+   Collection pages, project pages, galleries and the lightbox. Shared by
    every Art collection, so a new collection needs no new CSS.
    ============================================================ */
 
@@ -2237,12 +2081,6 @@ main,
 .intro-side {
   align-self: start;
   padding: 18px 20px 8px;
-  border: 1px solid var(--line);
-  background: var(--surface);
-}
-
-.intro-side .brief-row:first-child {
-  border-top: 0;
 }
 
 @media (min-width: 880px) {
@@ -2258,25 +2096,6 @@ main,
 
 .series-block {
   margin-bottom: var(--section-y);
-}
-
-.series-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(min(220px, 100%), 1fr));
-  gap: clamp(20px, 3vw, 30px);
-}
-
-/* One cover shape for every card, whatever the art inside, so a row lines up. */
-.series-grid .card-media > * {
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
-  border: 0;
-}
-
-.card-links span {
-  font-size: 0.6875rem;
-  letter-spacing: 0.08em;
-  color: var(--text-faint);
 }
 
 /* ---- Gallery ----
@@ -2329,10 +2148,6 @@ main,
   animation: stage-in 0.35s ease;
 }
 
-.gallery-open > .ph {
-  height: 100%;
-}
-
 @keyframes stage-in {
   from {
     opacity: 0;
@@ -2377,7 +2192,6 @@ main,
 .gallery-nav:hover,
 .gallery-nav:focus-visible {
   color: var(--accent-lt);
-  outline: none;
 }
 
 .gallery-nav:focus-visible {
@@ -2437,16 +2251,11 @@ main,
   transition: opacity 0.2s ease, border-color 0.2s ease;
 }
 
-.gallery-thumb > img,
-.gallery-thumb > .ph {
+.gallery-thumb > img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   border: 0;
-}
-
-.gallery-thumb > .ph span {
-  display: none;
 }
 
 .gallery-thumb:hover,
@@ -2478,31 +2287,7 @@ main,
   }
 }
 
-/* ---- Studies and before/after pairs ---- */
-.study,
-.pair {
-  margin-bottom: clamp(40px, 6vw, 72px);
-}
-
-.study-head {
-  display: grid;
-  gap: 6px;
-  margin-bottom: 18px;
-}
-
-.study-head h3 {
-  font-family: var(--dot);
-  font-size: 1rem;
-  font-weight: 800;
-  color: var(--text);
-}
-
-.study-head p {
-  max-width: 68ch;
-  font-size: 0.8125rem;
-  line-height: 1.75;
-}
-
+/* ---- Before/after pairs ---- */
 .pair-grid {
   display: grid;
   gap: 18px;
@@ -2633,11 +2418,6 @@ main,
   width: min(100%, calc((100dvh - 190px) * var(--ar, 1.78)));
 }
 
-.lb-media > img {
-  display: block;
-}
-
-.lb-media > .ph,
 .lb-media > img {
   width: 100%;
   aspect-ratio: var(--ar, 16 / 9);
@@ -3132,49 +2912,6 @@ main,
   content: "[-]";
 }
 
-/* Each entry wears its timeline colour: the swatch by the dates, the
-   role, the badge and the picture's edge. */
-.cv-fold .entry-dates,
-.entries--apps .entry-dates {
-  display: inline-flex;
-  align-items: center;
-  gap: 9px;
-}
-
-.cv-fold .entry-dates::before,
-.entries--apps .entry-dates::before {
-  content: "";
-  flex: none;
-  width: 14px;
-  height: 6px;
-  border-radius: 1px;
-  background: var(--c);
-}
-
-/* The role is the headline, in its timeline colour and in the display face,
-   since the dotted one breaks up at this size. The organisation under it
-   stays in the page's indigo. */
-.cv-fold .entry-role,
-.entries--apps .entry-role {
-  font-family: var(--display);
-  font-size: 1.125rem;
-  font-weight: 500;
-  letter-spacing: -0.005em;
-  line-height: 1.3;
-  color: color-mix(in srgb, var(--c) 70%, #fff);
-}
-
-.cv-fold .entry-org,
-.entries--apps .entry-org {
-  color: var(--indigo-lt);
-}
-
-.cv-fold .entry-flag,
-.entries--apps .entry-flag {
-  border-color: color-mix(in srgb, var(--c) 45%, transparent);
-  color: color-mix(in srgb, var(--c) 70%, #fff);
-}
-
 /* ---- Résumé entries as cards ----
    Every entry is a 16:9 panel with its picture behind it, darkened, and the
    school's or studio's mark large in the bottom right. The words sit on a
@@ -3193,8 +2930,7 @@ main,
   container-type: inline-size;
 }
 
-.entries > .entry--card.entry,
-.entries > .entry--card.entry:first-child {
+.entries > .entry--card.entry {
   position: relative;
   isolation: isolate;
   /* clip rather than hidden: hidden would make the panel a scroll container
@@ -3278,12 +3014,6 @@ main,
   backdrop-filter: blur(3px);
 }
 
-.entry-panel > .entry-when {
-  flex-direction: row;
-  align-items: baseline;
-  gap: 4px 12px;
-}
-
 /* The mark links to the school's or studio's own page. */
 .entry-logo-link {
   position: absolute;
@@ -3326,8 +3056,7 @@ main,
 @media (min-width: 760px) {
   /* On a tablet the words cannot fit a third of a 16:9 card, so there the
      column is wider and the card may grow. */
-  .entries > .entry--card.entry,
-  .entries > .entry--card.entry:first-child {
+  .entries > .entry--card.entry {
     min-height: calc(100cqw * 9 / 16);
   }
 
@@ -3346,8 +3075,7 @@ main,
 /* Full width: every card exactly 16:9, the column a third of it. A card
    with more to say widens its column (--panel) instead of growing taller. */
 @media (min-width: 1100px) {
-  .entries > .entry--card.entry,
-  .entries > .entry--card.entry:first-child {
+  .entries > .entry--card.entry {
     height: calc(100cqw * 9 / 16);
   }
 
@@ -3370,6 +3098,13 @@ main,
 
 .entries--apps .entry-org {
   color: color-mix(in srgb, var(--c) 40%, #d8d8e0);
+}
+
+/* Every app card shows its screen at the same size and brightness. */
+.entries--apps .entry {
+  --panel: 40%;
+  --w: 74%;
+  --bright: 0.85;
 }
 
 /* The whole card is a link to the project page. The panel sits above it
@@ -3804,16 +3539,11 @@ main,
   }
 }
 
-.interest p {
-  font-size: 0.8125rem;
-  line-height: 1.75;
-}
-
 /* ============================================================
    Collection pages
-   Each project is one spread: its words on the left, its pieces
-   on the right. A before/after pair needs the full width, so its
-   words go on top instead.
+   Each project is one block: its pieces as wide as the page, then its
+   words, with its facts beside them. A before/after pair puts its two
+   galleries side by side.
    ============================================================ */
 
 .jump {
@@ -3846,18 +3576,6 @@ main,
   gap: 6px 16px;
 }
 
-.jump-links a {
-  font-size: 0.8125rem;
-  color: var(--text);
-  border-bottom: 1px solid var(--line-strong);
-  transition: color 0.2s ease, border-color 0.2s ease;
-}
-
-.jump-links a:hover {
-  color: var(--accent-lt);
-  border-color: var(--accent-2);
-}
-
 .piece {
   margin-bottom: clamp(56px, 8vw, 104px);
   scroll-margin-top: calc(var(--nav-h) + 42px + 20px);
@@ -3888,15 +3606,8 @@ main,
   color: var(--text);
 }
 
-/* The facts sit in the same framed column as a Code project's side panel. */
 .piece-side {
   padding: clamp(14px, 2vw, 20px) clamp(18px, 2.4vw, 26px);
-  border: 1px solid var(--line);
-  background: var(--surface);
-}
-
-.piece-side .brief-row:first-child {
-  border-top: 0;
 }
 
 @media (min-width: 880px) {
@@ -4167,8 +3878,7 @@ button.button {
     break-inside: avoid;
   }
 
-  .entries > .entry--card.entry,
-  .entries > .entry--card.entry:first-child {
+  .entries > .entry--card.entry {
     aspect-ratio: auto;
     padding: 6pt 0 6pt 8pt;
     background: none;

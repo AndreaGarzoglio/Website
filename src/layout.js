@@ -5,8 +5,9 @@
    here may import an image. The home page (src/index.html) is still written
    by hand and carries its own copy of the nav and footer. */
 
-import { projects } from "./content/code.js";
+import { projects, GH } from "./content/code.js";
 import { series, order } from "./content/art.js";
+import { esc, ext } from "./html.js";
 
 const FONTS =
   "https://fonts.googleapis.com/css2?family=Doto:wght@400..900&family=JetBrains+Mono:wght@300;400;500&family=Outfit:wght@400;500;600&display=swap";
@@ -49,7 +50,7 @@ const subnav = (label, links) => `
     </div>
   </div>`;
 
-export const footer = (root) => `
+const footer = (root) => `
   <footer class="footer">
     <div class="shell footer-inner">
       <div class="footer-id">
@@ -61,7 +62,7 @@ export const footer = (root) => `
         <a href="${root}art.html">Art</a>
         <a href="${root}code.html">Code</a>
         <a href="${root}index.html#resume">Résumé</a>
-        <a href="https://github.com/AndreaGarzoglio" target="_blank" rel="noopener">GitHub ↗</a>
+        ${ext(GH, "GitHub ↗", "")}
       </nav>
       <span class="footer-year">Genoa, 2026</span>
     </div>
@@ -73,11 +74,11 @@ const page = ({ root, title, description, theme, current, sub, main }) => `<!doc
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="${description.replace(/"/g, "&quot;")}" />
+  <meta name="description" content="${esc(description)}" />
   <title>${title}</title>
   <meta property="og:type" content="website" />
   <meta property="og:title" content="${title}" />
-  <meta property="og:description" content="${description.replace(/"/g, "&quot;")}" />
+  <meta property="og:description" content="${esc(description)}" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="${FONTS}" rel="stylesheet" />
@@ -97,80 +98,62 @@ ${footer(root)}
 </html>
 `;
 
-const artSub = (root, currentId) =>
-  subnav("Art", [
-    ["Overview", `${root}art.html`, !currentId],
-    ...order.map((id) => [series[id].title, `${root}art/${id}.html`, id === currentId]),
-  ]);
+// Each section's pages, in the order its subnav lists them: [id, title].
+const SECTION_PAGES = {
+  art: ["Art", order.map((id) => [id, series[id].title])],
+  code: ["Code", projects.map((p) => [p.id, p.title])],
+};
 
-const codeSub = (root, currentId) =>
-  subnav("Code", [
-    ["Overview", `${root}code.html`, !currentId],
-    ...projects.map((p) => [p.title, `${root}code/${p.id}.html`, p.id === currentId]),
+const sectionSub = (section, root, currentId) => {
+  const [label, items] = SECTION_PAGES[section];
+  return subnav(label, [
+    ["Overview", `${root}${section}.html`, !currentId],
+    ...items.map(([id, title]) => [title, `${root}${section}/${id}.html`, id === currentId]),
   ]);
+};
 
-/* Every generated page: { filename, html }. */
+/* Every generated page: { filename, html }. A page one folder down (art/…,
+   code/…) reaches the rest of the site through "../". */
 export function pages() {
   const out = [];
+  const add = (filename, section, id, title, description, view) => {
+    const root = filename.includes("/") ? "../" : "";
+    out.push({
+      filename,
+      html: page({
+        root,
+        title: `${title} · Andrea Garzoglio`,
+        description,
+        theme: section,
+        current: section,
+        sub: sectionSub(section, root, id),
+        main: `<main data-view="${view}"${id ? ` data-id="${id}"` : ""}></main>`,
+      }),
+    });
+  };
 
-  out.push({
-    filename: "art.html",
-    html: page({
-      root: "",
-      title: "Art · Andrea Garzoglio",
-      description:
-        "Ten years of illustration and concept art: MSR, the Nemixar campaigns for Undo Studios, personal drawings, and the indie game YMDIR.",
-      theme: "art",
-      current: "art",
-      sub: artSub(""),
-      main: '<main data-view="art"></main>',
-    }),
-  });
-
+  add(
+    "art.html",
+    "art",
+    null,
+    "Art",
+    "Ten years of illustration and concept art: MSR, the Nemixar campaigns for Undo Studios, personal drawings, and the indie game YMDIR.",
+    "art",
+  );
   for (const id of order) {
     const s = series[id];
-    out.push({
-      filename: `art/${id}.html`,
-      html: page({
-        root: "../",
-        title: `${s.title} · Andrea Garzoglio`,
-        description: `${s.title}: ${s.tagline}`,
-        theme: "art",
-        current: "art",
-        sub: artSub("../", id),
-        main: `<main data-view="series" data-id="${id}"></main>`,
-      }),
-    });
+    add(`art/${id}.html`, "art", id, s.title, `${s.title}: ${s.tagline}`, "series");
   }
 
-  out.push({
-    filename: "code.html",
-    html: page({
-      root: "",
-      title: "Code · Andrea Garzoglio",
-      description:
-        "Projects built from scratch while working through The Odin Project: games, algorithms and interfaces.",
-      theme: "code",
-      current: "code",
-      sub: codeSub(""),
-      main: '<main data-view="code"></main>',
-    }),
-  });
-
-  for (const p of projects) {
-    out.push({
-      filename: `code/${p.id}.html`,
-      html: page({
-        root: "../",
-        title: `${p.title} · Andrea Garzoglio`,
-        description: p.tagline,
-        theme: "code",
-        current: "code",
-        sub: codeSub("../", p.id),
-        main: `<main data-view="code-project" data-id="${p.id}"></main>`,
-      }),
-    });
-  }
+  add(
+    "code.html",
+    "code",
+    null,
+    "Code",
+    "Projects built from scratch while working through The Odin Project: games, algorithms and interfaces.",
+    "code",
+  );
+  for (const p of projects) add(`code/${p.id}.html`, "code", p.id, p.title, p.tagline, "code-project");
 
   return out;
 }

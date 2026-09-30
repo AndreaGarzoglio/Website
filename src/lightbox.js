@@ -1,4 +1,4 @@
-import { selectThumb } from "./gallery.js";
+import { counter, onSwipe, show as showOnStage, wrap } from "./gallery.js";
 
 /* One <dialog> for the whole site. The stage of any gallery opens it on that
    gallery's set, so arrows walk the pieces the stage came from, and closing it
@@ -8,12 +8,20 @@ import { selectThumb } from "./gallery.js";
    browsing. */
 
 let dialog;
+let gallery;
 let group = [];
 let index = 0;
 
+function setInfo(open) {
+  dialog.classList.toggle("is-info", open);
+  const btn = dialog.querySelector(".lb-info");
+  btn.setAttribute("aria-expanded", open);
+  btn.textContent = open ? "info −" : "info +";
+}
+
 function build() {
   dialog = document.createElement("dialog");
-  dialog.className = "lightbox is-info";
+  dialog.className = "lightbox";
   dialog.setAttribute("aria-label", "Image viewer");
   dialog.innerHTML = `
     <div class="lb-bar">
@@ -26,7 +34,7 @@ function build() {
       <figcaption class="lb-caption">
         <div class="lb-caption-head">
           <strong class="lb-title"></strong>
-          <button type="button" class="lb-btn lb-info" aria-expanded="true">info −</button>
+          <button type="button" class="lb-btn lb-info"></button>
         </div>
         <p class="lb-text"></p>
       </figcaption>
@@ -34,7 +42,9 @@ function build() {
     <button type="button" class="lb-btn lb-nav lb-prev" aria-label="Previous">←</button>
     <button type="button" class="lb-btn lb-nav lb-next" aria-label="Next">→</button>`;
   document.body.append(dialog);
+  setInfo(true);
 
+  const toggleInfo = () => setInfo(!dialog.classList.contains("is-info"));
   dialog.querySelector(".lb-close").addEventListener("click", () => dialog.close());
   dialog.querySelector(".lb-prev").addEventListener("click", () => show(index - 1));
   dialog.querySelector(".lb-next").addEventListener("click", () => show(index + 1));
@@ -45,15 +55,7 @@ function build() {
     if (e.target === dialog) dialog.close();
   });
 
-  // On a phone a sideways swipe walks the set.
-  let startX = null;
-  dialog.addEventListener("touchstart", (e) => (startX = e.touches[0].clientX), { passive: true });
-  dialog.addEventListener("touchend", (e) => {
-    if (startX === null) return;
-    const dx = e.changedTouches[0].clientX - startX;
-    startX = null;
-    if (Math.abs(dx) > 50 && group.length > 1) show(index + (dx < 0 ? 1 : -1));
-  });
+  onSwipe(dialog, "dialog", (_, dir) => show(index + dir));
 
   dialog.addEventListener("keydown", (e) => {
     if (e.key === "ArrowLeft") show(index - 1);
@@ -62,48 +64,33 @@ function build() {
   });
 
   dialog.addEventListener("close", () => {
-    const thumb = group[index];
-    if (!thumb) return;
-    selectThumb(thumb);
-    thumb.closest(".gallery").querySelector(".gallery-open").focus();
+    if (index !== Number(gallery.dataset.index)) showOnStage(gallery, index);
+    gallery.querySelector(".gallery-open").focus();
   });
 }
 
-function toggleInfo() {
-  const open = dialog.classList.toggle("is-info");
-  const btn = dialog.querySelector(".lb-info");
-  btn.setAttribute("aria-expanded", open);
-  btn.textContent = open ? "info −" : "info +";
-}
-
 function show(i) {
-  index = (i + group.length) % group.length;
-  const btn = group[index];
+  index = wrap(i, group.length);
+  const d = group[index].dataset;
+  const img = new Image();
+  img.src = d.full;
+  img.alt = d.title;
   const media = dialog.querySelector(".lb-media");
-  // Real pieces load their full-size file; placeholders are just copied over.
-  if (btn.dataset.full) {
-    const img = new Image();
-    img.src = btn.dataset.full;
-    img.alt = btn.dataset.title;
-    media.replaceChildren(img);
-  } else {
-    media.replaceChildren(btn.firstElementChild.cloneNode(true));
-  }
-  media.style.setProperty("--ar", btn.dataset.ratio);
+  media.replaceChildren(img);
+  media.style.setProperty("--ar", d.ratio);
 
-  dialog.querySelector(".lb-title").textContent = btn.dataset.title;
-  dialog.querySelector(".lb-text").textContent = btn.dataset.caption;
+  dialog.querySelector(".lb-title").textContent = d.title;
+  dialog.querySelector(".lb-text").textContent = d.caption;
   // Nothing to unfold when a piece has no words yet.
-  dialog.querySelector(".lb-info").hidden = !btn.dataset.caption;
-  dialog.querySelector(".lb-count").textContent =
-    `${String(index + 1).padStart(2, "0")} / ${String(group.length).padStart(2, "0")}`;
-  const single = group.length < 2;
-  dialog.querySelectorAll(".lb-nav").forEach((b) => (b.hidden = single));
+  dialog.querySelector(".lb-info").hidden = !d.caption;
+  dialog.querySelector(".lb-count").textContent = counter(index, group.length);
+  dialog.querySelectorAll(".lb-nav").forEach((b) => (b.hidden = group.length < 2));
 
   // The full-size files either side start loading now, so the arrows are instant.
   for (const j of [index + 1, index - 1]) {
-    const full = group[(j + group.length) % group.length].dataset.full;
-    if (full) new Image().src = full;
+    const near = group[wrap(j, group.length)].dataset;
+    if (!near.fullLoaded) new Image().src = near.full;
+    near.fullLoaded = "true";
   }
 }
 
@@ -111,11 +98,11 @@ export function initLightbox() {
   document.addEventListener("click", (e) => {
     const stage = e.target.closest(".gallery-open");
     if (!stage) return;
-    const gallery = stage.closest(".gallery");
+    gallery = stage.closest(".gallery");
     if (!dialog) build();
     group = [...gallery.querySelectorAll(".gallery-thumb")];
     dialog.querySelector(".lb-group").textContent = gallery.dataset.lightbox;
-    show(Number(gallery.dataset.index ?? 0));
+    show(Number(gallery.dataset.index));
     dialog.showModal();
   });
 }

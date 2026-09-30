@@ -6,41 +6,39 @@
 
 const GAP = 12;
 
-function layoutTrack(track) {
-  const width = track.clientWidth;
-  const ends = [];
-  const points = [...track.querySelectorAll(".gantt-point")].sort((a, b) => a.dataset.x - b.dataset.x);
-  for (const pt of points) {
-    const label = pt.firstElementChild;
-    const x = pt.dataset.x * width;
-    const w = label.offsetWidth;
-    const flip = x + w > width;
-    const left = flip ? x - w : x;
-    let row = ends.findIndex((end) => end + GAP <= left);
-    if (row === -1) row = ends.push(0) - 1;
-    ends[row] = left + w;
-    pt.classList.toggle("gantt-point--end", flip);
-    pt.style.setProperty("--row", row);
+function layoutGantt(gantt) {
+  // Every measurement first, then every write, so the page lays out once.
+  const tracks = [...gantt.querySelectorAll(".gantt-track")].map((track) => ({
+    track,
+    width: track.clientWidth,
+    points: [...track.querySelectorAll(".gantt-point")]
+      .map((pt) => ({ pt, x: Number(pt.dataset.x), w: pt.firstElementChild.offsetWidth }))
+      .sort((a, b) => a.x - b.x),
+  }));
+
+  for (const { track, width, points } of tracks) {
+    const ends = [];
+    for (const { pt, x, w } of points) {
+      const at = x * width;
+      const flip = at + w > width;
+      const left = flip ? at - w : at;
+      let row = ends.findIndex((end) => end + GAP <= left);
+      if (row === -1) row = ends.push(0) - 1;
+      ends[row] = left + w;
+      pt.classList.toggle("gantt-point--end", flip);
+      pt.style.setProperty("--row", row);
+    }
+    track.style.setProperty("--rows", ends.length);
   }
-  track.style.setProperty("--rows", ends.length);
 }
 
 export function initPath() {
   const gantts = document.querySelectorAll(".gantt");
   if (!gantts.length) return;
-  const layout = (gantt) => gantt.querySelectorAll(".gantt-track").forEach(layoutTrack);
-  const all = () => gantts.forEach(layout);
-  // Only a change of width moves the labels; the height changes because of them.
-  // The layout waits for the next frame: changing the observed element's size
-  // inside the callback is what the browser reports as a ResizeObserver loop.
-  const widths = new WeakMap();
+  // The axis only changes size with the page, never because of the labels.
   const observer = new ResizeObserver((entries) =>
-    entries.forEach(({ target }) => {
-      if (widths.get(target) === target.clientWidth) return;
-      widths.set(target, target.clientWidth);
-      requestAnimationFrame(() => layout(target));
-    }),
+    entries.forEach(({ target }) => layoutGantt(target.closest(".gantt"))),
   );
-  gantts.forEach((g) => observer.observe(g));
-  document.fonts?.ready.then(all);
+  gantts.forEach((g) => observer.observe(g.querySelector(".gantt-axis")));
+  document.fonts?.ready.then(() => gantts.forEach(layoutGantt));
 }

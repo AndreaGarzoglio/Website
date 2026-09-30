@@ -55,11 +55,6 @@ const STAMP_MIN_VIEWPORT = 760;
 // A downsampled cell this faint is treated as background rather than a thin
 // stroke, which keeps the silhouette from fraying into loose dots.
 const STAMP_INK = 0.35;
-// Art drawn in light strokes samples low on the ramp and stamps almost
-// invisibly. A stamp can lift what it samples to bring its shape up to the
-// weight of the field around it -- per stamp, because one page can carry two
-// drawings of very different densities.
-const DEFAULT_INK_GAIN = 1;
 // Softening weighs a cell this many times against each neighbour, and leaves
 // alone anything below this ramp index.
 const SOFTEN_SELF = 3;
@@ -344,14 +339,14 @@ export function createAsciiField(canvas, theme) {
       // composition laid out for the screen; `height` suits a shape hung off
       // an edge, where the width it happens to need is not the point.
       const gridAspect = (art.w / art.h) * SRC_ASPECT;
-      const destW =
-        spec.width !== undefined
-          ? Math.round(cols * spec.width)
-          : Math.round(Math.round(rows * spec.height) * gridAspect);
-      const destH =
-        spec.width !== undefined
-          ? Math.round(destW / gridAspect)
-          : Math.round(rows * spec.height);
+      let destW, destH;
+      if (spec.width !== undefined) {
+        destW = Math.round(cols * spec.width);
+        destH = Math.round(destW / gridAspect);
+      } else {
+        destH = Math.round(rows * spec.height);
+        destW = Math.round(destH * gridAspect);
+      }
       if (destW < 2 || destH < 2) continue;
 
       // Bleed is measured against the anchored edge in both axes. Whatever
@@ -384,7 +379,9 @@ export function createAsciiField(canvas, theme) {
     const stepX = art.w / destW;
     const stepY = art.h / destH;
     const top = RAMP.length - 1;
-    const inkGain = spec.inkGain ?? DEFAULT_INK_GAIN;
+    // Art drawn in light strokes samples low on the ramp; a gain above 1 lifts
+    // it toward the weight of the field around it.
+    const inkGain = spec.inkGain ?? 1;
     // Ramp value per destination cell: -1 is background, -2 an enclosed hole.
     const level = new Float32Array(destW * destH);
 
@@ -499,20 +496,21 @@ export function createAsciiField(canvas, theme) {
 
     if (glowGain <= 0) return;
 
-    const points = pointer.active ? [pointer, ...trail] : trail;
-    if (points.length === 0) return;
+    if (!pointer.active && trail.length === 0) return;
 
     let minX = Infinity;
     let minY = Infinity;
     let maxX = -Infinity;
     let maxY = -Infinity;
-
-    for (const p of points) {
+    const grow = (p) => {
       if (p.x < minX) minX = p.x;
       if (p.x > maxX) maxX = p.x;
       if (p.y < minY) minY = p.y;
       if (p.y > maxY) maxY = p.y;
-    }
+    };
+
+    if (pointer.active) grow(pointer);
+    trail.forEach(grow);
 
     heatBox.any = true;
     heatBox.minX = minX - POINTER_CUTOFF;
@@ -595,32 +593,29 @@ export function createAsciiField(canvas, theme) {
 
       for (let c = 0; c < cols; c++) {
         const cellX = c * CELL_W;
-
-        // Warping the sample position before reading the noise is what keeps
-        // the blobs irregular rather than rounded.
-        const warp = noise3(c * 0.03, r * 0.03, twarp) - 0.5;
-        const wx = c + warp * WARP_X;
-        const wy = r - warp * WARP_Y;
-
-        const raw =
-          (noise3(wx * FREQ_BASE, wy * FREQ_BASE, tz) +
-            noise3(wx * FREQ_DETAIL, wy * FREQ_DETAIL, tz * 1.4) * DETAIL_WEIGHT) /
-          (1 + DETAIL_WEIGHT);
-        let field = 0.5 + (raw - 0.5) * CONTRAST;
-        let ink = false;
+        const cell = stampRow >= 0 ? stampCells[stampRow + c] : 0;
+        const ink = cell >= STAMP_INK_BASE;
+        let field;
 
         // Stamped cells drop the field entirely, so nothing the animation does
         // reaches them: ink holds its glyph, enclosed gaps hold their emptiness.
         // Heat is applied below exactly as it is everywhere else, which is what
         // still lets the pointer scramble and light the whole shape up.
-        if (stampRow >= 0) {
-          const cell = stampCells[stampRow + c];
-          if (cell === STAMP_HOLE) {
-            field = 0;
-          } else if (cell >= STAMP_INK_BASE) {
-            field = STAMP_FIELD[cell - STAMP_INK_BASE];
-            ink = true;
-          }
+        if (ink) {
+          field = STAMP_FIELD[cell - STAMP_INK_BASE];
+        } else if (cell === STAMP_HOLE) {
+          field = 0;
+        } else {
+          // Warping the sample position before reading the noise is what keeps
+          // the blobs irregular rather than rounded.
+          const warp = noise3(c * 0.03, r * 0.03, twarp) - 0.5;
+          const wx = c + warp * WARP_X;
+          const wy = r - warp * WARP_Y;
+          const raw =
+            (noise3(wx * FREQ_BASE, wy * FREQ_BASE, tz) +
+              noise3(wx * FREQ_DETAIL, wy * FREQ_DETAIL, tz * 1.4) * DETAIL_WEIGHT) /
+            (1 + DETAIL_WEIGHT);
+          field = 0.5 + (raw - 0.5) * CONTRAST;
         }
 
         const heat =

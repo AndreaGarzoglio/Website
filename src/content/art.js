@@ -7,15 +7,6 @@
    The texts are drafts written from the pieces themselves: names, years and
    story details are there to be corrected. */
 
-const project = (id, title, images, { note, concept, brief }) => ({
-  id,
-  title,
-  note,
-  concept,
-  brief,
-  images,
-});
-
 export const intro = {
   index: "02",
   title: "Art",
@@ -48,7 +39,10 @@ export const series = {
       ["Context", "Personal IP, pitched as a presentation"],
     ],
     projects: [
-      project("presentation", "Presentation", "art/msr/presentation", {
+      {
+        id: "presentation",
+        title: "Presentation",
+        images: "art/msr/presentation",
         note: "The whole pitch, board by board.",
         concept: [
           "Read in order, the deck is the fastest way into MSR: the world of Trinity and its three factions first, then each hacker from character design to turnaround to the final render. I laid it out like a studio document, one idea per board, so it could be read in a meeting as easily as on a screen.",
@@ -57,8 +51,11 @@ export const series = {
           ["Year", "2023"],
           ["Format", "12 presentation boards"],
         ],
-      }),
-      project("blackhat", "BlackHat", "art/msr/blackhat", {
+      },
+      {
+        id: "blackhat",
+        title: "BlackHat",
+        images: "art/msr/blackhat",
         note: "Morgan Blake, and what is left of him.",
         concept: [
           "BlackHat was the hardest of the three to pin down, because he is mostly a threat. I started from the silhouette of a gentleman, suit and hat, and let the armoured form eat into it, so the elegant version and the monstrous one still read as the same person.",
@@ -67,8 +64,11 @@ export const series = {
           ["Year", "2022"],
           ["Medium", "Digital painting"],
         ],
-      }),
-      project("greyhat", "GreyHat", "art/msr/greyhat", {
+      },
+      {
+        id: "greyhat",
+        title: "GreyHat",
+        images: "art/msr/greyhat",
         note: "Brendan Reid: a grin with feathers.",
         concept: [
           "GreyHat is the unpredictable one, so he gets the loudest palette in the set: reds and magentas, broken wings, blades made of the same material as his feathers. The face sheet came first. Everything else had to live up to that grin.",
@@ -77,8 +77,11 @@ export const series = {
           ["Year", "2022"],
           ["Medium", "Digital painting"],
         ],
-      }),
-      project("whitehat", "WhiteHat", "art/msr/whitehat", {
+      },
+      {
+        id: "whitehat",
+        title: "WhiteHat",
+        images: "art/msr/whitehat",
         note: "Hiro Akasaki, the one who keeps the lights on.",
         concept: [
           "WhiteHat had to look calm and not quite human at the same time. The helmet is built around a single symbol that repeats on the tome and the halo, and the light is the only warm thing in the design.",
@@ -87,7 +90,7 @@ export const series = {
           ["Year", "2022"],
           ["Medium", "Digital painting"],
         ],
-      }),
+      },
     ],
   },
 
@@ -110,7 +113,10 @@ export const series = {
       ["Brief", "Build engagement for the game through social channels"],
     ],
     projects: [
-      project("characters", "Characters", "art/nemixar/characters", {
+      {
+        id: "characters",
+        title: "Characters",
+        images: "art/nemixar/characters",
         note: "One scene per character, made to stop a scroll.",
         concept: [
           "Each character got a single illustration that had to say who they are before anyone read the name: Cassie caught on a security camera, Captain Bonechuckle on a pirate beach, Flashey in the middle of a heist. I pitched each scene as a thumbnail, sketched it straight to the social format, then rendered with the space for the logo already planned.",
@@ -119,8 +125,11 @@ export const series = {
           ["Year", "2024"],
           ["Medium", "Digital illustration, social formats"],
         ],
-      }),
-      project("land-invasion", "Land Invasion", "art/nemixar/land-invasion", {
+      },
+      {
+        id: "land-invasion",
+        title: "Land Invasion",
+        images: "art/nemixar/land-invasion",
         note: "A game guide people actually read.",
         concept: [
           "Eight pages covering lore, factions, a quick start and the controls for PC and mobile. Most of the work was editorial: deciding what belongs in a screenshot and what in a sentence, and keeping the layout in the same visual language as the game.",
@@ -129,7 +138,7 @@ export const series = {
           ["Year", "2024"],
           ["Medium", "Layout, illustration, UI"],
         ],
-      }),
+      },
     ],
   },
 
@@ -145,7 +154,10 @@ export const series = {
       "The studies are older and plainer: light on cubes and spheres, the same sphere in eight materials, a portrait pushed until it stops looking flat. They are the reason the characters work.",
     ],
     projects: [
-      project("nora", "Nora", "art/personal-drawings/nora", {
+      {
+        id: "nora",
+        title: "Nora",
+        images: "art/personal-drawings/nora",
         note: "A painter who surfs on her own paint.",
         concept: [
           "Nora started from one question: what if a paintbrush were also a vehicle? The silhouettes were all about the oversized trousers and the brush; the palettes were about finding colours that glow against a night sky without turning into a rainbow.",
@@ -154,8 +166,11 @@ export const series = {
           ["Stages", "Inspiration, sketch, palettes, render"],
           ["Medium", "Digital painting"],
         ],
-      }),
-      project("genista", "Genista", "art/personal-drawings/genista", {
+      },
+      {
+        id: "genista",
+        title: "Genista",
+        images: "art/personal-drawings/genista",
         note: "Cyberpunk, with something growing through it.",
         concept: [
           "Genista is a study in contrast: hard armour and a plant motif, a cold palette broken by magenta light. I tried a toxic green and a neon cyan version before the red scene settled it.",
@@ -164,8 +179,11 @@ export const series = {
           ["Stages", "Sketch, palettes, render"],
           ["Medium", "Digital painting"],
         ],
-      }),
-      project("kurowo", "Kurowo", "art/personal-drawings/kurowo", {
+      },
+      {
+        id: "kurowo",
+        title: "Kurowo",
+        images: "art/personal-drawings/kurowo",
         note: "Adventurer of the Afterworld, and the house he lives in.",
         concept: [
           "Kurowo is a small crow knight with a snail shell for a helmet, designed from shapes first: I wanted him readable as a silhouette before he had a single detail. Then I built his home the same way, from moodboard to thumbnails to a finished environment, to see whether the character's world held up as well as he did.",
@@ -174,8 +192,11 @@ export const series = {
           ["Stages", "Moodboard, shapes, sketch, palettes, render"],
           ["Medium", "Character and environment design"],
         ],
-      }),
-      project("arcaster", "Arcaster", "art/personal-drawings/arcaster", {
+      },
+      {
+        id: "arcaster",
+        title: "Arcaster",
+        images: "art/personal-drawings/arcaster",
         note: "A duelist with a sword too big to be polite.",
         concept: [
           "Arcaster came from wanting to paint something darker and more ornate: gothic tailoring, gold trim, and a violet blade that drips light. The inspiration sheet mixes fashion references with armour; the details page is where the costume actually got solved.",
@@ -184,8 +205,11 @@ export const series = {
           ["Stages", "Inspiration, details, render"],
           ["Medium", "Digital painting"],
         ],
-      }),
-      project("non", "Non", "art/personal-drawings/non", {
+      },
+      {
+        id: "non",
+        title: "Non",
+        images: "art/personal-drawings/non",
         note: "Modern fantasy: a witch with a very normal bedroom.",
         concept: [
           "Non is my favourite exercise in context. On her own she is a witch with a cursed hand; her room, a cosy mess of fairy lights, books and a summoning circle on the rug, says more about her than any costume could. Both went through moodboard, sketch, palette and final render.",
@@ -194,7 +218,7 @@ export const series = {
           ["Stages", "Moodboard, sketch, palettes, render, room"],
           ["Medium", "Character and interior design"],
         ],
-      }),
+      },
     ],
     studies: [
       { id: "shading-study", title: "Shading Study", note: "Where it started: light on simple shapes, one source at a time.", images: "art/personal-drawings/shading-study" },
