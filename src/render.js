@@ -114,7 +114,7 @@ function gallery(images, { label = "", compact = false } = {}) {
     <figure class="gallery-stage">
       <button type="button" class="gallery-open" style="--stage-ar: ${stageAr}"
         aria-label="Open ${esc(first.label)} full screen">${
-          first.src ? stageImg({ ...first, alt: first.label }) : media(first, "")
+          first.src ? stageImg({ ...first, alt: first.label, compact }) : media(first, "")
         }</button>
       <figcaption class="gallery-caption">
         <span class="gallery-steps">${

@@ -99,6 +99,12 @@ function show(i) {
     `${String(index + 1).padStart(2, "0")} / ${String(group.length).padStart(2, "0")}`;
   const single = group.length < 2;
   dialog.querySelectorAll(".lb-nav").forEach((b) => (b.hidden = single));
+
+  // The full-size files either side start loading now, so the arrows are instant.
+  for (const j of [index + 1, index - 1]) {
+    const full = group[(j + group.length) % group.length].dataset.full;
+    if (full) new Image().src = full;
+  }
 }
 
 export function initLightbox() {
