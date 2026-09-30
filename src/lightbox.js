@@ -3,8 +3,8 @@ import { selectThumb } from "./gallery.js";
 /* One <dialog> for the whole site. The stage of any gallery opens it on that
    gallery's set, so arrows walk the pieces the stage came from, and closing it
    leaves the stage on the last piece seen.
-   The description is folded away by default: the piece gets the full screen,
-   and "info" (or the i key) slides the text in; that choice sticks while
+   The description shows under the piece from the start; "info" (or the i
+   key) folds it away for a clean view, and that choice sticks while
    browsing. */
 
 let dialog;
@@ -13,7 +13,7 @@ let index = 0;
 
 function build() {
   dialog = document.createElement("dialog");
-  dialog.className = "lightbox";
+  dialog.className = "lightbox is-info";
   dialog.setAttribute("aria-label", "Image viewer");
   dialog.innerHTML = `
     <div class="lb-bar">
@@ -26,7 +26,7 @@ function build() {
       <figcaption class="lb-caption">
         <div class="lb-caption-head">
           <strong class="lb-title"></strong>
-          <button type="button" class="lb-btn lb-info" aria-expanded="false">info +</button>
+          <button type="button" class="lb-btn lb-info" aria-expanded="true">info −</button>
         </div>
         <p class="lb-text"></p>
       </figcaption>
