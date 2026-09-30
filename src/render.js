@@ -190,14 +190,16 @@ function renderArt(main) {
     </section>`;
 }
 
-/* One block of a collection: the words on the left, the pieces on the right,
-   so a project reads as a single spread instead of a page and a gallery. */
-const piece = ({ id, title, meta, text, body, wide }) => `
-  <section class="piece${wide ? " piece--wide" : ""}" id="${id}">
+/* One block of a collection, laid out like a Code project page: the pieces
+   first and as wide as the page, each with its caption under it, then the
+   words, with the facts beside them when there are any. */
+const piece = ({ id, title, meta, text, side, body }) => `
+  <section class="piece" id="${id}">
     ${head(title, meta)}
-    <div class="piece-body">
+    <div class="piece-media">${body}</div>
+    <div class="piece-body${side ? " piece-body--side" : ""}">
       <div class="piece-text">${text}</div>
-      <div class="piece-media">${body}</div>
+      ${side ? `<aside class="piece-side">${side}</aside>` : ""}
     </div>
   </section>`;
 
@@ -216,7 +218,8 @@ function seriesBlocks(s) {
             id: p.id,
             title: p.title,
             meta: count(imgs.length, "pieces"),
-            text: `<p class="piece-lead">${p.note}</p>${paras(p.concept)}${brief(p.brief)}`,
+            text: `<p class="piece-lead">${p.note}</p>${paras(p.concept)}`,
+            side: p.brief ? brief(p.brief) : "",
             body: gallery(imgs, { label: p.title }),
           }),
         };
@@ -254,7 +257,6 @@ function seriesBlocks(s) {
           id: pair.id,
           title: pair.title,
           meta: "before → now",
-          wide: true,
           text: `<p>${pair.note}</p>`,
           body: `
             <div class="pair-grid">

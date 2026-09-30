@@ -3859,9 +3859,13 @@ main,
   scroll-margin-top: calc(var(--nav-h) + 42px + 20px);
 }
 
+.piece-media {
+  margin-bottom: clamp(24px, 3vw, 36px);
+}
+
 .piece-body {
   display: grid;
-  gap: clamp(20px, 3vw, 32px);
+  gap: clamp(20px, 3vw, 40px);
   align-items: start;
 }
 
@@ -3869,28 +3873,31 @@ main,
   display: flex;
   flex-direction: column;
   gap: 14px;
-  font-size: 0.8125rem;
-  line-height: 1.8;
+  max-width: 72ch;
+  font-size: 0.875rem;
+  line-height: 1.85;
 }
 
 .piece-lead {
-  font-size: 0.9375rem;
+  font-size: 1rem;
   line-height: 1.6;
   color: var(--text);
 }
 
-.piece-text .brief {
-  margin-top: 4px;
+/* The facts sit in the same framed column as a Code project's side panel. */
+.piece-side {
+  padding: clamp(14px, 2vw, 20px) clamp(18px, 2.4vw, 26px);
+  border: 1px solid var(--line);
+  background: var(--surface);
 }
 
-@media (min-width: 960px) {
-  .piece:not(.piece--wide) .piece-body {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 2.2fr);
-  }
+.piece-side .brief-row:first-child {
+  border-top: 0;
+}
 
-  .piece:not(.piece--wide) .piece-text {
-    position: sticky;
-    top: calc(var(--nav-h) + 42px + 24px);
+@media (min-width: 880px) {
+  .piece-body--side {
+    grid-template-columns: minmax(0, 1fr) 280px;
   }
 }
 

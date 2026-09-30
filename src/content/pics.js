@@ -24,18 +24,57 @@ export const shots = (prefix, n) =>
     shot(`${prefix} ${String(i + 1).padStart(2, "0")}`, RHYTHM[i % RHYTHM.length]),
   );
 
+/* Art file names are working names: export prefixes, glued numbers,
+   shorthand. This turns them into something a visitor can read. */
+const RENAMES = [
+  [/^TN[bs]p /, ""],
+  [/^MSR- The Hat Hackers rw (\d+)$/, (_, n) => `Board ${n.padStart(2, "0")}`],
+  [/^LIguide 0$/, "Cover"],
+  [/^LIguide /, "Pages "],
+  [/ NOBG$/, ""],
+  [/^vfx\b/i, "VFX"],
+  [/\b(TA|ta|turn)$/, "turnaround"],
+  [/\bInspo\b/, "Inspiration"],
+  [/^Cpt /, "Captain "],
+  [/([a-z]{2,})(\d)/g, "$1 $2"],
+];
+
+const tidy = (name) => {
+  const out = RENAMES.reduce((text, [find, put]) => text.replace(find, put), name);
+  return out.charAt(0).toUpperCase() + out.slice(1);
+};
+
+/* Each step of the process says what it was for, so a sheet of sketches
+   reads as a stage rather than a leftover. Matched on the tidied name. */
+const STAGES = [
+  [/inspiration/i, "The inspiration board: references for shape, costume and mood, gathered before the first line."],
+  [/sketch/i, "Sketches: silhouettes and poses tried side by side, to find the shape before any detail."],
+  [/palettes/i, "Palette explorations: the same design in several colour schemes, before one is chosen."],
+  [/cell shading/i, "A cell-shaded pass, testing a flatter, more graphic finish."],
+  [/details/i, "Details: close-ups where the costume, props and materials get worked out."],
+  [/ face$/i, "The face sheet: expressions and features, to pin down who the character is."],
+  [/turnaround/i, "Turnaround: the design from every side, as reference for modelling and animation."],
+  [/render$/i, "The render: the chosen sketch and palette taken to a finished image."],
+];
+
+const stageCaption = (label) => STAGES.find(([find]) => find.test(label))?.[1] ?? LOREM_CAPTION;
+
 /* The real pieces for a Drive folder (see scripts/build-images.py). Each keeps
    its own proportions in the collage. Falls back to placeholders for a folder
    that has no images yet. */
 export const pics = (key, fallback = 6) => {
   const list = images[key];
   if (!list) return shots(key.split("/").pop(), fallback);
-  return list.map((img) => ({
-    label: img.name,
-    src: img.thumb,
-    full: img.full,
-    ar: img.w / img.h,
-    w: img.w,
-    caption: LOREM_CAPTION,
-  }));
+  const art = key.startsWith("art/");
+  return list.map((img) => {
+    const label = art ? tidy(img.name) : img.name;
+    return {
+      label,
+      src: img.thumb,
+      full: img.full,
+      ar: img.w / img.h,
+      w: img.w,
+      caption: art ? stageCaption(label) : LOREM_CAPTION,
+    };
+  });
 };
