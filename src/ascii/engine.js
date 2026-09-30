@@ -56,10 +56,14 @@ const STAMP_MIN_VIEWPORT = 760;
 // stroke, which keeps the silhouette from fraying into loose dots.
 const STAMP_INK = 0.35;
 // Art drawn in light strokes samples low on the ramp and stamps almost
-// invisibly. A stamp can scale what it samples to bring its shape up to the
+// invisibly. A stamp can lift what it samples to bring its shape up to the
 // weight of the field around it -- per stamp, because one page can carry two
 // drawings of very different densities.
 const DEFAULT_INK_GAIN = 1;
+// Softening weighs a cell this many times against each neighbour, and leaves
+// alone anything below this ramp index.
+const SOFTEN_SELF = 3;
+const SOFTEN_FROM = 3;
 
 // How a stamped cell is encoded on the grid: 0 is untouched, STAMP_HOLE is an
 // enclosed gap held open, and anything from STAMP_INK_BASE up carries a ramp
@@ -279,8 +283,9 @@ function noise3(x, y, z) {
  *             is the fraction of the stamp pushed past its own anchored edge:
  *             positive crops it against that edge, negative pulls it back
  *             inside. The result reads as a shape the viewport is cropping
- *             rather than a sprite parked in a corner. `flip` mirrors it, and
- *             `inkGain` scales what it samples off the ramp.
+ *             rather than a sprite parked in a corner. `flip` mirrors it,
+ *             `inkGain` lifts what it samples along the ramp (1 leaves it as
+ *             drawn), and `soften` blends each stroke into its neighbours.
  *   `colors`  {ambient: [low, high], heat, ink: [low, high]}, each an RGB triple.
  */
 export function createAsciiField(canvas, theme) {
@@ -365,7 +370,7 @@ export function createAsciiField(canvas, theme) {
             ? rows - destH + Math.round(destH * spec.bleedY)
             : -Math.round(destH * spec.bleedY);
 
-      stamp(cells, art, destW, destH, originC, originR, spec.flip, spec.inkGain ?? DEFAULT_INK_GAIN);
+      stamp(cells, art, destW, destH, originC, originR, spec);
       stamped = true;
     }
 
@@ -375,21 +380,19 @@ export function createAsciiField(canvas, theme) {
   // Box-downsamples the art onto the grid: each destination cell averages the
   // source cells it covers, so the edges thin out instead of stepping. Cells
   // land as STAMP_HOLE, or as a ramp index offset by STAMP_INK_BASE.
-  function stamp(cells, art, destW, destH, originC, originR, flip, inkGain) {
+  function stamp(cells, art, destW, destH, originC, originR, spec) {
     const stepX = art.w / destW;
     const stepY = art.h / destH;
+    const top = RAMP.length - 1;
+    const inkGain = spec.inkGain ?? DEFAULT_INK_GAIN;
+    // Ramp value per destination cell: -1 is background, -2 an enclosed hole.
+    const level = new Float32Array(destW * destH);
 
     for (let j = 0; j < destH; j++) {
-      const r = originR + j;
-      if (r < 0 || r >= rows) continue;
-
       const y0 = Math.floor(j * stepY);
       const y1 = Math.max(y0 + 1, Math.floor((j + 1) * stepY));
 
       for (let i = 0; i < destW; i++) {
-        const c = originC + (flip ? destW - 1 - i : i);
-        if (c < 0 || c >= cols) continue;
-
         const x0 = Math.floor(i * stepX);
         const x1 = Math.max(x0 + 1, Math.floor((i + 1) * stepX));
 
@@ -407,15 +410,57 @@ export function createAsciiField(canvas, theme) {
           }
         }
 
-        if (n === 0) continue;
+        const mean = n === 0 ? 0 : sum / n;
+        // A curve rather than a multiplier: it lifts the middle of the ramp
+        // but still meets the top at the top, so the densest strokes keep
+        // their steps instead of all clipping to the last glyph.
+        level[j * destW + i] =
+          mean >= STAMP_INK
+            ? top * Math.pow(Math.min(1, mean / top), 1 / inkGain)
+            : n > 0 && holes * 2 >= n
+              ? -2
+              : -1;
+      }
+    }
 
-        const mean = (sum / n) * inkGain;
-        if (mean >= STAMP_INK) {
-          const level = Math.min(RAMP.length - 1, Math.max(1, Math.round(mean)));
-          cells[r * cols + c] = STAMP_INK_BASE + level;
-        } else if (holes * 2 >= n) {
-          cells[r * cols + c] = STAMP_HOLE;
+    // Art that jumps straight from its lightest strokes to its densest reads
+    // as two flat bands. Softening blends each ink cell with the ink around
+    // it, so the jump picks up the glyphs in between.
+    const soft = spec.soften ? new Float32Array(level) : level;
+    if (spec.soften) {
+      for (let j = 0; j < destH; j++) {
+        for (let i = 0; i < destW; i++) {
+          const self = level[j * destW + i];
+          // The faint fringe stays as drawn, so the silhouette still thins out.
+          if (self < SOFTEN_FROM) continue;
+          let sum = self * SOFTEN_SELF;
+          let weight = SOFTEN_SELF;
+          for (let dj = -1; dj <= 1; dj++) {
+            for (let di = -1; di <= 1; di++) {
+              const y = j + dj;
+              const x = i + di;
+              if ((di || dj) && y >= 0 && y < destH && x >= 0 && x < destW && level[y * destW + x] >= 0) {
+                sum += level[y * destW + x];
+                weight++;
+              }
+            }
+          }
+          soft[j * destW + i] = sum / weight;
         }
+      }
+    }
+
+    for (let j = 0; j < destH; j++) {
+      const r = originR + j;
+      if (r < 0 || r >= rows) continue;
+
+      for (let i = 0; i < destW; i++) {
+        const c = originC + (spec.flip ? destW - 1 - i : i);
+        if (c < 0 || c >= cols) continue;
+
+        const v = soft[j * destW + i];
+        if (v >= 0) cells[r * cols + c] = STAMP_INK_BASE + Math.min(top, Math.max(1, Math.round(v)));
+        else if (v === -2) cells[r * cols + c] = STAMP_HOLE;
       }
     }
   }
