@@ -91,7 +91,8 @@ const zoneHead = ({ index, title, lead, body, status, stats, stacked }) => `
 /* A set of pieces as a stage and a strip (behaviour in src/gallery.js). The
    stage keeps one shape for the whole set, picked from the pieces themselves,
    so flicking through them never makes the page jump; each piece sits inside
-   it at its own proportions. Its caption only exists in the lightbox. */
+   it at its own proportions. A piece with a caption shows it under the
+   stage as well as in the lightbox. */
 const esc = (t = "") => t.replace(/"/g, "&quot;");
 
 function gallery(images, { label = "", compact = false } = {}) {
@@ -119,6 +120,7 @@ function gallery(images, { label = "", compact = false } = {}) {
         <span class="gallery-count">01 / ${pad(images.length)}</span>
         <span class="gallery-title">${first.label}</span>
         <span class="gallery-hint" aria-hidden="true">click to enlarge</span>
+        <p class="gallery-text"${first.caption ? "" : " hidden"}>${first.caption ?? ""}</p>
       </figcaption>
     </figure>
     <ul class="gallery-strip"${images.length < 2 ? " hidden" : ""}>${thumbs}</ul>
@@ -330,15 +332,15 @@ function renderSeries(main, id) {
 const coverFor = (p) => covers[p.id] ?? pics(p.shots)[0]?.src;
 
 /* A project page shows only the screens from its Drive folder. `screens`
-   in code.js can pick their order and names: each entry is the end of a
-   file's name and the label to show for it. */
+   in code.js picks their order, names and captions: each entry is the end
+   of a file's name, the label to show for it and what the screen does. */
 const screensOf = (p) => {
   const all = pics(p.shots);
   if (!p.screens) return all;
   return p.screens
-    .map(([end, label]) => {
+    .map(([end, label, caption = ""]) => {
       const pic = all.find((x) => x.label.toLowerCase().endsWith(end));
-      return pic && { ...pic, label };
+      return pic && { ...pic, label, caption };
     })
     .filter(Boolean);
 };
@@ -583,8 +585,10 @@ function renderCodeProject(main, id) {
       <div class="shell">
         ${crumbs([["Résumé", "../index.html"], ["Code", "../code.html"], [p.title]])}
         <header class="project-head">
-          ${marks[p.id] ? `<img class="project-mark" src="${marks[p.id]}" alt="" />` : ""}
-          <h1 class="project-title">${p.title}</h1>
+          <div class="project-title-row">
+            ${marks[p.id] ? `<img class="project-mark" src="${marks[p.id]}" alt="" />` : ""}
+            <h1 class="project-title">${p.title}</h1>
+          </div>
           <p class="project-tagline">${p.tagline}</p>
           <p class="project-lead">${p.lead}</p>
           <div class="project-actions">

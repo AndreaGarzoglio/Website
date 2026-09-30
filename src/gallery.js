@@ -29,6 +29,9 @@ export function selectThumb(thumb) {
   stage.setAttribute("aria-label", `Open ${d.title} full screen`);
   gallery.querySelector(".gallery-count").textContent = `${pad(i + 1)} / ${pad(thumbs.length)}`;
   gallery.querySelector(".gallery-title").textContent = d.title;
+  const text = gallery.querySelector(".gallery-text");
+  text.textContent = d.caption;
+  text.hidden = !d.caption;
   thumbs.forEach((t) => t.removeAttribute("aria-current"));
   thumb.setAttribute("aria-current", "true");
   gallery.dataset.index = i;

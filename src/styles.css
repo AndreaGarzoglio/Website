@@ -1837,9 +1837,18 @@ main,
   padding-bottom: clamp(32px, 5vw, 52px);
 }
 
+/* The app's mark stands beside its name, at about twice the cap height. */
+.project-title-row {
+  display: flex;
+  align-items: center;
+  gap: clamp(12px, 2vw, 20px);
+}
+
 .project-mark {
-  width: 34px;
-  height: 34px;
+  flex: none;
+  width: clamp(48px, 9vw, 88px);
+  height: auto;
+  image-rendering: pixelated;
 }
 
 .project-title {
@@ -2328,10 +2337,20 @@ main,
 
 .gallery-caption {
   display: flex;
+  flex-wrap: wrap;
   align-items: baseline;
-  gap: 12px;
+  gap: 4px 12px;
   font-size: 0.6875rem;
   color: var(--text-faint);
+}
+
+/* What the piece on the stage shows, on its own line under the title. */
+.gallery-text {
+  flex-basis: 100%;
+  margin-top: 2px;
+  font-size: 0.8125rem;
+  line-height: 1.7;
+  color: var(--text-dim);
 }
 
 .gallery-count {
