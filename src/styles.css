@@ -190,6 +190,23 @@ body::after {
       rgba(8, 8, 10, 0.5) 58%, transparent 88%);
 }
 
+/* Code hangs a hand in each bottom corner, so its veil and glow are
+   mirrored: both hands sit under the same shade and the same light. */
+@media (min-width: 721px) {
+  body[data-page="code"]::after {
+    background: linear-gradient(90deg,
+        transparent 0%, rgba(8, 8, 10, 0.5) 30%,
+        rgba(8, 8, 10, 0.5) 70%, transparent 100%);
+  }
+}
+
+body[data-page="code"] {
+  background-image:
+    radial-gradient(ellipse 60% 45% at 50% 0%, var(--glow-a), transparent 70%),
+    radial-gradient(ellipse 45% 45% at 0% 60%, var(--glow-b), transparent 70%),
+    radial-gradient(ellipse 45% 45% at 100% 60%, var(--glow-b), transparent 70%);
+}
+
 @media (max-width: 720px) {
   body::after {
     background: rgba(8, 8, 10, 0.35);
