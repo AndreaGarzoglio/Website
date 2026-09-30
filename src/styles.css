@@ -191,7 +191,9 @@ body::after {
 }
 
 /* Code hangs a hand in each bottom corner, so its veil and glow are
-   mirrored: both hands sit under the same shade and the same light. */
+   mirrored: both hands sit under the same shade and much the same light.
+   The left hand leaves more of its corner bare, where the glow shows
+   undiluted, so that side gets a fainter one to read the same. */
 @media (min-width: 721px) {
   body[data-page="code"]::after {
     background: linear-gradient(90deg,
@@ -203,7 +205,7 @@ body::after {
 body[data-page="code"] {
   background-image:
     radial-gradient(ellipse 60% 45% at 50% 0%, var(--glow-a), transparent 70%),
-    radial-gradient(ellipse 45% 45% at 0% 60%, var(--glow-b), transparent 70%),
+    radial-gradient(ellipse 45% 45% at 0% 60%, color-mix(in srgb, var(--glow-b) 50%, transparent), transparent 70%),
     radial-gradient(ellipse 45% 45% at 100% 60%, var(--glow-b), transparent 70%);
 }
 
