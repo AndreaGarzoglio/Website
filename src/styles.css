@@ -2048,10 +2048,22 @@ main,
   color: inherit;
   font: inherit;
   cursor: zoom-in;
+  overflow: hidden;
 }
 
 .gallery-open:focus-visible {
   outline: none;
+}
+
+/* A tall piece grown to fill the box (src/gallery.js): the frame moves from
+   the piece to the box. */
+.gallery-open.is-zoomed {
+  outline: 1px solid var(--accent-2);
+  outline-offset: -1px;
+}
+
+.gallery .gallery-open.is-zoomed > img {
+  border-color: transparent;
 }
 
 /* Centred at its own proportions and never past the stage's edges. */
@@ -2065,7 +2077,10 @@ main,
   max-height: 100%;
   border: 1px solid var(--line);
   animation: stage-in 0.35s ease;
-  transition: border-color 0.25s ease;
+  transition:
+    border-color 0.25s ease,
+    transform 0.45s ease,
+    transform-origin 0.2s ease-out;
 }
 
 .gallery-open:hover > img,

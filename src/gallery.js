@@ -110,6 +110,19 @@ export function initGalleries() {
     setTimeout(() => stage.removeEventListener("click", swallow, { capture: true }), 400);
   });
 
+  if (matchMedia("(hover: hover)").matches) {
+    const follow = (e) => {
+      const stage = e.target.closest?.(".gallery-open");
+      if (zoomed && zoomed !== stage) unzoom(zoomed);
+      if (stage) zoom(stage, e.clientY);
+    };
+    document.addEventListener("mouseover", follow);
+    document.addEventListener("mousemove", follow);
+    document.addEventListener("mouseout", (e) => {
+      if (zoomed && !e.relatedTarget) unzoom(zoomed);
+    });
+  }
+
   // Left and right walk a set: the one that has focus, or else the one most
   // in view. The lightbox and form fields keep the keys to themselves.
   document.addEventListener("keydown", (e) => {
@@ -133,4 +146,28 @@ function galleryInView() {
     if (seen > most) [best, most] = [g, seen];
   }
   return best;
+}
+
+/* Under the pointer, a piece narrower than the stage grows until it fills
+   the 16:9 box, and the cursor's height picks which part of it shows: the
+   top of the stage shows the top of the piece, the bottom its bottom. */
+let zoomed = null;
+
+function zoom(stage, y) {
+  const img = stage.querySelector("img");
+  const scale = img ? stage.clientWidth / img.offsetWidth : 1;
+  if (scale < 1.05) return unzoom(stage);
+  const r = stage.getBoundingClientRect();
+  const at = Math.min(1, Math.max(0, (y - r.top) / r.height));
+  img.style.transformOrigin = `50% ${(at * 100).toFixed(1)}%`;
+  img.style.transform = `scale(${scale})`;
+  stage.classList.add("is-zoomed");
+  zoomed = stage;
+}
+
+function unzoom(stage) {
+  const img = stage.querySelector("img");
+  if (img) img.style.transform = "";
+  stage.classList.remove("is-zoomed");
+  if (zoomed === stage) zoomed = null;
 }
