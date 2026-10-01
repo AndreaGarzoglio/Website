@@ -2017,10 +2017,10 @@ main,
 
 /* ---- Gallery ----
    One piece large on a stage, the rest as a strip of thumbnails under it.
-   The stage keeps one shape per set (--stage-ar, from render.js) and every
-   piece is contained inside it, so a presentation board is never cropped
-   through its lettering and a tall character sheet is never cut at the
-   knees. The full file comes back in the lightbox. */
+   The stage is always 16:9 and every piece is contained inside it, so a
+   presentation board is never cropped through its lettering and a tall
+   character sheet shrinks to fit rather than being cut at the knees. The
+   full file comes back in the lightbox. */
 .gallery {
   display: flex;
   flex-direction: column;
@@ -2035,10 +2035,10 @@ main,
 }
 
 .gallery-open {
-  display: grid;
-  place-items: center;
+  position: relative;
+  display: block;
   width: 100%;
-  aspect-ratio: var(--stage-ar, 4 / 3);
+  aspect-ratio: 16 / 9;
   max-height: 78vh;
   padding: 0;
   border: 1px solid var(--line);
@@ -2058,7 +2058,10 @@ main,
   outline: none;
 }
 
+/* Pinned to the stage's box: a grid track would let a tall piece grow past it. */
 .gallery-open > img {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: contain;
@@ -2074,7 +2077,7 @@ main,
 .gallery-caption {
   display: flex;
   flex-wrap: wrap;
-  align-items: baseline;
+  align-items: center;
   gap: 4px 12px;
   font-size: 0.6875rem;
   color: var(--text-faint);
@@ -2089,26 +2092,36 @@ main,
   color: var(--text-dim);
 }
 
-/* The count, with a small arrow either side to walk the set. */
+/* The count, with an arrow either side to walk the set. The arrow keys do
+   the same (src/gallery.js). */
 .gallery-steps {
   display: inline-flex;
-  align-items: baseline;
-  gap: 6px;
+  align-items: center;
+  gap: 10px;
 }
 
 .gallery-nav {
-  padding: 0 4px;
-  border: 0;
-  background: none;
-  color: var(--text-faint);
+  display: inline-grid;
+  place-items: center;
+  width: 44px;
+  height: 36px;
+  padding: 0;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--text-dim);
   font: inherit;
+  font-size: 1.125rem;
+  line-height: 1;
   cursor: pointer;
-  transition: color 0.2s ease;
+  transition:
+    color 0.2s ease,
+    border-color 0.2s ease;
 }
 
 .gallery-nav:hover,
 .gallery-nav:focus-visible {
   color: var(--accent-lt);
+  border-color: var(--accent-2);
 }
 
 .gallery-nav:focus-visible {

@@ -97,16 +97,10 @@ const zoneHead = ({ index, title, lead, body, status, stats, stacked }) => `
 
 /* A set of pieces as a stage and a strip. This writes the frame and the
    strip; src/gallery.js puts a piece on the stage (show()) and runs it. The
-   stage keeps one shape for the whole set, picked from the pieces
-   themselves, so flicking through them never makes the page jump; each piece
-   sits inside it at its own proportions. */
+   stage is always 16:9, so flicking through a set never makes the page
+   jump, and a square or tall piece shrinks to fit inside it, never cropped. */
 function gallery(images, { label = "", compact = false } = {}) {
   if (!images.length) return "";
-  const ars = images.map((img) => img.ar).sort((a, b) => a - b);
-  const stageAr = Math.min(
-    1.78,
-    Math.max(0.8, ars[Math.floor(ars.length / 2)]),
-  );
   const many = images.length > 1;
   const nav = (step, name, arrow) =>
     many
@@ -124,7 +118,7 @@ function gallery(images, { label = "", compact = false } = {}) {
   return `
   <div class="gallery${compact ? " gallery--compact" : ""}" data-lightbox="${esc(label)}" data-index="0">
     <figure class="gallery-stage">
-      <button type="button" class="gallery-open" style="--stage-ar: ${stageAr}"></button>
+      <button type="button" class="gallery-open"></button>
       <figcaption class="gallery-caption">
         <span class="gallery-steps">${nav(-1, "Previous", "←")}<span class="gallery-count"></span>${nav(1, "Next", "→")}</span>
         <span class="gallery-title"></span>

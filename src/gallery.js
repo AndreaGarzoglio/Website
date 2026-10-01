@@ -110,11 +110,27 @@ export function initGalleries() {
     setTimeout(() => stage.removeEventListener("click", swallow, { capture: true }), 400);
   });
 
-  // Left and right walk the set while the stage, an arrow or a thumbnail has focus.
+  // Left and right walk a set: the one that has focus, or else the one most
+  // in view. The lightbox and form fields keep the keys to themselves.
   document.addEventListener("keydown", (e) => {
-    const el = e.target.closest?.(".gallery-open, .gallery-nav, .gallery-thumb");
-    if (!el || (e.key !== "ArrowLeft" && e.key !== "ArrowRight")) return;
-    step(el.closest(".gallery"), e.key === "ArrowRight" ? 1 : -1);
+    if (e.key !== "ArrowLeft" && e.key !== "ArrowRight") return;
+    if (e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) return;
+    if (e.target.closest?.("dialog, input, textarea, select, [contenteditable]")) return;
+    const gallery = e.target.closest?.(".gallery") ?? galleryInView();
+    if (!gallery) return;
+    step(gallery, e.key === "ArrowRight" ? 1 : -1);
     e.preventDefault();
   });
+}
+
+// The gallery whose stage shows the most of itself in the window, if any.
+function galleryInView() {
+  let best = null;
+  let most = 0;
+  for (const g of document.querySelectorAll(".gallery")) {
+    const r = g.querySelector(".gallery-open").getBoundingClientRect();
+    const seen = Math.min(r.bottom, innerHeight) - Math.max(r.top, 0);
+    if (seen > most) [best, most] = [g, seen];
+  }
+  return best;
 }
