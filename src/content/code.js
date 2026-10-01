@@ -460,7 +460,7 @@ export const path = [
     link: `${TOP}full-stack-javascript/courses/advanced-html-and-css`,
     ticks: ["2026-09-17", "2026-09-24"],
     text: [
-      "Animation, accessibility and responsive design, the last pieces of CSS I was missing. The project that closes this course is a personal homepage, and you are looking at it: this site is that project, grown into a portfolio for everything I do.",
+      "Animation, accessibility and responsive design, the last pieces of CSS I was missing. The project that closes this course is a personal homepage, and you are looking at it. It was meant to be much simpler, a single basic page, but I realised I wanted to challenge myself: I wanted to present my work in a way that felt professional and actually interesting to explore. So this site is that project, grown into a portfolio for everything I do.",
     ],
     tracks: [
       { name: "Animation", from: "2026-09-17", to: "2026-09-20" },
