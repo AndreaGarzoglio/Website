@@ -384,7 +384,7 @@ export const path = [
     to: "2026-08-07",
     link: `${TOP}full-stack-javascript/courses/javascript`,
     text: [
-      "Then the difficulty spiked, hard. Objects and classes, modules and webpack, asynchronous code, testing, recursion, data structures, one after the other. For seven months it was extremely complex and at times demoralising, and more than once I was stuck on a single problem for days. I knew that was part of the process, so I persevered, one project at a time, and it is the part of this path I am proudest of.",
+      "This is where it got hard. Objects and classes, modules and webpack, asynchronous code, testing, recursion, data structures: one new topic after another, for seven months. It was extremely complex, and at times honestly demoralising. More than once I spent days stuck on a single problem. But I knew that was part of the process, so I persevered, one project at a time. It is the part of this path I am proudest of.",
     ],
     tracks: [
       {
