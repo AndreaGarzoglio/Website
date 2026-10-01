@@ -42,8 +42,29 @@ export const marks = {
 
 // The mark in the corner of each Art collection's card, and where it leads.
 export const artLogos = {
-  msr: { src: logoEh, alt: "Event Horizon School", href: "https://www.instagram.com/eventhorizonschool/?hl=en", label: "Event Horizon School on Instagram" },
-  nemixar: { src: logoNemixar, alt: "Nemixar", href: "https://nemixar.com/", label: "Nemixar website" },
-  personal: { src: logoGreyhat, alt: "GreyHat, from my personal work", href: "https://www.instagram.com/garuzo_msr/", label: "My illustration on Instagram", round: true },
-  ymdir: { src: logoMadburger, alt: "Mad Burger Studio", href: "https://www.instagram.com/madburgerstudio/", label: "Mad Burger Studio on Instagram" },
+  msr: {
+    src: logoEh,
+    alt: "Event Horizon School",
+    href: "https://www.instagram.com/eventhorizonschool/?hl=en",
+    label: "Event Horizon School on Instagram",
+  },
+  nemixar: {
+    src: logoNemixar,
+    alt: "Nemixar",
+    href: "https://nemixar.com/",
+    label: "Nemixar website",
+  },
+  personal: {
+    src: logoGreyhat,
+    alt: "GreyHat, from my personal work",
+    href: "https://www.instagram.com/garuzo_msr/",
+    label: "My illustration on Instagram",
+    round: true,
+  },
+  ymdir: {
+    src: logoMadburger,
+    alt: "Mad Burger Studio",
+    href: "https://www.instagram.com/madburgerstudio/",
+    label: "Mad Burger Studio on Instagram",
+  },
 };

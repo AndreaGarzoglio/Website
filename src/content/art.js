@@ -27,7 +27,8 @@ export const series = {
   msr: {
     index: "02.1",
     title: "MSR",
-    tagline: "My Subjective Reality: my own universe, introduced by three hackers.",
+    tagline:
+      "My Subjective Reality: my own universe, introduced by three hackers.",
     cover: "art/msr/presentation",
     // The collection's card on the Art page, laid out like a Code project's.
     card: {
@@ -178,6 +179,8 @@ export const series = {
     coverPos: "50% 35%",
     card: {
       hue: "#aa60ff",
+      // Framed like its card on the home page.
+      frame: "--tint-mix: 9%; --pos: 50% 35%; --zoom: 1.3; --origin: 0% 35%",
       when: "2017 - today",
       place: "Clients, school and my own",
       flag: "ongoing",
@@ -262,10 +265,30 @@ export const series = {
       },
     ],
     studies: [
-      { id: "shading-study", title: "Shading Study", note: "Where it started: light on simple shapes, one source at a time.", images: "art/personal-drawings/shading-study" },
-      { id: "material-study", title: "Material Study", note: "Metal, glass, wood, liquid: the same sphere, again and again, until each one reads at a glance.", images: "art/personal-drawings/material-study" },
-      { id: "rendering-study", title: "Rendering Study", note: "Taking a flat colour sketch all the way to a finished portrait.", images: "art/personal-drawings/rendering-study" },
-      { id: "creature-study", title: "Creature Study", note: "Animals that do not exist, built out of animals that do.", images: "art/personal-drawings/creature-study" },
+      {
+        id: "shading-study",
+        title: "Shading Study",
+        note: "Where it started: light on simple shapes, one source at a time.",
+        images: "art/personal-drawings/shading-study",
+      },
+      {
+        id: "material-study",
+        title: "Material Study",
+        note: "Metal, glass, wood, liquid: the same sphere, again and again, until each one reads at a glance.",
+        images: "art/personal-drawings/material-study",
+      },
+      {
+        id: "rendering-study",
+        title: "Rendering Study",
+        note: "Taking a flat colour sketch all the way to a finished portrait.",
+        images: "art/personal-drawings/rendering-study",
+      },
+      {
+        id: "creature-study",
+        title: "Creature Study",
+        note: "Animals that do not exist, built out of animals that do.",
+        images: "art/personal-drawings/creature-study",
+      },
     ],
   },
 
@@ -279,6 +302,8 @@ export const series = {
     coverPos: "50% 35%",
     card: {
       hue: "#2fd9ec",
+      // Framed like its card on the home page.
+      frame: "--pos: 50% 22%; --zoom: 1.28; --origin: -30% 18%",
       when: "2021 - today",
       place: "Mad Burger Studio",
       flag: "in development",

@@ -1,5 +1,12 @@
 import { intro as artIntro, series, order } from "./content/art.js";
-import { intro as codeIntro, projects, toolbox, path, nextUp, GH } from "./content/code.js";
+import {
+  intro as codeIntro,
+  projects,
+  toolbox,
+  path,
+  nextUp,
+  GH,
+} from "./content/code.js";
 import { covers, marks, artLogos } from "./content/media.js";
 import { pics } from "./content/pics.js";
 import { pad, esc, ext } from "./html.js";
@@ -19,7 +26,9 @@ const crumbs = (trail) => `
   <nav class="crumbs" aria-label="Breadcrumb">
     ${trail
       .map(([name, href]) =>
-        href ? `<a href="${href}">${name}</a>` : `<span aria-current="page">${name}</span>`,
+        href
+          ? `<a href="${href}">${name}</a>`
+          : `<span aria-current="page">${name}</span>`,
       )
       .join('<span class="crumb-sep" aria-hidden="true">/</span>')}
   </nav>`;
@@ -27,7 +36,9 @@ const crumbs = (trail) => `
 const brief = (rows = []) =>
   rows.length
     ? `<dl class="brief">${rows
-        .map(([k, v]) => `<div class="brief-row"><dt>${k}</dt><dd>${v}</dd></div>`)
+        .map(
+          ([k, v]) => `<div class="brief-row"><dt>${k}</dt><dd>${v}</dd></div>`,
+        )
         .join("")}</dl>`
     : "";
 
@@ -46,7 +57,10 @@ const TRAIL = [
 function pager(here, root) {
   const i = TRAIL.findIndex((t) => t.href === here);
   const prev = TRAIL[i - 1] ?? { href: "index.html", name: "Résumé" };
-  const next = TRAIL[i + 1] ?? { href: "index.html#contact", name: "Get in touch" };
+  const next = TRAIL[i + 1] ?? {
+    href: "index.html#contact",
+    name: "Get in touch",
+  };
   const link = (t, dir, cls) => `
     <a class="pager-link ${cls}" href="${root}${t.href}">
       <span class="pager-dir">${dir}</span>
@@ -89,10 +103,15 @@ const zoneHead = ({ index, title, lead, body, status, stats, stacked }) => `
 function gallery(images, { label = "", compact = false } = {}) {
   if (!images.length) return "";
   const ars = images.map((img) => img.ar).sort((a, b) => a - b);
-  const stageAr = Math.min(1.78, Math.max(0.8, ars[Math.floor(ars.length / 2)]));
+  const stageAr = Math.min(
+    1.78,
+    Math.max(0.8, ars[Math.floor(ars.length / 2)]),
+  );
   const many = images.length > 1;
   const nav = (step, name, arrow) =>
-    many ? `<button type="button" class="gallery-nav" data-step="${step}" aria-label="${name}">${arrow}</button>` : "";
+    many
+      ? `<button type="button" class="gallery-nav" data-step="${step}" aria-label="${name}">${arrow}</button>`
+      : "";
   const thumbs = images
     .map(
       (img) => `
@@ -120,9 +139,28 @@ function gallery(images, { label = "", compact = false } = {}) {
 /* A Code project or an Art collection on its overview, laid out like the
    résumé's experience cards: the picture on the right, fading into the
    card's own colour, the words on the left and a mark in the corner. The
-   whole card opens the page; the mark leads somewhere of its own. */
-const pageCard = ({ id, href, hue, bg, pos, logo, when, place, flag, title, tagline, lead, notes, tags, links }) => `
-  <article class="entry entry--card entry--side" id="${id}" style="--c: ${hue}${pos ? `; --pos: ${pos}` : ""}">
+   whole card opens the page; the mark leads somewhere of its own. With
+   `frame` (the résumé card's --pos, --zoom and --origin) the picture covers
+   the whole card instead, cropped in on its subject. */
+const pageCard = ({
+  id,
+  href,
+  hue,
+  bg,
+  pos,
+  frame,
+  logo,
+  when,
+  place,
+  flag,
+  title,
+  tagline,
+  lead,
+  notes,
+  tags,
+  links,
+}) => `
+  <article class="entry entry--card${frame ? "" : " entry--side"}" id="${id}" style="--c: ${hue}${pos ? `; --pos: ${pos}` : ""}${frame ? `; ${frame}` : ""}">
     <img class="entry-bg" src="${bg}" alt="" loading="lazy" decoding="async" />
     <a class="entry-cover" href="${href}" tabindex="-1" aria-hidden="true"></a>
     ${
@@ -353,7 +391,20 @@ const appCard = (p) =>
    become positions on that axis (0 to 1); the labels under the bars are
    stacked into rows by src/path.js once their widths are known. */
 
-const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+const MONTHS = [
+  "Jan",
+  "Feb",
+  "Mar",
+  "Apr",
+  "May",
+  "Jun",
+  "Jul",
+  "Aug",
+  "Sep",
+  "Oct",
+  "Nov",
+  "Dec",
+];
 
 const dayOf = (d) => {
   if (d === "today") return Date.now();
@@ -407,9 +458,14 @@ function renderStage(stage, i) {
 
   const point = (pt) => {
     const project = pt.project && projects.find((x) => x.id === pt.project);
-    const href = project ? `code/${project.id}.html` : pt.repo ? GH + pt.repo : pt.href;
+    const href = project
+      ? `code/${project.id}.html`
+      : pt.repo
+        ? GH + pt.repo
+        : pt.href;
     const external = /^https?:/.test(href);
-    const when = pt.at === "today" ? "today" : `${tickName(pt.at)} ${parts(pt.at).y}`;
+    const when =
+      pt.at === "today" ? "today" : `${tickName(pt.at)} ${parts(pt.at).y}`;
     return `
       <a class="gantt-point${external ? "" : " gantt-point--here"}" style="--x: ${pct(at(pt.at))}" data-x="${at(pt.at)}"
         href="${href}"${external ? ' target="_blank" rel="noopener"' : ""} title="${pt.label} · ${when}">
@@ -441,7 +497,9 @@ function renderStage(stage, i) {
             (d) =>
               `<span class="gantt-tick${at(d) > 0.97 ? " gantt-tick--end" : ""}" style="--x: ${pct(at(d))}">${tickName(d)}</span>`,
           )
-          .join("")}${stage.to === "today" ? `<span class="gantt-tick gantt-tick--end" style="--x: 100%">today</span>` : ""}</div>
+          .join(
+            "",
+          )}${stage.to === "today" ? `<span class="gantt-tick gantt-tick--end" style="--x: 100%">today</span>` : ""}</div>
         <div class="gantt-lines" aria-hidden="true">${ticks
           .map((d) => `<span style="--x: ${pct(at(d))}"></span>`)
           .join("")}</div>
@@ -582,5 +640,6 @@ export function renderPage() {
   if (main) VIEWS[main.dataset.view]?.(main, main.dataset.id);
 
   // The page was empty when the browser looked for #anchor; look again.
-  if (main && location.hash) document.getElementById(location.hash.slice(1))?.scrollIntoView();
+  if (main && location.hash)
+    document.getElementById(location.hash.slice(1))?.scrollIntoView();
 }
