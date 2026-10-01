@@ -2017,7 +2017,7 @@ main,
 
 /* ---- Gallery ----
    One piece large on a stage, the rest as a strip of thumbnails under it.
-   The stage is always 16:9, unframed, and every piece is contained inside
+   The stage is always 16:9 and every piece is contained inside
    it, so a presentation board is never cropped through its lettering and a
    tall character sheet shrinks to fit rather than being cut at the knees.
    The full file comes back in the lightbox. */
@@ -2034,8 +2034,8 @@ main,
   gap: 8px;
 }
 
-/* No frame of its own: a piece narrower than 16:9 sits centred with empty
-   space either side. */
+/* The stage itself is an empty 16:9 box: the frame goes round the piece,
+   which sits centred in it, so a tall one has empty space either side. */
 .gallery-open {
   position: relative;
   display: block;
@@ -2051,18 +2051,26 @@ main,
 }
 
 .gallery-open:focus-visible {
-  outline: 1px solid var(--accent-lt);
-  outline-offset: 4px;
+  outline: none;
 }
 
-/* Pinned to the stage's box: a grid track would let a tall piece grow past it. */
+/* Centred at its own proportions and never past the stage's edges. */
 .gallery-open > img {
   position: absolute;
   inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
+  margin: auto;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+  border: 1px solid var(--line);
   animation: stage-in 0.35s ease;
+  transition: border-color 0.25s ease;
+}
+
+.gallery-open:hover > img,
+.gallery-open:focus-visible > img {
+  border-color: var(--accent-2);
 }
 
 @keyframes stage-in {
