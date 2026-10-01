@@ -25,13 +25,17 @@ const CELL_H = 22;
 // Glyphs grow with heat, so the halo magnifies whatever it passes over.
 const FONT_MIN = 15;
 const FONT_MAX = 23;
-const FRAME_MS = 50;
+// 30fps: smooth enough that the halo glides after the cursor, and cheap
+// because a frame only repaints what changed. The rates below are tuned per
+// 50ms and rescaled to the frame length, so the feel does not depend on it.
+const FRAME_MS = 33;
+const perFrame = (rate) => 1 - (1 - rate) ** (FRAME_MS / 50);
 
 // The glow is an eased state rather than a timeline, so a click never snaps it
 // back to full: it always moves on from wherever it currently is.
 const GLOW_MUTE_MS = 1000;
-const GLOW_FALL = 0.43;
-const GLOW_RISE = 0.27;
+const GLOW_FALL = perFrame(0.43);
+const GLOW_RISE = perFrame(0.27);
 
 // Only crests of the field draw a ramp glyph; below this the grid falls back to
 // a resting dot so it never breaks up into holes.
@@ -76,11 +80,14 @@ const POINTER_RADIUS = 175;
 const POINTER_R2 = POINTER_RADIUS * POINTER_RADIUS;
 const POINTER_CUTOFF = POINTER_RADIUS * 2.6;
 const POINTER_CUTOFF2 = POINTER_CUTOFF * POINTER_CUTOFF;
+// Past this distance the heat is under one colour step, so a cell draws
+// exactly as it would unheated and can be left to the per-cell repaint.
+const HEAT_REACH = POINTER_RADIUS * 1.75;
 
 // The halo itself sits on the cursor with no easing, so there is no lag while
 // moving. Only the samples it drops behind linger, which is what fades out.
 const TRAIL_MAX = 22;
-const TRAIL_DECAY = 0.92;
+const TRAIL_DECAY = 1 - perFrame(0.08);
 const TRAIL_MIN_DIST2 = 18 * 18;
 
 // A click turns the glow into a single travelling ring. At radius zero a
@@ -304,9 +311,19 @@ export function createAsciiField(canvas, theme) {
   let rafId = null;
   let glowGain = 1;
   let muteUntil = 0;
+  // What each cell showed last frame (bucket * 128 + char code), so a frame
+  // only repaints the cells that changed. The field drifts slowly, so most
+  // of the grid holds still from one frame to the next.
+  let shown = null;
+  let repaintAll = true;
+  let scale = 1;
+  // The cells around the pointer, last frame: glyphs there grow past their
+  // own cell, so that whole block is cleared and redrawn instead.
+  let lastBlock = null;
 
   function resize() {
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    scale = dpr;
     const w = window.innerWidth;
     const h = window.innerHeight;
 
@@ -322,6 +339,9 @@ export function createAsciiField(canvas, theme) {
     rows = Math.ceil(h / CELL_H) + 1;
 
     buildStamps(w);
+    shown = new Uint16Array(cols * rows);
+    repaintAll = true;
+    lastBlock = null;
   }
 
   function buildStamps(viewportW) {
@@ -553,6 +573,54 @@ export function createAsciiField(canvas, theme) {
     return heat > 1 ? 1 : heat;
   }
 
+  // The visibly heated area as a block of whole cells, one cell wider all
+  // round. heatBox reaches as far as any heat at all; this only as far as
+  // heat that changes how a cell looks.
+  function blockOf(box) {
+    const trim = POINTER_CUTOFF - HEAT_REACH;
+    return {
+      c0: Math.max(0, Math.floor((box.minX + trim) / CELL_W) - 1),
+      c1: Math.min(cols - 1, Math.ceil((box.maxX - trim) / CELL_W) + 1),
+      r0: Math.max(0, Math.floor((box.minY + trim) / CELL_H) - 1),
+      r1: Math.min(rows - 1, Math.ceil((box.maxY - trim) / CELL_H) + 1),
+    };
+  }
+
+  function mergeBlocks(a, b) {
+    if (!a || !b) return a ?? b;
+    return {
+      c0: Math.min(a.c0, b.c0),
+      c1: Math.max(a.c1, b.c1),
+      r0: Math.min(a.r0, b.r0),
+      r1: Math.max(a.r1, b.r1),
+    };
+  }
+
+  // Clears in device pixels, snapped outward, so a fractional pixel ratio
+  // never leaves a sliver of the old glyph on a cell's edge.
+  function clear(full, paint, changed) {
+    ctx.save();
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+    const wipe = (x, y, w, h) => {
+      const x0 = Math.floor(x * scale);
+      const y0 = Math.floor(y * scale);
+      ctx.clearRect(x0, y0, Math.ceil((x + w) * scale) - x0, Math.ceil((y + h) * scale) - y0);
+    };
+    if (full) ctx.clearRect(0, 0, canvas.width, canvas.height);
+    else {
+      if (paint) {
+        wipe(
+          paint.c0 * CELL_W,
+          paint.r0 * CELL_H,
+          (paint.c1 - paint.c0 + 1) * CELL_W,
+          (paint.r1 - paint.r0 + 1) * CELL_H,
+        );
+      }
+      for (let i = 0; i < changed.length; i += 2) wipe(changed[i], changed[i + 1], CELL_W, CELL_H);
+    }
+    ctx.restore();
+  }
+
   function draw(time) {
     const t = time / 1000;
     const tz = t * 0.09;
@@ -585,6 +653,15 @@ export function createAsciiField(canvas, theme) {
     }
 
     updateHeatBox();
+
+    // Everything is repainted while a ripple crosses the screen; otherwise
+    // only the block the pointer heats, plus the cells that changed.
+    const full = repaintAll || (heatBox.any && heatBox.minX === -Infinity);
+    repaintAll = false;
+    const block = full || !heatBox.any ? null : blockOf(heatBox);
+    const paint = full ? null : mergeBlocks(block, lastBlock);
+    lastBlock = block;
+    const changed = [];
 
     for (let r = 0; r < rows; r++) {
       const cellY = r * CELL_H;
@@ -653,11 +730,19 @@ export function createAsciiField(canvas, theme) {
 
         const h = Math.min(HEAT_STEPS - 1, Math.floor(heat * HEAT_STEPS));
         const b = (ink ? BUCKET_STRIDE : 0) + h * DENSITY_STEPS + d;
-        BUCKETS[b].push(glyph, cellX, cellY);
+        const code = b * 128 + glyph.charCodeAt(0);
+        const idx = r * cols + c;
+        const inPaint = paint && r >= paint.r0 && r <= paint.r1 && c >= paint.c0 && c <= paint.c1;
+        if (full || inPaint) BUCKETS[b].push(glyph, cellX, cellY);
+        else if (code !== shown[idx]) {
+          BUCKETS[b].push(glyph, cellX, cellY);
+          changed.push(cellX, cellY);
+        }
+        shown[idx] = code;
       }
     }
 
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    clear(full, paint, changed);
 
     for (let v = 0; v < VARIANTS; v++) {
       const base = v * BUCKET_STRIDE;

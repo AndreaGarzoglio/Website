@@ -46,7 +46,7 @@ function split(el) {
 }
 
 /* Every title that is typing shares one throttled ticker. The background
-   already redraws at 20fps, so the type only needs to keep pace with it, and
+   already redraws at 30fps, so the type only needs to keep pace with it, and
    the DOM is touched only when a letter actually changes. */
 const TICK_MS = 33;
 const runs = new Set();
