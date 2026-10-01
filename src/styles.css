@@ -139,8 +139,7 @@ h3 {
    bold would only make it shout. */
 .hero-name,
 .zone-title,
-.cv-title,
-.gateway-title {
+.cv-title {
   font-family: var(--display);
   font-weight: 500;
   letter-spacing: -0.025em;
@@ -1053,59 +1052,7 @@ main,
   }
 }
 
-/* ---- Art: the collections, one door each ---- */
-
-.gateways {
-  padding-block: 0 var(--section-y);
-}
-
-.gateway-grid {
-  display: grid;
-  gap: clamp(20px, 3vw, 30px);
-}
-
-.gateway {
-  --pad: clamp(26px, 4vw, 44px);
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 10px;
-  padding: var(--pad);
-  border: 1px solid var(--line);
-  background: var(--surface);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  transition: border-color 0.25s ease, background-color 0.25s ease;
-}
-
-.gateway:hover {
-  border-color: var(--line-strong);
-  background: var(--surface-hi);
-}
-
-.gateway:hover::before,
-.gateway:hover::after {
-  border-color: var(--accent-2);
-}
-
-/* A door shows what is behind it: the cover runs edge to edge across the top
-   of the card and comes into full colour when the door is chosen. */
-.gateway-cover {
-  width: calc(100% + 2 * var(--pad));
-  max-width: none;
-  margin: calc(-1 * var(--pad)) calc(-1 * var(--pad)) 14px;
-  aspect-ratio: 16 / 8;
-  object-fit: cover;
-  border-bottom: 1px solid var(--line);
-  filter: grayscale(0.55) brightness(0.8) contrast(1.05);
-  transition: filter 0.45s ease;
-}
-
-.gateway:hover .gateway-cover,
-.gateway:focus-visible .gateway-cover {
-  filter: none;
-}
-
+/* The number and the count around a group of work on the home page. */
 .gateway-index {
   font-family: var(--dot);
   font-size: 0.6875rem;
@@ -1113,34 +1060,11 @@ main,
   color: var(--text-faint);
 }
 
-.gateway-title {
-  font-size: clamp(1.6rem, 5vw, 2.5rem);
-  line-height: 1.1;
-}
-
-.gateway-note {
-  max-width: 38ch;
-  font-size: 0.8125rem;
-  line-height: 1.7;
-}
-
-.gateway-go {
-  margin-top: 8px;
-  font-size: 0.6875rem;
-  letter-spacing: 0.14em;
+.gateway-meta {
+  font-size: 0.625rem;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--text-faint);
-  transition: color 0.2s ease;
-}
-
-.gateway:hover .gateway-go {
-  color: var(--accent-lt);
-}
-
-@media (min-width: 760px) {
-  .gateway-grid {
-    grid-template-columns: 1fr 1fr;
-  }
 }
 
 /* ---- Figures at the head of a zone ---- */
@@ -1464,13 +1388,6 @@ main,
 
 .chip-level {
   font-size: 0.5625rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--text-faint);
-}
-
-.gateway-meta {
-  font-size: 0.625rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--text-faint);
@@ -2867,7 +2784,7 @@ main,
 
 /* The timeline links land on single entries; keep them clear of the nav. */
 .cv-fold .entry,
-.entries--apps .entry {
+.entries--pages .entry {
   scroll-margin-top: calc(var(--nav-h) + 24px);
 }
 
@@ -3084,24 +3001,24 @@ main,
   }
 }
 
-/* ---- Code: the apps as cards ----
-   The same cards as the résumé, each in the app's own colour, with its
-   screen on the right and its pixel mark in the corner. */
-.entries--apps .entry-role a {
+/* ---- Code apps and Art collections as cards ----
+   The same cards as the résumé, each in its own colour, with its picture on
+   the right and its mark in the corner. */
+.entries--pages .entry-role a {
   color: inherit;
   transition: color 0.2s ease;
 }
 
-.entries--apps .entry-role a:hover {
+.entries--pages .entry-role a:hover {
   color: #fff;
 }
 
-.entries--apps .entry-org {
+.entries--pages .entry-org {
   color: color-mix(in srgb, var(--c) 40%, #d8d8e0);
 }
 
-/* Every app card shows its screen at the same size and brightness. */
-.entries--apps .entry {
+/* Every card shows its picture at the same size and brightness. */
+.entries--pages .entry {
   --panel: 40%;
   --w: 74%;
   --bright: 0.85;
@@ -3115,15 +3032,15 @@ main,
   z-index: 0;
 }
 
-.entries--apps .entry-panel {
+.entries--pages .entry-panel {
   pointer-events: none;
 }
 
-.entries--apps .entry-panel a {
+.entries--pages .entry-panel a {
   pointer-events: auto;
 }
 
-.entries--apps .entry-link {
+.entries--pages .entry-link {
   display: flex;
   flex-wrap: wrap;
   gap: 8px 20px;

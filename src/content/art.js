@@ -12,8 +12,9 @@ export const intro = {
   title: "Art",
   lead: "It started with a manga summer school in 2017, and it has not stopped since.",
   body: [
-    "Almost everything here went through the same loop: a moodboard and a pile of references, a page of silhouettes, a few sketches that survive, palette explorations, and only then the final render. Event Horizon taught me to trust that process. Working in teams taught me that the process is also how other people understand what I am doing, so I keep the in-between steps and show them.",
-    "There are four collections: MSR, my own universe; the campaigns I drew for Nemixar; the characters and studies I make for myself; and YMDIR, the game I am building with Mad Burger Studio.",
+    "What I love most is telling stories. Every character I design comes with a story of its own, worked out before the first sketch: who they are, where they come from, what they want. None of them are made just to fill a page. The costume, the colours and the shapes all grow out of that story, so a design already says something about the person wearing it before anyone reads a word.",
+    "Almost everything here went through the same loop: a moodboard and a pile of references, a page of silhouettes, a few sketches that survive, palette explorations, and only then the final render. Event Horizon taught me to trust that process, and working in teams taught me that it is also how other people understand what I am doing. That is why I keep the in-between steps and show them.",
+    "The work is split into four collections. MSR is my own universe, and Nemixar holds what I drew during my internship at Undo Studios. Personal Drawings brings together commissions, school projects and the characters I make for myself, and YMDIR is the game I am building with Mad Burger Studio.",
   ],
   stats: [
     ["2017", "first put a pen down, seriously"],
@@ -28,6 +29,21 @@ export const series = {
     title: "MSR",
     tagline: "My Subjective Reality: my own universe, introduced by three hackers.",
     cover: "art/msr/presentation",
+    // The collection's card on the Art page, laid out like a Code project's.
+    card: {
+      hue: "#ff4d6a",
+      when: "2022 - 2023",
+      place: "Event Horizon School",
+      flag: "specialization project",
+      lead: "My specialization project at Event Horizon School, built on a story and a cast of characters I have been carrying with me for years. Three character designs, each one shown with the creative process behind it and a page of details that pins down who they are.",
+      notes: [
+        "Three character designs, from first sketch to final render",
+        "The creative process behind each one",
+        "A details page per character",
+        "A pitch presentation of the whole world",
+      ],
+      tags: ["Character design", "Storytelling", "Worldbuilding", "Pitch"],
+    },
     lead: "MSR is the world I keep coming back to. The Hat Hackers are its way in: three characters, three ways of breaking a system.",
     body: [
       "My Subjective Reality started as the comic I have been writing for years. This is the first time I pitched it the way a studio would: a board for the world, then every character through design sheet, turnaround and final render.",
@@ -100,6 +116,19 @@ export const series = {
     tagline: "Social campaigns for Undo Studios, 2024.",
     cover: "art/nemixar/characters",
     coverPos: "50% 60%",
+    card: {
+      hue: "#ffd23f",
+      when: "Jun - Dec 2024",
+      place: "Undo Studios SA, Milan",
+      flag: "paid internship",
+      lead: "A full-time, paid internship on the game Nemixar. For six months I made the social campaigns, the artwork of the characters and the presentations of new projects, all of it to build engagement around the game.",
+      notes: [
+        "Social media campaigns",
+        "Artwork for the game's characters",
+        "Project presentations and a game guide",
+      ],
+      tags: ["Illustration", "Social media", "Game marketing", "Layout"],
+    },
     lead: "Six months of campaigns for Undo Studios SA, the first time my drawing had to answer to a metric instead of a mood.",
     body: [
       "For half of 2024 I was the person turning the game's world into content: one splash illustration per character, the season pass artwork, and a guide for the Land Invasion mode.",
@@ -148,6 +177,19 @@ export const series = {
     tagline: "Drawing when nobody is asking me to draw anything.",
     cover: "art/personal-drawings/arcaster",
     coverPos: "50% 35%",
+    card: {
+      hue: "#aa60ff",
+      when: "2017 - today",
+      place: "Clients, school and my own",
+      flag: "ongoing",
+      lead: "Three kinds of work in one place: commissions for clients, projects I made at Event Horizon School, and drawings I do just for myself. The characters go through the whole process, from inspiration board to final render, and the studies show where the skills came from.",
+      notes: [
+        "Characters taken from moodboard to render",
+        "Commissions and school projects",
+        "Shading, material and rendering studies",
+      ],
+      tags: ["Character design", "Digital painting", "Commissions", "Studies"],
+    },
     lead: "The characters I design for myself, and the studies that keep my hands honest.",
     body: [
       "This is where the process shows the most, because nobody asked for any of it. Every character goes through the same stages: an inspiration board and a page of shapes, sketches and lineart, palette explorations, and the final render. I keep all of them here, because the unglamorous steps are the part I am proudest of.",
@@ -236,6 +278,20 @@ export const series = {
     cover: "art/ymdir/designs",
     coverAt: 1,
     coverPos: "50% 35%",
+    card: {
+      hue: "#2fd9ec",
+      when: "2021 - today",
+      place: "Mad Burger Studio",
+      flag: "in development",
+      lead: "A game made with a small team, where I get to use everything I know at once. I work on the story and the worldbuilding, I design the enemies and the creatures, the HUD and the dice, and I keep all of it readable for the people who animate, program and balance the game.",
+      notes: [
+        "Story and worldbuilding",
+        "Enemy and creature design",
+        "HUD, map and interface",
+        "The dice and their faces",
+      ],
+      tags: ["Concept art", "Worldbuilding", "UI/UX", "Unreal Engine"],
+    },
     lead: "Designing a game from the inside: creatures, dice, map, interface, and the effects that make a hit feel like a hit.",
     body: [
       "YMDIR is where everything I know gets used at once. I design the creatures and the bosses, the dice and their faces, the map and the interface, and I write the world they belong to, in constant back and forth with the people who have to animate, program and balance all of it.",
@@ -282,39 +338,3 @@ export const series = {
 };
 
 export const order = ["msr", "nemixar", "personal", "ymdir"];
-
-/* Dates are best guesses: every box is positioned on a 10-column year axis
-   with --from / --to (grid lines, so a single year is n → n+1). */
-export const artTimeline = {
-  years: ["2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024", "2025", "2026"],
-  lanes: [
-    {
-      name: "MSR",
-      items: [
-        { from: 6, to: 8, when: "2022 - 2023", what: "BlackHat · GreyHat · WhiteHat", where: "Character design", href: "art/msr.html#blackhat" },
-        { from: 7, to: 8, when: "2023", what: "The Hat Hackers", where: "Pitch presentation", href: "art/msr.html#presentation" },
-      ],
-    },
-    {
-      name: "Nemixar",
-      items: [
-        { from: 8, to: 9, when: "2024", what: "Characters · Land Invasion", where: "Undo Studios SA", href: "art/nemixar.html" },
-      ],
-    },
-    {
-      name: "Personal",
-      items: [
-        { from: 1, to: 5, when: "2017 - 2020", what: "Material · Shading studies", where: "Light, form, surfaces", href: "art/personal.html#shading-study" },
-        { from: 4, to: 8, when: "2020 - 2023", what: "Nora · Genista · Kurowo", where: "Characters, start to finish", href: "art/personal.html#nora" },
-        { from: 8, to: -1, when: "2024 - today", what: "Arcaster · Non", where: "Current personal work", href: "art/personal.html#arcaster", live: true },
-      ],
-    },
-    {
-      name: "YMDIR",
-      items: [
-        { from: 8, to: 9, when: "2024", what: "Old designs · Old UI", where: "First pass", href: "art/ymdir.html#designs" },
-        { from: 9, to: -1, when: "2025 - today", what: "Designs · Map & UI · Dice", where: "In development", href: "art/ymdir.html#map-and-ui", live: true },
-      ],
-    },
-  ],
-};

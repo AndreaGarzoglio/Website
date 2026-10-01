@@ -1,6 +1,6 @@
-import { intro as artIntro, series, order, artTimeline } from "./content/art.js";
+import { intro as artIntro, series, order } from "./content/art.js";
 import { intro as codeIntro, projects, toolbox, path, nextUp, GH } from "./content/code.js";
-import { covers, marks } from "./content/media.js";
+import { covers, marks, artLogos } from "./content/media.js";
 import { pics } from "./content/pics.js";
 import { pad, esc, ext } from "./html.js";
 
@@ -117,54 +117,70 @@ function gallery(images, { label = "", compact = false } = {}) {
   </div>`;
 }
 
+/* A Code project or an Art collection on its overview, laid out like the
+   résumé's experience cards: the picture on the right, fading into the
+   card's own colour, the words on the left and a mark in the corner. The
+   whole card opens the page; the mark leads somewhere of its own. */
+const pageCard = ({ id, href, hue, bg, pos, logo, when, place, flag, title, tagline, lead, notes, tags, links }) => `
+  <article class="entry entry--card entry--side" id="${id}" style="--c: ${hue}${pos ? `; --pos: ${pos}` : ""}">
+    <img class="entry-bg" src="${bg}" alt="" loading="lazy" decoding="async" />
+    <a class="entry-cover" href="${href}" tabindex="-1" aria-hidden="true"></a>
+    ${
+      logo
+        ? `<a class="entry-logo-link" href="${logo.href}" target="_blank" rel="noopener"
+        aria-label="${logo.label}" title="${logo.label}">
+      <img class="entry-logo${logo.cls ? ` ${logo.cls}` : ""}" src="${logo.src}" alt="${logo.alt}" loading="lazy" decoding="async" /></a>`
+        : ""
+    }
+    <div class="entry-panel">
+      <div class="entry-when">
+        <span class="entry-dates">${when}</span>
+        <span class="entry-place">${place}</span>
+        <span class="entry-flag">${flag}</span>
+      </div>
+      <div class="entry-main">
+        <h3 class="entry-role"><a href="${href}">${title}</a></h3>
+        <p class="entry-org">${tagline}</p>
+        <p>${lead}</p>
+        <ul class="entry-notes">${notes.map((x) => `<li>${x}</li>`).join("")}</ul>
+        <ul class="tag-row">${tags.map((x) => `<li class="tag">${x}</li>`).join("")}</ul>
+        <p class="entry-link">${links}</p>
+      </div>
+    </div>
+  </article>`;
+
 /* ---- Art ---- */
 
 const coverOf = (s) => pics(s.cover)[s.coverAt ?? 0];
 
-// Every Drive folder a collection draws from.
-const folders = (s) => [
-  ...[...(s.projects ?? []), ...(s.studies ?? []), ...(s.extra ? [s.extra] : [])].map((x) => x.images),
-  ...(s.pairs ?? []).flatMap((p) => [p.before, p.after]),
-];
-
-const pieceCount = (s) => folders(s).reduce((n, key) => n + pics(key).length, 0);
+const artCard = (id) => {
+  const s = series[id];
+  const logo = artLogos[id];
+  return pageCard({
+    ...s.card,
+    id,
+    href: `art/${id}.html`,
+    bg: coverOf(s).full,
+    pos: s.coverPos,
+    logo: logo && { ...logo, cls: logo.round ? "entry-logo--round" : "" },
+    title: s.title,
+    tagline: s.tagline,
+    links: `<a class="text-link" href="art/${id}.html">Collection page →</a>`,
+  });
+};
 
 function renderArt(main) {
   main.innerHTML = `
     <section class="zone zone--page">
       <div class="shell">
         ${crumbs([["Résumé", "index.html"], ["Art"]])}
-        ${zoneHead(artIntro)}
+        ${zoneHead({ ...artIntro, stacked: true })}
       </div>
 
-      <section class="gateways">
+      <section class="work">
         <div class="shell">
-          ${head(`${count(order.length, "collections")}`, "one page each")}
-          <div class="gateway-grid">
-            ${order
-              .map((id) => {
-                const s = series[id];
-                const cover = coverOf(s);
-                return `
-                <a class="gateway frame" href="art/${id}.html">
-                  <img class="gateway-cover" src="${cover.src}" alt="" loading="lazy" decoding="async"
-                    ${s.coverPos ? `style="object-position: ${s.coverPos}"` : ""} />
-                  <span class="gateway-index">${s.index}</span>
-                  <span class="gateway-title">${s.title}</span>
-                  <span class="gateway-note">${s.tagline}</span>
-                  <span class="gateway-meta">${count(pieceCount(s), "pieces")}${s.status ? ` · ${s.status}` : ""}</span>
-                  <span class="gateway-go" aria-hidden="true">open →</span>
-                </a>`;
-              })
-              .join("")}
-          </div>
-        </div>
-      </section>
-
-      <section class="timeline-block">
-        <div class="shell">
-          ${head("How it happened", "2017 - today")}
-          ${timeline(artTimeline)}
+          ${head("Collections", `${count(order.length, "collections")} · one page each`)}
+          <div class="entries entries--pages">${order.map(artCard).join("")}</div>
         </div>
       </section>
 
@@ -306,41 +322,31 @@ const card = (p) => `
     </div>
   </article>`;
 
-/* The apps, laid out like the résumé's experience cards: the screen on the
-   right, fading into the project's own colour, the words on the left and
-   the app's mark in the corner. The whole card opens the project page; the
-   mark opens the app itself, or its code when there is no live site. */
-const appCard = (p) => `
-  <article class="entry entry--card entry--side" id="${p.id}" style="--c: ${p.hue}">
-    <img class="entry-bg" src="${coverFor(p)}" alt="" loading="lazy" decoding="async" />
-    <a class="entry-cover" href="code/${p.id}.html" tabindex="-1" aria-hidden="true"></a>
-    ${
-      marks[p.id]
-        ? `<a class="entry-logo-link" href="${p.live ?? p.repo}" target="_blank" rel="noopener"
-        aria-label="${p.title} ${p.live ? "live site" : "code"}" title="${p.live ? "Open the live site" : "Open the code"}">
-      <img class="entry-logo entry-logo--mark" src="${marks[p.id]}" alt="${p.title}" loading="lazy" decoding="async" /></a>`
-        : ""
-    }
-    <div class="entry-panel">
-      <div class="entry-when">
-        <span class="entry-dates">${p.when}</span>
-        <span class="entry-place">${p.origin}</span>
-        <span class="entry-flag">${p.live ? "live" : "own server"}</span>
-      </div>
-      <div class="entry-main">
-        <h3 class="entry-role"><a href="code/${p.id}.html">${p.title}</a></h3>
-        <p class="entry-org">${p.tagline}</p>
-        <p>${p.lead}</p>
-        <ul class="entry-notes">${p.shows.map((x) => `<li>${x}</li>`).join("")}</ul>
-        <ul class="tag-row">${p.stack.map((x) => `<li class="tag">${x}</li>`).join("")}</ul>
-        <p class="entry-link">
-          <a class="text-link" href="code/${p.id}.html">Project page →</a>
+const appCard = (p) =>
+  pageCard({
+    id: p.id,
+    href: `code/${p.id}.html`,
+    hue: p.hue,
+    bg: coverFor(p),
+    logo: marks[p.id] && {
+      src: marks[p.id],
+      alt: p.title,
+      href: p.live ?? p.repo,
+      label: p.live ? `${p.title} live site` : `${p.title} code`,
+      cls: "entry-logo--mark",
+    },
+    when: p.when,
+    place: p.origin,
+    flag: p.live ? "live" : "own server",
+    title: p.title,
+    tagline: p.tagline,
+    lead: p.lead,
+    notes: p.shows,
+    tags: p.stack,
+    links: `<a class="text-link" href="code/${p.id}.html">Project page →</a>
           ${ext(p.repo, "code ↗")}
-          ${p.live ? ext(p.live, "live ↗") : ""}
-        </p>
-      </div>
-    </div>
-  </article>`;
+          ${p.live ? ext(p.live, "live ↗") : ""}`,
+  });
 
 /* ---- The path so far ----
    One stage per section of the curriculum, each with its own axis. Dates
@@ -471,7 +477,7 @@ function renderCode(main) {
         <div class="shell">
           ${head("Projects", `${count(apps.length, "apps & games")} · one page each`)}
 
-          <div class="entries entries--apps">${apps.map(appCard).join("")}</div>
+          <div class="entries entries--pages">${apps.map(appCard).join("")}</div>
 
           <div class="practice">
             ${head("Practice", `${count(practice.length, "exercises")} · algorithms &amp; data structures`)}
@@ -562,32 +568,6 @@ function renderCodeProject(main, id) {
         ${pager(`code/${p.id}.html`, "../")}
       </div>
     </article>`;
-}
-
-/* ---- Timeline ---- */
-
-function timeline(t) {
-  // The whole row is the link when there is somewhere to go.
-  const item = (it) => `
-      <li class="tl-item${it.live ? " tl-item--live" : ""}${it.href ? " tl-item--link" : ""}"
-          style="--from: ${it.from}; --to: ${it.to}">
-        <span class="tl-when">${it.when}</span>
-        ${it.href ? `<a class="tl-what" href="${it.href}">${it.what}</a>` : `<span class="tl-what">${it.what}</span>`}
-        <span class="tl-where">${it.where}</span>
-      </li>`;
-  return `
-    <div class="timeline" style="--cols: ${t.years.length}">
-      <div class="tl-years" aria-hidden="true">${t.years.map((y) => `<span>${y}</span>`).join("")}</div>
-      ${t.lanes
-        .map(
-          (lane) => `
-        <div class="tl-lane">
-          <h3 class="tl-lane-name">${lane.name}</h3>
-          <ul class="tl-track">${lane.items.map(item).join("")}</ul>
-        </div>`,
-        )
-        .join("")}
-    </div>`;
 }
 
 const VIEWS = {
