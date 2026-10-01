@@ -1953,6 +1953,61 @@ main,
   }
 }
 
+/* ---- Between pages ----
+   Following a link crossfades into the next page instead of flashing it in
+   blank: the nav bars hold still and only the page under them changes. */
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition {
+    navigation: auto;
+  }
+
+  ::view-transition-old(root) {
+    animation: page-out 0.2s ease both;
+  }
+
+  ::view-transition-new(root) {
+    animation: page-in 0.45s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  }
+}
+
+.nav {
+  view-transition-name: site-nav;
+}
+
+.subnav {
+  view-transition-name: site-subnav;
+}
+
+@keyframes page-out {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes page-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+}
+
+/* A picture still on its way is held back and fades in once it has arrived,
+   instead of popping in a band at a time (src/fade.js). Only the start is
+   held, so anything that sets the picture's own opacity keeps working. */
+.img-wait {
+  opacity: 0;
+}
+
+.img-in {
+  animation: img-in 0.6s ease backwards;
+}
+
+@keyframes img-in {
+  from {
+    opacity: 0;
+  }
+}
+
 /* ============================================================
    Content-driven pages (src/render.js)
    Collection pages, project pages, galleries and the lightbox. Shared by
@@ -2915,7 +2970,9 @@ main,
   transform: scale(var(--zoom, 1));
   transform-origin: var(--origin, 0% 50%);
   filter: brightness(var(--bright, 0.72)) saturate(0.95);
-  transition: filter 0.5s ease;
+  transition:
+    filter 0.5s ease,
+    transform 1.4s cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 
 .entry--side .entry-bg {
@@ -2946,8 +3003,10 @@ main,
   );
 }
 
+/* Pointed at, the picture lights up and leans in a little. */
 .entry--card:hover .entry-bg {
   filter: brightness(calc(var(--bright, 0.72) * 1.15)) saturate(1);
+  transform: scale(calc(var(--zoom, 1) * 1.04));
 }
 
 /* The words, on a column you can see the picture through. */

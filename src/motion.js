@@ -147,14 +147,17 @@ export function initMotion() {
   if (!("IntersectionObserver" in window)) return;
   document.documentElement.classList.add("motion");
 
-  // Page title first, then the line under it.
+  // Page title first, then the line under it. The title waits for its
+  // typeface (briefly: a slow font is not worth a blank title), so the letters
+  // never jump to new widths halfway through.
   const title = document.querySelector(LOAD_TITLES);
   const titleChars = title && split(title);
   const lead = document.querySelector(LOAD_LEADS);
   lead?.classList.add("is-waiting");
-  typeOut(titleChars, { step: stepFor(titleChars, 900), delay: 250 }).then(
-    () => lead?.classList.remove("is-waiting"),
-  );
+  const fonts = Promise.race([document.fonts?.ready, new Promise((r) => setTimeout(r, 700))]);
+  fonts
+    .then(() => typeOut(titleChars, { step: stepFor(titleChars, 900), delay: 150 }))
+    .then(() => lead?.classList.remove("is-waiting"));
 
   // Section heads: the rule draws itself while the heading types over it.
   const heads = [...document.querySelectorAll(".block-head")];

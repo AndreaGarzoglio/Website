@@ -3,12 +3,12 @@
    stay plain data webpack.config.js can read. A project with no cover here
    falls back to the first of its screens. */
 
-import battleship from "../assets/battleship.png";
-import gameVault from "../assets/game-vault.png";
-import todoList from "../assets/todo-list.png";
-import weatherReport from "../assets/weather-report.png";
-import knightTravails from "../assets/knight-travails.png";
-import binarySearchTrees from "../assets/binary-search-trees.png";
+import battleship from "../assets/battleship.webp";
+import gameVault from "../assets/game-vault.webp";
+import todoList from "../assets/todo-list.webp";
+import weatherReport from "../assets/weather-report.webp";
+import knightTravails from "../assets/knight-travails.webp";
+import binarySearchTrees from "../assets/binary-search-trees.webp";
 
 import markBattleship from "../assets/favicon-battleship.svg";
 import markGameVault from "../assets/favicon-game-vault.svg";
@@ -19,7 +19,7 @@ import markBinarySearchTrees from "../assets/favicon-binary-search-trees.svg";
 
 import logoEh from "../assets/cv/eh.png";
 import logoNemixar from "../assets/cv/nemixar.png";
-import logoGreyhat from "../assets/cv/greyhat-circle.png";
+import logoGreyhat from "../assets/cv/greyhat-circle.webp";
 import logoMadburger from "../assets/cv/madburger.png";
 
 export const covers = {

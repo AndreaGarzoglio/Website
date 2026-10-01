@@ -82,6 +82,17 @@ const page = ({ root, title, description, theme, current, sub, main }) => `<!doc
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="${FONTS}" rel="stylesheet" />
+  <!-- The crossfade between pages (styles.css) is skipped when there is
+       nothing to show, in a hidden tab or on a slow load. That is fine, so
+       it is caught here, before the page first paints, rather than reported. -->
+  <script>
+    for (const type of ["pageswap", "pagereveal"]) {
+      addEventListener(type, (e) => {
+        e.viewTransition?.ready.catch(() => {});
+        e.viewTransition?.updateCallbackDone.catch(() => {});
+      });
+    }
+  </script>
 </head>
 
 <body id="top" data-page="${theme}">

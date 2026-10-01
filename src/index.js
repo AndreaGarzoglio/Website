@@ -7,6 +7,7 @@ import { initFolds } from "./folds.js";
 import { initGalleries } from "./gallery.js";
 import { initCopy } from "./copy.js";
 import { initPath } from "./path.js";
+import { initFade } from "./fade.js";
 
 const field = document.querySelector(".ascii-field");
 if (field) initAsciiField(field);
@@ -16,4 +17,5 @@ initFolds();
 initGalleries();
 initCopy();
 initPath();
+initFade();
 initMotion();
