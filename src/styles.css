@@ -2056,10 +2056,14 @@ main,
 }
 
 /* A tall piece grown to fill the box (src/gallery.js): the frame moves from
-   the piece to the box. */
-.gallery-open.is-zoomed {
-  outline: 1px solid var(--accent-2);
-  outline-offset: -1px;
+   the piece to the box, drawn above the piece so its sides are not covered. */
+.gallery-open.is-zoomed::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border: 1px solid var(--accent-2);
+  pointer-events: none;
 }
 
 .gallery .gallery-open.is-zoomed > img {
