@@ -195,6 +195,15 @@ body::after {
   }
 }
 
+/* Below 1200px the column starts near the left edge, over the drawings, so
+   the shade starts there too and only clears past the text. */
+@media (min-width: 721px) and (max-width: 1200px) {
+  body::after {
+    background: linear-gradient(90deg,
+        rgba(8, 8, 10, 0.5) 0%, rgba(8, 8, 10, 0.5) 68%, transparent 96%);
+  }
+}
+
 .hero,
 main,
 .footer {
