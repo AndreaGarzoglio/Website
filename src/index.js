@@ -8,6 +8,7 @@ import { initGalleries } from "./gallery.js";
 import { initCopy } from "./copy.js";
 import { initPath } from "./path.js";
 import { initFade } from "./fade.js";
+import { initGlitch } from "./glitch.js";
 
 const field = document.querySelector(".ascii-field");
 if (field) initAsciiField(field);
@@ -18,4 +19,5 @@ initGalleries();
 initCopy();
 initPath();
 initFade();
+initGlitch();
 initMotion();

@@ -234,8 +234,9 @@ const piece = ({ id, title, meta, text, side, body }) => `
   </section>`;
 
 // A project, a study or the extra set: its pieces, its words and its facts.
-function block(x) {
-  const imgs = pics(x.images);
+// A collection with `captions: false` shows its pieces without the stage notes.
+function block(x, captions = true) {
+  const imgs = captions ? pics(x.images) : pics(x.images).map((img) => ({ ...img, caption: "" }));
   return {
     id: x.id,
     title: x.title,
@@ -276,10 +277,10 @@ const pairBlock = (pair) => ({
 
 const seriesBlocks = (s) =>
   [
-    { name: "Projects", blocks: s.projects?.map(block) },
-    { name: "Studies", blocks: s.studies?.map(block) },
+    { name: "Projects", blocks: s.projects?.map((x) => block(x, s.captions !== false)) },
+    { name: "Studies", blocks: s.studies?.map((x) => block(x, s.captions !== false)) },
     { name: "Before → now", blocks: s.pairs?.map(pairBlock) },
-    { name: "More", blocks: s.extra && [block(s.extra)] },
+    { name: "More", blocks: s.extra && [block(s.extra, s.captions !== false)] },
   ].filter((g) => g.blocks);
 
 // Everything in the collection, one click away, before any of it scrolls by.

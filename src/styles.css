@@ -3976,3 +3976,15 @@ button.button {
     padding: 0;
   }
 }
+
+/* WhiteHat's name, which never stays readable (src/glitch.js). Monospace so
+   the noise swapping in and out never moves the words around it. */
+.glitch {
+  font-family: var(--mono);
+  font-size: 0.92em;
+  white-space: nowrap;
+  color: var(--text);
+  text-shadow:
+    -1px 0 rgba(77, 141, 255, 0.75),
+    1px 0 rgba(255, 46, 136, 0.6);
+}
