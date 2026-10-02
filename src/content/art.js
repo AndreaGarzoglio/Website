@@ -26,9 +26,9 @@ export const intro = {
 export const series = {
   msr: {
     index: "02.1",
-    title: "MSR",
+    title: "MSR: The Hat Hackers",
     tagline:
-      "My Subjective Reality: reality is code, and everyone wants to rewrite it.",
+      "In My Subjective Reality, reality is code and everyone wants to rewrite it.",
     cover: "art/msr/presentation",
     // The pieces speak for themselves here, so the galleries carry no captions.
     captions: false,
