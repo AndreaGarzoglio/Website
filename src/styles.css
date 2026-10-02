@@ -3615,6 +3615,11 @@ main,
   line-height: 1.85;
 }
 
+/* With no facts beside it, the text takes the whole width: shorter page. */
+.piece-body:not(.piece-body--side) .piece-text {
+  max-width: none;
+}
+
 .piece-lead {
   font-size: 1rem;
   line-height: 1.6;
