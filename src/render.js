@@ -234,9 +234,13 @@ const piece = ({ id, title, meta, text, side, body }) => `
   </section>`;
 
 // A project, a study or the extra set: its pieces, its words and its facts.
-// A collection with `captions: false` shows its pieces without the stage notes.
+// A project can name and caption its own pieces (`pieces`, by file id). A
+// collection with `captions: false` shows its pieces without the stage notes.
 function block(x, captions = true) {
-  const imgs = captions ? pics(x.images) : pics(x.images).map((img) => ({ ...img, caption: "" }));
+  const imgs = pics(x.images).map((img) => {
+    const [label = img.label, caption = img.caption] = x.pieces?.[img.id] ?? [];
+    return { ...img, label, caption: captions ? caption : "" };
+  });
   return {
     id: x.id,
     title: x.title,

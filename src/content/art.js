@@ -128,7 +128,7 @@ export const series = {
     body: [
       "For half of 2024 I was the person turning the game's world into content: one splash illustration per character, the season pass artwork, and a guide for the Land Invasion mode.",
       "The process was different from anything I do for myself. There was a brief, a calendar, and a date on which every piece had to go live, and feedback came back as numbers. I learned to pitch a scene in one thumbnail, to plan the logo and the crop before painting a single stroke, and to let go of a piece once it did its job.",
-      "What you find here is not everything I made in those six months. A big part of the job was posts built only to get people talking, quick and useful, and gone from the feed a day later. I left those out and kept the illustration work, the pieces where the drawing itself was the point.",
+      "What you find here is not everything I made in those six months. A big part of the job was posts made to get people talking and interacting, useful for the pages but not much to look at as drawings. I left those out and kept the illustration work, the pieces where the drawing itself was the point.",
     ],
     brief: [
       ["Role", "Artist & Media Designer"],
@@ -143,8 +143,20 @@ export const series = {
         title: "Characters",
         images: "art/nemixar/characters",
         note: "One scene per character, made to stop a scroll.",
+        // Each piece's name and caption on the stage, by file id.
+        pieces: {
+          "tnbp-ninjasfin": ["Season Pass", "The artwork for the Season Pass. These characters came to me without a story, so giving each of them a personality was my job, and here it had to come through in a pose and a sky full of coins."],
+          "tnsp-cassie": ["Cassie", "Cassie, caught on a security camera halfway through a piece of graffiti. She knows the camera is there and does not care."],
+          "tnsp-cpt-bonechuckle": ["Captain Bonechuckle", "Captain Bonechuckle on a moonlit beach, sword drawn and treasure at his feet, with his parrot keeping watch over both."],
+          "tnsp-cunny-molly": ["Cunny Molly", "Cunny Molly in the desert, a gunslinger who throws her bullets like knives."],
+          "tnsp-flashey": ["Flashey", "Flashey slipping out of a back alley with a handful of coins, all style and no alibi."],
+          "tnsp-iappo": ["Iappo", "Iappo on top of a crate with a flag in his hand, leading a crowd that would follow him anywhere."],
+          "tnsp-nyxia": ["Nyxia", "Nyxia deep in a dark forest, pulling spells out of the air."],
+          "tnsp-ramon": ["Ramon", "Ramon dancing between the lasers on his way to the gem, with a rose between his teeth."],
+        },
         concept: [
-          "Each character got a single illustration that had to say who they are before anyone read the name: Cassie caught on a security camera, Captain Bonechuckle on a pirate beach, Flashey in the middle of a heist. I pitched each scene as a thumbnail, sketched it straight to the social format, then rendered with the space for the logo already planned.",
+          "This set was a challenge of its own, because these characters came to me with no context at all. There was no story behind them and no notes on who they were, so I had to give them a personality myself, and every pose, setting and expression had to build one from nothing.",
+          "That was also the best part of the job. With nothing to stay faithful to, I was free to choose how to approach each one and what kind of person they would be. I pitched every scene as a thumbnail, sketched it straight in the social format, and rendered it with the space for the logo already planned.",
         ],
         brief: [
           ["Year", "2024"],
@@ -155,9 +167,10 @@ export const series = {
         id: "land-invasion",
         title: "Land Invasion",
         images: "art/nemixar/land-invasion",
-        note: "A game guide people actually read.",
+        note: "A game manual like the ones that used to come in the case.",
         concept: [
-          "Eight pages covering lore, factions, a quick start and the controls for PC and mobile. Most of the work was editorial: deciding what belongs in a screenshot and what in a sentence, and keeping the layout in the same visual language as the game.",
+          "The idea was to make it feel like the booklet you found inside a PS1 or PS2 game, the one you read on the way home before you could even play. I laid it out in spreads, and in the middle of each one, where the pages meet, I drew the staples holding the booklet together, so even on a screen it looks like something you could hold.",
+          "Inside there are eight pages of lore, factions, a quick start and the controls for PC and mobile. Most of the work was editorial: deciding what belongs in a screenshot and what in a sentence, and keeping the layout in the same visual language as the game.",
         ],
         brief: [
           ["Year", "2024"],
