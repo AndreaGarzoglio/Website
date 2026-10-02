@@ -128,6 +128,7 @@ export const series = {
     body: [
       "For half of 2024 I was the person turning the game's world into content: one splash illustration per character, the season pass artwork, and a guide for the Land Invasion mode.",
       "The process was different from anything I do for myself. There was a brief, a calendar, and a date on which every piece had to go live, and feedback came back as numbers. I learned to pitch a scene in one thumbnail, to plan the logo and the crop before painting a single stroke, and to let go of a piece once it did its job.",
+      "What you find here is not everything I made in those six months. A big part of the job was posts built only to get people talking, quick and useful, and gone from the feed a day later. I left those out and kept the illustration work, the pieces where the drawing itself was the point.",
     ],
     brief: [
       ["Role", "Artist & Media Designer"],
