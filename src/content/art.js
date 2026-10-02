@@ -147,7 +147,7 @@ export const series = {
         pieces: {
           "tnbp-ninjasfin": ["Season Pass", "The artwork for the Season Pass. These characters came to me without a story, so giving each of them a personality was my job, and here it had to come through in a pose and a sky full of coins."],
           "tnsp-cassie": ["Cassie", "Cassie, caught on a security camera halfway through a piece of graffiti. She knows the camera is there and does not care."],
-          "tnsp-cpt-bonechuckle": ["Captain Bonechuckle", "Captain Bonechuckle on a moonlit beach, sword drawn and treasure at his feet, with his parrot keeping watch over both."],
+          "tnsp-cpt-bonechuckle": ["Captain Bonechuckle", "Captain Bonechuckle on a beach at sunset, sword drawn and treasure at his feet, with his parrot keeping watch over both."],
           "tnsp-cunny-molly": ["Cunny Molly", "Cunny Molly in the desert, a gunslinger who throws her bullets like knives."],
           "tnsp-flashey": ["Flashey", "Flashey slipping out of a back alley with a handful of coins, all style and no alibi."],
           "tnsp-iappo": ["Iappo", "Iappo on top of a crate with a flag in his hand, leading a crowd that would follow him anywhere."],
