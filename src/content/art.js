@@ -51,6 +51,7 @@ export const series = {
       "The Hat Hackers was my specialization project at Event Horizon School, a presentation that introduces three characters from My Subjective Reality, the story I have been writing for years. It is set in Trinity, a galaxy turned upside down after a revolution against the Corporate Empire failed. Since then, and nobody can explain why, the people who wanted to change things badly enough have found they can rewrite the laws of reality itself, as if the universe were a program and they had been handed the source code.",
       "I named the three after the way hackers are sorted in the real world. A white hat breaks into systems to protect them, a black hat breaks in to do damage, and a grey hat lives somewhere in between, bending the law whenever it gets in the way of doing the right thing. That map was my starting point, and then I turned it against itself.",
       "Trinity is a dystopia, and in a world run by corporations the rules are part of the problem. Whoever keeps them is helping to hold the cage shut, which makes the one who obeys no better than the one who breaks everything for profit. Of the three, GreyHat is the only one you can root for, and even he is far from clean.",
+      "Looking back, it is almost ironic. I drew all of this in 2023, two years before I wrote my first line of code, and I was already building an entire world out of hackers, source code and a reality that runs like a program. Some interests show up long before you have a name for them.",
     ],
     brief: [
       ["Year", "2023, May to June"],
