@@ -321,7 +321,7 @@ export const series = {
         note: "Animals that do not exist, built out of animals that do.",
         concept: [
           "Every creature here is built on animal anatomy I studied first, so even the strangest one stands and moves like something that could be alive. From there I pushed in different directions: an arctic predator and its prey, designed for the same frozen world, and two chimeras, each one made of two different animals.",
-          "The last one is a horror creature, and it stands for the paralysing fear of having to make a choice. It is a deer frozen in the middle of a motorway, caught in the headlights. Its antlers branch out like the paths it could take, and every branch grows back into it and wounds it.",
+          "The last one is a horror creature, and it stands for the paralysing fear of having to make a choice. It is a deer frozen in the middle of a motorway, caught in the headlights. Its antlers branch out like the paths it could take, and every branch grows back into it and wounds it. It is the last one I made, but it opens the set, because it is the one that matters most to me.",
         ],
         images: "art/personal-drawings/creature-study",
         first: "choice",
