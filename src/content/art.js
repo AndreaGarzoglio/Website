@@ -216,7 +216,7 @@ export const series = {
         concept: [
           "Arcaster started as a fantasy character design for Event Horizon, and at first the brief threw me. Back then cyberpunk was my genre, the one I knew inside out, and fantasy felt like someone else's territory. I had to find my own way in, and in the end I did.",
           "I wanted someone charismatic and impeccably dressed, a gentleman in every detail, with something he would rather you did not see. Under his cloak he keeps a demonic arm hidden, and in his hand he carries a sword forged in hell. The whole character lives in that contrast between the polished outside and the dark side underneath.",
-          "I liked this gentleman with a dark side so much that I did not want to leave him on the page. He became my character in Pathfinder 2, a magus who fights with abyssal magic.",
+          "I liked this gentleman with a dark side so much that I did not want to leave him on the page. He became my character in a Pathfinder 2 campaign, a magus who fights with abyssal magic.",
         ],
         brief: [
           ["Brief", "Fantasy character, Event Horizon School"],
