@@ -9,7 +9,7 @@
   --text-faint: #7c7c87;
   /* Every page has one hue (--hue). The accents and the washes behind the
      page are mixed from it below, so every rule is written against a role,
-     never a raw colour, and a page or a group of tiles only sets --hue. */
+     never a raw colour, and a page, a shelf or a tile only sets --hue. */
   --hue: #8a7cff;
 
   /* The home timeline colours a bar by what kind of thing it was. Art and
@@ -38,7 +38,8 @@
 
 :root,
 body,
-[class*="tone-"] {
+[class*="tone-"],
+[style*="--hue"] {
   --accent: color-mix(in oklab, var(--hue) 80%, #000);
   --accent-lt: color-mix(in oklab, var(--hue) 70%, #fff);
   --accent-2: var(--hue);

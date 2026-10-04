@@ -24,7 +24,7 @@ if (asked) store(lang);
 let dict = {};
 export const t = (text) => dict[text] ?? text;
 
-const ATTRS = ["alt", "title", "aria-label", "data-title", "data-caption", "data-lightbox", "content"];
+const ATTRS = ["alt", "title", "aria-label", "data-title", "data-caption", "data-lightbox"];
 const SKIP = new Set(["SCRIPT", "STYLE", "TITLE", "svg", "CANVAS"]);
 const norm = (s) => s.replace(/\s+/g, " ").trim();
 
