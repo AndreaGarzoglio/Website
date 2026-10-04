@@ -272,7 +272,7 @@ const beforeSide = (x) => `
 // `before` puts an older version where the facts would be.
 function block(x, captions = true) {
   const imgs = select(x).map((img) => {
-    const [label = img.label, caption = img.caption] = x.pieces?.[img.id] ?? [];
+    const [label = img.label, caption = img.caption] = (x.pieces?.[img.id] ?? []).map(t);
     return { ...img, label, caption: captions ? caption : "" };
   });
   return {
@@ -376,7 +376,7 @@ const screensOf = (p) => {
   return p.screens.map(([id, label, caption]) => {
     const pic = all.find((x) => x.id === id);
     if (!pic) throw new Error(`${p.id}: no screen "${id}" in ${p.shots}`);
-    return { ...pic, label, caption };
+    return { ...pic, label: t(label), caption: t(caption) };
   });
 };
 
@@ -506,7 +506,7 @@ function renderStage(stage, i) {
       pt.at === "today" ? t("today") : `${tickName(pt.at)} ${parts(pt.at).y}`;
     return `
       <a class="gantt-point${external ? "" : " gantt-point--here"}" style="--x: ${pct(at(pt.at))}" data-x="${at(pt.at)}"
-        href="${href}"${external ? ' target="_blank" rel="noopener"' : ""} title="${pt.label} · ${when}">
+        href="${href}"${external ? ' target="_blank" rel="noopener"' : ""} title="${t(pt.label)} · ${when}">
         <span class="gantt-label">${pt.label}${external ? " ↗" : ""}</span></a>`;
   };
 

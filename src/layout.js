@@ -32,7 +32,7 @@ const nav = (root, current) => `
             `<li><a href="${root}${href}"${name === current ? ' aria-current="page"' : ""}>${name}</a></li>`,
         ).join("\n        ")}
       </ul>
-      <div class="lang-switch" role="group" aria-label="Language">
+      <div class="lang-switch" role="group" aria-label="Choose language">
         <button type="button" data-lang="en" lang="en">EN</button>
         <button type="button" data-lang="it" lang="it">IT</button>
       </div>

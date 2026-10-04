@@ -1766,14 +1766,22 @@ main,
 
 /* Four top-level destinations plus the wordmark is a tight fit on the
    narrowest phones. */
-@media (max-width: 480px) {
+/* On a phone the links get a row of their own, under the name and the
+   language switch, so neither language has to squeeze. */
+@media (max-width: 600px) {
+  :root {
+    --nav-h: 88px;
+  }
+
   .nav-inner {
-    gap: 12px;
+    flex-wrap: wrap;
+    row-gap: 8px;
   }
 
   .nav-links {
-    gap: 13px;
-    font-size: 0.6875rem;
+    order: 1;
+    flex-basis: 100%;
+    justify-content: space-between;
   }
 }
 
