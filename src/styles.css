@@ -7,20 +7,10 @@
   --text: #f2f2f5;
   --text-dim: #9a9aa4;
   --text-faint: #7c7c87;
-  --indigo: #6a5ee0;
-  --indigo-lt: #aea4ff;
-  --indigo-2: #8a7cff;
-
-  /* Semantic accents. Each zone re-points these at its own palette, so every
-     rule below is written against the role, never the raw hue. */
-  --accent: var(--indigo);
-  --accent-lt: var(--indigo-lt);
-  --accent-2: var(--indigo-2);
-
-  /* The two soft washes behind the page, tinted with the accent so the
-     background moves with the section rather than staying violet under it. */
-  --glow-a: rgba(106, 94, 224, 0.12);
-  --glow-b: rgba(138, 124, 255, 0.08);
+  /* Every page has one hue (--hue). The accents and the washes behind the
+     page are mixed from it below, so every rule is written against a role,
+     never a raw colour, and a page or a group of tiles only sets --hue. */
+  --hue: #8a7cff;
 
   /* The home timeline colours a bar by what kind of thing it was. Art and
      code match their own pages. */
@@ -44,6 +34,16 @@
   --gutter: clamp(20px, 5vw, 48px);
   --section-y: clamp(80px, 12vw, 160px);
   --nav-h: 56px;
+}
+
+:root,
+body,
+[class*="tone-"] {
+  --accent: color-mix(in oklab, var(--hue) 80%, #000);
+  --accent-lt: color-mix(in oklab, var(--hue) 70%, #fff);
+  --accent-2: var(--hue);
+  --glow-a: color-mix(in srgb, var(--hue) 14%, transparent);
+  --glow-b: color-mix(in srgb, var(--hue) 9%, transparent);
 }
 
 * {
@@ -320,6 +320,7 @@ main,
 .nav-links {
   display: flex;
   gap: 24px;
+  margin-left: auto;
   font-size: 0.75rem;
   color: var(--text-faint);
 }
@@ -349,6 +350,41 @@ main,
 
 .nav-links a:hover::after {
   transform: scaleX(1);
+}
+
+/* EN · IT, after the links. The language in use is lit. */
+.lang-switch {
+  display: flex;
+  font-size: 0.6875rem;
+  letter-spacing: 0.08em;
+}
+
+.lang-switch button {
+  padding: 3px 7px;
+  border: 1px solid var(--line);
+  background: none;
+  color: var(--text-faint);
+  font: inherit;
+  cursor: pointer;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.lang-switch button + button {
+  border-left: 0;
+}
+
+.lang-switch button:hover {
+  color: var(--text);
+}
+
+.lang-switch [aria-pressed="true"] {
+  border-color: var(--accent-2);
+  color: var(--accent-lt);
+}
+
+/* Until the Italian is in (src/i18n.js), the English is not shown. */
+.translating body {
+  visibility: hidden;
 }
 
 /* ---- Hero ---- */
@@ -1290,7 +1326,7 @@ main,
 
 /* The role is the headline, in its timeline colour and in the display face,
    since the dotted one breaks up at this size. The organisation under it
-   stays in the page's indigo. */
+   stays in the page's own accent. */
 .entry-role {
   font-family: var(--display);
   font-size: 1.125rem;
@@ -1302,7 +1338,7 @@ main,
 
 .entry-org {
   font-size: 0.8125rem;
-  color: var(--indigo-lt);
+  color: var(--accent-lt);
 }
 
 .entry-main > p {
@@ -1743,19 +1779,20 @@ main,
 
 /* ============================================================
    Per-page palettes
-   Every rule in this stylesheet is written against --accent rather than a raw
-   hue, so a section only has to re-point these three. The matching background
-   art and its colours live in src/ascii/themes/.
+   A page's hue comes from its <body>: a default per section here, or the
+   project's own colour set inline by src/layout.js. The background art reads
+   the same --hue (src/ascii/index.js), so the two can never drift apart.
    ============================================================ */
 
-/* Code: magenta. The home's selected-work shelves borrow each page's palette. */
+/* The home's selected-work shelves borrow each section's hue. */
 [data-page="code"],
 .tone-code {
-  --accent: #c9327a;
-  --accent-lt: #ff7ab8;
-  --accent-2: #ff2e88;
-  --glow-a: rgba(201, 50, 122, 0.14);
-  --glow-b: rgba(255, 46, 136, 0.09);
+  --hue: #ff2e88;
+}
+
+[data-page="art"],
+.tone-art {
+  --hue: #aa60ff;
 }
 
 /* Code hangs a hand in each bottom corner, so its veil and glow are
@@ -1771,14 +1808,9 @@ main,
   --veil-end: 100%;
 }
 
-/* Art: violet. */
-[data-page="art"],
-.tone-art {
-  --accent: #8a5ae0;
-  --accent-lt: #c6a8ff;
-  --accent-2: #aa60ff;
-  --glow-a: rgba(138, 90, 224, 0.14);
-  --glow-b: rgba(170, 96, 255, 0.09);
+/* A name painted in its own colour wherever it appears (src/render.js). */
+.name {
+  color: var(--c);
 }
 
 /* ============================================================
@@ -3804,7 +3836,8 @@ button.button {
     margin: 14mm 14mm 16mm;
   }
 
-  :root {
+  :root,
+  body {
     --text: #111;
     --text-dim: #2a2a2a;
     --text-faint: #5a5a5a;

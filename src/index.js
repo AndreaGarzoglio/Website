@@ -1,7 +1,7 @@
 import "./styles.css";
 import { initAsciiField } from "./ascii/index.js";
 import { initMotion } from "./motion.js";
-import { renderPage } from "./render.js";
+import { renderPage, paintNames } from "./render.js";
 import { initLightbox } from "./lightbox.js";
 import { initFolds } from "./folds.js";
 import { initGalleries } from "./gallery.js";
@@ -9,10 +9,14 @@ import { initCopy } from "./copy.js";
 import { initPath } from "./path.js";
 import { initFade } from "./fade.js";
 import { initGlitch } from "./glitch.js";
+import { loadLanguage, translate } from "./i18n.js";
 
 const field = document.querySelector(".ascii-field");
 if (field) initAsciiField(field);
+await loadLanguage();
 renderPage();
+translate();
+paintNames();
 initLightbox();
 initFolds();
 initGalleries();

@@ -1,4 +1,5 @@
 import { counter, onSwipe, show as showOnStage, wrap } from "./gallery.js";
+import { localize, t } from "./i18n.js";
 
 /* One <dialog> for the whole site. The stage of any gallery, or any piece
    of a collage, opens it on that set, so arrows walk the pieces it came
@@ -16,7 +17,7 @@ function setInfo(open) {
   dialog.classList.toggle("is-info", open);
   const btn = dialog.querySelector(".lb-info");
   btn.setAttribute("aria-expanded", open);
-  btn.textContent = open ? "info −" : "info +";
+  btn.textContent = t(open ? "info −" : "info +");
 }
 
 function build() {
@@ -41,6 +42,7 @@ function build() {
     </figure>
     <button type="button" class="lb-btn lb-nav lb-prev" aria-label="Previous">←</button>
     <button type="button" class="lb-btn lb-nav lb-next" aria-label="Next">→</button>`;
+  localize(dialog);
   document.body.append(dialog);
   setInfo(true);
 

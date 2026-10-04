@@ -1,3 +1,5 @@
+import { t } from "./i18n.js";
+
 /* A [data-copy] button puts its value on the clipboard and says so for a
    moment. Handy for an email address, which a mailto link cannot help with
    when there is no mail app set up. */
@@ -8,9 +10,9 @@ export function initCopy() {
     const label = btn.textContent;
     try {
       await navigator.clipboard.writeText(btn.dataset.copy);
-      btn.textContent = "copied";
+      btn.textContent = t("copied");
     } catch {
-      btn.textContent = "copy failed";
+      btn.textContent = t("copy failed");
     }
     setTimeout(() => (btn.textContent = label), 1600);
   });

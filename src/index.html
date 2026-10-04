@@ -42,6 +42,15 @@
        nothing to show, in a hidden tab or on a slow load. That is fine, so
        it is caught here, before the page first paints, rather than reported. -->
   <script>
+    // Italian is put in by src/i18n.js once the page is built: hide the
+    // English until then (or for three seconds at most, if that never runs).
+    try {
+      const l = new URLSearchParams(location.search).get("lang") ?? localStorage.getItem("lang") ?? navigator.language;
+      if (l.startsWith("it")) {
+        document.documentElement.classList.add("translating");
+        setTimeout(() => document.documentElement.classList.remove("translating"), 3000);
+      }
+    } catch {}
     for (const type of ["pageswap", "pagereveal"]) {
       addEventListener(type, (e) => {
         e.viewTransition?.ready.catch(() => {});
@@ -64,6 +73,10 @@
         <li><a href="#resume">résumé</a></li>
         <li><a href="#contact">contact</a></li>
       </ul>
+      <div class="lang-switch" role="group" aria-label="Language">
+        <button type="button" data-lang="en" lang="en">EN</button>
+        <button type="button" data-lang="it" lang="it">IT</button>
+      </div>
     </div>
   </nav>
 
@@ -203,7 +216,7 @@
                 web, every project on this site, each with an interface designed
                 around its own idea.
               </p>
-              <p class="offer-proof">Start with <a class="text-link" href="art/ymdir.html#map-and-ui">YMDIR · Map &amp; UI</a> and <a class="text-link" href="code/todo-list.html">Todo List</a></p>
+              <p class="offer-proof">Start with <a class="text-link" href="art/ymdir.html#map">YMDIR · Map</a> and <a class="text-link" href="code/todo-list.html">Todo List</a></p>
               <ul class="offer-tags">
                 <li>UI/UX</li><li>Icon design</li><li>Prototyping</li><li>Map &amp; HUD</li>
               </ul>

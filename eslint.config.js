@@ -9,7 +9,7 @@ export default [
     files: ["src/**/*.js"],
     languageOptions: {
       globals: globals.browser,
-      ecmaVersion: 2020,
+      ecmaVersion: "latest",
       sourceType: "module",
     },
     rules: {

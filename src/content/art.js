@@ -32,9 +32,12 @@ export const series = {
     cover: "art/msr/presentation",
     // The pieces speak for themselves here, so the galleries carry no captions.
     captions: false,
+    // The page's colour, also its card's on the Art overview.
+    hue: "#d4d7de",
+    // Each hacker's name, painted in their own colour wherever it appears.
+    names: { WhiteHat: "#4d8dff", BlackHat: "#ffd23f", GreyHat: "#ff4d6a" },
     // The collection's card on the Art page, laid out like a Code project's.
     card: {
-      hue: "#ff4d6a",
       when: "May - Jun 2023",
       place: "Event Horizon School",
       flag: "specialization project",
@@ -111,8 +114,9 @@ export const series = {
     tagline: "Social campaigns for Undo Studios, 2024.",
     cover: "art/nemixar/characters",
     coverPos: "50% 60%",
+    // The page's colour, also its card's on the Art overview.
+    hue: "#ffd23f",
     card: {
-      hue: "#ffd23f",
       when: "Jun - Dec 2024",
       place: "Undo Studios SA, Milan",
       flag: "paid internship",
@@ -186,8 +190,9 @@ export const series = {
     tagline: "Drawing when nobody is asking me to draw anything.",
     cover: "art/personal-drawings/arcaster",
     coverPos: "50% 35%",
+    // The page's colour, also its card's on the Art overview.
+    hue: "#aa60ff",
     card: {
-      hue: "#aa60ff",
       // Framed like its card on the home page.
       frame: "--tint-mix: 9%; --pos: 50% 35%; --zoom: 1.3; --origin: 0% 35%",
       when: "2017 - today",
@@ -337,8 +342,9 @@ export const series = {
     cover: "art/ymdir/designs",
     coverAt: 1,
     coverPos: "50% 35%",
+    // The page's colour, also its card's on the Art overview.
+    hue: "#2fd9ec",
     card: {
-      hue: "#2fd9ec",
       // Framed like its card on the home page.
       frame: "--pos: 50% 22%; --zoom: 1.28; --origin: -30% 18%",
       when: "2021 - today",

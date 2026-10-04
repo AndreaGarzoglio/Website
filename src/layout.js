@@ -32,6 +32,10 @@ const nav = (root, current) => `
             `<li><a href="${root}${href}"${name === current ? ' aria-current="page"' : ""}>${name}</a></li>`,
         ).join("\n        ")}
       </ul>
+      <div class="lang-switch" role="group" aria-label="Language">
+        <button type="button" data-lang="en" lang="en">EN</button>
+        <button type="button" data-lang="it" lang="it">IT</button>
+      </div>
     </div>
   </nav>`;
 
@@ -68,7 +72,7 @@ const footer = (root) => `
     </div>
   </footer>`;
 
-const page = ({ root, title, description, theme, current, sub, main }) => `<!doctype html>
+const page = ({ root, title, description, theme, hue, current, sub, main }) => `<!doctype html>
 <html lang="en">
 
 <head>
@@ -86,6 +90,15 @@ const page = ({ root, title, description, theme, current, sub, main }) => `<!doc
        nothing to show, in a hidden tab or on a slow load. That is fine, so
        it is caught here, before the page first paints, rather than reported. -->
   <script>
+    // Italian is put in by src/i18n.js once the page is built: hide the
+    // English until then (or for three seconds at most, if that never runs).
+    try {
+      const l = new URLSearchParams(location.search).get("lang") ?? localStorage.getItem("lang") ?? navigator.language;
+      if (l.startsWith("it")) {
+        document.documentElement.classList.add("translating");
+        setTimeout(() => document.documentElement.classList.remove("translating"), 3000);
+      }
+    } catch {}
     for (const type of ["pageswap", "pagereveal"]) {
       addEventListener(type, (e) => {
         e.viewTransition?.ready.catch(() => {});
@@ -95,7 +108,7 @@ const page = ({ root, title, description, theme, current, sub, main }) => `<!doc
   </script>
 </head>
 
-<body id="top" data-page="${theme}">
+<body id="top" data-page="${theme}"${hue ? ` style="--hue: ${hue}"` : ""}>
   <a class="skip-link" href="#main">Skip to content</a>
   <canvas class="ascii-field" aria-hidden="true"></canvas>
 ${nav(root, current)}
@@ -127,7 +140,7 @@ const sectionSub = (section, root, currentId) => {
    code/…) reaches the rest of the site through "../". */
 export function pages() {
   const out = [];
-  const add = (filename, section, id, title, description, view) => {
+  const add = (filename, section, id, title, description, view, hue) => {
     const root = filename.includes("/") ? "../" : "";
     out.push({
       filename,
@@ -136,6 +149,7 @@ export function pages() {
         title: `${title} · Andrea Garzoglio`,
         description,
         theme: section,
+        hue,
         current: section,
         sub: sectionSub(section, root, id),
         main: `<main data-view="${view}"${id ? ` data-id="${id}"` : ""}></main>`,
@@ -153,7 +167,7 @@ export function pages() {
   );
   for (const id of order) {
     const s = series[id];
-    add(`art/${id}.html`, "art", id, s.title, `${s.title}: ${s.tagline}`, "series");
+    add(`art/${id}.html`, "art", id, s.title, `${s.title}: ${s.tagline}`, "series", s.hue);
   }
 
   add(
@@ -164,7 +178,7 @@ export function pages() {
     "Projects built from scratch while working through The Odin Project: games, algorithms and interfaces.",
     "code",
   );
-  for (const p of projects) add(`code/${p.id}.html`, "code", p.id, p.title, p.tagline, "code-project");
+  for (const p of projects) add(`code/${p.id}.html`, "code", p.id, p.title, p.tagline, "code-project", p.hue);
 
   return out;
 }

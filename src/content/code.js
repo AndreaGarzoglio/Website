@@ -21,7 +21,8 @@ const PAGES = "https://andreagarzoglio.github.io/";
 export const projects = [
   {
     id: "game-vault",
-    // The four apps are shown as résumé-style cards, each in its own colour.
+    // Every project has its own colour: its page's theme, and on the Code
+    // overview the colour of its card.
     hue: "#a855f7",
     when: "Jan - Sep 2026",
     origin: "Began as the Library project",
@@ -167,6 +168,7 @@ export const projects = [
   {
     id: "knight-travails",
     practice: true,
+    hue: "#c56cff",
     title: "Knight Travails",
     tagline: "Click two squares and watch the knight take the shortest route.",
     lead: "The path is found with a breadth-first search, and the solver ships with an annotated copy of itself you can read from the page.",
@@ -195,6 +197,7 @@ export const projects = [
   {
     id: "binary-search-trees",
     practice: true,
+    hue: "#9a7dff",
     title: "Binary Search Trees",
     tagline: "A balanced tree written from scratch, redrawing as you change it.",
     lead: "Insert and delete and watch the diagram rebuild. Commands are split between the ones that change the tree and the ones that only read it.",
@@ -225,6 +228,7 @@ export const projects = [
   {
     id: "hashmap-hashset",
     practice: true,
+    hue: "#e45cf0",
     title: "HashMap · HashSet",
     tagline: "Two hash tables written from scratch, with a page to poke at them.",
     lead: "A HashMap that stores key-value pairs and a HashSet that only cares whether a key is there, both written bucket by bucket. They grow when the load factor passes its threshold, and a small page lets you add, remove and look things up while the table reshapes itself.",
@@ -257,6 +261,7 @@ export const projects = [
   {
     id: "linked-list",
     practice: true,
+    hue: "#7f8cff",
     title: "Linked List",
     tagline: "A singly linked list you can insert into and rearrange.",
     lead: "A singly linked list written node by node: append, prepend, insert at an index, remove, find. The page draws every node and every pointer, so rearranging the list is something you watch rather than something you log.",

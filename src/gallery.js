@@ -1,4 +1,5 @@
 import { esc, pad } from "./html.js";
+import { t } from "./i18n.js";
 
 /* A project's pieces as a stage and a strip: one piece large, at its own
    proportions, and every other one a thumbnail away. The markup is written
@@ -38,7 +39,7 @@ export function show(gallery, i, { preload = true } = {}) {
 
   stage.innerHTML = `<img src="${d.src}" srcset="${srcset(d)}" sizes="${sizesOf(gallery)}"
     alt="${esc(d.title)}" loading="lazy" decoding="async" />`;
-  stage.setAttribute("aria-label", `Open ${d.title} full screen`);
+  stage.setAttribute("aria-label", `${t("Enlarge")} ${d.title}`);
   gallery.querySelector(".gallery-count").textContent = counter(i, thumbs.length);
   gallery.querySelector(".gallery-title").textContent = d.title;
   const text = gallery.querySelector(".gallery-text");
