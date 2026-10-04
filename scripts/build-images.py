@@ -26,7 +26,8 @@ FULL = 2000
 QUALITY = 80
 EXTS = {".png", ".jpg", ".jpeg", ".webp"}
 # Folders whose pieces sit on a transparent canvas wider than they are: the
-# empty margins are cropped away, so a collage shows only the pieces.
+# empty margins are cropped away, so a collage shows only the pieces. A die
+# sheet holds its faces side by side, and only the first face is kept.
 TRIM = {"art/ymdir/dice", "art/ymdir/old-dice"}
 
 
@@ -79,6 +80,7 @@ def encode(src, outputs, trim=False):
         with Image.open(src) as im:
             im = im.convert("RGBA" if im.mode in ("RGBA", "LA", "P") else "RGB")
             if trim and im.mode == "RGBA":
+                im = im.crop((0, 0, im.height, im.height))
                 im = im.crop(im.getchannel("A").getbbox())
             for dest, size in outputs:
                 out = im.copy()
