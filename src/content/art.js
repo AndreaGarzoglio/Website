@@ -23,6 +23,8 @@ export const intro = {
   ],
 };
 
+// Each collection's `hue` is its page's colour, and its card's on the Art
+// overview and the home.
 export const series = {
   msr: {
     index: "02.1",
@@ -32,7 +34,6 @@ export const series = {
     cover: "art/msr/presentation",
     // The pieces speak for themselves here, so the galleries carry no captions.
     captions: false,
-    // The page's colour, also its card's on the Art overview.
     hue: "#d4d7de",
     // Each hacker's name, painted in their own colour wherever it appears.
     names: { WhiteHat: "#4d8dff", BlackHat: "#ffd23f", GreyHat: "#ff4d6a" },
@@ -114,7 +115,6 @@ export const series = {
     tagline: "Social campaigns for Undo Studios, 2024.",
     cover: "art/nemixar/characters",
     coverPos: "50% 60%",
-    // The page's colour, also its card's on the Art overview.
     hue: "#ffd23f",
     card: {
       when: "Jun - Dec 2024",
@@ -190,7 +190,6 @@ export const series = {
     tagline: "Drawing when nobody is asking me to draw anything.",
     cover: "art/personal-drawings/arcaster",
     coverPos: "50% 35%",
-    // The page's colour, also its card's on the Art overview.
     hue: "#aa60ff",
     card: {
       // Framed like its card on the home page.
@@ -342,7 +341,6 @@ export const series = {
     cover: "art/ymdir/designs",
     coverAt: 1,
     coverPos: "50% 35%",
-    // The page's colour, also its card's on the Art overview.
     hue: "#2fd9ec",
     card: {
       // Framed like its card on the home page.
@@ -427,7 +425,6 @@ export const series = {
       {
         id: "dice",
         title: "Dice",
-        collage: true,
         note: "Every skill lives on a die face, so each icon has to work at a small size and still hint at what it does. The old dice were whole objects, each one a design of its own. The new ones put every skill on a face inside a shared frame, so a player learns the system once.",
         before: "art/ymdir/old-dice",
         after: "art/ymdir/dice",

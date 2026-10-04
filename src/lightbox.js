@@ -9,7 +9,8 @@ import { localize, t } from "./i18n.js";
    browsing. */
 
 let dialog;
-let gallery;
+let set; // the gallery or collage it was opened from
+let opener;
 let group = [];
 let index = 0;
 
@@ -65,12 +66,11 @@ function build() {
     else if (e.key === "i") toggleInfo();
   });
 
-  // A gallery's stage is left on the last piece seen. A collage has no stage,
-  // so the focus goes back to that piece instead.
+  // A gallery's stage is left on the last piece seen, and the focus goes
+  // back to whatever opened the viewer.
   dialog.addEventListener("close", () => {
-    if (!gallery.classList.contains("gallery")) return group[index].focus();
-    if (index !== Number(gallery.dataset.index)) showOnStage(gallery, index);
-    gallery.querySelector(".gallery-open").focus();
+    if (set.dataset.index && index !== Number(set.dataset.index)) showOnStage(set, index);
+    opener.focus();
   });
 }
 
@@ -101,13 +101,14 @@ function show(i) {
 
 export function initLightbox() {
   document.addEventListener("click", (e) => {
-    const stage = e.target.closest(".gallery-open, .collage-item");
-    if (!stage) return;
-    gallery = stage.closest("[data-lightbox]");
+    opener = e.target.closest(".gallery-open, .collage-item");
+    if (!opener) return;
+    set = opener.closest("[data-lightbox]");
     if (!dialog) build();
-    group = [...gallery.querySelectorAll(".gallery-thumb, .collage-item")];
-    dialog.querySelector(".lb-group").textContent = gallery.dataset.lightbox;
-    show(stage.matches(".collage-item") ? group.indexOf(stage) : Number(gallery.dataset.index));
+    group = [...set.querySelectorAll(".gallery-thumb, .collage-item")];
+    dialog.querySelector(".lb-group").textContent = set.dataset.lightbox;
+    // A gallery opens on the piece on its stage, a collage on the one clicked.
+    show(set.dataset.index ? Number(set.dataset.index) : group.indexOf(opener));
     dialog.showModal();
   });
 }

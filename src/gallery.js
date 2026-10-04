@@ -6,12 +6,8 @@ import { t } from "./i18n.js";
    by src/render.js (gallery()); this is the behaviour, and show() is the one
    place a piece is put on the stage. The stage opens the lightbox. */
 
-// The stage is as wide as the page's column (1024px at most); a compact one
-// shares it with another.
-const sizesOf = (gallery) =>
-  gallery.classList.contains("gallery--compact")
-    ? "(min-width: 880px) 500px, 100vw"
-    : "(min-width: 1120px) 1024px, 100vw";
+// The stage is as wide as the page's column (1024px at most).
+const SIZES = "(min-width: 1120px) 1024px, 100vw";
 
 const srcset = (d) => `${d.src} ${d.tw}w, ${d.full} ${d.w}w`;
 
@@ -20,13 +16,13 @@ export const counter = (i, n) => `${pad(i + 1)} / ${pad(n)}`;
 
 // Starts loading the pieces either side of i, the same file the stage would
 // pick, so the arrows and a swipe land on an image that is already there.
-function preloadAround(gallery, thumbs, i) {
+function preloadAround(thumbs, i) {
   for (const j of [i + 1, i - 1]) {
     const d = thumbs[wrap(j, thumbs.length)].dataset;
     if (d.preloaded) continue;
     d.preloaded = "true";
     const img = new Image();
-    img.sizes = sizesOf(gallery);
+    img.sizes = SIZES;
     img.srcset = srcset(d);
   }
 }
@@ -37,7 +33,7 @@ export function show(gallery, i, { preload = true } = {}) {
   const d = thumb.dataset;
   const stage = gallery.querySelector(".gallery-open");
 
-  stage.innerHTML = `<img src="${d.src}" srcset="${srcset(d)}" sizes="${sizesOf(gallery)}"
+  stage.innerHTML = `<img src="${d.src}" srcset="${srcset(d)}" sizes="${SIZES}"
     alt="${esc(d.title)}" loading="lazy" decoding="async" />`;
   stage.setAttribute("aria-label", `${t("Enlarge")} ${d.title}`);
   gallery.querySelector(".gallery-count").textContent = counter(i, thumbs.length);
@@ -50,7 +46,7 @@ export function show(gallery, i, { preload = true } = {}) {
   gallery.dataset.index = i;
   if (!preload) return;
 
-  preloadAround(gallery, thumbs, i);
+  preloadAround(thumbs, i);
   // Keep the chosen one in view without scrolling the page itself.
   const strip = thumb.closest(".gallery-strip");
   const li = thumb.parentElement;

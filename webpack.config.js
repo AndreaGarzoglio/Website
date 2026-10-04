@@ -23,6 +23,9 @@ export default (env, argv) => {
     entry: "./src/index.js",
     output: {
       filename: "main.js",
+      // The Italian dictionary is its own file (it.js), which the inline
+      // script in <head> preloads by name for an Italian reader.
+      chunkFilename: "[name].js",
       path: path.resolve(import.meta.dirname, "docs"),
       clean: true,
     },

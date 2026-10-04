@@ -17,10 +17,11 @@ function colorsOf(hex) {
   const hue = rgb(hex);
   const lum = 0.2126 * hue[0] + 0.7152 * hue[1] + 0.0722 * hue[2];
   const k = Math.min(1, 130 / lum);
+  const ink = scale(hue, Math.sqrt(k));
   return {
     ambient: [scale(hue, 0.62 * k), scale(hue, 0.9 * k)],
     heat: hue,
-    ink: [scale(hue, Math.sqrt(k)), mix(scale(hue, Math.sqrt(k)), [255, 255, 255], 0.3)],
+    ink: [ink, mix(ink, [255, 255, 255], 0.3)],
   };
 }
 

@@ -96,11 +96,15 @@ const zoneHead = ({ index, title, lead, body, status, stats, stacked }) => `
     }
   </div>`;
 
+// What the lightbox reads off any piece, in a gallery or a collage.
+const pieceData = (img) =>
+  `data-ratio="${img.ar}" data-title="${esc(img.label)}" data-caption="${esc(img.caption)}" data-full="${img.full}"`;
+
 /* A set of pieces as a stage and a strip. This writes the frame and the
    strip; src/gallery.js puts a piece on the stage (show()) and runs it. The
    stage is always 16:9, so flicking through a set never makes the page
    jump, and a square or tall piece shrinks to fit inside it, never cropped. */
-function gallery(images, { label = "", compact = false } = {}) {
+function gallery(images, { label = "" } = {}) {
   if (!images.length) return "";
   const many = images.length > 1;
   const nav = (step, name, arrow) =>
@@ -110,14 +114,13 @@ function gallery(images, { label = "", compact = false } = {}) {
   const thumbs = images
     .map(
       (img) => `
-      <li><button type="button" class="gallery-thumb" style="--ar: ${img.ar}" data-ratio="${img.ar}"
-        data-title="${esc(img.label)}" data-caption="${esc(img.caption)}"
-        data-src="${img.src}" data-full="${img.full}" data-tw="${img.tw}" data-w="${img.w}"
+      <li><button type="button" class="gallery-thumb" style="--ar: ${img.ar}" ${pieceData(img)}
+        data-src="${img.src}" data-tw="${img.tw}" data-w="${img.w}"
         aria-label="${t("Show")} ${esc(img.label)}"><img src="${img.src}" alt="" loading="lazy" decoding="async" /></button></li>`,
     )
     .join("");
   return `
-  <div class="gallery${compact ? " gallery--compact" : ""}" data-lightbox="${esc(label)}" data-index="0">
+  <div class="gallery" data-lightbox="${esc(label)}" data-index="0">
     <figure class="gallery-stage">
       <button type="button" class="gallery-open"></button>
       <figcaption class="gallery-caption">
@@ -139,8 +142,7 @@ function collage(images, { label = "" } = {}) {
   const items = images
     .map(
       (img) => `
-      <li style="--ar: ${img.ar}"><button type="button" class="collage-item" data-ratio="${img.ar}"
-        data-title="${esc(img.label)}" data-caption="${esc(img.caption)}" data-full="${img.full}"
+      <li style="--ar: ${img.ar}"><button type="button" class="collage-item" ${pieceData(img)}
         aria-label="${t("Enlarge")} ${esc(img.label)}"><img src="${img.src}" alt="" loading="lazy" decoding="async" /></button></li>`,
     )
     .join("");
@@ -259,10 +261,14 @@ function select({ images, only, skip = [], first }) {
   return [...lead, ...all.filter((img) => !lead.includes(img))];
 }
 
+// One side of a before and after: its tag over a collage of its pieces.
+const side = (title, tag, images) => `
+  <span class="pair-tag${tag === "Now" ? " pair-tag--now" : ""}">${tag}</span>
+  ${collage(images, { label: `${title} · ${t(tag.toLowerCase())}` })}`;
+
 // Where the facts would go, the design as it was before, small.
 const beforeSide = (x) => `
-  <span class="pair-tag">Before</span>
-  ${collage(select(x.before), { label: `${x.title} · ${t("before")}` })}
+  ${side(x.title, "Before", select(x.before))}
   ${x.before.note ? `<p class="before-note">${x.before.note}</p>` : ""}`;
 
 // A project, a study or the extra set: its pieces, its words and its facts.
@@ -289,34 +295,23 @@ function block(x, captions = true) {
   };
 }
 
-// Before and after, side by side, the older half quieter. As collages the
-// two halves stack, each one as wide as the page.
-const pairBlock = (pair) => {
-  const half = (tag, key, now) => {
-    const label = `${pair.title} · ${t(tag.toLowerCase())}`;
-    return `
-        <div class="pair-side">
-          <span class="pair-tag${now ? " pair-tag--now" : ""}">${tag}</span>
-          ${pair.collage ? collage(pics(key), { label }) : gallery(pics(key), { label, compact: true })}
-        </div>`;
-  };
-  return {
+// A thread of work read from where it started to where it is now: two
+// collages, one above the other.
+const pairBlock = (pair) => ({
+  id: pair.id,
+  title: pair.title,
+  html: piece({
     id: pair.id,
     title: pair.title,
-    html: piece({
-      id: pair.id,
-      title: pair.title,
-      meta: "before → now",
-      text: `<p>${pair.note}</p>`,
-      body: `
-      <div class="pair-grid${pair.collage ? " pair-grid--stack" : ""}">
-        ${half("Before", pair.before)}
-        <div class="pair-arrow" aria-hidden="true">→</div>
-        ${half("Now", pair.after, true)}
+    meta: "before → now",
+    text: `<p>${pair.note}</p>`,
+    body: `
+      <div class="pair-grid">
+        <div class="pair-side">${side(pair.title, "Before", pics(pair.before))}</div>
+        <div class="pair-side">${side(pair.title, "Now", pics(pair.after))}</div>
       </div>`,
-    }),
-  };
-};
+  }),
+});
 
 const seriesBlocks = (s) =>
   [
@@ -702,7 +697,17 @@ export function paintNames() {
   }
 }
 
+// The home's tiles take their page's colour from the content, like the pages.
+function tintTiles() {
+  for (const tile of document.querySelectorAll(".work-tile")) {
+    const [, section, id] = tile.getAttribute("href").match(/(art|code)\/([\w-]+)\.html/) ?? [];
+    const hue = section === "art" ? series[id]?.hue : projects.find((p) => p.id === id)?.hue;
+    if (hue) tile.style.setProperty("--hue", hue);
+  }
+}
+
 export function renderPage() {
+  tintTiles();
   const main = document.querySelector("main[data-view]");
   if (main) VIEWS[main.dataset.view]?.(main, main.dataset.id);
 

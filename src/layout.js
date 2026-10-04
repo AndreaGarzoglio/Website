@@ -90,15 +90,26 @@ const page = ({ root, title, description, theme, hue, current, sub, main }) => `
        nothing to show, in a hidden tab or on a slow load. That is fine, so
        it is caught here, before the page first paints, rather than reported. -->
   <script>
-    // Italian is put in by src/i18n.js once the page is built: hide the
-    // English until then (or for three seconds at most, if that never runs).
-    try {
-      const l = new URLSearchParams(location.search).get("lang") ?? localStorage.getItem("lang") ?? navigator.language;
-      if (l.startsWith("it")) {
-        document.documentElement.classList.add("translating");
-        setTimeout(() => document.documentElement.classList.remove("translating"), 3000);
+    // The language is chosen once, here: a ?lang= in the address (so an
+    // Italian link can be shared), then the reader's last choice, then the
+    // browser's. src/i18n.js reads it off <html data-lang>. Italian is put in
+    // once the page is built, so the English stays hidden until then (three
+    // seconds at most) and the dictionary starts downloading right away.
+    {
+      const html = document.documentElement;
+      const asked = new URLSearchParams(location.search).get("lang");
+      let saved = null;
+      try {
+        if (asked) localStorage.setItem("lang", asked);
+        else saved = localStorage.getItem("lang");
+      } catch {}
+      html.dataset.lang = (asked ?? saved ?? navigator.language).startsWith("it") ? "it" : "en";
+      if (html.dataset.lang === "it") {
+        html.classList.add("translating");
+        setTimeout(() => html.classList.remove("translating"), 3000);
+        document.head.append(Object.assign(document.createElement("link"), { rel: "preload", as: "script", href: "${root}it.js" }));
       }
-    } catch {}
+    }
     for (const type of ["pageswap", "pagereveal"]) {
       addEventListener(type, (e) => {
         e.viewTransition?.ready.catch(() => {});

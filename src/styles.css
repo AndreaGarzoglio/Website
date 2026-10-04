@@ -865,16 +865,6 @@ main,
   margin-bottom: clamp(22px, 3vw, 34px);
 }
 
-.tl-lane-name {
-  font-family: var(--dot);
-  font-size: 0.6875rem;
-  font-weight: 800;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--accent-lt);
-  margin-bottom: 12px;
-}
-
 .tl-track {
   display: grid;
   gap: 8px;
@@ -1765,8 +1755,6 @@ main,
   scroll-margin-top: calc(var(--nav-h) + 42px + 24px);
 }
 
-/* Four top-level destinations plus the wordmark is a tight fit on the
-   narrowest phones. */
 /* On a phone the links get a row of their own, under the name and the
    language switch, so neither language has to squeeze. */
 @media (max-width: 600px) {
@@ -2328,14 +2316,6 @@ main,
   border-color: var(--accent-2);
 }
 
-.gallery--compact .gallery-thumb {
-  height: 44px;
-}
-
-.gallery--compact .gallery-hint {
-  display: none;
-}
-
 @media (max-width: 559px) {
   .gallery-thumb {
     height: 46px;
@@ -2346,10 +2326,12 @@ main,
   }
 }
 
-/* ---- Before/after pairs ---- */
+/* ---- Before/after pairs ----
+   Two collages read top to bottom, the older one quieter, so the eye lands
+   on where it ended up. */
 .pair-grid {
   display: grid;
-  gap: 18px;
+  gap: clamp(18px, 3vw, 28px);
 }
 
 .pair-side {
@@ -2370,33 +2352,12 @@ main,
   color: var(--accent-lt);
 }
 
-/* The older half is quieter, so the eye lands on where it ended up. */
-.pair-side:first-child .gallery-open > * {
+.pair-side:first-child .collage-item {
   opacity: 0.7;
-  transition: opacity 0.25s ease;
 }
 
-.pair-side:first-child .gallery-open:hover > * {
+.pair-side:first-child .collage-item:hover {
   opacity: 1;
-}
-
-.pair-arrow {
-  display: none;
-  align-self: center;
-  font-family: var(--dot);
-  font-size: 1.5rem;
-  color: var(--accent);
-}
-
-@media (min-width: 880px) {
-  .pair-grid {
-    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
-    gap: 24px;
-  }
-
-  .pair-arrow {
-    display: block;
-  }
 }
 
 /* ---- Collages ----
@@ -2441,12 +2402,6 @@ main,
 .collage-item:focus-visible {
   transform: translateY(-2px);
   filter: brightness(1.12);
-  outline: none;
-}
-
-.collage-item:focus-visible {
-  outline: 1px solid var(--accent-2);
-  outline-offset: 3px;
 }
 
 /* In the facts column: one older piece, the width of the column. */
@@ -2470,26 +2425,6 @@ main,
     --row: 56px;
     gap: 6px;
   }
-}
-
-/* Two collages read top to bottom, each as wide as the page. */
-@media (min-width: 880px) {
-  .pair-grid--stack {
-    grid-template-columns: none;
-    gap: 28px;
-  }
-
-  .pair-grid--stack .pair-arrow {
-    display: none;
-  }
-}
-
-.pair-side:first-child .collage-item {
-  opacity: 0.7;
-}
-
-.pair-side:first-child .collage-item:hover {
-  opacity: 1;
 }
 
 /* ---- Lightbox ---- */
@@ -3927,7 +3862,6 @@ button.button {
   .showcase,
   .offer,
   .timeline-block,
-  .entry-media,
   .entry-link,
   .cv-jump,
   .zone-index,
@@ -4102,8 +4036,7 @@ button.button {
     gap: 10pt;
   }
 
-  .skill-group,
-  .interest {
+  .skill-group {
     break-inside: avoid;
   }
 
