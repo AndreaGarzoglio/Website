@@ -130,6 +130,22 @@ function gallery(images, { label = "", compact = false } = {}) {
   </div>`;
 }
 
+/* A set of pieces all at once and small, in rows that fill the width, each
+   piece at its own proportions and with no frame around it. Any of them
+   opens the lightbox on the whole set (src/lightbox.js). */
+function collage(images, { label = "" } = {}) {
+  if (!images.length) return "";
+  const items = images
+    .map(
+      (img) => `
+      <li style="--ar: ${img.ar}"><button type="button" class="collage-item" data-ratio="${img.ar}"
+        data-title="${esc(img.label)}" data-caption="${esc(img.caption)}" data-full="${img.full}"
+        aria-label="Open ${esc(img.label)} full screen"><img src="${img.src}" alt="" loading="lazy" decoding="async" /></button></li>`,
+    )
+    .join("");
+  return `<ul class="collage" data-lightbox="${esc(label)}">${items}</ul>`;
+}
+
 /* A Code project or an Art collection on its overview, laid out like the
    résumé's experience cards: the picture on the right, fading into the
    card's own colour, the words on the left and a mark in the corner. The
@@ -233,14 +249,27 @@ const piece = ({ id, title, meta, text, side, body }) => `
     </div>
   </section>`;
 
+// The pieces of a block from its folder: `only` or `skip` (file ids) narrow
+// the folder down, and `first` names the piece that should open the set.
+function select({ images, only, skip = [], first }) {
+  const all = pics(images).filter((img) => (only ? only.includes(img.id) : !skip.includes(img.id)));
+  const lead = all.filter((img) => img.id === first);
+  return [...lead, ...all.filter((img) => !lead.includes(img))];
+}
+
+// Where the facts would go, the design as it was before, small.
+const beforeSide = (x) => `
+  <span class="pair-tag">Before</span>
+  ${collage(select(x.before), { label: `${x.title} · before` })}
+  ${x.before.note ? `<p class="before-note">${x.before.note}</p>` : ""}`;
+
 // A project, a study or the extra set: its pieces, its words and its facts.
 // A project can name and caption its own pieces (`pieces`, by file id). A
 // collection with `captions: false` shows its pieces without the stage notes.
-// `first` names the file id that should open the set.
+// `collage: true` lays the pieces out all at once instead of on a stage, and
+// `before` puts an older version where the facts would be.
 function block(x, captions = true) {
-  const all = pics(x.images);
-  const lead = all.filter((img) => img.id === x.first);
-  const imgs = [...lead, ...all.filter((img) => !lead.includes(img))].map((img) => {
+  const imgs = select(x).map((img) => {
     const [label = img.label, caption = img.caption] = x.pieces?.[img.id] ?? [];
     return { ...img, label, caption: captions ? caption : "" };
   });
@@ -252,35 +281,40 @@ function block(x, captions = true) {
       title: x.title,
       meta: count(imgs.length, "pieces"),
       text: `<p class="piece-lead">${x.note}</p>${paras(x.concept)}`,
-      side: brief(x.brief),
-      body: gallery(imgs, { label: x.title }),
+      side: x.before ? beforeSide(x) : brief(x.brief),
+      body: (x.collage ? collage : gallery)(imgs, { label: x.title }),
     }),
   };
 }
 
-// Before and after, side by side, the older half quieter.
-const pairBlock = (pair) => ({
-  id: pair.id,
-  title: pair.title,
-  html: piece({
+// Before and after, side by side, the older half quieter. As collages the
+// two halves stack, each one as wide as the page.
+const pairBlock = (pair) => {
+  const half = (tag, key, now) => {
+    const label = `${pair.title} · ${tag.toLowerCase()}`;
+    return `
+        <div class="pair-side">
+          <span class="pair-tag${now ? " pair-tag--now" : ""}">${tag}</span>
+          ${pair.collage ? collage(pics(key), { label }) : gallery(pics(key), { label, compact: true })}
+        </div>`;
+  };
+  return {
     id: pair.id,
     title: pair.title,
-    meta: "before → now",
-    text: `<p>${pair.note}</p>`,
-    body: `
-      <div class="pair-grid">
-        <div class="pair-side">
-          <span class="pair-tag">Before</span>
-          ${gallery(pics(pair.before), { label: `${pair.title} · before`, compact: true })}
-        </div>
+    html: piece({
+      id: pair.id,
+      title: pair.title,
+      meta: "before → now",
+      text: `<p>${pair.note}</p>`,
+      body: `
+      <div class="pair-grid${pair.collage ? " pair-grid--stack" : ""}">
+        ${half("Before", pair.before)}
         <div class="pair-arrow" aria-hidden="true">→</div>
-        <div class="pair-side">
-          <span class="pair-tag pair-tag--now">Now</span>
-          ${gallery(pics(pair.after), { label: `${pair.title} · now`, compact: true })}
-        </div>
+        ${half("Now", pair.after, true)}
       </div>`,
-  }),
-});
+    }),
+  };
+};
 
 const seriesBlocks = (s) =>
   [

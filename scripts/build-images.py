@@ -25,6 +25,9 @@ THUMB = 720  # longest side: the stage on a phone, the strip everywhere
 FULL = 2000
 QUALITY = 80
 EXTS = {".png", ".jpg", ".jpeg", ".webp"}
+# Folders whose pieces sit on a transparent canvas wider than they are: the
+# empty margins are cropped away, so a collage shows only the pieces.
+TRIM = {"art/ymdir/dice", "art/ymdir/old-dice"}
 
 
 def slug(text):
@@ -69,12 +72,14 @@ def key_for(path):
     return "/".join(slug(p) for p in parts[:depth])
 
 
-def encode(src, outputs):
+def encode(src, outputs, trim=False):
     """Writes each (dest, size) that is older than src, decoding src once, and
     returns the encoded (width, height) of every output."""
     if any(not d.exists() or d.stat().st_mtime < src.stat().st_mtime for d, _ in outputs):
         with Image.open(src) as im:
             im = im.convert("RGBA" if im.mode in ("RGBA", "LA", "P") else "RGB")
+            if trim and im.mode == "RGBA":
+                im = im.crop(im.getchannel("A").getbbox())
             for dest, size in outputs:
                 out = im.copy()
                 out.thumbnail((size, size), Image.LANCZOS)
@@ -101,11 +106,18 @@ def main():
         # finished one, so it leads and becomes the cover.
         files.sort(key=lambda f: (slug(f.stem) != folder, natural(f.stem)))
         entries[key] = []
+        taken = set()
         for f in files:
             name = slug(f.stem)
+            # Two files can share a slug (Riam .png and Riam/Riam.png), and
+            # each still needs a file of its own.
+            base, n = name, 2
+            while name in taken:
+                name, n = f"{base}-{n}", n + 1
+            taken.add(name)
             thumb = OUT / key / f"{name}-t.webp"
             full = OUT / key / f"{name}-f.webp"
-            (tw, _), (fw, fh) = encode(f, [(thumb, THUMB), (full, FULL)])
+            (tw, _), (fw, fh) = encode(f, [(thumb, THUMB), (full, FULL)], key in TRIM)
             written.update((thumb, full))
             entries[key].append((name, pretty(f.stem), thumb, full, tw, fw, fh))
         print(f"{len(files):3}  {key}")

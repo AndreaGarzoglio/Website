@@ -1,8 +1,8 @@
 import { counter, onSwipe, show as showOnStage, wrap } from "./gallery.js";
 
-/* One <dialog> for the whole site. The stage of any gallery opens it on that
-   gallery's set, so arrows walk the pieces the stage came from, and closing it
-   leaves the stage on the last piece seen.
+/* One <dialog> for the whole site. The stage of any gallery, or any piece
+   of a collage, opens it on that set, so arrows walk the pieces it came
+   from, and closing it leaves the stage on the last piece seen.
    The description shows under the piece from the start; "info" (or the i
    key) folds it away for a clean view, and that choice sticks while
    browsing. */
@@ -63,7 +63,10 @@ function build() {
     else if (e.key === "i") toggleInfo();
   });
 
+  // A gallery's stage is left on the last piece seen. A collage has no stage,
+  // so the focus goes back to that piece instead.
   dialog.addEventListener("close", () => {
+    if (!gallery.classList.contains("gallery")) return group[index].focus();
     if (index !== Number(gallery.dataset.index)) showOnStage(gallery, index);
     gallery.querySelector(".gallery-open").focus();
   });
@@ -96,13 +99,13 @@ function show(i) {
 
 export function initLightbox() {
   document.addEventListener("click", (e) => {
-    const stage = e.target.closest(".gallery-open");
+    const stage = e.target.closest(".gallery-open, .collage-item");
     if (!stage) return;
-    gallery = stage.closest(".gallery");
+    gallery = stage.closest("[data-lightbox]");
     if (!dialog) build();
-    group = [...gallery.querySelectorAll(".gallery-thumb")];
+    group = [...gallery.querySelectorAll(".gallery-thumb, .collage-item")];
     dialog.querySelector(".lb-group").textContent = gallery.dataset.lightbox;
-    show(Number(gallery.dataset.index));
+    show(stage.matches(".collage-item") ? group.indexOf(stage) : Number(gallery.dataset.index));
     dialog.showModal();
   });
 }

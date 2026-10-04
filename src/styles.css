@@ -2358,6 +2358,99 @@ main,
   }
 }
 
+/* ---- Collages ----
+   Every piece of a set at once, small: rows that fill the width, each piece
+   at its own proportions (it grows with its ratio, like a justified photo
+   grid), no frames. The empty last item keeps the final row from stretching. */
+.collage {
+  --row: 80px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.collage::after {
+  content: "";
+  flex-grow: 1e4;
+}
+
+.collage > li {
+  flex: calc(var(--ar) * 100) 1 calc(var(--ar) * var(--row));
+}
+
+.collage-item {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: zoom-in;
+  transition: transform 0.2s ease, filter 0.2s ease, opacity 0.2s ease;
+}
+
+.collage-item > img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: var(--ar);
+  border: 0;
+}
+
+.collage-item:hover,
+.collage-item:focus-visible {
+  transform: translateY(-2px);
+  filter: brightness(1.12);
+  outline: none;
+}
+
+.collage-item:focus-visible {
+  outline: 1px solid var(--accent-2);
+  outline-offset: 3px;
+}
+
+/* In the facts column: one older piece, the width of the column. */
+.piece-side .collage {
+  margin-top: 10px;
+}
+
+.piece-side .collage::after {
+  display: none;
+}
+
+.before-note {
+  margin-top: 10px;
+  font-size: 0.75rem;
+  line-height: 1.6;
+  color: var(--text-faint);
+}
+
+@media (max-width: 559px) {
+  .collage {
+    --row: 56px;
+    gap: 6px;
+  }
+}
+
+/* Two collages read top to bottom, each as wide as the page. */
+@media (min-width: 880px) {
+  .pair-grid--stack {
+    grid-template-columns: none;
+    gap: 28px;
+  }
+
+  .pair-grid--stack .pair-arrow {
+    display: none;
+  }
+}
+
+.pair-side:first-child .collage-item {
+  opacity: 0.7;
+}
+
+.pair-side:first-child .collage-item:hover {
+  opacity: 1;
+}
+
 /* ---- Lightbox ---- */
 .lightbox {
   width: 100vw;

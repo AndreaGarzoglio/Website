@@ -277,14 +277,14 @@ import t137 from "../assets/work/art/ymdir/old-designs/riam3-t.webp";
 import f137 from "../assets/work/art/ymdir/old-designs/riam3-f.webp";
 import t138 from "../assets/work/art/ymdir/old-designs/riam4-t.webp";
 import f138 from "../assets/work/art/ymdir/old-designs/riam4-f.webp";
-import t139 from "../assets/work/art/ymdir/old-designs/riam-t.webp";
-import f139 from "../assets/work/art/ymdir/old-designs/riam-f.webp";
+import t139 from "../assets/work/art/ymdir/old-designs/riam-2-t.webp";
+import f139 from "../assets/work/art/ymdir/old-designs/riam-2-f.webp";
 import t140 from "../assets/work/art/ymdir/old-designs/riamthumbnail-t.webp";
 import f140 from "../assets/work/art/ymdir/old-designs/riamthumbnail-f.webp";
 import t141 from "../assets/work/art/ymdir/old-designs/rogue-t.webp";
 import f141 from "../assets/work/art/ymdir/old-designs/rogue-f.webp";
-import t142 from "../assets/work/art/ymdir/old-designs/rogue-t.webp";
-import f142 from "../assets/work/art/ymdir/old-designs/rogue-f.webp";
+import t142 from "../assets/work/art/ymdir/old-designs/rogue-2-t.webp";
+import f142 from "../assets/work/art/ymdir/old-designs/rogue-2-f.webp";
 import t143 from "../assets/work/art/ymdir/old-designs/rogueboss-t.webp";
 import f143 from "../assets/work/art/ymdir/old-designs/rogueboss-f.webp";
 import t144 from "../assets/work/art/ymdir/old-designs/sha-rah-harper-t.webp";
@@ -518,29 +518,29 @@ export const images = {
     { id: "wolf", name: "Wolf", thumb: t91, full: f91, tw: 720, w: 2000, h: 1126 },
   ],
   "art/ymdir/dice": [
-    { id: "copy-of-s-d-analyze", name: "Analyze", thumb: t92, full: f92, tw: 720, w: 2000, h: 667 },
-    { id: "copy-of-s-d-bidingtime", name: "Biding Time", thumb: t93, full: f93, tw: 720, w: 2000, h: 667 },
-    { id: "copy-of-s-d-changeofplans", name: "Change Of Plans", thumb: t94, full: f94, tw: 720, w: 2000, h: 667 },
-    { id: "copy-of-s-d-channel", name: "Channel", thumb: t95, full: f95, tw: 720, w: 2000, h: 667 },
-    { id: "copy-of-s-d-climax", name: "Climax", thumb: t96, full: f96, tw: 720, w: 2000, h: 667 },
-    { id: "copy-of-s-d-criticalstrike", name: "Critical Strike", thumb: t97, full: f97, tw: 720, w: 2000, h: 667 },
-    { id: "copy-of-s-d-defensivestance", name: "Defensive Stance", thumb: t98, full: f98, tw: 720, w: 2000, h: 667 },
-    { id: "copy-of-s-d-freezeburn", name: "Freezeburn", thumb: t99, full: f99, tw: 720, w: 2000, h: 667 },
-    { id: "copy-of-s-d-hunterssight", name: "Hunters Sight", thumb: t100, full: f100, tw: 720, w: 2000, h: 667 },
-    { id: "copy-of-s-d-hunterssight-v2", name: "Hunters Sight v2", thumb: t101, full: f101, tw: 720, w: 2000, h: 667 },
-    { id: "copy-of-s-d-icebarrier", name: "Ice Barrier", thumb: t102, full: f102, tw: 720, w: 2000, h: 667 },
-    { id: "copy-of-s-d-lacerate", name: "Lacerate", thumb: t103, full: f103, tw: 720, w: 2000, h: 667 },
-    { id: "copy-of-s-d-poke", name: "Poke", thumb: t104, full: f104, tw: 720, w: 2000, h: 667 },
-    { id: "copy-of-s-d-pummel", name: "Pummel", thumb: t105, full: f105, tw: 720, w: 2000, h: 667 },
-    { id: "copy-of-s-d-recklessstrike", name: "Reckless Strike", thumb: t106, full: f106, tw: 720, w: 2000, h: 667 },
-    { id: "copy-of-s-d-redirection", name: "Redirection", thumb: t107, full: f107, tw: 720, w: 2000, h: 667 },
-    { id: "copy-of-s-d-searingcut", name: "Searing Cut", thumb: t108, full: f108, tw: 720, w: 2000, h: 667 },
-    { id: "copy-of-s-d-shield", name: "Shield", thumb: t109, full: f109, tw: 720, w: 2000, h: 667 },
-    { id: "copy-of-s-d-slice", name: "Slice", thumb: t110, full: f110, tw: 720, w: 2000, h: 667 },
-    { id: "copy-of-s-d-spectralblades", name: "Spectral Blades", thumb: t111, full: f111, tw: 720, w: 2000, h: 667 },
-    { id: "copy-of-s-d-spikes", name: "Spikes", thumb: t112, full: f112, tw: 720, w: 2000, h: 667 },
-    { id: "copy-of-s-d-wisenedstrike", name: "Wisened Strike", thumb: t113, full: f113, tw: 720, w: 2000, h: 667 },
-    { id: "copy-of-s-d-wrath", name: "Wrath", thumb: t114, full: f114, tw: 720, w: 2000, h: 667 },
+    { id: "copy-of-s-d-analyze", name: "Analyze", thumb: t92, full: f92, tw: 720, w: 900, h: 900 },
+    { id: "copy-of-s-d-bidingtime", name: "Biding Time", thumb: t93, full: f93, tw: 720, w: 900, h: 900 },
+    { id: "copy-of-s-d-changeofplans", name: "Change Of Plans", thumb: t94, full: f94, tw: 720, w: 900, h: 900 },
+    { id: "copy-of-s-d-channel", name: "Channel", thumb: t95, full: f95, tw: 720, w: 900, h: 900 },
+    { id: "copy-of-s-d-climax", name: "Climax", thumb: t96, full: f96, tw: 720, w: 900, h: 900 },
+    { id: "copy-of-s-d-criticalstrike", name: "Critical Strike", thumb: t97, full: f97, tw: 720, w: 900, h: 900 },
+    { id: "copy-of-s-d-defensivestance", name: "Defensive Stance", thumb: t98, full: f98, tw: 720, w: 900, h: 900 },
+    { id: "copy-of-s-d-freezeburn", name: "Freezeburn", thumb: t99, full: f99, tw: 720, w: 900, h: 900 },
+    { id: "copy-of-s-d-hunterssight", name: "Hunters Sight", thumb: t100, full: f100, tw: 720, w: 900, h: 900 },
+    { id: "copy-of-s-d-hunterssight-v2", name: "Hunters Sight v2", thumb: t101, full: f101, tw: 720, w: 900, h: 900 },
+    { id: "copy-of-s-d-icebarrier", name: "Ice Barrier", thumb: t102, full: f102, tw: 720, w: 900, h: 900 },
+    { id: "copy-of-s-d-lacerate", name: "Lacerate", thumb: t103, full: f103, tw: 720, w: 900, h: 900 },
+    { id: "copy-of-s-d-poke", name: "Poke", thumb: t104, full: f104, tw: 720, w: 2000, h: 682 },
+    { id: "copy-of-s-d-pummel", name: "Pummel", thumb: t105, full: f105, tw: 720, w: 2000, h: 682 },
+    { id: "copy-of-s-d-recklessstrike", name: "Reckless Strike", thumb: t106, full: f106, tw: 720, w: 900, h: 900 },
+    { id: "copy-of-s-d-redirection", name: "Redirection", thumb: t107, full: f107, tw: 720, w: 900, h: 900 },
+    { id: "copy-of-s-d-searingcut", name: "Searing Cut", thumb: t108, full: f108, tw: 720, w: 900, h: 900 },
+    { id: "copy-of-s-d-shield", name: "Shield", thumb: t109, full: f109, tw: 720, w: 900, h: 900 },
+    { id: "copy-of-s-d-slice", name: "Slice", thumb: t110, full: f110, tw: 720, w: 2000, h: 680 },
+    { id: "copy-of-s-d-spectralblades", name: "Spectral Blades", thumb: t111, full: f111, tw: 720, w: 900, h: 900 },
+    { id: "copy-of-s-d-spikes", name: "Spikes", thumb: t112, full: f112, tw: 720, w: 900, h: 900 },
+    { id: "copy-of-s-d-wisenedstrike", name: "Wisened Strike", thumb: t113, full: f113, tw: 720, w: 900, h: 900 },
+    { id: "copy-of-s-d-wrath", name: "Wrath", thumb: t114, full: f114, tw: 720, w: 900, h: 900 },
   ],
   "art/ymdir/map-and-ui": [
     { id: "map-ui", name: "Map UI", thumb: t115, full: f115, tw: 720, w: 1920, h: 1080 },
@@ -569,20 +569,20 @@ export const images = {
     { id: "riam2", name: "Riam 2", thumb: t136, full: f136, tw: 720, w: 2000, h: 1192 },
     { id: "riam3", name: "Riam 3", thumb: t137, full: f137, tw: 720, w: 2000, h: 1362 },
     { id: "riam4", name: "Riam 4", thumb: t138, full: f138, tw: 720, w: 2000, h: 1400 },
-    { id: "riam", name: "Riam", thumb: t139, full: f139, tw: 720, w: 2000, h: 1400 },
+    { id: "riam-2", name: "Riam", thumb: t139, full: f139, tw: 720, w: 2000, h: 1481 },
     { id: "riamthumbnail", name: "Riam Thumbnail", thumb: t140, full: f140, tw: 720, w: 2000, h: 1104 },
     { id: "rogue", name: "Rogue", thumb: t141, full: f141, tw: 720, w: 2000, h: 1126 },
-    { id: "rogue", name: "Rogue", thumb: t142, full: f142, tw: 720, w: 2000, h: 1126 },
+    { id: "rogue-2", name: "Rogue", thumb: t142, full: f142, tw: 720, w: 2000, h: 2000 },
     { id: "rogueboss", name: "Rogue Boss", thumb: t143, full: f143, tw: 720, w: 2000, h: 1126 },
     { id: "sha-rah-harper", name: "Sha Rah Harper", thumb: t144, full: f144, tw: 720, w: 2000, h: 1400 },
   ],
   "art/ymdir/old-dice": [
-    { id: "copy-of-eternal-dice-nobg", name: "Eternal Dice", thumb: t145, full: f145, tw: 512, w: 512, h: 512 },
-    { id: "copy-of-heavy-dice-nobg", name: "Heavy Dice", thumb: t146, full: f146, tw: 512, w: 512, h: 512 },
-    { id: "copy-of-negative-dice-nobg", name: "Negative Dice", thumb: t147, full: f147, tw: 512, w: 512, h: 512 },
-    { id: "copy-of-normal-dice-nobg", name: "Normal Dice", thumb: t148, full: f148, tw: 512, w: 512, h: 512 },
-    { id: "copy-of-reckless-dice-nobg", name: "Reckless Dice", thumb: t149, full: f149, tw: 512, w: 512, h: 512 },
-    { id: "copy-of-tombstone-dice-nobg", name: "Tombstone Dice", thumb: t150, full: f150, tw: 512, w: 512, h: 512 },
+    { id: "copy-of-eternal-dice-nobg", name: "Eternal Dice", thumb: t145, full: f145, tw: 370, w: 370, h: 364 },
+    { id: "copy-of-heavy-dice-nobg", name: "Heavy Dice", thumb: t146, full: f146, tw: 411, w: 411, h: 392 },
+    { id: "copy-of-negative-dice-nobg", name: "Negative Dice", thumb: t147, full: f147, tw: 380, w: 380, h: 360 },
+    { id: "copy-of-normal-dice-nobg", name: "Normal Dice", thumb: t148, full: f148, tw: 382, w: 382, h: 359 },
+    { id: "copy-of-reckless-dice-nobg", name: "Reckless Dice", thumb: t149, full: f149, tw: 512, w: 512, h: 460 },
+    { id: "copy-of-tombstone-dice-nobg", name: "Tombstone Dice", thumb: t150, full: f150, tw: 379, w: 379, h: 456 },
   ],
   "art/ymdir/old-ui": [
     { id: "old-icons", name: "Old Icons", thumb: t151, full: f151, tw: 720, w: 2000, h: 1139 },

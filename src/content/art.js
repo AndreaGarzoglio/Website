@@ -356,7 +356,7 @@ export const series = {
     lead: "Designing a game from the inside: creatures, dice, map, interface, and the effects that make a hit feel like a hit.",
     body: [
       "YMDIR is where everything I know gets used at once. I design the creatures and the bosses, the dice and their faces, the map and the interface, and I write the world they belong to, in constant back and forth with the people who have to animate, program and balance all of it.",
-      "The pages below are organised as before and now, because the most honest way to show a game in development is to show how much it has changed. The first designs were busy and drawn to impress; the current ones are cleaner, readable at a glance on a small screen, and built to be animated in Unreal.",
+      "The page follows the game the way it grew: the early concepts first, many of which never made it in, then the designs that did, the map of its world, and the dice the whole system turns on.",
     ],
     brief: [
       ["Team", "Mad Burger Studio"],
@@ -364,27 +364,65 @@ export const series = {
       ["Engine", "Unreal Engine"],
       ["Status", "In development"],
     ],
-    // Each pair is one thread of the game read from where it started to where
-    // it is now. The Drive folders already come in these pairs.
+    projects: [
+      {
+        id: "old-designs",
+        title: "Old Designs",
+        images: "art/ymdir/old-designs",
+        // The first Kra'khom is shown beside the new one instead.
+        skip: ["kah-krom"],
+        collage: true,
+        note: "Creatures that never made it into the game, and sketches that got others started.",
+        concept: [
+          "A lot of what I drew for YMDIR never reached the final game, and that is part of the job. Often I was asked for concepts of creatures that were later cut, or that changed so much on the way that nothing of the first design was left.",
+          "Other times my task was to make preliminary designs: a first idea of a creature, meant to give a direction and some inspiration to the artists who would finish it. Seen all together, they show how much the game changed before it found its look. Tap any of them to see it up close.",
+        ],
+      },
+      {
+        id: "krakhom",
+        title: "Kra’khom",
+        images: "art/ymdir/designs",
+        only: ["kra-khom", "kra-khom-ta"],
+        note: "The Shaman of Misery, drawn again for the game he ended up in.",
+        concept: [
+          "Kra’khom is one of the creatures I followed from the very start. His first version, the one marked Before, was a crow riding a tangle of ghosts. The new one stands on his own, in a robe and with a staff, and the green of his magic is the thread that still ties the two together.",
+          "The design comes with its turnaround, so he can be modelled and animated from every side.",
+        ],
+        before: {
+          images: "art/ymdir/old-designs",
+          only: ["kah-krom"],
+          note: "The first Kra’khom, from the early days of the game.",
+        },
+      },
+      {
+        id: "approved-designs",
+        title: "Approved Designs",
+        images: "art/ymdir/designs",
+        only: ["wolf", "boar", "props"],
+        note: "The wolf, the boar and the props, as they went into the game.",
+        concept: [
+          "These are designs that were approved and went into production. Each creature is drawn to be read in a second on a small screen: one strong silhouette, one colour story, and an attack you can guess from the shape. The props follow the same rules, so everything a player meets looks like it belongs to the same world.",
+        ],
+      },
+      {
+        id: "map",
+        title: "Map",
+        images: "art/ymdir/map-and-ui",
+        first: "ymdir-map",
+        note: "The land of Ymdir, and the way a player moves across it.",
+        concept: [
+          "The map came straight out of the worldbuilding. I had already written where the story happens, who lives there and how each place is tied to the others, so drawing the land of Ymdir was more about translating than inventing. Mount Riamtal, the Swamp of Misery and the Tekalach Valley all had a history before they had a shape.",
+          "I also thought about it from the side of the interface. A map in a game is not only something to look at, it is something you use, so I designed how a region opens up into a path of stops, with icons that tell the player what is waiting there before they choose where to go.",
+        ],
+      },
+    ],
+    // Read from where it started to where it is now, all of it at once.
     pairs: [
-      {
-        id: "designs",
-        title: "Designs",
-        note: "The bestiary, before and after we knew what the game was. The early creatures were drawn to impress; the new ones are drawn to be read: one strong silhouette, one colour story, and an attack you can guess from the shape.",
-        before: "art/ymdir/old-designs",
-        after: "art/ymdir/designs",
-      },
-      {
-        id: "map-and-ui",
-        title: "Map & UI",
-        note: "The first interface was a set of icons; the new one is a map you travel across and a screen that lets the dice do the talking. Most of the iterations here were about taking things away.",
-        before: "art/ymdir/old-ui",
-        after: "art/ymdir/map-and-ui",
-      },
       {
         id: "dice",
         title: "Dice",
-        note: "Every skill lives on a die face, so each icon has to work at thumbnail size and still hint at what it does. The old dice were whole objects; the new ones are flat faces in a shared frame, so a player learns the system once.",
+        collage: true,
+        note: "Every skill lives on a die face, so each icon has to work at a small size and still hint at what it does. The old dice were whole objects, each one a design of its own. The new ones put every skill on a face inside a shared frame, so a player learns the system once.",
         before: "art/ymdir/old-dice",
         after: "art/ymdir/dice",
       },
