@@ -236,8 +236,11 @@ const piece = ({ id, title, meta, text, side, body }) => `
 // A project, a study or the extra set: its pieces, its words and its facts.
 // A project can name and caption its own pieces (`pieces`, by file id). A
 // collection with `captions: false` shows its pieces without the stage notes.
+// `first` names the file id that should open the set.
 function block(x, captions = true) {
-  const imgs = pics(x.images).map((img) => {
+  const all = pics(x.images);
+  const lead = all.filter((img) => img.id === x.first);
+  const imgs = [...lead, ...all.filter((img) => !lead.includes(img))].map((img) => {
     const [label = img.label, caption = img.caption] = x.pieces?.[img.id] ?? [];
     return { ...img, label, caption: captions ? caption : "" };
   });

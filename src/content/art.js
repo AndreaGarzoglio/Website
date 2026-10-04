@@ -201,22 +201,26 @@ export const series = {
       ],
       tags: ["Character design", "Digital painting", "Commissions", "Studies"],
     },
-    lead: "The characters I design for myself, and the studies that keep my hands honest.",
+    lead: "Some were homework, some were paid for, some were just for me. Every one of them got a story.",
     body: [
-      "This is where the process shows the most, because nobody asked for any of it. Every character goes through the same stages: an inspiration board and a page of shapes, sketches and lineart, palette explorations, and the final render. I keep all of them here, because the unglamorous steps are the part I am proudest of.",
-      "The studies are older and plainer: light on cubes and spheres, the same sphere in eight materials, a portrait pushed until it stops looking flat. They are the reason the characters work.",
+      "This collection mixes three kinds of work: drawings I made for myself, commissions for clients, and the projects I did at Event Horizon School. The briefs could not have been more different, but the way I start never changes. Every character gets a story before it gets a shape.",
+      "Each one goes through the same stages: an inspiration board, sketches, palette explorations and the final render. I keep all of them here, because the steps nobody usually sees are the part I am proudest of.",
+      "Under the characters are the studies, the exercises that taught me to give a flat drawing volume, weight and light. They are the reason the characters work.",
     ],
     projects: [
       {
-        id: "nora",
-        title: "Nora",
-        images: "art/personal-drawings/nora",
-        note: "A painter who surfs on her own paint.",
+        id: "arcaster",
+        title: "Arcaster",
+        images: "art/personal-drawings/arcaster",
+        note: "A perfect gentleman, with a demon's arm under the cloak.",
         concept: [
-          "Nora started from one question: what if a paintbrush were also a vehicle? The silhouettes were all about the oversized trousers and the brush; the palettes were about finding colours that glow against a night sky without turning into a rainbow.",
+          "Arcaster started as a fantasy character design for Event Horizon, and at first the brief threw me. Back then cyberpunk was my genre, the one I knew inside out, and fantasy felt like someone else's territory. I had to find my own way in, and in the end I did.",
+          "I wanted someone charismatic and impeccably dressed, a gentleman in every detail, with something he would rather you did not see. Under his cloak he keeps a demonic arm hidden, and in his hand he carries a sword forged in hell. The whole character lives in that contrast between the polished outside and the dark side underneath.",
+          "I liked this gentleman with a dark side so much that I did not want to leave him on the page. He became my character in Pathfinder 2, a magus who fights with abyssal magic.",
         ],
         brief: [
-          ["Stages", "Inspiration, sketch, palettes, render"],
+          ["Brief", "Fantasy character, Event Horizon School"],
+          ["Stages", "Inspiration, details, render"],
           ["Medium", "Digital painting"],
         ],
       },
@@ -224,38 +228,14 @@ export const series = {
         id: "genista",
         title: "Genista",
         images: "art/personal-drawings/genista",
-        note: "Cyberpunk, with something growing through it.",
+        note: "The protagonist of MSR, as she looked years ago.",
         concept: [
-          "Genista is a study in contrast: hard armour and a plant motif, a cold palette broken by magenta light. I tried a toxic green and a neon cyan version before the red scene settled it.",
+          "Genista is the protagonist of MSR, my own story. This is an old design, drawn years ago, and she has changed a lot since then. Looking at it now feels a bit like finding an old photo of a friend.",
+          "I made it for Event Horizon, where this time the brief asked for a cyberpunk character. That was my genre, and the hero of my story was still waiting for a face, so I took the chance.",
         ],
         brief: [
-          ["Stages", "Sketch, palettes, render"],
-          ["Medium", "Digital painting"],
-        ],
-      },
-      {
-        id: "kurowo",
-        title: "Kurowo",
-        images: "art/personal-drawings/kurowo",
-        note: "Adventurer of the Afterworld, and the house he lives in.",
-        concept: [
-          "Kurowo is a small crow knight with a snail shell for a helmet, designed from shapes first: I wanted him readable as a silhouette before he had a single detail. Then I built his home the same way, from moodboard to thumbnails to a finished environment, to see whether the character's world held up as well as he did.",
-        ],
-        brief: [
-          ["Stages", "Moodboard, shapes, sketch, palettes, render"],
-          ["Medium", "Character and environment design"],
-        ],
-      },
-      {
-        id: "arcaster",
-        title: "Arcaster",
-        images: "art/personal-drawings/arcaster",
-        note: "A duelist with a sword too big to be polite.",
-        concept: [
-          "Arcaster came from wanting to paint something darker and more ornate: gothic tailoring, gold trim, and a violet blade that drips light. The inspiration sheet mixes fashion references with armour; the details page is where the costume actually got solved.",
-        ],
-        brief: [
-          ["Stages", "Inspiration, details, render"],
+          ["Brief", "Cyberpunk character, Event Horizon School"],
+          ["Stages", "Sketches, palettes, details, render"],
           ["Medium", "Digital painting"],
         ],
       },
@@ -263,13 +243,46 @@ export const series = {
         id: "non",
         title: "Non",
         images: "art/personal-drawings/non",
-        note: "Modern fantasy: a witch with a very normal bedroom.",
+        note: "A potion student who bends the dress code just far enough.",
         concept: [
-          "Non is my favourite exercise in context. On her own she is a witch with a cursed hand; her room, a cosy mess of fairy lights, books and a summoning circle on the rug, says more about her than any costume could. Both went through moodboard, sketch, palette and final render.",
+          "For this Event Horizon brief I had to design a student at a school of magic, and her dorm room along with her. Non studies potions above everything else, and she tests them on the one subject always at hand: herself.",
+          "I wanted her to be a rebel. She has to wear the uniform, so she changed everything she could get away with, bending the dress code just enough to make it feel like hers without getting punished for it.",
+          "Magic is not the only thing she loves. Her clothes and her room are full of pop culture references, all the things she cares about outside of class, so the room tells you who she is before she says a word.",
         ],
         brief: [
-          ["Stages", "Moodboard, sketch, palettes, render, room"],
+          ["Brief", "Magic school student and her room, Event Horizon School"],
+          ["Stages", "Inspiration, sketches, palettes, render, room"],
           ["Medium", "Character and interior design"],
+        ],
+      },
+      {
+        id: "kurowo",
+        title: "Kurowo",
+        images: "art/personal-drawings/kurowo",
+        note: "Something adorable, at the end of the world.",
+        concept: [
+          "Another Event Horizon brief, this time a cartoon character and his home. I liked the idea of setting the sweetness of a small cartoon animal against the most terrible place I could think of: the end of the world, after a nuclear holocaust.",
+          "I did not stop at one drawing. I wrote a whole story around him, with other characters he is tied to, and his house became a piece of that world.",
+          "It was an unusual one for me, because I had never tried cartoon before. I was learning the style while I was already using it.",
+        ],
+        brief: [
+          ["Brief", "Cartoon character and his home, Event Horizon School"],
+          ["Stages", "Inspiration, sketches, palettes, render, house"],
+          ["Medium", "Character and environment design"],
+        ],
+      },
+      {
+        id: "nora",
+        title: "Nora",
+        images: "art/personal-drawings/nora",
+        note: "A platformer hero, with a light bulb for an idea.",
+        concept: [
+          "Nora is another cartoon character, this time finished in cell shading. She is also a nod to a character from my story, retold as a cartoon and in a much brighter key.",
+          "I imagined her as the protagonist of a platform game: an artist who rides her own brushstrokes, with a little light bulb companion that stands for an idea.",
+        ],
+        brief: [
+          ["Stages", "Inspiration, sketch, palettes, details, render"],
+          ["Medium", "Digital painting, cell shading"],
         ],
       },
     ],
@@ -277,20 +290,30 @@ export const series = {
       {
         id: "shading-study",
         title: "Shading Study",
-        note: "Where it started: light on simple shapes, one source at a time.",
+        note: "From light on a cube to a face that has volume.",
+        concept: [
+          "A study of digital shading I did with Event Horizon. I started from zero, with light on cubes and spheres one source at a time, and step by step I got to characters that feel three dimensional.",
+        ],
         images: "art/personal-drawings/shading-study",
       },
       {
         id: "material-study",
         title: "Material Study",
-        note: "Metal, glass, wood, liquid: the same sphere, again and again, until each one reads at a glance.",
+        note: "Steel, liquid, wood, paper, glass: each one until it reads at a glance.",
+        concept: [
+          "I tried to make every material as realistic as I could. It was one of the most important exercises I have done, and I put it to work straight away on the potion.",
+        ],
         images: "art/personal-drawings/material-study",
       },
       {
         id: "rendering-study",
         title: "Rendering Study",
-        note: "Taking a flat colour sketch all the way to a finished portrait.",
+        note: "Taking a flat drawing and making it feel solid.",
+        concept: [
+          "Exercises I did on my own, to learn how to turn a 2D drawing into something that looks three dimensional. It opens with a portrait painted from a photo.",
+        ],
         images: "art/personal-drawings/rendering-study",
+        first: "portrait-from-photo",
       },
       {
         id: "creature-study",
