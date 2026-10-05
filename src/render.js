@@ -77,7 +77,7 @@ function pager(here, root) {
    text sits beside the title on wide screens, or under it with `stacked`. */
 const zoneHead = ({ index, title, lead, body, status, stats, stacked }) => `
   <div class="zone-head${body ? (stacked ? " zone-head--stacked" : " zone-head--split") : ""}">
-    <div class="zone-head-main">
+    <div>
       ${status ? `<span class="case-status">${status}</span>` : ""}
       <span class="zone-index" aria-hidden="true">${index}</span>
       <h1 class="zone-title">${title}</h1>
@@ -263,7 +263,7 @@ function select({ images, only, skip = [], first }) {
 
 // One side of a before and after: its tag over a collage of its pieces.
 const side = (title, tag, images) => `
-  <span class="pair-tag${tag === "Now" ? " pair-tag--now" : ""}">${tag}</span>
+  <span class="pair-tag">${tag}</span>
   ${collage(images, { label: `${title} · ${t(tag.toLowerCase())}` })}`;
 
 // Where the facts would go, the design as it was before, small.
@@ -276,7 +276,7 @@ const beforeSide = (x) => `
 // collection with `captions: false` shows its pieces without the stage notes.
 // `collage: true` lays the pieces out all at once instead of on a stage, and
 // `before` puts an older version where the facts would be.
-function block(x, captions = true) {
+function block(x, captions) {
   const imgs = select(x).map((img) => {
     const [label = img.label, caption = img.caption] = (x.pieces?.[img.id] ?? []).map(t);
     return { ...img, label, caption: captions ? caption : "" };
@@ -313,13 +313,15 @@ const pairBlock = (pair) => ({
   }),
 });
 
-const seriesBlocks = (s) =>
-  [
-    { name: "Projects", blocks: s.projects?.map((x) => block(x, s.captions !== false)) },
-    { name: "Studies", blocks: s.studies?.map((x) => block(x, s.captions !== false)) },
+const seriesBlocks = (s) => {
+  const blockOf = (x) => block(x, s.captions !== false);
+  return [
+    { name: "Projects", blocks: s.projects?.map(blockOf) },
+    { name: "Studies", blocks: s.studies?.map(blockOf) },
     { name: "Before → now", blocks: s.pairs?.map(pairBlock) },
-    { name: "More", blocks: s.extra && [block(s.extra, s.captions !== false)] },
+    { name: "More", blocks: s.extra && [blockOf(s.extra)] },
   ].filter((g) => g.blocks);
+};
 
 // Everything in the collection, one click away, before any of it scrolls by.
 const jump = (groups) => `
@@ -424,20 +426,7 @@ const appCard = (p) =>
    become positions on that axis (0 to 1); the labels under the bars are
    stacked into rows by src/path.js once their widths are known. */
 
-const MONTHS = [
-  "Jan",
-  "Feb",
-  "Mar",
-  "Apr",
-  "May",
-  "Jun",
-  "Jul",
-  "Aug",
-  "Sep",
-  "Oct",
-  "Nov",
-  "Dec",
-];
+const MONTHS = "Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec".split(" ");
 
 const dayOf = (d) => {
   if (d === "today") return Date.now();
@@ -475,7 +464,7 @@ function ticksOf(stage) {
   if (a.d !== 1) list.push(stage.from);
   const end = dayOf(stage.to);
   for (let y = a.y, m = a.m + (a.d === 1 ? 0 : 1); ; m++) {
-    const d = `${y + Math.floor(m / 12)}-${String((m % 12) + 1).padStart(2, "0")}`;
+    const d = `${y + Math.floor(m / 12)}-${pad((m % 12) + 1)}`;
     if (dayOf(d) > end) break;
     list.push(d);
   }
@@ -516,7 +505,7 @@ function renderStage(stage, i) {
 
   const ticks = ticksOf(stage);
   return `
-    <li class="stage${stage.to === "today" ? " stage--live" : ""}">
+    <li class="stage">
       <div class="stage-head">
         <span class="stage-index">${pad(i + 1)}</span>
         <h3 class="stage-title">${stage.title}</h3>
@@ -579,11 +568,13 @@ function renderCode(main) {
           </div>
           <div class="work-grid work-grid--practice">
             ${practice.map(card).join("")}
-            <a class="tile frame" href="${GH}" target="_blank" rel="noopener">
-              <span class="tile-arrow" aria-hidden="true">↗</span>
+            ${ext(
+              GH,
+              `<span class="tile-arrow" aria-hidden="true">↗</span>
               <span class="tile-title">More on GitHub</span>
-              <span class="tile-meta">All repositories</span>
-            </a>
+              <span class="tile-meta">All repositories</span>`,
+              "tile frame",
+            )}
           </div>
         </div>
       </section>
@@ -614,7 +605,7 @@ function renderCodeProject(main, id) {
   const screens = screensOf(p);
 
   main.innerHTML = `
-    <article class="zone zone--page project">
+    <article class="zone zone--page">
       <div class="shell">
         ${crumbs([["Résumé", "../index.html"], ["Code", "../code.html"], [p.title]])}
         <header class="project-head">
@@ -636,7 +627,7 @@ function renderCodeProject(main, id) {
         </section>
 
         <div class="project-grid">
-          <div class="project-notes">
+          <div>
             ${p.notes.map(([h, t]) => `<section class="note"><h2>${h}</h2><p>${t}</p></section>`).join("")}
           </div>
           <aside class="project-side frame">
@@ -697,12 +688,14 @@ export function paintNames() {
   }
 }
 
-// The home's tiles take their page's colour from the content, like the pages.
+// The home's tiles take their page's colour, and an art tile its crop, from
+// the content, like the pages.
 function tintTiles() {
   for (const tile of document.querySelectorAll(".work-tile")) {
     const [, section, id] = tile.getAttribute("href").match(/(art|code)\/([\w-]+)\.html/) ?? [];
-    const hue = section === "art" ? series[id]?.hue : projects.find((p) => p.id === id)?.hue;
+    const { hue, coverPos } = (section === "art" ? series[id] : projects.find((p) => p.id === id)) ?? {};
     if (hue) tile.style.setProperty("--hue", hue);
+    if (coverPos) tile.querySelector("img").style.objectPosition = coverPos;
   }
 }
 

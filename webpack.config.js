@@ -1,8 +1,9 @@
 import path from "node:path";
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
+import CssMinimizerPlugin from "css-minimizer-webpack-plugin";
 
-import { pages } from "./src/layout.js";
+import { pages, head } from "./src/layout.js";
 
 /* The home page is written by hand; every Art and Code page is generated from
    src/content/ through src/layout.js, so adding a project or a collection
@@ -30,6 +31,8 @@ export default (env, argv) => {
       clean: true,
     },
     devtool: dev ? "eval-source-map" : false,
+    // "..." keeps webpack's own JS minifier; the stylesheet is minified too.
+    optimization: { minimizer: ["...", new CssMinimizerPlugin()] },
     devServer: {
       watchFiles: ["./src/index.html"],
     },
@@ -58,6 +61,9 @@ export default (env, argv) => {
         {
           test: /\.html$/i,
           loader: "html-loader",
+          options: {
+            preprocessor: (html) => html.replace(/ *<!-- head:.*-->/, head("")),
+          },
         },
         {
           test: /\.(png|svg|jpg|jpeg|gif|webp)$/i,

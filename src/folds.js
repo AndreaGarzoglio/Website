@@ -3,6 +3,8 @@
    the browser follows an in-page link, any closed <details> around the target
    is opened. */
 
+const idOf = (hash) => decodeURIComponent(hash.slice(1));
+
 function reveal(id) {
   let el = id && document.getElementById(id);
   while (el) {
@@ -21,7 +23,6 @@ function initPrint() {
   });
   window.addEventListener("afterprint", () => {
     closed.forEach((d) => (d.open = false));
-    closed = [];
   });
   document.addEventListener("click", (e) => {
     if (e.target.closest("[data-print]")) window.print();
@@ -32,14 +33,12 @@ export function initFolds() {
   initPrint();
   document.addEventListener("click", (e) => {
     const link = e.target.closest('a[href^="#"]');
-    if (link) reveal(decodeURIComponent(link.hash.slice(1)));
+    if (link) reveal(idOf(link.hash));
   });
-  window.addEventListener("hashchange", () =>
-    reveal(decodeURIComponent(location.hash.slice(1))),
-  );
+  window.addEventListener("hashchange", () => reveal(idOf(location.hash)));
 
   if (!location.hash) return;
-  const id = decodeURIComponent(location.hash.slice(1));
+  const id = idOf(location.hash);
   const target = document.getElementById(id);
   if (!target?.closest("details:not([open])")) return;
   reveal(id);

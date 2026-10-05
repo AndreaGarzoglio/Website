@@ -3,7 +3,7 @@
    into an HTML file; the page body is then filled in the browser by
    src/render.js from the same content files. Plain Node on purpose: nothing
    here may import an image. The home page (src/index.html) is still written
-   by hand and carries its own copy of the nav and footer. */
+   by hand: it shares head() but carries its own nav and footer. */
 
 import { projects, GH } from "./content/code.js";
 import { series, order } from "./content/art.js";
@@ -13,6 +13,11 @@ const FONTS =
   "https://fonts.googleapis.com/css2?family=Doto:wght@400..900&family=JetBrains+Mono:wght@300;400;500&family=Outfit:wght@400;500;600&display=swap";
 
 const EMAIL = "andrea.garzoglio@gmail.com";
+
+const links = (list) =>
+  list
+    .map(([name, href, current]) => `<li><a href="${href}"${current ? ' aria-current="page"' : ""}>${name}</a></li>`)
+    .join("\n        ");
 
 // Top-level destinations, in reading order.
 const SECTIONS = [
@@ -27,10 +32,7 @@ const nav = (root, current) => `
     <div class="shell nav-inner">
       <a class="nav-mark" href="${root}index.html">Andrea Garzoglio</a>
       <ul class="nav-links">
-        ${SECTIONS.map(
-          ([name, href]) =>
-            `<li><a href="${root}${href}"${name === current ? ' aria-current="page"' : ""}>${name}</a></li>`,
-        ).join("\n        ")}
+        ${links(SECTIONS.map(([name, href]) => [name, root + href, name === current]))}
       </ul>
       <div class="lang-switch" role="group" aria-label="Choose language">
         <button type="button" data-lang="en" aria-label="English" title="English"></button>
@@ -39,17 +41,12 @@ const nav = (root, current) => `
     </div>
   </nav>`;
 
-const subnav = (label, links) => `
+const subnav = (label, items) => `
   <div class="subnav">
     <div class="shell subnav-inner">
       <span class="subnav-label">${label}</span>
       <ul class="subnav-links">
-        ${links
-          .map(
-            ([name, href, current]) =>
-              `<li><a href="${href}"${current ? ' aria-current="page"' : ""}>${name}</a></li>`,
-          )
-          .join("\n        ")}
+        ${links(items)}
       </ul>
     </div>
   </div>`;
@@ -72,18 +69,9 @@ const footer = (root) => `
     </div>
   </footer>`;
 
-const page = ({ root, title, description, theme, hue, current, sub, main }) => `<!doctype html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="${esc(description)}" />
-  <title>${title}</title>
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content="${title}" />
-  <meta property="og:description" content="${esc(description)}" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
+/* Fonts and the script that has to run before the first paint, on every page:
+   the home (src/index.html) gets it through html-loader in webpack.config.js. */
+export const head = (root) => `  <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="${FONTS}" rel="stylesheet" />
   <!-- The crossfade between pages (styles.css) is skipped when there is
@@ -116,13 +104,26 @@ const page = ({ root, title, description, theme, hue, current, sub, main }) => `
         e.viewTransition?.updateCallbackDone.catch(() => {});
       });
     }
-  </script>
+  </script>`;
+
+const page = ({ root, title, description, section, hue, sub, main }) => `<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="${esc(description)}" />
+  <title>${title}</title>
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="${title}" />
+  <meta property="og:description" content="${esc(description)}" />
+${head(root)}
 </head>
 
-<body id="top" data-page="${theme}"${hue ? ` style="--hue: ${hue}"` : ""}>
+<body id="top" data-page="${section}"${hue ? ` style="--hue: ${hue}"` : ""}>
   <a class="skip-link" href="#main">Skip to content</a>
   <canvas class="ascii-field" aria-hidden="true"></canvas>
-${nav(root, current)}
+${nav(root, section)}
 ${sub}
 
   <!-- Filled from src/content/ by src/render.js -->
@@ -159,9 +160,8 @@ export function pages() {
         root,
         title: `${title} · Andrea Garzoglio`,
         description,
-        theme: section,
+        section,
         hue,
-        current: section,
         sub: sectionSub(section, root, id),
         main: `<main data-view="${view}"${id ? ` data-id="${id}"` : ""}></main>`,
       }),

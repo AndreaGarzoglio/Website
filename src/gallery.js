@@ -14,16 +14,13 @@ const srcset = (d) => `${d.src} ${d.tw}w, ${d.full} ${d.w}w`;
 export const wrap = (i, n) => (i + n) % n;
 export const counter = (i, n) => `${pad(i + 1)} / ${pad(n)}`;
 
-// Starts loading the pieces either side of i, the same file the stage would
-// pick, so the arrows and a swipe land on an image that is already there.
-function preloadAround(thumbs, i) {
+// Starts loading the pieces either side of i once each (`flag` marks them),
+// so the arrows and a swipe land on an image that is already there.
+export function preloadAround(els, i, flag, load) {
   for (const j of [i + 1, i - 1]) {
-    const d = thumbs[wrap(j, thumbs.length)].dataset;
-    if (d.preloaded) continue;
-    d.preloaded = "true";
-    const img = new Image();
-    img.sizes = SIZES;
-    img.srcset = srcset(d);
+    const d = els[wrap(j, els.length)].dataset;
+    if (!d[flag]) load(d);
+    d[flag] = "true";
   }
 }
 
@@ -46,7 +43,7 @@ export function show(gallery, i, { preload = true } = {}) {
   gallery.dataset.index = i;
   if (!preload) return;
 
-  preloadAround(thumbs, i);
+  preloadAround(thumbs, i, "preloaded", (d) => Object.assign(new Image(), { sizes: SIZES, srcset: srcset(d) }));
   // Keep the chosen one in view without scrolling the page itself.
   const strip = thumb.closest(".gallery-strip");
   const li = thumb.parentElement;

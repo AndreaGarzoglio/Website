@@ -1,4 +1,5 @@
 import { RAMP } from "./ascii/engine.js";
+import { norm } from "./i18n.js";
 
 /* Titles are not faded in, they are inked in: each letter arrives through the
    same glyph ramp the background is drawn with (. : - = + * # % @), so the
@@ -20,7 +21,7 @@ const INK = RAMP.slice(1);
    plain-text elements are split; anything with markup inside is left alone. */
 function split(el) {
   if (el.children.length || !el.textContent.trim()) return null;
-  const text = el.textContent.replace(/\s+/g, " ").trim();
+  const text = norm(el.textContent);
 
   const readable = document.createElement("span");
   readable.className = "visually-hidden";

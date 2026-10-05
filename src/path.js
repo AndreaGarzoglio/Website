@@ -6,9 +6,10 @@
 
 const GAP = 12;
 
-function layoutGantt(gantt) {
-  // Every measurement first, then every write, so the page lays out once.
-  const tracks = [...gantt.querySelectorAll(".gantt-track")].map((track) => ({
+function layoutGantts(gantts) {
+  // Every measurement of every gantt first, then every write, so the page
+  // lays out once.
+  const tracks = gantts.flatMap((g) => [...g.querySelectorAll(".gantt-track")]).map((track) => ({
     track,
     width: track.clientWidth,
     points: [...track.querySelectorAll(".gantt-point")]
@@ -36,9 +37,7 @@ export function initPath() {
   const gantts = document.querySelectorAll(".gantt");
   if (!gantts.length) return;
   // The axis only changes size with the page, never because of the labels.
-  const observer = new ResizeObserver((entries) =>
-    entries.forEach(({ target }) => layoutGantt(target.closest(".gantt"))),
-  );
+  const observer = new ResizeObserver((entries) => layoutGantts(entries.map(({ target }) => target.closest(".gantt"))));
   gantts.forEach((g) => observer.observe(g.querySelector(".gantt-axis")));
-  document.fonts?.ready.then(() => gantts.forEach(layoutGantt));
+  document.fonts?.ready.then(() => layoutGantts([...gantts]));
 }

@@ -1,4 +1,4 @@
-import { counter, onSwipe, show as showOnStage, wrap } from "./gallery.js";
+import { counter, onSwipe, preloadAround, show as showOnStage, wrap } from "./gallery.js";
 import { localize, t } from "./i18n.js";
 
 /* One <dialog> for the whole site. The stage of any gallery, or any piece
@@ -92,11 +92,7 @@ function show(i) {
   dialog.querySelectorAll(".lb-nav").forEach((b) => (b.hidden = group.length < 2));
 
   // The full-size files either side start loading now, so the arrows are instant.
-  for (const j of [index + 1, index - 1]) {
-    const near = group[wrap(j, group.length)].dataset;
-    if (!near.fullLoaded) new Image().src = near.full;
-    near.fullLoaded = "true";
-  }
+  preloadAround(group, index, "fullLoaded", (d) => (new Image().src = d.full));
 }
 
 export function initLightbox() {

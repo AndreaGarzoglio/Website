@@ -9,7 +9,7 @@ import handRight from "../../assets/hand-right.txt";
    and softened to pick up the glyphs in between. */
 export default {
   stamps: [
-    { source: handLeft, width: 0.26, side: -1, vSide: 1, bleedX: -0.22, bleedY: 0, flip: false, inkGain: 1.2, soften: true },
-    { source: handRight, width: 0.26, side: 1, vSide: 1, bleedX: -0.22, bleedY: 0, flip: false },
+    { source: handLeft, width: 0.26, side: -1, vSide: 1, bleedX: -0.22, bleedY: 0, inkGain: 1.2, soften: true },
+    { source: handRight, width: 0.26, side: 1, vSide: 1, bleedX: -0.22, bleedY: 0 },
   ],
 };

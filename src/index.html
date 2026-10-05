@@ -33,42 +33,7 @@
       ]
     }
   </script>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Doto:wght@400..900&family=JetBrains+Mono:wght@300;400;500&family=Outfit:wght@400;500;600&display=swap"
-    rel="stylesheet" />
-  <!-- The crossfade between pages (styles.css) is skipped when there is
-       nothing to show, in a hidden tab or on a slow load. That is fine, so
-       it is caught here, before the page first paints, rather than reported. -->
-  <script>
-    // The language is chosen once, here: a ?lang= in the address (so an
-    // Italian link can be shared), then the reader's last choice, then the
-    // browser's. src/i18n.js reads it off <html data-lang>. Italian is put in
-    // once the page is built, so the English stays hidden until then (three
-    // seconds at most) and the dictionary starts downloading right away.
-    {
-      const html = document.documentElement;
-      const asked = new URLSearchParams(location.search).get("lang");
-      let saved = null;
-      try {
-        if (asked) localStorage.setItem("lang", asked);
-        else saved = localStorage.getItem("lang");
-      } catch {}
-      html.dataset.lang = (asked ?? saved ?? navigator.language).startsWith("it") ? "it" : "en";
-      if (html.dataset.lang === "it") {
-        html.classList.add("translating");
-        setTimeout(() => html.classList.remove("translating"), 3000);
-        document.head.append(Object.assign(document.createElement("link"), { rel: "preload", as: "script", href: "it.js" }));
-      }
-    }
-    for (const type of ["pageswap", "pagereveal"]) {
-      addEventListener(type, (e) => {
-        e.viewTransition?.ready.catch(() => {});
-        e.viewTransition?.updateCallbackDone.catch(() => {});
-      });
-    }
-  </script>
+  <!-- head: fonts and the first-paint script, from head() in src/layout.js -->
 </head>
 
 <body id="top" data-page="home">
@@ -291,21 +256,21 @@
               </li>
               <li>
                 <a class="work-tile" href="art/nemixar.html">
-                  <img src="./assets/work/art/nemixar/characters/tnbp-ninjasfin-t.webp" alt="" loading="lazy" decoding="async" style="object-position: 50% 60%" />
+                  <img src="./assets/work/art/nemixar/characters/tnbp-ninjasfin-t.webp" alt="" loading="lazy" decoding="async" />
                   <span class="work-tile-name">Nemixar</span>
                   <span class="work-tile-meta">Undo Studios · 2024</span>
                 </a>
               </li>
               <li>
                 <a class="work-tile" href="art/personal.html">
-                  <img src="./assets/work/art/personal-drawings/arcaster/arcaster-t.webp" alt="" loading="lazy" decoding="async" style="object-position: 50% 35%" />
+                  <img src="./assets/work/art/personal-drawings/arcaster/arcaster-t.webp" alt="" loading="lazy" decoding="async" />
                   <span class="work-tile-name">Personal Drawings</span>
                   <span class="work-tile-meta">Characters &amp; studies</span>
                 </a>
               </li>
               <li>
                 <a class="work-tile" href="art/ymdir.html">
-                  <img src="./assets/work/art/ymdir/designs/kra-khom-t.webp" alt="" loading="lazy" decoding="async" style="object-position: 50% 35%" />
+                  <img src="./assets/work/art/ymdir/designs/kra-khom-t.webp" alt="" loading="lazy" decoding="async" />
                   <span class="work-tile-name">YMDIR</span>
                   <span class="work-tile-meta">Indie game · in development</span>
                 </a>
@@ -329,56 +294,56 @@
             <ul class="tiles">
               <li class="tile-featured">
                 <a class="work-tile" href="code/game-vault.html">
-                  <img src="./assets/game-vault.webp" alt="" loading="lazy" decoding="async" style="object-position: 50% 0%" />
+                  <img src="./assets/game-vault.webp" alt="" loading="lazy" decoding="async" />
                   <span class="work-tile-name">Game Vault</span>
                   <span class="work-tile-meta">Node server · IGDB API</span>
                 </a>
               </li>
               <li>
                 <a class="work-tile" href="code/battleship.html">
-                  <img src="./assets/battleship.webp" alt="" loading="lazy" decoding="async" style="object-position: 50% 0%" />
+                  <img src="./assets/battleship.webp" alt="" loading="lazy" decoding="async" />
                   <span class="work-tile-name">Battleship</span>
                   <span class="work-tile-meta">Naval game · tested logic</span>
                 </a>
               </li>
               <li>
                 <a class="work-tile" href="code/todo-list.html">
-                  <img src="./assets/todo-list.webp" alt="" loading="lazy" decoding="async" style="object-position: 50% 0%" />
+                  <img src="./assets/todo-list.webp" alt="" loading="lazy" decoding="async" />
                   <span class="work-tile-name">Todo List</span>
                   <span class="work-tile-meta">A classified archive</span>
                 </a>
               </li>
               <li>
                 <a class="work-tile" href="code/weather-report.html">
-                  <img src="./assets/weather-report.webp" alt="" loading="lazy" decoding="async" style="object-position: 50% 0%" />
+                  <img src="./assets/weather-report.webp" alt="" loading="lazy" decoding="async" />
                   <span class="work-tile-name">Weather Report</span>
                   <span class="work-tile-meta">Two APIs · a CSS sky</span>
                 </a>
               </li>
               <li>
                 <a class="work-tile" href="code/knight-travails.html">
-                  <img src="./assets/knight-travails.webp" alt="" loading="lazy" decoding="async" style="object-position: 50% 0%" />
+                  <img src="./assets/knight-travails.webp" alt="" loading="lazy" decoding="async" />
                   <span class="work-tile-name">Knight Travails</span>
                   <span class="work-tile-meta">Breadth-first search</span>
                 </a>
               </li>
               <li>
                 <a class="work-tile" href="code/binary-search-trees.html">
-                  <img src="./assets/binary-search-trees.webp" alt="" loading="lazy" decoding="async" style="object-position: 50% 0%" />
+                  <img src="./assets/binary-search-trees.webp" alt="" loading="lazy" decoding="async" />
                   <span class="work-tile-name">Binary Search Trees</span>
                   <span class="work-tile-meta">A tree that rebalances</span>
                 </a>
               </li>
               <li>
                 <a class="work-tile" href="code/hashmap-hashset.html">
-                  <img src="./assets/work/code/hashmap-hashset/01-hashmap-list-t.webp" alt="" loading="lazy" decoding="async" style="object-position: 50% 0%" />
+                  <img src="./assets/work/code/hashmap-hashset/01-hashmap-list-t.webp" alt="" loading="lazy" decoding="async" />
                   <span class="work-tile-name">HashMap · HashSet</span>
                   <span class="work-tile-meta">Hash tables from scratch</span>
                 </a>
               </li>
               <li>
                 <a class="work-tile" href="code/linked-list.html">
-                  <img src="./assets/work/code/linked-list/linked-list-list-t.webp" alt="" loading="lazy" decoding="async" style="object-position: 50% 0%" />
+                  <img src="./assets/work/code/linked-list/linked-list-list-t.webp" alt="" loading="lazy" decoding="async" />
                   <span class="work-tile-name">Linked List</span>
                   <span class="work-tile-meta">A list you can rearrange</span>
                 </a>
@@ -432,7 +397,7 @@
             <li style="--c: var(--c-code)">code</li>
           </ul>
 
-          <div class="timeline timeline--home">
+          <div>
             <div class="tl-years" aria-hidden="true">
               <span>2017</span><span>2018</span><span>2019</span><span>2020</span><span>2021</span>
               <span>2022</span><span>2023</span><span>2024</span><span>2025</span><span>2026</span>
@@ -490,7 +455,7 @@
            folds away, so the timeline above stays the thing you see first. -->
       <div class="shell cv-stack">
       <!-- CV 01 · Experience -->
-      <details class="cv-block cv-fold" id="experience" open>
+      <details class="cv-fold" id="experience" open>
           <summary class="block-head">
             <h2>Experience</h2>
             <span class="block-meta">03 positions</span>
@@ -614,7 +579,7 @@
       </details>
 
       <!-- CV 02 · Education -->
-      <details class="cv-block cv-fold" id="education" open>
+      <details class="cv-fold" id="education" open>
           <summary class="block-head">
             <h2>Education &amp; training</h2>
             <span class="block-meta">05 entries</span>
@@ -767,7 +732,7 @@
       </details>
 
       <!-- CV 03 · Skills -->
-      <details class="cv-block cv-fold" id="skills" open>
+      <details class="cv-fold" id="skills" open>
           <summary class="block-head">
             <h2>Skills</h2>
             <span class="block-meta">what I can actually operate</span>
@@ -853,7 +818,7 @@
       </details>
 
       <!-- CV 04 · Interests -->
-      <details class="cv-block cv-fold" id="interests" open>
+      <details class="cv-fold" id="interests" open>
           <summary class="block-head">
             <h2>Interests</h2>
             <span class="block-meta">the rest of the time</span>

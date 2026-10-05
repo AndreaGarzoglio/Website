@@ -106,11 +106,7 @@ const RIPPLE_SPREAD = 0.35;
 
 // Field value that maps back to each ramp index once draw() re-derives the
 // glyph, so a stamped cell renders the character the art actually asked for.
-const STAMP_FIELD = [];
-for (let i = 0; i < RAMP.length; i++) {
-  const n = (i - 0.5) / (RAMP.length - 1);
-  STAMP_FIELD.push(THRESHOLD + n * (1 - THRESHOLD));
-}
+const STAMP_FIELD = Array.from(RAMP, (_, i) => THRESHOLD + ((i - 0.5) / (RAMP.length - 1)) * (1 - THRESHOLD));
 
 // Glyph size and centring per heat step, shared by every theme.
 const FONTS = [];
@@ -137,14 +133,7 @@ const ART_CACHE = new Map();
 
 /* Parsed art, one entry per distinct source: a page can stamp the same drawing
    more than once, and it should only be measured and flood-filled once. */
-function artFor(source) {
-  let art = ART_CACHE.get(source);
-  if (!art) {
-    art = parseArt(source);
-    ART_CACHE.set(source, art);
-  }
-  return art;
-}
+const artFor = (source) => ART_CACHE.get(source) ?? ART_CACHE.set(source, parseArt(source)).get(source);
 
 function parseArt(source) {
   const lines = source.split("\n").map((line) => line.replace(/\s+$/, ""));
@@ -329,19 +318,21 @@ export function createAsciiField(canvas, theme) {
   // The cells around the pointer, last frame: glyphs there grow past their
   // own cell, so that whole block is cleared and redrawn instead.
   let lastBlock = null;
+  // The rows the heat reached, last frame: a row neither band touches, whose
+  // noise is not due and that is not being repainted, cannot have changed.
+  let lastBand = null;
 
   function resize() {
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
-    scale = dpr;
+    scale = Math.min(window.devicePixelRatio || 1, 2);
     const w = window.innerWidth;
     const h = window.innerHeight;
 
-    canvas.width = Math.floor(w * dpr);
-    canvas.height = Math.floor(h * dpr);
+    canvas.width = Math.floor(w * scale);
+    canvas.height = Math.floor(h * scale);
     canvas.style.width = `${w}px`;
     canvas.style.height = `${h}px`;
 
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.setTransform(scale, 0, 0, scale, 0, 0);
     ctx.textBaseline = "top";
 
     cols = Math.ceil(w / CELL_W) + 1;
@@ -562,6 +553,7 @@ export function createAsciiField(canvas, theme) {
       }
 
       for (const p of trail) {
+        if (p.s <= heat) continue;
         const dx = cellX - p.x;
         const dy = cellY - p.y;
         const d2 = dx * dx + dy * dy;
@@ -667,12 +659,15 @@ export function createAsciiField(canvas, theme) {
 
     // Everything is repainted while a ripple crosses the screen; otherwise
     // only the block the pointer heats, plus the cells that changed.
-    const full = repaintAll || (heatBox.any && heatBox.minX === -Infinity);
+    const full = repaintAll || ripples.length > 0;
     repaintAll = false;
     const block = full || !heatBox.any ? null : blockOf(heatBox);
     const paint = full ? null : mergeBlocks(block, lastBlock);
     lastBlock = block;
     const changed = [];
+    const band = heatBox.any ? [heatBox.minY, heatBox.maxY] : null;
+    const bands = [band, lastBand].filter(Boolean);
+    lastBand = band;
     const everyRow = refreshAll;
     refreshAll = false;
     fieldPhase = (fieldPhase + 1) % FIELD_PHASES;
@@ -680,6 +675,7 @@ export function createAsciiField(canvas, theme) {
     for (let r = 0; r < rows; r++) {
       const cellY = r * CELL_H;
       const refresh = everyRow || r % FIELD_PHASES === fieldPhase;
+      if (!full && !refresh && !(paint && r >= paint.r0 && r <= paint.r1) && !bands.some(([y0, y1]) => cellY >= y0 && cellY <= y1)) continue;
       const stampRow = stampCells ? r * cols : -1;
       const inRowBand = heatBox.any && cellY >= heatBox.minY && cellY <= heatBox.maxY;
 
@@ -832,13 +828,9 @@ export function createAsciiField(canvas, theme) {
     { passive: true },
   );
 
-  document.addEventListener("pointerleave", () => {
-    pointer.active = false;
-  });
-
-  window.addEventListener("blur", () => {
-    pointer.active = false;
-  });
+  const idle = () => (pointer.active = false);
+  document.addEventListener("pointerleave", idle);
+  window.addEventListener("blur", idle);
 
   window.addEventListener(
     "pointerdown",
@@ -846,15 +838,7 @@ export function createAsciiField(canvas, theme) {
       if (motionQuery.matches) return;
 
       // Fires on the spot; RIPPLE_BIRTH is what keeps it from popping in.
-      ripples.push({
-        x: event.clientX,
-        y: event.clientY,
-        start: performance.now(),
-        radius: 0,
-        power: 0,
-        denom: 2 * RIPPLE_SIGMA * RIPPLE_SIGMA,
-        cutoff: RIPPLE_SIGMA * 3,
-      });
+      ripples.push({ x: event.clientX, y: event.clientY, start: performance.now() });
       if (ripples.length > 4) ripples.shift();
       muteUntil = performance.now() + GLOW_MUTE_MS;
     },

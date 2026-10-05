@@ -12,9 +12,10 @@ export const lang = document.documentElement.dataset.lang === "it" ? "it" : "en"
 let dict = {};
 export const t = (text) => dict[text] ?? text;
 
-const ATTRS = ["alt", "title", "aria-label", "data-title", "data-caption", "data-lightbox"];
+// Gallery titles and captions are not here: render.js puts them in through t().
+const ATTRS = ["alt", "title", "aria-label", "data-lightbox"];
 const SKIP = new Set(["SCRIPT", "STYLE", "TITLE", "svg", "CANVAS"]);
-const norm = (s) => s.replace(/\s+/g, " ").trim();
+export const norm = (s) => s.replace(/\s+/g, " ").trim();
 
 function visit(el, missed) {
   for (const name of ATTRS) {
