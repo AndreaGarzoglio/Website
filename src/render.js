@@ -616,7 +616,7 @@ function renderCodeProject(main, id) {
           <p class="project-lead">${p.lead}</p>
           <div class="project-actions">
             ${p.live ? ext(p.live, "Open the live version ↗", "button") : ""}
-            ${ext(p.repo, "Read the code ↗", "button button--ghost")}
+            ${ext(p.repo, "Read the code ↗", "button")}
           </div>
         </header>
 
