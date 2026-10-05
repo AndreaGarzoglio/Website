@@ -16,8 +16,8 @@ export default {
     "contatti",
   "Language":
     "Linguaggio",
-  "Programmer, illustrator, media designer. Three names for one restless urge: to <strong>make things</strong>, and to know how every piece of them works. I draw characters with a story behind them, write the worlds they live in, and build the interfaces that bring them to the screen, from the first sketch to the last line of code.":
-    "Programmatore, illustratore, media designer. Tre nomi per un'unica spinta irrequieta: <strong>creare</strong>, e capire come funziona ogni pezzo di ciò che creo. Disegno personaggi con una storia alle spalle, scrivo i mondi in cui vivono e costruisco le interfacce che li portano sullo schermo, dal primo schizzo all'ultima riga di codice.",
+  "Programmer, illustrator, media designer. Three names for one restless urge: to make things, and to know how every piece of them works.":
+    "Programmatore, illustratore, media designer. Tre nomi per un'unica spinta irrequieta: creare cose, e capire come funziona ogni loro pezzo.",
   "<span class=\"status-dot\" aria-hidden=\"true\"></span> Open to junior front-end, UI/UX, game concept art and media design roles · remote or Genoa":
     "<span class=\"status-dot\" aria-hidden=\"true\"></span> Disponibile per ruoli junior in front-end, UI/UX, concept art per videogiochi e media design · da remoto o a Genova",
   "10 years":
@@ -70,10 +70,12 @@ export default {
     "B",
   "About me":
     "Chi sono",
-  "<strong>Making things</strong> has always been my favourite way to spend time. Drawing came first, and it never stopped: characters, worlds, and the stories that hold them together.":
-    "<strong>Creare</strong> è sempre stato il mio modo preferito di passare il tempo. Prima è arrivato il disegno, e non si è più fermato: personaggi, mondi e le storie che li tengono insieme.",
-  "At <strong>Event Horizon School</strong> that habit became a craft: three years of concept art, learning to design with a reason behind every line. Then came <strong>code</strong>, because I wanted to see the things I design actually come to life.":
-    "Alla <strong>Event Horizon School</strong> quell'abitudine è diventata un mestiere: tre anni di concept art in cui ho imparato a progettare con un motivo dietro ogni linea. Poi è arrivato il <strong>codice</strong>, perché volevo vedere prendere vita davvero le cose che progetto.",
+  "<strong>Making things</strong> has always been my favourite way to spend time. Drawing came first, and it never stopped: characters, worlds, and the stories that hold them together. Give me a blank page and I'll come back with someone who has a past, a reason to fight and a costume that tells both.":
+    "<strong>Creare</strong> è sempre stato il mio modo preferito di passare il tempo. Prima è arrivato il disegno, e non si è più fermato: personaggi, mondi e le storie che li tengono insieme. Da una pagina bianca nasce sempre qualcuno con un passato, un motivo per combattere e un costume che li racconta entrambi.",
+  "At <strong>Event Horizon School</strong> that habit became a craft: three years of concept art, learning to design with a reason behind every line, to work in a team, and to trust a process from the first moodboard to the final render. That's where drawing turned into design.":
+    "Alla <strong>Event Horizon School</strong> quell'abitudine è diventata un mestiere: tre anni di concept art in cui ho imparato a progettare con un motivo dietro ogni linea, a lavorare in team e a fidarmi di un processo, dalla prima moodboard al render finale. È lì che il disegno è diventato design.",
+  "Then came <strong>code</strong>, because I wanted to see the things I design actually come to life. The same curiosity that once made me build my own PC, just to see what was inside, took me from interfaces on paper to interfaces that work. Now art and code feed each other: an illustrator's eye for the screen, a programmer's logic for the worlds I write.":
+    "Poi è arrivato il <strong>codice</strong>, perché volevo vedere prendere vita davvero le cose che progetto. La stessa curiosità che mi aveva spinto a montare il PC da solo, solo per vedere cosa c'era dentro, mi ha portato dalle interfacce su carta a interfacce che funzionano. Oggi arte e codice si alimentano a vicenda: l'occhio di un illustratore per lo schermo, la logica di un programmatore per i mondi che scrivo.",
   "Every project starts the same way, with an idea I can't stop thinking about. The <strong>passion</strong> for turning it into something real, a character, an interface or a game, is the part of this work I love most.":
     "Ogni progetto parte allo stesso modo, da un'idea che non riesco a togliermi dalla testa. La <strong>passione</strong> di trasformarla in qualcosa di reale, un personaggio, un'interfaccia o un gioco, è la parte di questo lavoro che amo di più.",
   "Email":
