@@ -562,8 +562,7 @@ function renderCode(main) {
           <div class="practice">
             ${head("Practice", `${count(practice.length, "exercises")} · ${t("algorithms & data structures")}`)}
             <p class="practice-note">
-              Smaller builds from the curriculum, each one a data structure or an
-              algorithm written from scratch and given an interface you can poke at.
+              Smaller builds from the curriculum: a data structure or an algorithm written from scratch, each with an interface to play with.
             </p>
           </div>
           <div class="work-grid work-grid--practice">

@@ -1178,6 +1178,13 @@ main,
   color: color-mix(in srgb, var(--c) 72%, #fff);
 }
 
+/* The words that matter in a paragraph, in the colour of the card they sit
+   on, or of the page. */
+strong {
+  font-weight: 500;
+  color: color-mix(in srgb, var(--c, var(--accent-lt)) 62%, #fff);
+}
+
 .cv-lead {
   margin-top: 12px;
   max-width: 72ch;
@@ -3656,6 +3663,10 @@ button.button {
   html,
   body {
     background: #fff !important;
+  }
+
+  strong {
+    color: var(--text);
   }
 
   /* The vignette over the ascii field. */

@@ -37,9 +37,9 @@ export default {
   "of teamwork on an indie game":
     "di lavoro in team su un videogioco indie",
   "Get in touch":
-    "Contattami",
+    "Contatti",
   "What I can do for you":
-    "Cosa posso fare per te",
+    "Cosa posso offrire",
   "Save résumé as PDF":
     "Salva il curriculum in PDF",
   "Portrait of Andrea Garzoglio":
@@ -66,12 +66,12 @@ export default {
     "B",
   "About me":
     "Chi sono",
-  "I'm curious to a fault. When I don't understand how something works I can't let it go: I built my own PC to see what goes on inside one, and when something stops working I go looking for the reason, down to the code if that's where it hides. Long before I studied programming, I was already happily banging my head against problems nobody had asked me to solve.":
-    "Sono curioso fino all'eccesso. Quando non capisco come funziona qualcosa non riesco a lasciar perdere: mi sono montato il PC da solo per vedere cosa succede lì dentro, e quando qualcosa smette di funzionare vado a cercarne il motivo, fino al codice se è lì che si nasconde. Molto prima di studiare programmazione sbattevo già felicemente la testa contro problemi che nessuno mi aveva chiesto di risolvere.",
-  "Drawing came first. I trained as a concept artist at Event Horizon School, where I learned the fundamentals of art and design I still use for everything. Code came next, because I wanted to see how the things I design actually come to life.":
-    "Il disegno è arrivato per primo. Mi sono formato come concept artist alla Event Horizon School, dove ho imparato le basi di arte e design che uso ancora per tutto. Poi è arrivato il codice, perché volevo vedere come le cose che progetto prendono vita davvero.",
-  "What ties it all together is that I'm always ready to learn something I didn't know existed the day before. I try, it breaks, I try again, and I keep going until it works. That stubbornness is what lets me hold my own on the art side and the code side alike, and honestly it's the part of the work I love most.":
-    "Quello che tiene insieme tutto è che sono sempre pronto a imparare qualcosa che il giorno prima non sapevo nemmeno esistesse. Provo, si rompe, riprovo, e vado avanti finché non funziona. È questa testardaggine che mi permette di cavarmela sia sul lato artistico sia su quello del codice, e sinceramente è la parte del lavoro che amo di più.",
+  "<strong>Making things</strong> has always been my favourite way to spend time. Drawing came first, at a manga summer school in 2017, and I never stopped: characters, worlds, and stories to hold them together.":
+    "<strong>Creare</strong> è sempre stato il mio modo preferito di passare il tempo. Prima è arrivato il disegno, a una scuola estiva di manga nel 2017, e da lì non mi sono più fermato: personaggi, mondi e storie che li tengano insieme.",
+  "I trained as a concept artist at Event Horizon School, then came <strong>code</strong>, because I wanted to see the things I design come to life. Today I move between the two with the same <strong>curiosity</strong>.":
+    "Mi sono formato come concept artist alla Event Horizon School, poi è arrivato il <strong>codice</strong>, perché volevo vedere prendere vita le cose che progetto. Oggi passo dall'uno all'altro con la stessa <strong>curiosità</strong>.",
+  "Every project starts the same way, with an idea I can't stop thinking about. The <strong>passion</strong> for turning it into something real, a character, an interface or a game, is the part of this work I love most.":
+    "Ogni progetto parte allo stesso modo, da un'idea che non riesco a togliermi dalla testa. La <strong>passione</strong> di trasformarla in qualcosa di reale, un personaggio, un'interfaccia o un gioco, è la parte di questo lavoro che amo di più.",
   "Email":
     "Email",
   "four ways in":
@@ -80,18 +80,18 @@ export default {
     "Programmatore front-end junior",
   "A developer who designs as well as he builds.":
     "Uno sviluppatore che sa progettare bene quanto sa costruire.",
-  "I bring ten years of art to every interface: layouts, colour and type that feel designed, not assembled, built by hand in JavaScript, HTML and CSS with the logic kept apart and tested.":
-    "Porto dieci anni di arte in ogni interfaccia: layout, colori e tipografia che sembrano progettati e non assemblati, costruiti a mano in JavaScript, HTML e CSS, con la logica tenuta separata e testata.",
+  "I bring <strong>ten years of art</strong> to every interface: layouts, colour and type that feel designed, built by hand in JavaScript, HTML and CSS, with <strong>tested logic</strong>.":
+    "Porto <strong>dieci anni di arte</strong> in ogni interfaccia: layout, colori e tipografia curati, scritti a mano in JavaScript, HTML e CSS, con una <strong>logica testata</strong>.",
   "Start with <a class=\"text-link\" href=\"code/game-vault.html\">Game Vault</a> and <a class=\"text-link\" href=\"code/battleship.html\">Battleship</a>":
-    "Parti da <a class=\"text-link\" href=\"code/game-vault.html\">Game Vault</a> e <a class=\"text-link\" href=\"code/battleship.html\">Battleship</a>",
+    "Per cominciare: <a class=\"text-link\" href=\"code/game-vault.html\">Game Vault</a> e <a class=\"text-link\" href=\"code/battleship.html\">Battleship</a>",
   "UI/UX designer":
     "UI/UX designer",
   "Screens people understand at a glance, in games and on the web.":
     "Schermate che si capiscono a colpo d'occhio, nei videogiochi e sul web.",
-  "For games, the map, the HUD and the dice faces of YMDIR, iterated with the team until nothing on screen needed explaining. For the web, every project on this site, each with an interface designed around its own idea.":
-    "Per i videogiochi, la mappa, l'HUD e le facce dei dadi di YMDIR, rifiniti con il team finché sullo schermo non c'era più niente da spiegare. Per il web, ogni progetto di questo sito, ognuno con un'interfaccia pensata attorno alla sua idea.",
+  "For games, the map, HUD and dice of <strong>YMDIR</strong>, refined with the team until nothing needed explaining. For the web, every project here, each with an interface built around its idea.":
+    "Per i videogiochi, mappa, HUD e dadi di <strong>YMDIR</strong>, rifiniti con il team finché niente aveva bisogno di spiegazioni. Per il web, ogni progetto di questo sito, con un'interfaccia costruita attorno alla sua idea.",
   "Start with <a class=\"text-link\" href=\"art/ymdir.html#map\">YMDIR · Map</a> and <a class=\"text-link\" href=\"code/todo-list.html\">Todo List</a>":
-    "Parti da <a class=\"text-link\" href=\"art/ymdir.html#map\">YMDIR · Mappa</a> e <a class=\"text-link\" href=\"code/todo-list.html\">Todo List</a>",
+    "Per cominciare: <a class=\"text-link\" href=\"art/ymdir.html#map\">YMDIR · Mappa</a> e <a class=\"text-link\" href=\"code/todo-list.html\">Todo List</a>",
   "YMDIR · Map":
     "YMDIR · Mappa",
   "Icon design":
@@ -104,16 +104,16 @@ export default {
     "Concept artist per videogiochi",
   "Characters and creatures with a story behind every one.":
     "Personaggi e creature, ognuno con una storia alle spalle.",
-  "I'm a storyteller first: nothing I design exists without a history that explains how it looks and why. Five years on an indie game team and a concept art specialization turn that story into moodboards, shapes, palettes and a final render.":
-    "Prima di tutto sono un narratore: niente di quello che disegno esiste senza una storia che ne spieghi l'aspetto e il perché. Cinque anni nel team di un videogioco indie e una specializzazione in concept art trasformano quella storia in moodboard, forme, palette e un render finale.",
+  "I'm a <strong>storyteller</strong> first: everything I design has a history that explains its look. Five years on an indie team turn that story into moodboards, shapes, palettes and a final render.":
+    "Prima di tutto sono un <strong>narratore</strong>: ogni cosa che disegno ha una storia che ne spiega l'aspetto. Cinque anni in un team indie trasformano quella storia in moodboard, forme, palette e render finale.",
   "Start with <a class=\"text-link\" href=\"art/ymdir.html\">YMDIR</a> and <a class=\"text-link\" href=\"art/msr.html\">MSR</a>":
-    "Parti da <a class=\"text-link\" href=\"art/ymdir.html\">YMDIR</a> e <a class=\"text-link\" href=\"art/msr.html\">MSR</a>",
+    "Per cominciare: <a class=\"text-link\" href=\"art/ymdir.html\">YMDIR</a> e <a class=\"text-link\" href=\"art/msr.html\">MSR</a>",
   "Illustrations and posts that earn their engagement.":
     "Illustrazioni e post che si conquistano l'attenzione di chi guarda.",
   "A six-month paid, full-time internship on a game's social channels: a splash for every character, campaign visuals and a player guide.":
     "Un tirocinio retribuito di sei mesi, a tempo pieno, sui canali social di un videogioco: una splash art per ogni personaggio, grafiche per le campagne e una guida per i giocatori.",
   "Start with <a class=\"text-link\" href=\"art/nemixar.html\">Nemixar</a>":
-    "Parti da <a class=\"text-link\" href=\"art/nemixar.html\">Nemixar</a>",
+    "Per cominciare: <a class=\"text-link\" href=\"art/nemixar.html\">Nemixar</a>",
   "Social content":
     "Contenuti social",
   "Campaign visuals":
@@ -162,8 +162,8 @@ export default {
     "Tutto il codice <span aria-hidden=\"true\">→</span>",
   "Résumé":
     "Curriculum",
-  "Ten years of <span class=\"hl\" style=\"--c: var(--c-art)\">art school</span>, five on an <span class=\"hl\" style=\"--c: var(--c-games)\">indie game team</span>, a <span class=\"hl\" style=\"--c: var(--c-media)\">marketing internship</span> and two years of <span class=\"hl\" style=\"--c: var(--c-code)\">building software</span> have made me versatile: someone with real experience in several fields, who knows how they fit together.":
-    "Dieci anni di <span class=\"hl\" style=\"--c: var(--c-art)\">scuola d'arte</span>, cinque nel <span class=\"hl\" style=\"--c: var(--c-games)\">team di un videogioco indie</span>, un <span class=\"hl\" style=\"--c: var(--c-media)\">tirocinio nel marketing</span> e due anni passati a <span class=\"hl\" style=\"--c: var(--c-code)\">costruire software</span> mi hanno reso versatile: una persona con esperienza vera in più campi, che sa come si incastrano tra loro.",
+  "Ten years of <span class=\"hl\" style=\"--c:var(--c-art)\">art school</span>, five on an <span class=\"hl\" style=\"--c:var(--c-games)\">indie game team</span>, a <span class=\"hl\" style=\"--c:var(--c-media)\">marketing internship</span> and two years of <span class=\"hl\" style=\"--c:var(--c-code)\">building software</span>: real experience in several fields, and a sense of how they fit together.":
+    "Dieci anni di <span class=\"hl\" style=\"--c:var(--c-art)\">scuola d'arte</span>, cinque nel <span class=\"hl\" style=\"--c:var(--c-games)\">team di un videogioco indie</span>, un <span class=\"hl\" style=\"--c:var(--c-media)\">tirocinio nel marketing</span> e due anni passati a <span class=\"hl\" style=\"--c:var(--c-code)\">costruire software</span>: esperienza vera in più campi, e la capacità di farli lavorare insieme.",
   "art school":
     "scuola d'arte",
   "indie game team":
@@ -220,8 +220,8 @@ export default {
     "Milano, Italia",
   "current":
     "in corso",
-  "YMDIR is the game and Mad Burger is the team making it, and this is where I learned how working in a team actually works. I am in constant contact with the other departments and work alongside them every day, moving between digital painting tools and Unreal Engine. The job goes well past concept art: I write the story and build the world, and I design logos, interfaces and the way players move through them.":
-    "YMDIR è il gioco, Mad Burger il team che lo realizza, ed è qui che ho imparato come si lavora davvero in squadra. Ogni giorno lavoro a stretto contatto con gli altri reparti, passando dal digital painting a Unreal Engine. Il lavoro va ben oltre la concept art: scrivo la storia, costruisco il mondo e progetto loghi, interfacce e i percorsi dei giocatori al loro interno.",
+  "YMDIR is the game, Mad Burger the team, and this is where I learned <strong>teamwork</strong>. Every day I work alongside the other departments, between digital painting and <strong>Unreal Engine</strong>. Beyond concept art, I write the story, build the world and design logos and interfaces.":
+    "YMDIR è il gioco, Mad Burger il team, ed è qui che ho imparato il <strong>lavoro di squadra</strong>. Ogni giorno lavoro con gli altri reparti, tra digital painting e <strong>Unreal Engine</strong>. Oltre alla concept art, scrivo la storia, costruisco il mondo e progetto loghi e interfacce.",
   "Concept art for characters and creatures":
     "Concept art per personaggi e creature",
   "Story, lore and worldbuilding":
@@ -233,7 +233,7 @@ export default {
   "Teamwork":
     "Lavoro di squadra",
   "See YMDIR on the Art page →":
-    "Vedi YMDIR nella pagina Arte →",
+    "YMDIR nella pagina Arte →",
   "My illustration on Instagram":
     "Le mie illustrazioni su Instagram",
   "GreyHat, from my personal work":
@@ -242,8 +242,8 @@ export default {
     "Illustratore freelance",
   "Self-employed":
     "Libero professionista",
-  "Commissioned illustration for a range of clients, which over five years has mostly been an education in reading a brief, and in noticing what a client means rather than what they wrote down.":
-    "Illustrazioni su commissione per clienti diversi, che in cinque anni mi hanno insegnato soprattutto a leggere un brief, e a capire cosa intende davvero un cliente al di là di quello che ha scritto.",
+  "Commissioned illustration for many clients: five years of learning to <strong>read a brief</strong> and to hear what a client means, not just what they wrote.":
+    "Illustrazioni su commissione per clienti diversi: cinque anni passati a imparare a <strong>leggere un brief</strong> e a capire cosa intende davvero un cliente, oltre a ciò che scrive.",
   "Illustration":
     "Illustrazione",
   "Client work":
@@ -256,8 +256,8 @@ export default {
     "Giu - Dic 2024",
   "paid internship":
     "tirocinio retribuito",
-  "A six-month paid, full-time internship on the social channels of the game Nemixar: I illustrated its characters and made posts of every kind to build engagement around it. The first time my drawing had to answer to a metric instead of a mood.":
-    "Sei mesi di tirocinio retribuito, a tempo pieno, sui canali social del videogioco Nemixar: ho illustrato i personaggi e realizzato post di ogni tipo per coinvolgere i giocatori. La prima volta in cui il mio disegno ha dovuto rispondere a una metrica e non a un'ispirazione.",
+  "Six months, paid and full-time, on the social channels of the game Nemixar: <strong>character illustrations</strong> and posts of every kind. The first time my drawing answered to a <strong>metric</strong> instead of a mood.":
+    "Sei mesi, retribuiti e a tempo pieno, sui canali social del videogioco Nemixar: <strong>illustrazioni dei personaggi</strong> e post di ogni tipo. La prima volta in cui il mio disegno ha risposto a una <strong>metrica</strong> e non a un'ispirazione.",
   "Character illustrations for the game's cast":
     "Illustrazioni dei personaggi del gioco",
   "Social posts, announcements and campaign visuals":
@@ -267,7 +267,7 @@ export default {
   "Social media content":
     "Contenuti per i social media",
   "See the work on the Art page →":
-    "Vedi i lavori nella pagina Arte →",
+    "I lavori nella pagina Arte →",
   "Education &amp; training":
     "Formazione e corsi",
   "05 entries":
@@ -278,8 +278,8 @@ export default {
     "Giu 2025 - oggi",
   "Full Stack Developer course":
     "Corso Full Stack Developer",
-  "Working websites and apps, each one built from an empty folder. My years as an artist give me an edge on the design side, so I made a point of giving every project a look and a world of its own.":
-    "Siti e app funzionanti, ognuno partito da una cartella vuota. Gli anni da artista mi danno un vantaggio nel design, così ho dato a ogni progetto un aspetto e un mondo tutti suoi.",
+  "Working sites and apps, each built from an empty folder. My art background gives me an edge in <strong>design</strong>, so every project got a look and a world of its own.":
+    "Siti e app funzionanti, ognuno nato da una cartella vuota. Il mio passato da artista mi dà un vantaggio nel <strong>design</strong>, così ogni progetto ha un aspetto e un mondo tutti suoi.",
   "Open-source curriculum running from the basics to job-ready work":
     "Programma open source, dalle basi fino al livello professionale",
   "Project-based throughout: everything I build is on GitHub":
@@ -287,13 +287,13 @@ export default {
   "Front end in JavaScript, HTML and CSS, back end in Ruby, Java and Python":
     "Front end in JavaScript, HTML e CSS, back end in Ruby, Java e Python",
   "See the drawings on the Art page →":
-    "Vedi i disegni nella pagina Arte →",
+    "I disegni nella pagina Arte →",
   "See the specialization project →":
-    "Vedi il progetto di specializzazione →",
+    "Il progetto di specializzazione →",
   "See where it led on the Art page →":
-    "Vedi dove mi ha portato nella pagina Arte →",
+    "Dove mi ha portato nella pagina Arte →",
   "See the projects on the Code page →":
-    "Vedi i progetti nella pagina Codice →",
+    "I progetti nella pagina Codice →",
   "Event Horizon School on Instagram":
     "Event Horizon School su Instagram",
   "Oct 2020 - Dec 2023":
@@ -314,8 +314,8 @@ export default {
     "Set 2018 - Ott 2020",
   "Linguistic and Cultural Mediation":
     "Mediazione linguistica e culturale",
-  "Two years in, I understood this was not my road, and knowing when to stop and change direction was a lesson in itself. The time was not wasted: Japanese and the sociology of communication are still the lens I use on the worlds I write, and in the same years I took a creative writing course with A.R.C.U.S. at the University of Milan.":
-    "Dopo due anni ho capito che non era la mia strada, e sapere quando fermarsi e cambiare direzione è già stata una lezione. Non è stato tempo perso: il giapponese e la sociologia della comunicazione restano la lente con cui guardo i mondi che scrivo, e in quegli anni ho seguito anche un corso di scrittura creativa con A.R.C.U.S. alla Statale.",
+  "After two years I knew it wasn't my road, and knowing when to <strong>change direction</strong> was a lesson in itself. Japanese and the sociology of communication still shape the worlds I write, and in those years I also took a <strong>creative writing</strong> course with A.R.C.U.S.":
+    "Dopo due anni ho capito che non era la mia strada, e sapere quando <strong>cambiare direzione</strong> è stata già una lezione. Il giapponese e la sociologia della comunicazione danno ancora forma ai mondi che scrivo, e in quegli anni ho seguito anche un corso di <strong>scrittura creativa</strong> con A.R.C.U.S.",
   "Japanese Culture I · 9 CFU":
     "Cultura giapponese I · 9 CFU",
   "Japanese I · 9 CFU":
@@ -332,8 +332,8 @@ export default {
     "Lajatico, Italia",
   "Manga Drawing Technique course":
     "Corso di tecnica del disegno manga",
-  "A summer school I went back to every year for four years. This is where the passion started, and the reason everything else on this page exists.":
-    "Una scuola estiva a cui sono tornato ogni anno, per quattro anni. È qui che è nata la passione, ed è il motivo per cui esiste tutto il resto di questa pagina.",
+  "A summer school I went back to for four years in a row. This is where the <strong>passion</strong> started.":
+    "Una scuola estiva a cui sono tornato per quattro anni di fila. È qui che è nata la <strong>passione</strong>.",
   "Istituto Vittorino Bernini (now closed) in the Italian school registry":
     "Istituto Vittorino Bernini (ora chiuso) nell'anagrafe delle scuole italiane",
   "Italy":
@@ -372,8 +372,8 @@ export default {
     "C# con Unity",
   "3D modelling":
     "Modellazione 3D",
-  "The Odin Project since 2025, every project built from an empty folder, after years of poking at things I wasn't supposed to understand yet.":
-    "The Odin Project dal 2025, ogni progetto costruito partendo da una cartella vuota, dopo anni passati a smanettare con cose che non avrei ancora dovuto capire.",
+  "The Odin Project since 2025, every project from an empty folder, after years of taking things apart to see how they work.":
+    "The Odin Project dal 2025, ogni progetto da una cartella vuota, dopo anni passati a smontare le cose per capire come funzionano.",
   "Back end <span class=\"chip-level\">learning</span>":
     "Back end <span class=\"chip-level\">sto imparando</span>",
   "learning":
@@ -413,7 +413,7 @@ export default {
   "Bard":
     "Bardo",
   "(yes, Charisma is my favourite stat, how did you know?)":
-    "(sì, il Carisma è la mia caratteristica preferita, come hai fatto a indovinare?)",
+    "(sì, il Carisma è la mia caratteristica preferita, chi l'avrebbe mai detto?)",
   "Shows":
     "Serie",
   "Music artists":
@@ -423,9 +423,9 @@ export default {
   "(I realise how boring these answers are)":
     "(mi rendo conto di quanto siano noiose queste risposte)",
   "Contact me":
-    "Scrivimi",
-  "A website, an illustration, a campaign, or something that needs all three: if anything here looks like the kind of work you need, or you just want to talk about games and drawing, write to me.":
-    "Un sito, un'illustrazione, una campagna, o qualcosa che le richieda tutte e tre: se qui trovi il tipo di lavoro che ti serve, o se vuoi solo parlare di videogiochi e disegno, scrivimi.",
+    "Per contattarmi",
+  "A website, an illustration, a campaign, or all three: if you need something like what's here, or just want to talk about <strong>games and drawing</strong>, write to me.":
+    "Un sito, un'illustrazione, una campagna, o tutte e tre insieme: per lavori come questi, o anche solo per parlare di <strong>videogiochi e disegno</strong>, basta scrivermi.",
   "copy":
     "copia",
   "I usually reply within a day or two · Italian or English":
@@ -442,12 +442,12 @@ export default {
     "Percorso",
   "It started with a manga summer school in 2017, and it has not stopped since.":
     "È cominciato con una scuola estiva di manga nel 2017, e da allora non si è più fermato.",
-  "What I love most is telling stories. Every character I design comes with a story of its own, worked out before the first sketch: who they are, where they come from, what they want. None of them are made just to fill a page. The costume, the colours and the shapes all grow out of that story, so a design already says something about the person wearing it before anyone reads a word.":
-    "Quello che amo di più è raccontare storie. Ogni personaggio che disegno nasce con una storia tutta sua, pensata prima del primo schizzo: chi è, da dove viene, cosa vuole. Nessuno nasce solo per riempire una pagina. Il costume, i colori e le forme crescono da quella storia, così il design dice già qualcosa del personaggio prima ancora che si legga una parola.",
-  "Almost everything here went through the same loop: a moodboard and a pile of references, a page of silhouettes, a few sketches that survive, palette explorations, and only then the final render. Event Horizon taught me to trust that process, and working in teams taught me that it is also how other people understand what I am doing. That is why I keep the in-between steps and show them.":
-    "Quasi tutto quello che trovi qui è passato dallo stesso ciclo: una moodboard e una pila di riferimenti, una pagina di silhouette, qualche sketch che sopravvive, le esplorazioni di palette, e solo alla fine il render. La Event Horizon mi ha insegnato a fidarmi di questo processo, e lavorare in team mi ha insegnato che è anche il modo in cui gli altri capiscono cosa sto facendo. Per questo tengo i passaggi intermedi e li mostro.",
-  "The work is split into four collections. MSR is my own universe, and Nemixar holds what I drew during my internship at Undo Studios. Personal Drawings brings together commissions, school projects and the characters I make for myself, and YMDIR is the game I am building with Mad Burger Studio.":
-    "Il lavoro è diviso in quattro raccolte. MSR è il mio universo, e Nemixar raccoglie quello che ho disegnato durante il tirocinio in Undo Studios. Disegni personali mette insieme commissioni, progetti di scuola e i personaggi che creo per me stesso, e YMDIR è il videogioco che sto realizzando con Mad Burger Studio.",
+  "What I love most is <strong>telling stories</strong>. Every character starts with one, worked out before the first sketch: who they are, where they come from, what they want. Costume, colours and shapes grow out of it, so the design speaks before anyone reads a word.":
+    "Quello che amo di più è <strong>raccontare storie</strong>. Ogni personaggio ne ha una, pensata prima del primo schizzo: chi è, da dove viene, cosa vuole. Costume, colori e forme nascono da lì, così il design parla prima ancora che si legga una parola.",
+  "Almost everything here went through the same <strong>process</strong>: moodboard and references, silhouettes, sketches, palettes, and only then the render. Event Horizon taught me to trust it, and teamwork taught me it's how others understand my ideas, so I show the in-between steps too.":
+    "Quasi tutto, qui, è passato dallo stesso <strong>processo</strong>: moodboard e riferimenti, silhouette, sketch, palette, e solo alla fine il render. La Event Horizon mi ha insegnato a fidarmi, il lavoro in team che è così che gli altri capiscono le mie idee, per questo mostro anche i passaggi intermedi.",
+  "Four collections: <strong>MSR</strong>, my own universe, <strong>Nemixar</strong>, from my internship at Undo Studios, <strong>Personal Drawings</strong>, with commissions, school projects and my own characters, and <strong>YMDIR</strong>, the game I'm making with Mad Burger Studio.":
+    "Quattro raccolte: <strong>MSR</strong>, il mio universo, <strong>Nemixar</strong>, dal tirocinio in Undo Studios, <strong>Disegni personali</strong>, tra commissioni, progetti di scuola e personaggi miei, e <strong>YMDIR</strong>, il videogioco che sto realizzando con Mad Burger Studio.",
   "first put pen to paper, seriously":
     "la prima volta con la matita in mano, sul serio",
   "years freelancing for clients":
@@ -460,8 +460,8 @@ export default {
     "progetto di specializzazione",
   "In My Subjective Reality, reality is code and everyone wants to rewrite it.":
     "In My Subjective Reality la realtà è codice, e tutti vogliono riscriverla.",
-  "My specialization project at Event Horizon, built on a story and characters I have carried with me for years. Three character designs, each with its creative process and a page of details.":
-    "Il mio progetto di specializzazione alla Event Horizon, costruito su una storia e su personaggi che mi porto dietro da anni. Tre character design, ognuno con il suo processo creativo e una pagina di dettagli.",
+  "My specialization project at Event Horizon, built on a story I've carried for years: three <strong>character designs</strong>, each with its process and a page of details.":
+    "Il mio progetto di specializzazione alla Event Horizon, nato da una storia che mi porto dietro da anni: tre <strong>character design</strong>, ognuno con il suo processo e una pagina di dettagli.",
   "Three characters, from sketch to render":
     "Tre personaggi, dallo sketch al render",
   "A details page for each one":
@@ -474,8 +474,8 @@ export default {
     "Undo Studios SA, Milano",
   "Social campaigns for Undo Studios, 2024.":
     "Campagne social per Undo Studios, 2024.",
-  "A full-time, paid internship on the game Nemixar. For six months I made the social campaigns, the artwork of the characters and the presentations of new projects, all of it to build engagement around the game.":
-    "Un tirocinio retribuito a tempo pieno sul videogioco Nemixar. Per sei mesi ho realizzato le campagne social, gli artwork dei personaggi e le presentazioni dei nuovi progetti, tutto per far crescere l'interesse attorno al gioco.",
+  "Six months, paid and full-time, on the game Nemixar: <strong>social campaigns</strong>, character artwork and presentations of new projects.":
+    "Sei mesi, retribuiti e a tempo pieno, sul videogioco Nemixar: <strong>campagne social</strong>, artwork dei personaggi e presentazioni di nuovi progetti.",
   "Social media campaigns":
     "Campagne sui social media",
   "Artwork for the game's characters":
@@ -488,8 +488,8 @@ export default {
     "in corso",
   "Drawing when nobody is asking me to draw anything.":
     "Disegnare quando nessuno mi chiede di disegnare niente.",
-  "Commissions for clients, projects from Event Horizon School and drawings I make just for myself. The characters go from inspiration board to final render, and the studies show where the skills came from.":
-    "Commissioni per clienti, progetti della Event Horizon School e disegni che faccio solo per me. I personaggi vanno dalla moodboard al render finale, e gli studi mostrano da dove vengono le competenze.",
+  "Commissions, Event Horizon projects and drawings just for me. Characters from <strong>moodboard to render</strong>, and the studies behind the skills.":
+    "Commissioni, progetti della Event Horizon e disegni solo per me. Personaggi dalla <strong>moodboard al render</strong>, e gli studi dietro le competenze.",
   "Characters taken from moodboard to render":
     "Personaggi dalla moodboard al render",
   "Commissions and school projects":
@@ -504,8 +504,8 @@ export default {
     "in sviluppo",
   "The dice roguelike I am making with Mad Burger Studio.":
     "Il roguelike a base di dadi che sto realizzando con Mad Burger Studio.",
-  "A game made with a small team, in constant back and forth with the people who animate, program and balance what I design.":
-    "Un videogioco fatto con un piccolo team, in un confronto continuo con chi anima, programma e bilancia quello che disegno.",
+  "A game made with a small team, in constant dialogue with the people who <strong>animate, program and balance</strong> what I design.":
+    "Un videogioco fatto con un piccolo team, in dialogo continuo con chi <strong>anima, programma e bilancia</strong> quello che disegno.",
   "Story and worldbuilding":
     "Storia e worldbuilding",
   "Enemy and creature design":
@@ -522,14 +522,14 @@ export default {
     "Successiva →",
   "Reality is code. Everyone wants to be the one who rewrites it.":
     "La realtà è codice. Tutti vogliono essere quelli che la riscrivono.",
-  "The Hat Hackers was my specialization project at Event Horizon School, a presentation that introduces three characters from My Subjective Reality, the story I have been writing for years. It is set in Trinity, a galaxy turned upside down after a revolution against the Corporate Empire failed. Since then, and nobody can explain why, the people who wanted to change things badly enough have found they can rewrite the laws of reality itself, as if the universe were a program and they had been handed the source code.":
-    "The Hat Hackers è stato il mio progetto di specializzazione alla Event Horizon School, una presentazione che introduce tre personaggi di My Subjective Reality, la storia che scrivo da anni. È ambientata a Trinity, una galassia messa sottosopra dal fallimento di una rivoluzione contro l'Impero Corporativo. Da allora, e nessuno sa spiegare perché, chi desiderava cambiare le cose con abbastanza forza ha scoperto di poter riscrivere le leggi stesse della realtà, come se l'universo fosse un programma e a loro fosse stato consegnato il codice sorgente.",
-  "I named the three after the way hackers are sorted in the real world. A white hat breaks into systems to protect them, a black hat breaks in to do damage, and a grey hat lives somewhere in between, bending the law whenever it gets in the way of doing the right thing. That map was my starting point, and then I turned it against itself.":
-    "Ho dato ai tre i nomi con cui si classificano gli hacker nel mondo reale. Un white hat entra nei sistemi per proteggerli, un black hat ci entra per fare danni, e un grey hat sta da qualche parte nel mezzo, piegando la legge ogni volta che gli impedisce di fare la cosa giusta. Questa classificazione è stata il mio punto di partenza, e poi l'ho capovolta.",
-  "Trinity is a dystopia, and in a world run by corporations the rules are part of the problem. Whoever keeps them is helping to hold the cage shut, which makes the one who obeys no better than the one who breaks everything for profit. Of the three, GreyHat is the only one you can root for, and even he is far from clean.":
-    "Trinity è una distopia, e in un mondo governato dalle corporazioni le regole fanno parte del problema. Chi le rispetta aiuta a tenere chiusa la gabbia, e così chi obbedisce non è migliore di chi distrugge tutto per profitto. Dei tre, GreyHat è l'unico per cui si può fare il tifo, e anche lui è tutt'altro che senza macchia.",
-  "Looking back, it is almost ironic. I drew all of this in 2023, two years before I wrote my first line of code, and I was already building an entire world out of hackers, source code and a reality that runs like a program. Some interests show up long before you have a name for them.":
-    "Ripensandoci, è quasi ironico. Ho disegnato tutto questo nel 2023, due anni prima di scrivere la mia prima riga di codice, e stavo già costruendo un mondo intero fatto di hacker, codice sorgente e una realtà che funziona come un programma. Certi interessi si fanno sentire molto prima che tu sappia dar loro un nome.",
+  "<strong>The Hat Hackers</strong> was my specialization project at Event Horizon: three characters from <strong>My Subjective Reality</strong>, the story I've been writing for years. It's set in Trinity, a galaxy upended by a failed revolution against the Corporate Empire. Since then, those who wanted change badly enough can <strong>rewrite reality</strong>, as if the universe were a program and they held the source code.":
+    "<strong>The Hat Hackers</strong> è stato il mio progetto di specializzazione alla Event Horizon: tre personaggi di <strong>My Subjective Reality</strong>, la storia che scrivo da anni. È ambientata a Trinity, una galassia sconvolta da una rivoluzione fallita contro l'Impero Corporativo. Da allora, chi desiderava abbastanza il cambiamento può <strong>riscrivere la realtà</strong>, come se l'universo fosse un programma e il codice sorgente fosse nelle sue mani.",
+  "Their names come from how hackers are sorted: a <strong>white hat</strong> breaks in to protect, a <strong>black hat</strong> to do damage, a <strong>grey hat</strong> bends the law to do the right thing. That was my starting point, and then I turned it upside down.":
+    "I nomi vengono dalla classificazione degli hacker: un <strong>white hat</strong> entra nei sistemi per proteggerli, un <strong>black hat</strong> per fare danni, un <strong>grey hat</strong> piega la legge per fare la cosa giusta. È stato il mio punto di partenza, e poi l'ho capovolto.",
+  "Trinity is a dystopia where the rules are part of the problem: whoever keeps them helps hold the cage shut, so obeying is no better than destroying for profit. Of the three, <strong>GreyHat</strong> is the only one worth rooting for, and even he is far from clean.":
+    "Trinity è una distopia in cui le regole fanno parte del problema: chi le rispetta aiuta a tenere chiusa la gabbia, e obbedire non è meglio che distruggere per profitto. Dei tre, solo <strong>GreyHat</strong> merita il tifo, e anche lui è tutt'altro che senza macchia.",
+  "Almost ironic: I drew all this in 2023, <strong>two years before my first line of code</strong>, and I was already building a world of hackers and a reality that runs like a program. Some interests show up long before they have a name.":
+    "Quasi ironico: ho disegnato tutto questo nel 2023, <strong>due anni prima della mia prima riga di codice</strong>, e stavo già costruendo un mondo di hacker e una realtà che funziona come un programma. Certi interessi arrivano molto prima di avere un nome.",
   "In this collection":
     "In questa raccolta",
   "Projects":
@@ -555,7 +555,7 @@ export default {
   "Next":
     "Successiva",
   "click to enlarge":
-    "clicca per ingrandire",
+    "clic per ingrandire",
   "Board 01":
     "Tavola 01",
   "Board 02":
@@ -582,52 +582,52 @@ export default {
     "Tavola 12",
   "Twelve boards, built to read like the opening of a story.":
     "Dodici tavole, pensate per essere lette come l'inizio di una storia.",
-  "The deck starts wide, with the world: Trinity, the revolution that failed and the three forces now pulling reality in different directions. Then it narrows down to one hacker at a time. Each section opens on the render, the first impression, and then moves in closer with a board of details, the props, the face and the small things that make a character feel lived in. It closes on the turnaround, where the design is seen from every side and where I explain the thinking behind each choice.":
-    "La presentazione parte da lontano, dal mondo: Trinity, la rivoluzione fallita e le tre forze che ora tirano la realtà in direzioni diverse. Poi si concentra su un hacker alla volta. Ogni sezione si apre sul render, la prima impressione, e poi si avvicina con una tavola di dettagli, gli oggetti, il volto e le piccole cose che fanno sembrare vissuto un personaggio. Si chiude sul turnaround, dove il design si vede da ogni lato e dove spiego il ragionamento dietro ogni scelta.",
+  "The deck opens on the world: Trinity, the failed revolution, three forces pulling reality apart. Then it focuses on <strong>one hacker at a time</strong>: the render first, then a board of details, and finally the <strong>turnaround</strong>, where I explain the thinking behind each choice.":
+    "La presentazione si apre sul mondo: Trinity, la rivoluzione fallita, tre forze che tirano la realtà in direzioni opposte. Poi si concentra su <strong>un hacker alla volta</strong>: prima il render, poi una tavola di dettagli, infine il <strong>turnaround</strong>, dove spiego il ragionamento dietro ogni scelta.",
   "Whitehat Details":
     "Whitehat · dettagli",
   "Whitehat Face":
     "Whitehat · volto",
   "A revolutionary who lost, and went to work for the winners.":
     "Un rivoluzionario che ha perso, ed è andato a lavorare per i vincitori.",
-  "Twenty years ago <span class=\"glitch\" data-glitch=\"Hiro Akasaki\" role=\"img\" aria-label=\"a name you cannot quite read\">H▒r░ ▓k▒s░k█</span> believed the world could be changed. The revolution failed, and something in him broke along with it. Now he serves the same corporations he once fought, a phantom agent who keeps the truth buried by rewriting what people remember. He prays constantly, and it has little to do with faith: prayer is the one place where he does not have to look at what he has become.":
-    "Vent'anni fa <span class=\"glitch\" data-glitch=\"Hiro Akasaki\" role=\"img\" aria-label=\"un nome che non si riesce a leggere\">H▒r░ ▓k▒s░k█</span> credeva che il mondo si potesse cambiare. La rivoluzione è fallita, e con lei si è rotto qualcosa dentro di lui. Ora serve le stesse corporazioni contro cui combatteva, un agente fantasma che tiene sepolta la verità riscrivendo quello che le persone ricordano. Prega di continuo, e la fede c'entra poco: la preghiera è l'unico momento in cui non deve guardare in faccia quello che è diventato.",
+  "Twenty years ago <span class=\"glitch\" data-glitch=\"Hiro Akasaki\" role=\"img\" aria-label=\"a name you cannot quite read\">H▒r░ ▓k▒s░k█</span> believed the world could change. The revolution failed, and something in him broke with it. Now he serves the corporations he fought, a phantom agent who <strong>rewrites memories</strong> to keep the truth buried. He prays constantly, not out of faith: prayer is the only place where he doesn't have to face what he has become.":
+    "Vent'anni fa <span class=\"glitch\" data-glitch=\"Hiro Akasaki\" role=\"img\" aria-label=\"un nome che non si riesce a leggere\">H▒r░ ▓k▒s░k█</span> credeva che il mondo potesse cambiare. La rivoluzione è fallita, e con lei si è rotto qualcosa dentro di lui. Ora serve le corporazioni che combatteva, un agente fantasma che <strong>riscrive i ricordi</strong> per tenere sepolta la verità. Prega di continuo, ma non per fede: la preghiera è l'unico momento in cui non deve guardare in faccia ciò che è diventato.",
   "a name you cannot quite read":
     "un nome che non si riesce a leggere",
-  "His design had to feel like a man who has stopped feeling anything. He is austere and still, and he stands almost like a machine waiting for orders. That is why he is perfectly symmetrical, from the helmet to the hem of the coat, with nothing out of place and nothing human left to break the pattern. The armour was the hardest part of the whole project, plate after plate that had to look engineered and still read clearly at a glance.":
-    "Il suo design doveva comunicare un uomo che ha smesso di provare qualsiasi cosa. È austero e immobile, e sta in piedi quasi come una macchina in attesa di ordini. Per questo è perfettamente simmetrico, dall'elmo all'orlo del cappotto, senza niente fuori posto e niente di umano a rompere lo schema. L'armatura è stata la parte più difficile di tutto il progetto: piastra dopo piastra, doveva sembrare progettata da un ingegnere e restare comunque leggibile a colpo d'occhio.",
-  "The idea I am proudest of is the mask. Because he can make people forget, it never looks the same twice. Look away for a moment, look back, and you could swear it was different, as if your memory of it had already been taken. The details board shows it in several versions, and all of them are his.":
-    "L'idea di cui vado più fiero è la maschera. Dato che lui può far dimenticare le cose, non è mai uguale due volte. Distogli lo sguardo per un attimo, torna a guardare, e giureresti che è diversa, come se il tuo ricordo te l'avessero già portato via. La tavola dei dettagli la mostra in più versioni, e sono tutte sue.",
+  "His design had to show a man who has <strong>stopped feeling</strong>: austere, still, standing like a machine awaiting orders. So he is perfectly <strong>symmetrical</strong>, helmet to hem, with nothing human to break the pattern. The armour was the hardest part, plate after plate, engineered yet readable at a glance.":
+    "Il suo design doveva mostrare un uomo che ha <strong>smesso di provare</strong> qualcosa: austero, immobile, in piedi come una macchina in attesa di ordini. Per questo è perfettamente <strong>simmetrico</strong>, dall'elmo all'orlo del cappotto, senza niente di umano a rompere lo schema. L'armatura è stata la parte più difficile: piastra dopo piastra, precisa come un meccanismo ma leggibile a colpo d'occhio.",
+  "The idea I'm proudest of is the <strong>mask</strong>. Since he can make people forget, it never looks the same twice: look away, look back, and you'd swear it changed. The details board shows several versions, all of them his.":
+    "L'idea di cui vado più fiero è la <strong>maschera</strong>. Visto che può far dimenticare, non è mai uguale due volte: basta distogliere lo sguardo per un attimo e sembra già diversa. La tavola dei dettagli ne mostra più versioni, tutte sue.",
   "Greyhat Details":
     "Greyhat · dettagli",
   "Greyhat Face":
     "Greyhat · volto",
   "The mentor who never quite grew up.":
     "Il mentore che non è mai cresciuto del tutto.",
-  "Brendan Reid is one of the heroes of the story, which does not mean he has his life together. He was one of the leaders of the revolution that failed, and he has been waiting for the right moment to start another one ever since.":
-    "Brendan Reid è uno degli eroi della storia, il che non significa che abbia la vita in ordine. È stato uno dei leader della rivoluzione fallita, e da allora aspetta il momento giusto per cominciarne un'altra.",
-  "I wanted him to flip the classic mentor around. He has the experience, he knows the system and he is the one guiding the protagonists, but the lessons go both ways and he has as much to learn from them as they do from him. He is getting close to middle age and is still a young rebel at heart, loyal to a time that has already moved on without him.":
-    "Con lui volevo ribaltare la figura classica del mentore. Ha l'esperienza, conosce il sistema ed è lui a guidare i protagonisti, ma le lezioni vanno in entrambe le direzioni e ha tanto da imparare da loro quanto loro da lui. Si avvicina alla mezza età, ma nel cuore è ancora un giovane ribelle, fedele a un'epoca che è già andata avanti senza di lui.",
-  "My favourite piece of his design is the wings. Each metal feather can come loose and fold like origami into a weapon, and there is no telling which one: a blade, a gun or, if luck turns, a spoon. Not even he knows what he is going to get. For someone who lives on risk and bets, it is the only way of fighting that makes sense.":
-    "La parte del suo design che preferisco sono le ali. Ogni piuma di metallo può staccarsi e piegarsi come un origami fino a diventare un'arma, e non si sa mai quale: una lama, una pistola o, se gli va male, un cucchiaio. Nemmeno lui sa cosa gli toccherà. Per uno che vive di rischi e scommesse è l'unico modo di combattere che abbia senso.",
+  "<strong>Brendan Reid</strong> is one of the heroes, which doesn't mean he has his life together. A leader of the failed revolution, he's been waiting ever since for the right moment to start another.":
+    "<strong>Brendan Reid</strong> è uno degli eroi, il che non vuol dire che abbia la vita in ordine. Tra i leader della rivoluzione fallita, da allora aspetta il momento giusto per cominciarne un'altra.",
+  "I wanted to flip the <strong>classic mentor</strong>. He has the experience and guides the protagonists, but he has as much to learn from them as they do from him. Nearing middle age, he's still a young rebel at heart, loyal to a time that has moved on.":
+    "Volevo ribaltare la figura del <strong>mentore classico</strong>. Ha esperienza e guida i protagonisti, ma ha tanto da imparare da loro quanto loro da lui. Vicino alla mezza età, nel cuore è ancora un giovane ribelle, fedele a un'epoca che è andata avanti senza di lui.",
+  "My favourite part is the <strong>wings</strong>: each metal feather can fold like origami into a weapon, a blade, a gun or, if luck turns, a spoon. Not even he knows which. For someone who lives on <strong>risk</strong>, it's the only way to fight that makes sense.":
+    "La mia parte preferita sono le <strong>ali</strong>: ogni piuma di metallo si piega come un origami in un'arma, una lama, una pistola o, se va male, un cucchiaio. Nemmeno lui sa quale. Per chi vive di <strong>rischio</strong>, è l'unico modo di combattere che abbia senso.",
   "Blackhat Details":
     "Blackhat · dettagli",
   "Blackhat Face":
     "Blackhat · volto",
   "He wants everyone to become one, and that one is him.":
     "Vuole che tutti diventino una cosa sola, e quella cosa è lui.",
-  "If the other two are shades of grey, Morgan Blake is the dark at the bottom of the story. He is a manipulator who talks of ascension and union, and his power does exactly what it promises: it hacks into people's minds, wipes away who they were and folds what is left into himself. His victims go back to their lives wearing their own faces, until the day they no longer need them.":
-    "Se gli altri due sono sfumature di grigio, Morgan Blake è il buio in fondo alla storia. È un manipolatore che parla di ascensione e di unione, e il suo potere fa esattamente quello che promette: si infiltra nelle menti delle persone, cancella chi erano e assorbe in sé quello che resta. Le sue vittime tornano alle loro vite con la loro faccia, fino al giorno in cui non ne hanno più bisogno.",
-  "For his look I went to the uncanny valley, the faces horror uses so well because they are almost right. Everything about him reads as human at first, and the longer you look the more something feels off: the smile holds a little too long, the skin looks like it could crack. I wanted him to be someone you recognise as a person and still want to step away from.":
-    "Per il suo aspetto ho attinto alla uncanny valley, quei volti che l'horror sfrutta così bene proprio perché sono quasi normali. Tutto in lui sembra umano a prima vista, e più lo guardi più qualcosa non torna: il sorriso dura un po' troppo, la pelle sembra potersi crepare. Volevo che fosse qualcuno che riconosci come una persona e da cui vuoi comunque allontanarti.",
-  "Six months of campaigns for Undo Studios SA, the first time my drawing had to answer to a metric instead of a mood.":
-    "Sei mesi di campagne per Undo Studios SA, la prima volta in cui il mio disegno ha dovuto rispondere a una metrica invece che a un'ispirazione.",
-  "For half of 2024 I was the person turning the game's world into content: one splash illustration per character, the Season Pass artwork, and a guide for the Land Invasion mode.":
-    "Per metà del 2024 sono stato quello che trasformava il mondo del gioco in contenuti: una splash art per ogni personaggio, l'artwork del Season Pass e una guida per la modalità Land Invasion.",
-  "The process was different from anything I do for myself. There was a brief, a calendar, and a date on which every piece had to go live, and feedback came back as numbers. I learned to pitch a scene in one thumbnail, to plan the logo and the crop before painting a single stroke, and to let go of a piece once it did its job.":
-    "Il processo era diverso da tutto quello che faccio per me. C'erano un brief, un calendario e una data in cui ogni pezzo doveva uscire, e il feedback tornava sotto forma di numeri. Ho imparato a presentare una scena con una sola thumbnail, a pensare al logo e al taglio prima di dare una singola pennellata, e a lasciar andare un pezzo una volta che aveva fatto il suo lavoro.",
-  "What you find here is not everything I made in those six months. A big part of the job was posts made to get people talking and interacting, useful for the pages but not much to look at as drawings. I left those out and kept the illustration work, the pieces where the drawing itself was the point.":
-    "Quello che trovi qui non è tutto quello che ho fatto in quei sei mesi. Una grossa parte del lavoro erano post pensati per far parlare e interagire le persone, utili per le pagine ma poco interessanti come disegni. Li ho lasciati fuori e ho tenuto il lavoro di illustrazione, i pezzi in cui il disegno era il cuore di tutto.",
+  "If the other two are shades of grey, <strong>Morgan Blake</strong> is the dark at the bottom of the story. A manipulator preaching ascension and union, his power <strong>hacks into minds</strong>, erases who people were and absorbs what's left. His victims go home wearing their own faces, until they no longer need them.":
+    "Se gli altri due sono sfumature di grigio, <strong>Morgan Blake</strong> è il buio in fondo alla storia. Manipolatore che predica ascensione e unione, il suo potere <strong>si infiltra nelle menti</strong>, cancella chi erano le persone e assorbe ciò che resta. Le sue vittime tornano a casa con la propria faccia, finché non ne hanno più bisogno.",
+  "For his look I drew on the <strong>uncanny valley</strong>, the almost-right faces horror uses so well. He reads as human at first, but the longer you look, the more feels off: a smile held too long, skin that could crack.":
+    "Per il suo aspetto ho attinto alla <strong>uncanny valley</strong>, i volti quasi normali che l'horror sfrutta così bene. A prima vista sembra umano, ma più lo si guarda più qualcosa non torna: un sorriso che dura troppo, una pelle che sembra potersi crepare.",
+  "Six months of campaigns for Undo Studios SA, the first time my drawing answered to a metric instead of a mood.":
+    "Sei mesi di campagne per Undo Studios SA, la prima volta in cui il mio disegno ha risposto a una metrica e non a un'ispirazione.",
+  "For half of 2024 I turned the game's world into content: a <strong>splash illustration</strong> per character, the Season Pass artwork and a guide to the Land Invasion mode.":
+    "Per metà del 2024 ho trasformato il mondo del gioco in contenuti: una <strong>splash art</strong> per ogni personaggio, l'artwork del Season Pass e una guida alla modalità Land Invasion.",
+  "A different process from my own work: a brief, a calendar, a go-live date, and feedback in numbers. I learned to pitch a scene in <strong>one thumbnail</strong>, plan logo and crop before the first stroke, and <strong>let go</strong> of a piece once it did its job.":
+    "Un processo diverso dal mio: un brief, un calendario, una data di uscita e un feedback fatto di numeri. Ho imparato a proporre una scena con <strong>una sola thumbnail</strong>, a pensare logo e taglio prima della prima pennellata e a <strong>lasciar andare</strong> un pezzo una volta fatto il suo lavoro.",
+  "Not everything from those months is here. Many posts were made to get people talking, useful for the pages but not much as drawings. I kept the <strong>illustration work</strong>, where the drawing was the point.":
+    "Qui non c'è tutto il lavoro di quei mesi. Molti post servivano a far interagire le persone, utili per le pagine ma poco interessanti come disegni. Ho tenuto le <strong>illustrazioni</strong>, dove il disegno era il cuore di tutto.",
   "Characters":
     "Personaggi",
   "Client":
@@ -642,8 +642,8 @@ export default {
     "Tirocinio retribuito, tempo pieno",
   "Build engagement for the game through social channels":
     "Far crescere il coinvolgimento attorno al gioco sui canali social",
-  "The artwork for the Season Pass. These characters came to me without a story, so giving each of them a personality was my job, and here it had to come through in a pose and a sky full of coins.":
-    "L'artwork per il Season Pass. Questi personaggi mi sono arrivati senza una storia, quindi dare una personalità a ognuno era compito mio, e qui doveva emergere da una posa e da un cielo pieno di monete.",
+  "The Season Pass artwork. These characters came without a story, so giving them a personality was up to me, here through a pose and a sky full of coins.":
+    "L'artwork del Season Pass. Questi personaggi sono arrivati senza una storia, quindi dare loro una personalità spettava a me, qui con una posa e un cielo pieno di monete.",
   "Cassie, caught on a security camera halfway through a piece of graffiti. She knows the camera is there and does not care.":
     "Cassie, colta da una telecamera di sorveglianza a metà di un graffito. Sa che la telecamera c'è, e non le importa.",
   "Captain Bonechuckle on a beach at sunset, sword drawn and treasure at his feet, with his parrot keeping watch over both.":
@@ -660,10 +660,10 @@ export default {
     "Ramon che danza tra i laser verso la gemma, con una rosa tra i denti.",
   "One scene per character, made to stop a scroll.":
     "Una scena per personaggio, fatta per fermare lo scroll.",
-  "This set was a challenge of its own, because these characters came to me with no context at all. There was no story behind them and no notes on who they were, so I had to give them a personality myself, and every pose, setting and expression had to build one from nothing.":
-    "Questa serie è stata una sfida a sé, perché questi personaggi mi sono arrivati senza alcun contesto. Non c'era una storia dietro e nessuna nota su chi fossero, quindi ho dovuto dare loro una personalità io, e ogni posa, ambientazione ed espressione doveva costruirne una dal nulla.",
-  "That was also the best part of the job. With nothing to stay faithful to, I was free to choose how to approach each one and what kind of person they would be. I pitched every scene as a thumbnail, sketched it straight in the social format, and rendered it with the space for the logo already planned.":
-    "È stata anche la parte più bella del lavoro. Senza niente a cui restare fedele, ero libero di scegliere come affrontare ognuno e che tipo di persona sarebbe stato. Ho proposto ogni scena come thumbnail, l'ho abbozzata direttamente nel formato social e l'ho rifinita lasciando già lo spazio per il logo.",
+  "A challenge of its own: these characters arrived with <strong>no context</strong>, no story and no notes, so every pose, setting and expression had to build a personality from nothing.":
+    "Una sfida a sé: questi personaggi sono arrivati <strong>senza contesto</strong>, senza storia né note, quindi ogni posa, ambientazione ed espressione doveva costruire una personalità dal nulla.",
+  "It was also the best part: with nothing to stay faithful to, I was <strong>free</strong> to decide who each one would be. Every scene started as a thumbnail, sketched straight in the social format, with room for the logo already planned.":
+    "È stata anche la parte più bella: senza niente a cui restare fedele, ero <strong>libero</strong> di decidere chi sarebbe stato ognuno. Ogni scena è nata come thumbnail, abbozzata direttamente nel formato social, con lo spazio per il logo già previsto.",
   "Medium":
     "Tecnica",
   "Digital illustration, social formats":
@@ -680,20 +680,20 @@ export default {
     "Pagine 7-8",
   "A game manual like the ones that used to come in the case.":
     "Un manuale di gioco come quelli che trovavi nella custodia.",
-  "The idea was to make it feel like the booklet you found inside a PS1 or PS2 game, the one you read on the way home before you could even play. I laid it out in spreads, and in the middle of each one, where the pages meet, I drew the staples holding the booklet together, so even on a screen it looks like something you could hold.":
-    "L'idea era farlo sembrare il libretto che trovavi dentro un gioco per PS1 o PS2, quello che leggevi sulla strada di casa prima ancora di poter giocare. L'ho impaginato in doppie pagine, e al centro di ognuna, dove le pagine si incontrano, ho disegnato i punti metallici che tengono insieme il libretto, così anche su uno schermo sembra qualcosa da tenere in mano.",
-  "Inside there are eight pages of lore, factions, a quick start and the controls for PC and mobile. Most of the work was editorial: deciding what belongs in a screenshot and what in a sentence, and keeping the layout in the same visual language as the game.":
-    "Dentro ci sono otto pagine di lore, fazioni, una guida rapida e i comandi per PC e mobile. La maggior parte del lavoro è stata editoriale: decidere cosa va in uno screenshot e cosa in una frase, e mantenere l'impaginazione nello stesso linguaggio visivo del gioco.",
+  "The idea was the <strong>booklet</strong> inside a PS1 or PS2 case, the one read on the way home before playing. I laid it out in spreads and drew the <strong>staples</strong> where the pages meet, so even on a screen it looks like something to hold.":
+    "L'idea era il <strong>libretto</strong> che si trovava nella custodia dei giochi PS1 e PS2, quello letto sulla strada di casa prima ancora di giocare. L'ho impaginato in doppie pagine e ho disegnato i <strong>punti metallici</strong> al centro, così anche su schermo sembra qualcosa da tenere in mano.",
+  "Eight pages of lore, factions, a quick start and controls for PC and mobile. Most of the work was <strong>editorial</strong>: choosing what goes in a screenshot and what in a sentence, in the game's own visual language.":
+    "Otto pagine di lore, fazioni, guida rapida e comandi per PC e mobile. Il grosso del lavoro è stato <strong>editoriale</strong>: scegliere cosa mostrare in uno screenshot e cosa in una frase, nel linguaggio visivo del gioco.",
   "Layout, illustration, UI":
     "Impaginazione, illustrazione, UI",
   "Some were homework, some were paid for, some were just for me. Every one of them got a story.":
     "Alcuni erano compiti, altri lavori pagati, altri ancora solo per me. Ognuno ha avuto la sua storia.",
-  "This collection mixes three kinds of work: drawings I made for myself, commissions for clients, and the projects I did at Event Horizon School. The briefs could not have been more different, but the way I start never changes. Every character gets a story before it gets a shape.":
-    "Questa raccolta mette insieme tre tipi di lavoro: disegni fatti per me stesso, commissioni per clienti e i progetti che ho realizzato alla Event Horizon School. I brief non avrebbero potuto essere più diversi, ma il modo in cui comincio non cambia mai. Ogni personaggio ha una storia prima ancora di avere una forma.",
-  "Each one goes through the same stages: an inspiration board, sketches, palette explorations and the final render. I keep all of them here, because the steps nobody usually sees are the part I am proudest of.":
-    "Ognuno passa attraverso le stesse fasi: una moodboard, gli sketch, le esplorazioni di palette e il render finale. Li tengo tutti qui, perché i passaggi che di solito nessuno vede sono la parte di cui vado più fiero.",
-  "Under the characters are the studies, the exercises that taught me to give a flat drawing volume, weight and light. They are the reason the characters work.":
-    "Sotto i personaggi ci sono gli studi, gli esercizi che mi hanno insegnato a dare volume, peso e luce a un disegno piatto. Sono il motivo per cui i personaggi funzionano.",
+  "Three kinds of work: drawings for myself, client commissions and Event Horizon projects. The briefs couldn't be more different, but I always start the same way: every character gets a <strong>story</strong> before it gets a shape.":
+    "Tre tipi di lavoro: disegni per me, commissioni per clienti e progetti della Event Horizon. I brief non potrebbero essere più diversi, ma comincio sempre allo stesso modo: ogni personaggio ha una <strong>storia</strong> prima ancora di una forma.",
+  "Each goes through the same stages: moodboard, sketches, palettes, final render. I keep them all, because the <strong>steps nobody sees</strong> are what I'm proudest of.":
+    "Ognuno passa dalle stesse fasi: moodboard, sketch, palette, render finale. Le tengo tutte, perché i <strong>passaggi che nessuno vede</strong> sono quelli di cui vado più fiero.",
+  "Below the characters are the <strong>studies</strong>, the exercises that taught me volume, weight and light. They're why the characters work.":
+    "Sotto i personaggi ci sono gli <strong>studi</strong>, gli esercizi che mi hanno insegnato volume, peso e luce. Sono il motivo per cui i personaggi funzionano.",
   "Shading Study":
     "Studio sullo shading",
   "Material Study":
@@ -712,12 +712,12 @@ export default {
     "La moodboard: riferimenti per forme, costume e atmosfera, raccolti ancora prima di tracciare una linea.",
   "A perfect gentleman, with a demon's arm under the cloak.":
     "Un perfetto gentiluomo, con un braccio demoniaco sotto il mantello.",
-  "Arcaster started as a fantasy character design for Event Horizon, and at first the brief threw me. Back then cyberpunk was my genre, the one I knew inside out, and fantasy felt like someone else's territory. I had to find my own way in, and in the end I did.":
-    "Arcaster è nato come character design fantasy per la Event Horizon, e all'inizio il brief mi ha spiazzato. All'epoca il mio genere era il cyberpunk, quello che conoscevo a memoria, e il fantasy mi sembrava il territorio di qualcun altro. Dovevo trovare la mia strada per entrarci, e alla fine l'ho trovata.",
-  "I wanted someone charismatic and impeccably dressed, a gentleman in every detail, with something he would rather you did not see. Under his cloak he keeps a demonic arm hidden, and in his hand he carries a sword forged in hell. The whole character lives in that contrast between the polished outside and the dark side underneath.":
-    "Volevo un personaggio carismatico e vestito in modo impeccabile, un gentiluomo in ogni dettaglio, con qualcosa che preferirebbe non farti vedere. Sotto il mantello tiene nascosto un braccio demoniaco, e in mano impugna una spada forgiata all'inferno. Tutto il personaggio vive in quel contrasto tra l'esterno curato e il lato oscuro che c'è sotto.",
-  "I liked this gentleman with a dark side so much that I did not want to leave him on the page. He became my character in a Pathfinder 2 campaign, a magus who fights with abyssal magic.":
-    "Mi piaceva così tanto questo gentiluomo con un lato oscuro che non volevo lasciarlo sulla pagina. È diventato il mio personaggio in una campagna di Pathfinder 2, un magus che combatte con la magia abissale.",
+  "Arcaster began as a <strong>fantasy</strong> brief for Event Horizon, and at first it threw me: cyberpunk was my genre, fantasy felt like someone else's territory. I had to find my own way in, and I did.":
+    "Arcaster è nato da un brief <strong>fantasy</strong> per la Event Horizon, e all'inizio mi ha spiazzato: il mio genere era il cyberpunk, il fantasy mi sembrava territorio altrui. Ho dovuto trovare la mia strada per entrarci, e l'ho trovata.",
+  "A charismatic, impeccably dressed <strong>gentleman</strong> with something to hide: a <strong>demonic arm</strong> under the cloak and a sword forged in hell. The whole character lives in that contrast.":
+    "Un <strong>gentiluomo</strong> carismatico e impeccabile con qualcosa da nascondere: un <strong>braccio demoniaco</strong> sotto il mantello e una spada forgiata all'inferno. Tutto il personaggio vive in quel contrasto.",
+  "I liked him so much that he became my character in a <strong>Pathfinder 2</strong> campaign, a magus fighting with abyssal magic.":
+    "Mi piaceva così tanto che è diventato il mio personaggio in una campagna di <strong>Pathfinder 2</strong>, un magus che combatte con la magia abissale.",
   "Fantasy character, Event Horizon School":
     "Personaggio fantasy, Event Horizon School",
   "Stages":
@@ -736,10 +736,10 @@ export default {
     "Sketch: silhouette e pose provate una accanto all'altra, per trovare la forma prima di qualsiasi dettaglio.",
   "The protagonist of MSR, as she looked years ago.":
     "La protagonista di MSR, com'era anni fa.",
-  "Genista is the protagonist of MSR, my own story. This is an old design, drawn years ago, and she has changed a lot since then. Looking at it now feels a bit like finding an old photo of a friend.":
-    "Genista è la protagonista di MSR, la mia storia. Questo è un design vecchio, disegnato anni fa, e da allora lei è cambiata molto. Guardarlo adesso è un po' come ritrovare una vecchia foto di un'amica.",
-  "I made it for Event Horizon, where this time the brief asked for a cyberpunk character. That was my genre, and the hero of my story was still waiting for a face, so I took the chance.":
-    "L'ho realizzato per la Event Horizon, dove questa volta il brief chiedeva un personaggio cyberpunk. Era il mio genere, e la protagonista della mia storia stava ancora aspettando un volto, così ho colto l'occasione.",
+  "<strong>Genista</strong> is the protagonist of MSR. This is an old design, and she has changed a lot since: looking at it feels like finding an old photo of a friend.":
+    "<strong>Genista</strong> è la protagonista di MSR. Questo è un design vecchio, e da allora è cambiata molto: guardarlo è come ritrovare una vecchia foto di un'amica.",
+  "The Event Horizon brief asked for a <strong>cyberpunk</strong> character, my genre, and the hero of my story still needed a face, so I took the chance.":
+    "Il brief della Event Horizon chiedeva un personaggio <strong>cyberpunk</strong>, il mio genere, e la protagonista della mia storia aspettava ancora un volto: ho colto l'occasione.",
   "Cyberpunk character, Event Horizon School":
     "Personaggio cyberpunk, Event Horizon School",
   "Sketches, palettes, details, render":
@@ -766,12 +766,12 @@ export default {
     "La stanza di Non · sketch",
   "A potion student who bends the dress code just far enough.":
     "Una studentessa di pozioni che forza le regole sulla divisa quanto basta.",
-  "For this Event Horizon brief I had to design a student at a school of magic, and her dorm room along with her. Non studies potions above everything else, and she tests them on the one subject always at hand: herself.":
-    "Per questo brief della Event Horizon dovevo disegnare una studentessa di una scuola di magia, e con lei la sua stanza del dormitorio. Più di ogni altra materia, Non studia le pozioni, e le prova sull'unica cavia sempre a portata di mano: se stessa.",
-  "I wanted her to be a rebel. She has to wear the uniform, so she changed everything she could get away with, bending the dress code just enough to make it feel like hers without getting punished for it.":
-    "Volevo che fosse una ribelle. Deve indossare la divisa, quindi l'ha cambiata in tutto ciò che poteva, forzando le regole quanto basta per sentirla sua senza farsi punire.",
-  "Magic is not the only thing she loves. Her clothes and her room are full of pop culture references, all the things she cares about outside of class, so the room tells you who she is before she says a word.":
-    "La magia non è l'unica cosa che ama. I suoi vestiti e la sua stanza sono pieni di riferimenti alla cultura pop, tutte le cose a cui tiene fuori dalle lezioni, così la stanza ti dice chi è prima ancora che lei apra bocca.",
+  "This brief asked for a student at a <strong>school of magic</strong>, and her dorm room. Non studies potions above all, and tests them on the one subject always at hand: herself.":
+    "Questo brief chiedeva una studentessa di una <strong>scuola di magia</strong>, con la sua stanza. Più di ogni altra materia, Non studia le pozioni, e le prova sull'unica cavia sempre disponibile: se stessa.",
+  "She's a <strong>rebel</strong>: forced into a uniform, she changed everything she could get away with, bending the dress code just enough to make it hers.":
+    "È una <strong>ribelle</strong>: costretta alla divisa, l'ha cambiata in tutto ciò che poteva, forzando le regole quanto basta per renderla sua.",
+  "Her clothes and her room are full of <strong>pop culture</strong> references, so the room says who she is before she does.":
+    "Vestiti e stanza sono pieni di riferimenti alla <strong>cultura pop</strong>, così la stanza dice chi è prima ancora di lei.",
   "Magic school student and her room, Event Horizon School":
     "Studentessa di una scuola di magia e la sua stanza, Event Horizon School",
   "Inspiration, sketches, palettes, render, room":
@@ -798,12 +798,12 @@ export default {
     "La casa di Kurowo · sketch",
   "Something adorable, at the end of the world.":
     "Qualcosa di adorabile, alla fine del mondo.",
-  "Another Event Horizon brief, this time a cartoon character and his home. I liked the idea of setting the sweetness of a small cartoon animal against the most terrible place I could think of: the end of the world, after a nuclear holocaust.":
-    "Un altro brief della Event Horizon, questa volta un personaggio cartoon con la sua casa. Mi piaceva l'idea di contrapporre la tenerezza di un piccolo animale cartoon al posto più terribile che riuscissi a immaginare: la fine del mondo, dopo un olocausto nucleare.",
-  "I did not stop at one drawing. I wrote a whole story around him, with other characters he is tied to, and his house became a piece of that world.":
-    "Non mi sono fermato a un disegno. Gli ho costruito attorno una storia intera, con altri personaggi a cui è legato, e la sua casa è diventata un pezzo di quel mondo.",
-  "It was an unusual one for me, because I had never tried cartoon before. I was learning the style while I was already using it.":
-    "Per me è stato un lavoro insolito, perché prima di allora non mi ero mai cimentato nel cartoon. Imparavo lo stile mentre lo stavo già usando.",
+  "Another brief, a <strong>cartoon</strong> character and his home. I set the sweetness of a small animal against the worst place I could imagine: the end of the world, after a nuclear holocaust.":
+    "Un altro brief, un personaggio <strong>cartoon</strong> e la sua casa. Ho messo la tenerezza di un piccolo animale contro il posto peggiore che riuscissi a immaginare: la fine del mondo, dopo un olocausto nucleare.",
+  "I didn't stop at one drawing: I wrote a <strong>whole story</strong> around him, and his house became part of that world.":
+    "Non mi sono fermato a un disegno: gli ho scritto attorno <strong>una storia intera</strong>, e la sua casa è diventata parte di quel mondo.",
+  "My first try at cartoon: I was learning the style while using it.":
+    "Il mio primo tentativo di cartoon: imparavo lo stile mentre lo usavo.",
   "Cartoon character and his home, Event Horizon School":
     "Personaggio cartoon e la sua casa, Event Horizon School",
   "Inspiration, sketches, palettes, render, house":
@@ -820,10 +820,10 @@ export default {
     "Nora · sketch",
   "A platformer hero, with a light bulb for an idea.":
     "L'eroina di un platform, con un'idea luminosa sempre accanto.",
-  "Nora is another cartoon character, this time finished in cel shading. She is also a nod to a character from my story, retold as a cartoon and in a much brighter key.":
-    "Nora è un altro personaggio cartoon, questa volta rifinito in cel shading. È anche un omaggio a un personaggio della mia storia, raccontato di nuovo in versione cartoon e in una chiave molto più luminosa.",
-  "I imagined her as the protagonist of a platform game: an artist who rides her own brushstrokes, with a little light bulb companion that stands for an idea.":
-    "L'ho immaginata come la protagonista di un gioco platform: un'artista che cavalca le sue stesse pennellate, accompagnata da una piccola lampadina che rappresenta un'idea.",
+  "Another cartoon character, this time in <strong>cel shading</strong>, and a nod to a character from my story, retold in a much brighter key.":
+    "Un altro personaggio cartoon, questa volta in <strong>cel shading</strong>, e un omaggio a un personaggio della mia storia, raccontato in una chiave molto più luminosa.",
+  "The hero of a <strong>platform game</strong>: an artist who rides her own brushstrokes, with a little light bulb companion standing for an idea.":
+    "La protagonista di un <strong>platform</strong>: un'artista che cavalca le sue pennellate, accompagnata da una piccola lampadina che rappresenta un'idea.",
   "Inspiration, sketch, palettes, details, render":
     "Moodboard, sketch, palette, dettagli, render",
   "Digital painting, cel shading":
@@ -848,8 +848,8 @@ export default {
     "Forme 5",
   "From light on a cube to a face that has volume.":
     "Dalla luce su un cubo a un volto che ha volume.",
-  "A study of digital shading I did with Event Horizon. I started from zero, with light on cubes and spheres one source at a time, and step by step I got to characters that feel three dimensional.":
-    "Uno studio sullo shading digitale fatto con la Event Horizon. Sono partito da zero, con la luce su cubi e sfere una fonte alla volta, e passo dopo passo sono arrivato a personaggi che sembrano tridimensionali.",
+  "A <strong>digital shading</strong> study with Event Horizon: from light on cubes and spheres, one source at a time, to characters that feel three dimensional.":
+    "Uno studio di <strong>shading digitale</strong> con la Event Horizon: dalla luce su cubi e sfere, una fonte alla volta, a personaggi che sembrano tridimensionali.",
   "Materials 1":
     "Materiali 1",
   "Materials 2":
@@ -858,8 +858,8 @@ export default {
     "Pozione",
   "Steel, liquid, wood, paper, glass: each one until it reads at a glance.":
     "Acciaio, liquido, legno, carta, vetro: ognuno finché non si riconosce a colpo d'occhio.",
-  "I tried to make every material as realistic as I could. It was one of the most important exercises I have done, and I put it to work straight away on the potion.":
-    "Ho cercato di rendere ogni materiale il più realistico possibile. È stato uno degli esercizi più importanti che abbia mai fatto, e l'ho messo subito in pratica sulla pozione.",
+  "Every <strong>material</strong> as realistic as I could make it. One of my most important exercises, put to work straight away on the potion.":
+    "Ogni <strong>materiale</strong> il più realistico possibile. Uno degli esercizi più importanti che abbia fatto, messo subito in pratica sulla pozione.",
   "Portrait From Photo":
     "Ritratto da foto",
   "Portrait Cartoon":
@@ -872,8 +872,8 @@ export default {
     "Render dell'orco 3",
   "Taking a flat drawing and making it feel solid.":
     "Prendere un disegno piatto e renderlo solido.",
-  "Exercises I did on my own, to learn how to turn a 2D drawing into something that looks three dimensional. It opens with a portrait painted from a photo.":
-    "Esercitazioni fatte in autonomia per imparare a trasformare un disegno 2D in qualcosa che sembri tridimensionale. Si apre con un ritratto dipinto da una foto.",
+  "Exercises on my own, turning a <strong>2D drawing</strong> into something that looks solid. It opens with a portrait painted from a photo.":
+    "Esercizi in autonomia per trasformare un <strong>disegno 2D</strong> in qualcosa che sembri solido. Si apre con un ritratto dipinto da una foto.",
   "Choice":
     "Scelta",
   "Arctic Predator":
@@ -884,16 +884,16 @@ export default {
     "Chimere",
   "Animals that do not exist, built out of animals that do.":
     "Animali che non esistono, costruiti con animali che esistono.",
-  "Every creature here is built on animal anatomy I studied first, so even the strangest one stands and moves like something that could be alive. From there I pushed in different directions: an arctic predator and its prey, designed for the same frozen world, and two chimeras, each one made of two different animals.":
-    "Ogni creatura qui è costruita sull'anatomia animale che ho studiato prima, così anche la più strana sta in piedi e si muove come qualcosa che potrebbe essere vivo. Da lì ho esplorato direzioni diverse: un predatore artico e la sua preda, pensati per lo stesso mondo ghiacciato, e due chimere, ognuna fatta di due animali diversi.",
-  "The last one is a horror creature, and it stands for the paralysing fear of having to make a choice. It is a deer frozen in the middle of a motorway, caught in the headlights. Its antlers branch out like the paths it could take, and every branch grows back into it and wounds it. It is the last one I made, but it opens the set, because it is the one that matters most to me.":
-    "L'ultima è una creatura horror, e rappresenta la paura paralizzante di dover fare una scelta. È un cervo immobile in mezzo all'autostrada, abbagliato dai fari. Le sue corna si diramano come le strade che potrebbe prendere, e ogni ramo gli cresce contro e lo ferisce. È l'ultima che ho realizzato, ma apre la serie, perché è quella che conta di più per me.",
+  "Every creature is built on real <strong>animal anatomy</strong>, so even the strangest stands and moves as if alive: an arctic predator and its prey, and two <strong>chimeras</strong>, each made of two animals.":
+    "Ogni creatura nasce da una vera <strong>anatomia animale</strong>, così anche la più strana sta in piedi e si muove come se fosse viva: un predatore artico e la sua preda, e due <strong>chimere</strong>, ognuna fatta di due animali.",
+  "The last is a horror creature: the <strong>paralysing fear of choosing</strong>. A deer frozen on a motorway in the headlights, its antlers branching like the paths it could take, every branch growing back to wound it. It opens the set because it matters most to me.":
+    "L'ultima è una creatura horror: la <strong>paura paralizzante di scegliere</strong>. Un cervo immobile in autostrada, abbagliato dai fari, con le corna che si diramano come le strade possibili, e ogni ramo che gli ricresce contro e lo ferisce. Apre la serie perché è quella che conta di più per me.",
   "Designing a game from the inside: creatures, dice, map, interface, and the effects that make a hit feel like a hit.":
     "Progettare un videogioco da dentro: creature, dadi, mappa, interfaccia, e gli effetti che fanno sentire davvero un colpo.",
-  "YMDIR is where everything I know gets used at once. I design the creatures and the bosses, the dice and their faces, the map and the interface, and I write the world they belong to, in constant back and forth with the people who have to animate, program and balance all of it.":
-    "In YMDIR uso tutto quello che so, tutto insieme. Disegno le creature e i boss, i dadi e le loro facce, la mappa e l'interfaccia, e scrivo il mondo a cui appartengono, in un confronto continuo con chi deve animare, programmare e bilanciare tutto.",
-  "The page follows the game the way it grew: the early concepts first, many of which never made it in, then the designs that did, the map of its world, and the dice the whole system turns on.":
-    "La pagina segue il gioco nel modo in cui è cresciuto: prima i concept iniziali, molti dei quali non ci sono mai entrati, poi i design che ce l'hanno fatta, la mappa del suo mondo e i dadi su cui gira l'intero sistema.",
+  "In YMDIR I use <strong>everything I know</strong>: creatures and bosses, dice, map and interface, and the world they belong to, in constant dialogue with the people who animate, program and balance it.":
+    "In YMDIR uso <strong>tutto quello che so</strong>: creature e boss, dadi, mappa e interfaccia, e il mondo a cui appartengono, in dialogo continuo con chi li anima, programma e bilancia.",
+  "The page follows the game as it grew: early concepts first, many later cut, then the approved designs, the <strong>map</strong> and the <strong>dice</strong> the whole system turns on.":
+    "La pagina segue il gioco come è cresciuto: prima i concept iniziali, molti poi tagliati, poi i design approvati, la <strong>mappa</strong> e i <strong>dadi</strong> su cui gira tutto il sistema.",
   "Old Designs":
     "Vecchi design",
   "Approved Designs":
@@ -944,16 +944,16 @@ export default {
     "Rogue boss",
   "Creatures that never made it into the game, and sketches that got others started.":
     "Creature che non sono mai entrate nel gioco, e sketch da cui sono partite altre.",
-  "A lot of what I drew for YMDIR never reached the final game, and that is part of the job. Often I was asked for concepts of creatures that were later cut, or that changed so much on the way that nothing of the first design was left.":
-    "Molto di quello che ho disegnato per YMDIR non è mai arrivato nel gioco finale, e fa parte del lavoro. Spesso mi chiedevano concept di creature che poi venivano tagliate, o che cambiavano così tanto per strada che del primo design non restava niente.",
-  "Other times my task was to make preliminary designs: a first idea of a creature, meant to give a direction and some inspiration to the artists who would finish it. Seen all together, they show how much the game changed before it found its look. Tap any of them to see it up close.":
-    "Altre volte il mio compito era realizzare design preliminari: una prima idea di creatura, pensata per dare una direzione e un po' di ispirazione agli artisti che l'avrebbero finita. Visti tutti insieme, mostrano quanto è cambiato il gioco prima di trovare il suo aspetto. Tocca una qualsiasi per vederla da vicino.",
+  "Much of what I drew never reached the final game, and that's part of the job: creatures that were <strong>cut</strong>, or changed so much nothing of the first design was left.":
+    "Molto di quello che ho disegnato non è mai arrivato nel gioco finale, ed è parte del lavoro: creature <strong>tagliate</strong>, o cambiate così tanto che del primo design non restava niente.",
+  "Other times I made <strong>preliminary designs</strong>, a first idea to give direction to the artists who would finish it. Together they show how much the game changed before it found its look.":
+    "Altre volte realizzavo <strong>design preliminari</strong>, una prima idea per dare una direzione agli artisti che li avrebbero finiti. Insieme mostrano quanto è cambiato il gioco prima di trovare il suo aspetto.",
   "Kra’khom turnaround":
     "Kra’khom · turnaround",
   "The Shaman of Misery, drawn again for the game he ended up in.":
     "Lo Sciamano della Miseria, ridisegnato per il gioco in cui è finito.",
-  "Kra’khom is one of the creatures I followed from the very start. His first version, the one marked Before, was a crow riding a tangle of ghosts. The new one stands on his own, in a robe and with a staff, and the green of his magic is the thread that still ties the two together.":
-    "Kra’khom è una delle creature che ho seguito fin dall'inizio. La sua prima versione, quella segnata come Prima, era un corvo in groppa a un groviglio di fantasmi. Quella nuova sta in piedi da sola, con una tunica e un bastone, e il verde della sua magia è il filo che tiene ancora unite le due versioni.",
+  "Kra’khom is one of the creatures I followed from the start. The first version was a <strong>crow riding a tangle of ghosts</strong>. The new one stands alone, with robe and staff, and the <strong>green</strong> of his magic still ties the two together.":
+    "Kra’khom è una delle creature che ho seguito dall'inizio. La prima versione era un <strong>corvo in groppa a un groviglio di fantasmi</strong>. Quella nuova sta in piedi da sola, con tunica e bastone, e il <strong>verde</strong> della sua magia tiene ancora unite le due.",
   "The design comes with its turnaround, so he can be modelled and animated from every side.":
     "Il design è accompagnato dal turnaround, così si può modellare e animare da ogni lato.",
   "Before":
@@ -966,18 +966,18 @@ export default {
     "Lupo",
   "The wolf, the boar and the props, as they went into the game.":
     "Il lupo, il cinghiale e gli oggetti di scena, così come sono entrati nel gioco.",
-  "These are designs that were approved and went into production. Each creature is drawn to be read in a second on a small screen: one strong silhouette, one colour story, and an attack you can guess from the shape. The props follow the same rules, so everything a player meets looks like it belongs to the same world.":
-    "Questi sono design approvati e andati in produzione. Ogni creatura è disegnata per essere letta in un secondo su uno schermo piccolo: una silhouette forte, un'unica palette e un attacco che si intuisce dalla forma. Gli oggetti di scena seguono le stesse regole, così tutto quello che un giocatore incontra sembra appartenere allo stesso mondo.",
+  "Approved designs, now in production. Each creature reads in a second on a small screen: one strong <strong>silhouette</strong>, one palette, an attack you can guess from the shape. The props follow the same rules, so everything belongs to one world.":
+    "Design approvati, ora in produzione. Ogni creatura si legge in un secondo su uno schermo piccolo: una <strong>silhouette</strong> forte, un'unica palette, un attacco intuibile dalla forma. Gli oggetti di scena seguono le stesse regole, così tutto appartiene allo stesso mondo.",
   "Ymdir map":
     "La mappa di Ymdir",
   "Map UI":
     "La mappa nella UI",
   "The land of Ymdir, and the way a player moves across it.":
     "La terra di Ymdir, e il modo in cui un giocatore la attraversa.",
-  "The map came straight out of the worldbuilding. I had already written where the story happens, who lives there and how each place is tied to the others, so drawing the land of Ymdir was more about translating than inventing. Mount Riamtal, the Swamp of Misery and the Tekalach Valley all had a history before they had a shape.":
-    "La mappa è uscita direttamente dal worldbuilding. Avevo già scritto dove si svolge la storia, chi ci vive e come ogni luogo è legato agli altri, quindi disegnare la terra di Ymdir è stato più tradurre che inventare. Il Monte Riamtal, la Palude della Miseria e la Valle di Tekalach avevano una storia prima di avere una forma.",
-  "I also thought about it from the side of the interface. A map in a game is not only something to look at, it is something you use, so I designed how a region opens up into a path of stops, with icons that tell the player what is waiting there before they choose where to go.":
-    "Ci ho pensato anche dal lato dell'interfaccia. In un gioco una mappa non è solo qualcosa da guardare, è qualcosa da usare, quindi ho progettato il modo in cui una regione si apre in un percorso di tappe, con icone che dicono al giocatore cosa lo aspetta prima che scelga dove andare.",
+  "The map came straight from the <strong>worldbuilding</strong>: I had already written where the story happens and how each place connects, so drawing Ymdir was more translating than inventing. Mount Riamtal, the Swamp of Misery and the Tekalach Valley had a history before they had a shape.":
+    "La mappa è nata direttamente dal <strong>worldbuilding</strong>: avevo già scritto dove si svolge la storia e come si collegano i luoghi, quindi disegnare Ymdir è stato più tradurre che inventare. Il Monte Riamtal, la Palude della Miseria e la Valle di Tekalach avevano una storia prima di una forma.",
+  "A game map is something you <strong>use</strong>, not just look at, so I designed how a region opens into a path of stops, with icons that tell the player what's waiting before they choose.":
+    "In un gioco la mappa si <strong>usa</strong>, non si guarda soltanto, quindi ho progettato come una regione si apre in un percorso di tappe, con icone che anticipano al giocatore cosa lo aspetta prima della scelta.",
   "before → now":
     "prima → ora",
   "Eternal Dice":
@@ -994,24 +994,24 @@ export default {
     "Dado lapide",
   "Now":
     "Ora",
-  "Every skill lives on a die face, so each icon has to work at a small size and still hint at what it does. The old dice were whole objects, each one a design of its own. The new ones put every skill on a face inside a shared frame, so a player learns the system once.":
-    "Ogni abilità vive sulla faccia di un dado, quindi ogni icona deve funzionare in piccolo e lasciar intuire cosa fa. I vecchi dadi erano oggetti completi, ognuno con un design tutto suo. I nuovi mettono ogni abilità su una faccia dentro una cornice condivisa, così il giocatore impara il sistema una volta sola.",
-  "Effect sheets for the enemies: how a hit, a buff or a death looks, step by step, handed to the team as reference for Unreal.":
-    "Schede degli effetti per i nemici: come appaiono un colpo, un potenziamento o una morte, passo dopo passo, consegnate al team come riferimento per Unreal.",
+  "Every skill lives on a <strong>die face</strong>, so each icon must work small and hint at what it does. The old dice were separate designs. The new ones put every skill in a <strong>shared frame</strong>, so the system is learned once.":
+    "Ogni abilità vive sulla <strong>faccia di un dado</strong>, quindi ogni icona deve funzionare in piccolo e far intuire cosa fa. I vecchi dadi erano design separati. I nuovi mettono ogni abilità in una <strong>cornice condivisa</strong>, così il sistema si impara una volta sola.",
+  "Enemy effect sheets: how a hit, a buff or a death looks, step by step, as reference for Unreal.":
+    "Schede degli effetti per i nemici: come appaiono un colpo, un potenziamento o una morte, passo dopo passo, come riferimento per Unreal.",
   "I write the logic myself, from an empty file, and I let AI handle the work I already know how to do.":
     "La logica la scrivo io, partendo da un file vuoto, e lascio all'AI il lavoro che so già fare.",
-  "Every project on this page is plain JavaScript, HTML and CSS. No framework, no UI library, no package doing the thinking for me. The game engine behind Battleship, the storage layer of the to-do list, the linked list, the hash map, the tree that rebalances itself: I wrote all of that logic by hand, line by line, from scratch. It is slower, and that is the point. I want to understand what every piece does before I let a tool do it for me, so that when I do reach for React I will know exactly what it is saving me from.":
-    "Ogni progetto di questa pagina è JavaScript, HTML e CSS puri. Nessun framework, nessuna libreria di UI, nessun pacchetto che pensi al posto mio. Il motore di gioco dietro Battleship, il livello di salvataggio della to-do list, la lista concatenata, la hash map, l'albero che si ribilancia da solo: tutta quella logica l'ho scritta a mano, riga per riga, da zero. È più lento, ed è proprio questo il punto. Voglio capire cosa fa ogni pezzo prima di lasciarlo fare a uno strumento, così quando passerò a React saprò esattamente quale fatica mi sta risparmiando.",
-  "I do use large language models, and I think learning to direct them well is part of the job now, especially on a team where speed matters. But you can only direct what you understand, so I keep one rule: the reasoning stays mine. I hand the AI the repetitive work I have already done by hand many times (boilerplate, renaming across files, formatting data, a first draft of tests I have already designed) and I read everything that comes back. The structure, the algorithms and the decisions about where the logic lives are things I work out myself. It makes me faster without making me dependent.":
-    "I large language model li uso, e penso che imparare a guidarli bene oggi faccia parte del lavoro, soprattutto in un team dove la velocità conta. Ma puoi guidare solo quello che capisci, quindi tengo una regola: il ragionamento resta mio. All'AI affido il lavoro ripetitivo che ho già fatto a mano molte volte (boilerplate, rinominare tra file diversi, formattare dati, una prima bozza di test che ho già progettato) e rileggo tutto quello che mi restituisce. La struttura, gli algoritmi e le scelte su dove mettere la logica sono cose che risolvo da solo. Mi rende più veloce senza rendermi dipendente.",
+  "Every project here is plain <strong>JavaScript, HTML and CSS</strong>, with no framework doing the thinking for me. Battleship's engine, the to-do storage, the linked list, the hash map, the self-balancing tree: I wrote all that logic <strong>by hand</strong>. It's slower, and that's the point: when I reach for React, I'll know exactly what it saves me from.":
+    "Ogni progetto qui è <strong>JavaScript, HTML e CSS</strong> puri, senza framework che pensino al posto mio. Il motore di Battleship, il salvataggio della to-do list, la lista concatenata, la hash map, l'albero che si ribilancia: tutta quella logica l'ho scritta <strong>a mano</strong>. È più lento, ed è proprio il punto: quando passerò a React, saprò esattamente quale fatica mi risparmia.",
+  "I do use <strong>AI</strong>, and directing it well is part of the job now. But you can only direct what you understand, so one rule: <strong>the reasoning stays mine</strong>. AI gets the repetitive work I've already done by hand many times, and I read everything it returns. Structure, algorithms and where the logic lives, I work out myself.":
+    "L'<strong>AI</strong> la uso, e saperla guidare oggi fa parte del lavoro. Ma si può guidare solo ciò che si capisce, quindi una regola: <strong>il ragionamento resta mio</strong>. All'AI affido il lavoro ripetitivo che ho già fatto a mano molte volte, e rileggo tutto ciò che restituisce. Struttura, algoritmi e dove mettere la logica li decido io.",
   "Jan - Sep 2026":
     "Gen - Set 2026",
   "Began as the Library project":
     "Nato come progetto Library",
   "A tracker for the games I've played and the ones I mean to.":
     "Un registro dei giochi a cui ho giocato e di quelli a cui voglio giocare.",
-  "Rate them across several aspects, sort them into tier lists, pull titles straight from the IGDB catalogue. The catalogue is reached through a small server of its own, so the live version runs on Vercel rather than GitHub Pages.":
-    "Valutali su più aspetti, ordinali in tier list, importa i titoli direttamente dal catalogo IGDB. Il catalogo si raggiunge tramite un piccolo server dedicato, per questo la versione online gira su Vercel invece che su GitHub Pages.",
+  "Rate games across several aspects, sort them into tier lists, import titles from <strong>IGDB</strong>. A small server of its own keeps the key safe, so it runs on Vercel.":
+    "Voti su più aspetti, tier list, titoli importati da <strong>IGDB</strong>. Un piccolo server dedicato protegge la chiave, per questo gira su Vercel.",
   "Working with a REST API":
     "Lavorare con un'API REST",
   "Keeping an API key server-side":
@@ -1030,14 +1030,14 @@ export default {
     "Progetto finale di JavaScript",
   "Classic naval rules staged as a network intrusion.":
     "La battaglia navale classica, travestita da intrusione informatica.",
-  "The game logic lives entirely apart from the DOM, so it could be built and tested before any interface existed, then wired up to three modes: against the computer, hotseat, or the computer playing itself.":
-    "La logica del gioco è separata dal DOM, così l'ho costruita e testata prima dell'interfaccia, e poi collegata a tre modalità: contro il computer, in due sullo stesso schermo, o computer contro computer.",
+  "The game logic is separate from the DOM, so it was built and <strong>tested</strong> before any interface, then wired to three modes: against the computer, two players on one screen, or computer against computer.":
+    "La logica del gioco è separata dal DOM, così l'ho costruita e <strong>testata</strong> prima dell'interfaccia, e poi collegata a tre modalità: contro il computer, in due sullo stesso schermo o computer contro computer.",
   "Logic kept apart from the DOM":
     "Logica separata dal DOM",
   "Unit tests with Jest":
     "Unit test con Jest",
   "A computer opponent that hunts":
-    "Un avversario che ti dà la caccia",
+    "Un avversario che va a caccia",
   "A themed interface":
     "Un'interfaccia a tema",
   "Mar - Sep 2026":
@@ -1062,8 +1062,8 @@ export default {
     "Nato come progetto Weather App",
   "An hour-by-hour curve, an eight-day outlook, and a sky that matches.":
     "Una curva ora per ora, le previsioni a otto giorni e un cielo intonato al meteo.",
-  "Search a city for its temperature curve and forecast, over a live photo of the place pulled from Wikipedia and a sky that animates to match the weather, drawn in CSS rather than video.":
-    "Cerca una città per vederne la curva delle temperature e le previsioni, sopra una foto del posto presa da Wikipedia e un cielo che si anima seguendo il meteo, disegnato in CSS invece che con un video.",
+  "Temperature curve and forecast for any city, over a photo from Wikipedia and a sky that animates with the weather, drawn in <strong>CSS</strong>.":
+    "Curva delle temperature e previsioni per qualsiasi città, sopra una foto da Wikipedia e un cielo che si anima con il meteo, disegnato in <strong>CSS</strong>.",
   "Async data from two APIs":
     "Dati asincroni da due API",
   "Handling missing data":
@@ -1074,10 +1074,10 @@ export default {
     "API REST",
   "Practice":
     "Esercizi",
-  "Smaller builds from the curriculum, each one a data structure or an algorithm written from scratch and given an interface you can poke at.":
-    "Progetti più piccoli del percorso, ognuno una struttura dati o un algoritmo scritto da zero e con un'interfaccia con cui giocare.",
+  "Smaller builds from the curriculum: a data structure or an algorithm written from scratch, each with an interface to play with.":
+    "Progetti più piccoli del percorso: una struttura dati o un algoritmo scritto da zero, ognuno con un'interfaccia con cui giocare.",
   "Click two squares and watch the knight take the shortest route.":
-    "Clicca due caselle e guarda il cavallo fare il percorso più breve.",
+    "Due caselle, e il cavallo trova il percorso più breve.",
   "A balanced tree written from scratch, redrawing as you change it.":
     "Un albero bilanciato scritto da zero, che si ridisegna mentre lo modifichi.",
   "Two hash tables written from scratch, with a page to poke at them.":
@@ -1092,8 +1092,8 @@ export default {
     "Il percorso fin qui",
   "Start of the journey":
     "L'inizio del viaggio",
-  "I started the way a lot of people do: a few Udemy courses, a folder full of JavaScript exercises, and the constant feeling that everybody else had understood something I had missed. I learned the theory and did the exercises, scared and confused by nearly all of it, until I found The Odin Project.":
-    "Ho cominciato come fanno in tanti: qualche corso su Udemy, una cartella piena di esercizi di JavaScript e la sensazione costante che tutti gli altri avessero capito qualcosa che a me era sfuggito. Ho imparato la teoria e fatto gli esercizi, spaventato e confuso da quasi tutto, finché non ho trovato The Odin Project.",
+  "I started like many: a few <strong>Udemy</strong> courses, a folder of JavaScript exercises, and the feeling everyone else understood something I'd missed. Scared and confused, I kept going until I found <strong>The Odin Project</strong>.":
+    "Ho cominciato come tanti: qualche corso su <strong>Udemy</strong>, una cartella di esercizi di JavaScript e la sensazione che tutti avessero capito qualcosa che a me sfuggiva. Spaventato e confuso, sono andato avanti finché non ho trovato <strong>The Odin Project</strong>.",
   "May":
     "Mag",
   "Jun":
@@ -1110,8 +1110,8 @@ export default {
     "Fondamenti",
   "the course ↗":
     "il corso ↗",
-  "The Odin Project gave me what the courses had not: an order. One thing, then the next, at a pace that made sense, with a project at the end of every section to prove I had actually learned it rather than just read it. For the first time the confusion had a shape, and a shape is something you can work through.":
-    "The Odin Project mi ha dato quello che i corsi non mi avevano dato: un ordine. Una cosa, poi la successiva, a un ritmo che aveva senso, con un progetto alla fine di ogni sezione per dimostrare che avevo imparato davvero e non solo letto. Per la prima volta la confusione aveva una forma, e una forma è qualcosa che si può affrontare.",
+  "The Odin Project gave me what the courses hadn't: an <strong>order</strong>. One thing after another, at a sensible pace, with a project at the end of each section to prove I'd really learned it. For the first time the confusion had a shape, and a shape can be worked through.":
+    "The Odin Project mi ha dato ciò che i corsi non mi avevano dato: un <strong>ordine</strong>. Un argomento dopo l'altro, al ritmo giusto, con un progetto alla fine di ogni sezione per dimostrare di aver imparato davvero. Per la prima volta la confusione aveva una forma, e una forma si può affrontare.",
   "Aug":
     "Ago",
   "Sep":
@@ -1132,8 +1132,8 @@ export default {
     "Calcolatrice ↗",
   "Intermediate HTML and CSS":
     "HTML e CSS intermedi",
-  "More complex, and much more rewarding. Units, positioning, custom properties, forms, grid: this is where CSS stopped being a list of properties to remember and became a way of thinking about layout. The admin dashboard at the end was the first thing I built that looked like a real product.":
-    "Più complesso, e molto più gratificante. Unità, posizionamento, variabili CSS, form, grid: è qui che il CSS ha smesso di essere un elenco di proprietà da ricordare ed è diventato un modo di pensare il layout. La dashboard di amministrazione finale è stata la prima cosa che ho costruito ad avere l'aspetto di un prodotto vero.",
+  "Harder, and much more rewarding. Units, positioning, custom properties, forms, grid: here CSS became a <strong>way of thinking about layout</strong>. The final admin dashboard was the first thing I built that looked like a real product.":
+    "Più complesso, e molto più gratificante. Unità, posizionamento, variabili CSS, form, grid: qui il CSS è diventato un <strong>modo di pensare il layout</strong>. La dashboard di amministrazione finale è stata la prima cosa che ho costruito con l'aspetto di un prodotto vero.",
   "Nov":
     "Nov",
   "Dec":
@@ -1146,8 +1146,8 @@ export default {
     "CSS intermedio",
   "Forms":
     "Form",
-  "This is where it got hard. Objects and classes, modules and webpack, asynchronous code, testing, recursion, data structures: one new topic after another, for seven months. It was extremely complex, and at times honestly demoralising. More than once I spent days stuck on a single problem. But I knew that was part of the process, so I persevered, one project at a time. It is the part of this path I am proudest of.":
-    "Qui le cose si sono fatte difficili. Oggetti e classi, moduli e webpack, codice asincrono, test, ricorsione, strutture dati: un argomento nuovo dopo l'altro, per sette mesi. È stato estremamente complesso, e a volte sinceramente demoralizzante. Più di una volta sono rimasto bloccato per giorni su un singolo problema. Ma sapevo che faceva parte del processo, quindi ho tenuto duro, un progetto alla volta. È la parte di questo percorso di cui vado più fiero.",
+  "This is where it got hard: classes, modules, webpack, async code, testing, recursion, data structures, for <strong>seven months</strong>. At times honestly demoralising, with days stuck on a single problem. But I knew it was part of the process, so I kept going, one project at a time. It's the part I'm <strong>proudest</strong> of.":
+    "Qui le cose si sono fatte difficili: classi, moduli, webpack, codice asincrono, test, ricorsione, strutture dati, per <strong>sette mesi</strong>. A volte sinceramente demoralizzante, con giorni interi bloccato su un solo problema. Ma sapevo che faceva parte del processo, e sono andato avanti, un progetto alla volta. È la parte di cui vado più <strong>fiero</strong>.",
   "Feb":
     "Feb",
   "Mar":
@@ -1170,14 +1170,14 @@ export default {
     "Gran finale",
   "Making them mine":
     "Farli miei",
-  "Before moving on I went back to the projects and rebuilt them into apps I would actually want to use: a real interface, a theme and a small story for each one, and the fixes I had kept putting off. This is where my years as an artist and media designer finally got to do their job. The library became Game Vault, the to-do list became a bureau of classified files, the weather app got a sky of its own.":
-    "Prima di andare avanti sono tornato sui progetti e li ho ricostruiti come app che vorrei usare davvero: un'interfaccia vera, un tema e una piccola storia per ognuno, e le correzioni che continuavo a rimandare. È qui che i miei anni da artista e media designer hanno finalmente potuto fare il loro lavoro. La libreria è diventata Game Vault, la to-do list un ufficio di fascicoli riservati, l'app meteo ha avuto un cielo tutto suo.",
+  "Before moving on I rebuilt the projects into apps I'd actually use: a real interface, a theme and a small story for each. Here my years as an <strong>artist</strong> finally got to work: the library became Game Vault, the to-do list a bureau of classified files, the weather app got a sky of its own.":
+    "Prima di andare avanti ho ricostruito i progetti come app che userei davvero: un'interfaccia vera, un tema e una piccola storia per ognuna. Qui i miei anni da <strong>artista</strong> hanno finalmente lavorato: la libreria è diventata Game Vault, la to-do list un ufficio di fascicoli riservati, l'app meteo ha avuto un cielo tutto suo.",
   "Redesign and polish":
     "Redesign e rifinitura",
   "Advanced HTML and CSS":
     "HTML e CSS avanzati",
-  "Animation, accessibility and responsive design, the last pieces of CSS I was missing. The project that closes this course is a personal homepage, and you are looking at it. It was meant to be much simpler, a single basic page, but I realised I wanted to challenge myself: I wanted to present my work in a way that felt professional and actually interesting to explore. So this site is that project, grown into a portfolio for everything I do.":
-    "Animazioni, accessibilità e responsive design, gli ultimi pezzi di CSS che mi mancavano. Il progetto che chiude questo corso è una homepage personale, e la stai guardando. Doveva essere molto più semplice, una singola pagina di base, ma ho capito che volevo mettermi alla prova: volevo presentare il mio lavoro in un modo che sembrasse professionale e che fosse davvero interessante da esplorare. Così questo sito è quel progetto, cresciuto fino a diventare un portfolio per tutto quello che faccio.",
+  "Animation, accessibility and responsive design, the last pieces of CSS. The final project is a personal homepage, <strong>this site</strong>. It was meant to be one simple page, but I wanted to challenge myself and present my work in a way worth exploring, so it grew into a <strong>portfolio</strong> for everything I do.":
+    "Animazioni, accessibilità e responsive design, gli ultimi pezzi di CSS. Il progetto finale è una homepage personale: <strong>questo sito</strong>. Doveva essere una pagina semplice, ma volevo mettermi alla prova e presentare il mio lavoro in un modo che valesse la pena esplorare, così è diventato un <strong>portfolio</strong> per tutto quello che faccio.",
   "today":
     "oggi",
   "Animation":
@@ -1188,7 +1188,7 @@ export default {
     "Homepage: questo sito",
   "Coming soon":
     "Prossimamente",
-  "React is where I will finally find out what a framework does for me, now that I have done all of it by hand.":
+  "With React I'll finally see what a framework does for me, now that I've done it all by hand.":
     "Con React scoprirò finalmente cosa fa per me un framework, ora che ho fatto tutto a mano.",
   "Databases":
     "Database",
@@ -1213,15 +1213,15 @@ export default {
   "GitHub Pages, published by a GitHub Actions workflow.":
     "GitHub Pages, pubblicato da un workflow di GitHub Actions.",
   "Open the live version ↗":
-    "Apri la versione online ↗",
+    "Versione online ↗",
   "Read the code ↗":
-    "Leggi il codice ↗",
+    "Codice sorgente ↗",
   "Screens":
     "Schermate",
-  "Every game in the vault as a card: cover, genre, a score for each aspect and where it stands, playing or completed. Search and sort run across the whole shelf.":
-    "Ogni gioco dell'archivio come una scheda: copertina, genere, un voto per ogni aspetto e lo stato, in corso o completato. Ricerca e ordinamento funzionano su tutto lo scaffale.",
-  "One game opened up: its description, a slider for each aspect, my review, and related games pulled live from IGDB by shared genres and tags.":
-    "Un gioco aperto: la descrizione, uno slider per ogni aspetto, la mia recensione e giochi correlati presi in tempo reale da IGDB in base a generi e tag in comune.",
+  "Every game in the vault as a card: cover, genre, scores and status. Search and sort run across the whole shelf.":
+    "Ogni gioco dell'archivio come una scheda: copertina, genere, voti e stato. Ricerca e ordinamento su tutto lo scaffale.",
+  "A game opened up: description, a slider per aspect, my review, and related games from IGDB.":
+    "Un gioco aperto: descrizione, uno slider per aspetto, la mia recensione e giochi correlati da IGDB.",
   "About":
     "Chi sono",
   "An About me board: a topic on every card, from favourite villain to best soundtrack, and the game that answers it.":
@@ -1230,28 +1230,28 @@ export default {
     "Copertine trascinate dal vassoio nelle file della classifica. Ogni tier list viene salvata e si può riprendere più tardi.",
   "Top list":
     "Classifica",
-  "A ranked top ten, with a few lines on why each game earned its place. The list can be exported as an image.":
-    "Una top ten in ordine, con qualche riga sul perché ogni gioco si è guadagnato il suo posto. La lista si può esportare come immagine.",
+  "A ranked top ten, with a few lines on each pick, exportable as an image.":
+    "Una top ten in ordine, con qualche riga per ogni scelta, esportabile come immagine.",
   "What it does":
     "Cosa fa",
-  "Game Vault keeps track of the games I have played and the ones I mean to. Each game has a status (backlog, playing or completed), a favourite flag, free tags and named collections, and the library can be searched and filtered by any of them. Adding a title looks it up on IGDB and fills in the description, cover, genre and developer, all still editable. A whole list of titles can be pasted in at once, and each one is looked up on its own.":
-    "Game Vault tiene traccia dei giochi a cui ho giocato e di quelli a cui voglio giocare. Ogni gioco ha uno stato (backlog, in corso o completato), un contrassegno per i preferiti, tag liberi e raccolte con un nome, e la libreria si può cercare e filtrare per ognuno di questi. Quando aggiungo un titolo, l'app lo cerca su IGDB e compila descrizione, copertina, genere e sviluppatore, tutto ancora modificabile. Si può incollare anche un intero elenco di titoli in una volta, e ognuno viene cercato per conto suo.",
+  "Game Vault tracks the games I've played and the ones I mean to. Each has a <strong>status</strong>, a favourite flag, tags and collections, all searchable. Adding a title fetches description, cover, genre and developer from <strong>IGDB</strong>, and a whole list can be pasted in at once.":
+    "Game Vault tiene traccia dei giochi giocati e di quelli da giocare. Ognuno ha uno <strong>stato</strong>, un contrassegno per i preferiti, tag e raccolte, tutti ricercabili. Un titolo aggiunto prende descrizione, copertina, genere e sviluppatore da <strong>IGDB</strong>, e si può incollare un intero elenco in una volta.",
   "Rating across aspects":
     "Voti su più aspetti",
-  "A single score out of ten never says what was actually good. Every game is rated on gameplay, story, graphics, music and enjoyment, plus any aspect I decide to add, and its score is the average of the ones I filled in. Games with no ratings yet get a section of their own, so there is always an obvious pile to rate next.":
-    "Un singolo voto su dieci non dice mai cosa fosse davvero bello. Ogni gioco viene valutato su gameplay, storia, grafica, musica e divertimento, oltre a qualsiasi aspetto decida di aggiungere, e il suo punteggio è la media di quelli che ho compilato. I giochi ancora senza voti hanno una sezione tutta loro, così c'è sempre una pila pronta da valutare.",
+  "A single score never says what was actually good. Each game is rated on <strong>gameplay, story, graphics, music and enjoyment</strong>, plus any aspect I add, and the score is their average. Unrated games get their own section, ready to rate next.":
+    "Un voto unico non dice mai cosa fosse davvero bello. Ogni gioco si valuta su <strong>gameplay, storia, grafica, musica e divertimento</strong>, più gli aspetti che aggiungo, e il punteggio è la media. I giochi senza voto hanno una sezione tutta loro, pronti da valutare.",
   "One library, four views":
     "Una libreria, quattro viste",
-  "The same library feeds three more views. The tier maker builds fully custom boards from a tray that searches my games first and IGDB second. About me is a wall of prompt cards, each answered by one game. Top lists rank up to a hundred games on any subject. Any of them can be saved as a PNG taken from the real layout on screen, and a game's detail view lists every place it is featured, with a jump to each one.":
-    "La stessa libreria alimenta altre tre viste. Il tier maker costruisce tabelle completamente personalizzate da un vassoio che cerca prima tra i miei giochi e poi su IGDB. Chi sono è una parete di schede con domande, ognuna con un gioco come risposta. Le classifiche ordinano fino a cento giochi su qualsiasi tema. Ognuna si può salvare come PNG ricavato dal layout reale sullo schermo, e la scheda di un gioco elenca tutti i posti in cui compare, con un link diretto a ognuno.",
+  "The same library feeds three more views: a <strong>tier maker</strong>, an About me wall where each prompt is answered by a game, and top lists of up to a hundred games. Each one exports as a PNG, and a game's page links to every place it appears.":
+    "La stessa libreria alimenta altre tre viste: un <strong>tier maker</strong>, una bacheca Chi sono in cui ogni domanda ha un gioco come risposta, e classifiche fino a cento giochi. Ognuna si esporta in PNG, e la scheda di un gioco rimanda a ogni posto in cui compare.",
   "Why there is a server":
     "Perché c'è un server",
-  "The IGDB catalogue needs an API key, and a key in front-end code is a key you have given away. IGDB also refuses calls made straight from a browser, so a static host could not reach it even with the key hidden. A small server holds the key, fetches its own access token and passes the results on: a Node script on my machine, a Vercel function online. Everything else, the library included, stays in the browser's localStorage and can be exported and imported as a single JSON file.":
-    "Il catalogo IGDB richiede una chiave API, e una chiave nel codice front-end è una chiave regalata. In più IGDB rifiuta le chiamate fatte direttamente da un browser, quindi un hosting statico non riuscirebbe a raggiungerlo nemmeno con la chiave nascosta. Un piccolo server custodisce la chiave, si procura il suo token di accesso e passa i risultati: uno script Node sul mio computer, una funzione Vercel online. Tutto il resto, libreria compresa, resta nel localStorage del browser e si può esportare e importare come un unico file JSON.",
+  "IGDB needs an <strong>API key</strong>, and a key in front-end code is a key given away. IGDB also refuses browser calls, so a small <strong>server</strong> holds the key and passes results on: a Node script locally, a Vercel function online. Everything else stays in localStorage and exports as one JSON file.":
+    "IGDB richiede una <strong>chiave API</strong>, e una chiave nel codice front-end è una chiave regalata. In più IGDB rifiuta le chiamate dal browser, quindi un piccolo <strong>server</strong> custodisce la chiave e passa i risultati: uno script Node in locale, una funzione Vercel online. Tutto il resto resta nel localStorage e si esporta in un unico file JSON.",
   "No dependencies":
     "Nessuna dipendenza",
-  "The app is plain HTML, CSS and JavaScript loaded as ordinary script tags, with no bundler. The server uses only Node's built-in modules, and the one outside script is html2canvas, for the image export.":
-    "L'app è HTML, CSS e JavaScript puri, caricati come normali tag script, senza bundler. Il server usa solo i moduli integrati di Node, e l'unico script esterno è html2canvas, per l'esportazione delle immagini.",
+  "Plain HTML, CSS and JavaScript in ordinary script tags, <strong>no bundler</strong>. The server uses only Node's built-in modules, and the one outside script is html2canvas, for image export.":
+    "HTML, CSS e JavaScript puri in normali tag script, <strong>senza bundler</strong>. Il server usa solo i moduli integrati di Node, e l'unico script esterno è html2canvas, per esportare le immagini.",
   "What it shows":
     "Cosa dimostra",
   "Built with":
@@ -1263,75 +1263,75 @@ export default {
   "Start":
     "Inizio",
   "The intrusion brief sets the scene, then you choose who plays each side: a person or the computer.":
-    "Il briefing dell'intrusione prepara la scena, poi scegli chi controlla ciascuna parte: una persona o il computer.",
+    "Il briefing dell'intrusione prepara la scena, poi si sceglie chi controlla ciascuna parte: una persona o il computer.",
   "Placement":
     "Posizionamento",
-  "The fleet goes down one ship at a time, with a preview of where the next one will land. The operator in the corner comments as you build.":
-    "La flotta si schiera una nave alla volta, con un'anteprima di dove finirà la prossima. L'operatore nell'angolo commenta mentre schieri.",
+  "The fleet goes down one ship at a time, with a preview of where the next lands, while the operator comments.":
+    "La flotta si schiera una nave alla volta, con un'anteprima di dove finirà la prossima, mentre l'operatore commenta.",
   "Battle":
     "Battaglia",
-  "Your board on the left, the enemy's on the right. Hits turn red, misses leave a dot, and both sides trade lines as the round goes on.":
-    "La tua griglia a sinistra, quella nemica a destra. I colpi a segno diventano rossi, quelli a vuoto lasciano un punto, e le due parti si scambiano battute mentre la partita va avanti.",
+  "Your board on the left, the enemy's on the right: hits turn red, misses leave a dot, and both sides trade lines.":
+    "La propria griglia a sinistra, quella nemica a destra: i colpi a segno diventano rossi, quelli a vuoto lasciano un punto, e le due parti si scambiano battute.",
   "Win":
     "Vittoria",
   "Every enemy ship sunk. The game names the winner and offers a rematch.":
     "Tutte le navi nemiche affondate. Il gioco annuncia il vincitore e propone la rivincita.",
   "Why the logic comes first":
     "Perché prima viene la logica",
-  "The point of the assignment is architecture: the game has to work before any interface exists. Ships, boards, players and turns live in their own folder and never touch the page. Everything that does lives in a UI layer that imports from the game, never the other way round. That separation is what made the three modes cheap: the computer playing itself is the same engine with a different caller.":
-    "Il cuore dell'esercizio è l'architettura: il gioco deve funzionare prima che esista qualsiasi interfaccia. Navi, griglie, giocatori e turni vivono nella loro cartella e non toccano mai la pagina. Tutto quello che la tocca vive in un livello di UI che importa dal gioco, mai il contrario. È questa separazione che ha reso facile avere tre modalità: il computer che gioca contro se stesso è lo stesso motore con un chiamante diverso.",
+  "The point is <strong>architecture</strong>: the game must work before any interface exists. Ships, boards, players and turns never touch the page, and the UI imports from the game, never the reverse. That made three modes easy: the computer playing itself is the same engine with a different caller.":
+    "Il cuore è l'<strong>architettura</strong>: il gioco deve funzionare prima che esista un'interfaccia. Navi, griglie, giocatori e turni non toccano mai la pagina, e la UI importa dal gioco, mai il contrario. Così tre modalità sono state facili: il computer che gioca da solo è lo stesso motore con un chiamante diverso.",
   "Tested before it was visible":
     "Testato prima di essere visibile",
-  "Placement rules, hits, sinking, the win condition and the computer's hunting are covered by 56 Jest tests that run without a browser. Most of them were passing before the first square was drawn.":
-    "Regole di posizionamento, colpi, affondamenti, la condizione di vittoria e la caccia del computer sono coperti da 56 test Jest che girano senza browser. La maggior parte passava già prima che venisse disegnata la prima casella.",
+  "Placement, hits, sinking, victory and the computer's hunting are covered by <strong>56 Jest tests</strong>, most passing before the first square was drawn.":
+    "Posizionamento, colpi, affondamenti, vittoria e caccia del computer sono coperti da <strong>56 test Jest</strong>, quasi tutti superati prima che venisse disegnata la prima casella.",
   "Three modes, one opponent that hunts":
     "Tre modalità, un avversario che dà la caccia",
-  "Play against the computer, against a friend on the same device with each board hidden between turns, or watch two computers play, one turn per click so it can be followed. The computer fires at random until it hits, then tries the cells around the hit, follows the line it finds until the ship sinks, and goes back to searching.":
-    "Gioca contro il computer, contro un amico sullo stesso dispositivo con ogni griglia nascosta tra un turno e l'altro, oppure guarda due computer sfidarsi, un turno per clic, così la partita si può seguire. Il computer spara a caso finché non colpisce, poi prova le caselle attorno al colpo, segue la linea che trova finché la nave non affonda, e torna a cercare.",
+  "Play the computer, a friend on the same device, or watch two computers, one turn per click. The computer fires at random until it hits, then <strong>hunts</strong> along the line until the ship sinks.":
+    "Si gioca contro il computer, contro un amico sullo stesso dispositivo, o si guardano due computer sfidarsi, un turno per clic. Il computer spara a caso finché non colpisce, poi <strong>segue la linea</strong> fino ad affondare la nave.",
   "Placing the fleet":
     "Schierare la flotta",
-  "Ships are dragged from a dock, clicked to rotate and dragged again to move them. A drop that breaks the rules is refused, with visual feedback on why.":
-    "Le navi si trascinano da un molo, si cliccano per ruotarle e si trascinano di nuovo per spostarle. Un rilascio che infrange le regole viene rifiutato, con un segnale visivo che spiega perché.",
+  "Ships are dragged from a dock, clicked to rotate and dragged again to move. An illegal drop is refused, with a visual hint why.":
+    "Le navi si trascinano da un molo, si ruotano con un clic e si spostano trascinandole di nuovo. Un rilascio non valido viene rifiutato, con un segnale visivo che spiega perché.",
   "The intrusion":
     "L'intrusione",
-  "Two characters comment on every hit, miss and sunken ship in a typed terminal voice, over matrix rain drawn on a canvas, CRT scanlines and a glow that follows whose turn it is. The animations stand still for anyone who has asked their system for reduced motion.":
-    "Due personaggi commentano ogni colpo, ogni tiro a vuoto e ogni nave affondata con un testo che compare lettera per lettera come su un terminale, sopra una pioggia di caratteri alla Matrix disegnata su un canvas, scanline da CRT e un bagliore che segue di chi è il turno. Le animazioni restano ferme per chi ha chiesto al proprio sistema di ridurre il movimento.",
+  "Two characters comment on every move in a typed terminal voice, over <strong>Matrix-style rain</strong>, CRT scanlines and a glow that follows the turn. Everything stays still for anyone who asked for reduced motion.":
+    "Due personaggi commentano ogni mossa con un testo da terminale che compare lettera per lettera, sopra una <strong>pioggia alla Matrix</strong>, scanline da CRT e un bagliore che segue il turno. Tutto resta fermo per chi ha chiesto di ridurre il movimento.",
   "Who wrote what":
     "Chi ha scritto cosa",
-  "The game logic and its tests are mine, written pseudocode first and test first, with an LLM used to check my reasoning rather than to write the code. The visual layer, from the matrix rain to the dialogue, was built with much heavier LLM help, on purpose: the logic was the skill being tested, and the visuals were my chance to see how far I could direct a tool while still judging what it gave me.":
-    "La logica del gioco e i suoi test sono miei, scritti partendo dallo pseudocodice e dai test, con un LLM usato per controllare il mio ragionamento e non per scrivere il codice. Il livello visivo, dalla pioggia alla Matrix ai dialoghi, è stato costruito con un aiuto molto più consistente da parte di un LLM, di proposito: la logica era la competenza messa alla prova, e la grafica era la mia occasione per vedere fin dove riuscivo a guidare uno strumento continuando a giudicare quello che mi restituiva.",
+  "The logic and its tests are <strong>mine</strong>, pseudocode and tests first, with an LLM only to check my reasoning. The visuals got much heavier LLM help, on purpose: the logic was the skill being tested, and the visuals were a chance to see how far I could <strong>direct a tool</strong> while judging its output.":
+    "La logica e i test sono <strong>miei</strong>, partendo da pseudocodice e test, con un LLM solo per controllare il ragionamento. La grafica ha avuto molto più aiuto da un LLM, di proposito: la logica era la competenza messa alla prova, la grafica un'occasione per vedere fin dove potevo <strong>guidare uno strumento</strong> continuando a giudicarne il risultato.",
   "Archive":
     "Archivio",
-  "Each project is a drawer. Flick through its case files, filter them by clearance or status, or search everything you have been avoiding.":
-    "Ogni progetto è un cassetto. Sfoglia i suoi fascicoli, filtrali per livello di accesso o per stato, o cerca tra tutto quello che stai rimandando.",
+  "Each project is a drawer: flick through its files, filter them by clearance or status, or search everything you've been avoiding.":
+    "Ogni progetto è un cassetto: si sfogliano i fascicoli, si filtrano per livello di accesso o stato, o si cerca tra tutto ciò che si sta rimandando.",
   "Case file":
     "Fascicolo",
-  "A task opened as a case file: dates, clearance, a photo and a briefing. From here you stamp it closed, amend it, put it back or shred it.":
-    "Un'attività aperta come un fascicolo: date, livello di accesso, una foto e un briefing. Da qui lo timbri come chiuso, lo modifichi, lo rimetti a posto o lo distruggi.",
+  "A task opened as a case file: dates, clearance, a photo and a briefing, ready to stamp closed, amend, file or shred.":
+    "Un'attività aperta come fascicolo: date, livello di accesso, foto e briefing, pronta da timbrare, modificare, archiviare o distruggere.",
   "Calendar":
     "Calendario",
   "The same files laid out by deadline. Pick a day to see what is due on it.":
-    "Gli stessi fascicoli disposti per scadenza. Scegli un giorno per vedere cosa scade.",
+    "Gli stessi fascicoli disposti per scadenza: un giorno selezionato mostra cosa scade.",
   "The fiction is the interface":
     "La finzione è l'interfaccia",
-  "A project is a drawer, a task is a case file, finishing it means stamping it closed, and opening it shows a dossier with a photo, a briefing, tags and objectives. None of that is decoration: it tells you what you can do before you read a label. The fiction lives entirely in the styling and the copy, and the data underneath is an ordinary to-do list.":
-    "Un progetto è un cassetto, un'attività è un fascicolo, completarlo significa timbrarlo come chiuso, e aprirlo mostra un dossier con una foto, un briefing, tag e obiettivi. Niente di tutto questo è decorazione: ti dice cosa puoi fare prima ancora di leggere un'etichetta. La finzione vive interamente nello stile e nei testi, mentre i dati sotto sono una normale to-do list.",
+  "A project is a drawer, a task a case file, finishing it means <strong>stamping it closed</strong>. None of it is decoration: it says what can be done before any label is read. The fiction lives in style and copy, the data underneath is an ordinary to-do list.":
+    "Un progetto è un cassetto, un'attività un fascicolo, completarla significa <strong>timbrarla</strong>. Niente è decorazione: dice cosa si può fare prima ancora di leggere un'etichetta. La finzione vive nello stile e nei testi, i dati sotto sono una normale to-do list.",
   "Three classes and a Proxy":
     "Tre classi e un Proxy",
-  "The state is three plain classes: a Todo with its dates, priority, tags, subtasks and photo, a Project that holds the todos, and a TodoApp that holds everything. TodoApp sits behind a JavaScript Proxy, so any change to it saves the archive to localStorage by itself, and there is no save call anywhere else. If storage runs out, a toast says so instead of failing silently.":
-    "Lo stato è fatto di tre semplici classi: un Todo con le sue date, priorità, tag, sottoattività e foto, un Project che contiene i todo e una TodoApp che contiene tutto. TodoApp sta dietro un Proxy JavaScript, così qualsiasi modifica salva da sola l'archivio in localStorage, e non c'è una chiamata di salvataggio da nessun'altra parte. Se lo spazio finisce, un avviso lo segnala invece di fallire in silenzio.",
+  "The state is three plain classes: Todo, Project and TodoApp. TodoApp sits behind a JavaScript <strong>Proxy</strong>, so any change saves to localStorage by itself, with no save call anywhere else. If storage runs out, a toast says so.":
+    "Lo stato è fatto di tre semplici classi: Todo, Project e TodoApp. TodoApp sta dietro un <strong>Proxy</strong> JavaScript, così ogni modifica si salva da sola in localStorage, senza chiamate di salvataggio altrove. Se lo spazio finisce, un avviso lo segnala.",
   "A drawer you can flip through":
     "Un cassetto da sfogliare",
-  "Each drawer shows its files stacked one behind the other. Every file is placed by its depth, smaller and fainter the further back it sits, and the only state kept is one number per drawer: how far the pile has been flipped. The wheel walks the pile, the arrows change drawer, and clicking the file at the front pulls it out into its dossier.":
-    "Ogni cassetto mostra i suoi fascicoli impilati uno dietro l'altro. Ogni fascicolo è posizionato in base alla sua profondità, più piccolo e più tenue quanto più sta indietro, e l'unico stato conservato è un numero per cassetto: quanto è stata sfogliata la pila. La rotella scorre la pila, le frecce cambiano cassetto, e un clic sul fascicolo davanti lo estrae nel suo dossier.",
+  "Each drawer stacks its files one behind the other, smaller and fainter further back. The only state is <strong>one number per drawer</strong>: how far the pile has been flipped. The wheel walks the pile, the arrows change drawer, a click opens the front file.":
+    "Ogni cassetto impila i fascicoli uno dietro l'altro, più piccoli e tenui quanto più sono indietro. L'unico stato è <strong>un numero per cassetto</strong>: quanto è stata sfogliata la pila. La rotella scorre la pila, le frecce cambiano cassetto, un clic apre il fascicolo davanti.",
   "The rest of the archive":
     "Il resto dell'archivio",
-  "Tags coloured automatically, subtasks with a progress bar, a photo resized in the browser before it is stored, a colour per folder, a monthly calendar of deadlines, search across titles, notes and tags, a JSON export and import, and an undo for deleted files instead of a confirm prompt.":
-    "Tag colorati in automatico, sottoattività con una barra di avanzamento, una foto ridimensionata nel browser prima di essere salvata, un colore per cartella, un calendario mensile delle scadenze, ricerca tra titoli, note e tag, esportazione e importazione in JSON, e la possibilità di annullare l'eliminazione di un fascicolo invece di una richiesta di conferma.",
+  "Auto-coloured tags, subtasks with progress bars, photos resized before storing, a colour per folder, a deadline calendar, search, JSON export and import, and <strong>undo</strong> instead of a confirm prompt.":
+    "Tag colorati in automatico, sottoattività con barra di avanzamento, foto ridimensionate prima del salvataggio, un colore per cartella, un calendario delle scadenze, ricerca, esportazione e importazione JSON, e l'<strong>annulla</strong> al posto della richiesta di conferma.",
   "One render for everything":
     "Un solo render per tutto",
-  "Every change rebuilds the active view from scratch. No diffing and no virtual DOM: it does some redundant work, but the page can never drift out of step with the data.":
-    "Ogni modifica ricostruisce da zero la vista attiva. Niente diffing e niente virtual DOM: fa un po' di lavoro in più, ma la pagina non può mai perdere la sincronia con i dati.",
+  "Every change rebuilds the active view <strong>from scratch</strong>. No diffing, no virtual DOM: a little redundant work, but the page can never fall out of step with the data.":
+    "Ogni modifica ricostruisce la vista attiva <strong>da zero</strong>. Niente diffing né virtual DOM: un po' di lavoro in più, ma la pagina non può mai perdere la sincronia con i dati.",
   "The temperature now, the days ahead and an hour-by-hour curve, over a photo of the city pulled from Wikipedia.":
     "La temperatura di adesso, i giorni a venire e una curva ora per ora, sopra una foto della città presa da Wikipedia.",
   "Genova":
@@ -1346,42 +1346,42 @@ export default {
     "Vienna sotto la pioggia",
   "The sky animates the weather it is reporting. Here it rains, drawn in CSS rather than played from a video.":
     "Il cielo mette in scena il meteo che mostra. Qui piove, disegnato in CSS invece che riprodotto da un video.",
-  "Search any city for the conditions now, an eight-day outlook and an hour-by-hour view: pick a day and scrub through its hours while a line traces the temperature. Below sits the detail grid: feels like, humidity, wind and gusts, chance of rain, pressure, cloud cover, visibility, sunrise and sunset, in Celsius or Fahrenheit.":
-    "Cerca qualsiasi città per vedere le condizioni attuali, le previsioni a otto giorni e una vista ora per ora: scegli un giorno e scorri le sue ore mentre una linea traccia la temperatura. Sotto c'è la griglia dei dettagli: temperatura percepita, umidità, vento e raffiche, probabilità di pioggia, pressione, copertura nuvolosa, visibilità, alba e tramonto, in Celsius o Fahrenheit.",
+  "Conditions now, an <strong>eight-day</strong> outlook and an hour-by-hour view for any city: pick a day and scrub its hours while a line traces the temperature. Below, the details, from feels like to sunset, in Celsius or Fahrenheit.":
+    "Condizioni attuali, previsioni a <strong>otto giorni</strong> e vista ora per ora per qualsiasi città: si sceglie un giorno e se ne scorrono le ore mentre una linea traccia la temperatura. Sotto, i dettagli, dalla temperatura percepita al tramonto, in Celsius o Fahrenheit.",
   "A sky made of CSS":
     "Un cielo fatto di CSS",
-  "Every condition is a handful of elements moved by CSS keyframes. Rain and snow are single particles falling at random speeds, clouds are blurred gradients drifting across, sun rays are one blurred conic gradient, fog rises from the bottom, and storms add lightning. A day and night wash sits underneath, with stars after sunset, and the accent colour of the whole interface shifts with the forecast: azure for clear skies, violet for storms. It costs a fraction of a video and scales to any screen.":
-    "Ogni condizione è una manciata di elementi mossi da keyframe CSS. Pioggia e neve sono singole particelle che cadono a velocità casuali, le nuvole sono gradienti sfocati che scorrono, i raggi del sole sono un unico gradiente conico sfocato, la nebbia sale dal basso e i temporali aggiungono i fulmini. Sotto c'è una velatura per il giorno e la notte, con le stelle dopo il tramonto, e il colore d'accento di tutta l'interfaccia cambia con le previsioni: azzurro per il cielo sereno, viola per i temporali. Pesa una frazione di un video e si adatta a qualsiasi schermo.",
+  "Every condition is a few elements moved by <strong>CSS keyframes</strong>: rain and snow fall at random speeds, clouds drift as blurred gradients, fog rises, storms add lightning. A day and night wash sits underneath, and the accent colour follows the forecast. It weighs a <strong>fraction of a video</strong> and fits any screen.":
+    "Ogni condizione è fatta di pochi elementi mossi da <strong>keyframe CSS</strong>: pioggia e neve cadono a velocità casuali, le nuvole scorrono come gradienti sfocati, la nebbia sale, i temporali aggiungono fulmini. Sotto c'è una velatura per giorno e notte, e il colore d'accento segue le previsioni. Pesa una <strong>frazione di un video</strong> e si adatta a qualsiasi schermo.",
   "Two sources, one screen":
     "Due fonti, una schermata",
-  "The forecast comes from the Visual Crossing API and the photograph from Wikipedia's public summary endpoint, which needs no key. A name like New York can point to a state, a city or a magazine, so an ambiguous answer is retried once as a city. Every search still has to survive one of the two sources having nothing to give.":
-    "Le previsioni arrivano dall'API di Visual Crossing e la fotografia dall'endpoint pubblico di riepilogo di Wikipedia, che non richiede chiavi. Un nome come New York può indicare uno stato, una città o una rivista, quindi una risposta ambigua viene ritentata una volta come città. Ogni ricerca deve comunque sopravvivere al caso in cui una delle due fonti non abbia niente da dare.",
+  "The forecast comes from Visual Crossing, the photo from Wikipedia's keyless summary endpoint. A name like New York can be a state, a city or a magazine, so an ambiguous answer is <strong>retried as a city</strong>, and every search survives one source coming back empty.":
+    "Le previsioni arrivano da Visual Crossing, la foto dall'endpoint di riepilogo di Wikipedia, senza chiave. Un nome come New York può essere uno stato, una città o una rivista, quindi una risposta ambigua viene <strong>ritentata come città</strong>, e ogni ricerca regge anche se una delle due fonti non restituisce niente.",
   "Icons drawn by hand":
     "Icone disegnate a mano",
-  "The weather icons are a small set of line drawings in SVG, picked from the forecast's own icon field, in place of emoji.":
-    "Le icone del meteo sono un piccolo set di disegni al tratto in SVG, scelti in base al campo icona delle previsioni stesse, al posto delle emoji.",
-  "The path is found with a breadth-first search, and the solver ships with an annotated copy of itself you can read from the page.":
-    "Il percorso viene trovato con una ricerca in ampiezza, e il risolutore include una copia commentata di se stesso che si può leggere dalla pagina.",
+  "Weather icons are a small set of hand-drawn <strong>SVG</strong> line drawings, in place of emoji.":
+    "Le icone del meteo sono un piccolo set di disegni al tratto in <strong>SVG</strong>, al posto delle emoji.",
+  "The path comes from a <strong>breadth-first search</strong>, and the solver comes with an annotated copy of itself, readable from the page.":
+    "Il percorso nasce da una <strong>ricerca in ampiezza</strong>, e il risolutore include una sua copia commentata, leggibile dalla pagina.",
   "Corner to corner":
     "Da angolo ad angolo",
-  "Pick a start and an end square and the knight takes the shortest route between them, found with a breadth-first search. Corner to corner takes six moves.":
-    "Scegli una casella di partenza e una di arrivo e il cavallo fa il percorso più breve tra le due, trovato con una ricerca in ampiezza. Da un angolo all'altro servono sei mosse.",
+  "Pick a start and an end and the knight takes the shortest route. Corner to corner takes six moves.":
+    "Scelte una casella di partenza e una di arrivo, il cavallo fa il percorso più breve. Da un angolo all'altro servono sei mosse.",
   "Random":
     "Casuale",
   "Random picks two squares for you. Every search is logged with its path and the number of moves.":
     "Casuale sceglie due caselle per te. Ogni ricerca viene registrata con il suo percorso e il numero di mosse.",
   "Why breadth-first":
     "Perché in ampiezza",
-  "The solver lists the up to eight L-shaped moves a knight can make from a square without leaving the board, then searches outward one move at a time. A knight's moves are all the same length, so the first time the search reaches a square it has reached it by the shortest route: no weighting, no heuristic, no second pass. The answer comes back as the path, square by square.":
-    "Il risolutore elenca le mosse a L, fino a otto, che un cavallo può fare da una casella senza uscire dalla scacchiera, poi allarga la ricerca una mossa alla volta. Le mosse di un cavallo sono tutte della stessa lunghezza, quindi la prima volta che la ricerca raggiunge una casella l'ha raggiunta con il percorso più breve: niente pesi, niente euristiche, nessun secondo passaggio. La risposta torna come percorso, casella per casella.",
+  "The solver lists the up to eight L-shaped moves from a square, then searches outward <strong>one move at a time</strong>. All knight moves are equal, so the first time a square is reached is the shortest route: no weights, no heuristic, no second pass.":
+    "Il risolutore elenca le mosse a L, fino a otto, da una casella, poi allarga la ricerca <strong>una mossa alla volta</strong>. Le mosse del cavallo sono tutte uguali, quindi la prima volta che una casella viene raggiunta è la via più breve: niente pesi, niente euristiche, nessun secondo passaggio.",
   "Driving the board":
     "Usare la scacchiera",
-  "Click a square to place the knight and another to send it there: the path lights up and the knight hops along it one move at a time, with the count shown under the board and in the log. The same works by typing coordinates, or by letting random pick both squares.":
-    "Clicca una casella per posizionare il cavallo e un'altra per mandarlo lì: il percorso si illumina e il cavallo lo percorre una mossa alla volta, con il conteggio mostrato sotto la scacchiera e nel log. Lo stesso funziona scrivendo le coordinate, o lasciando che sia Casuale a scegliere entrambe le caselle.",
+  "Click a square to place the knight and another to send it: the path lights up and the knight hops along it, with the move count under the board. Coordinates can be typed too, or Random picks both squares.":
+    "Un clic su una casella posiziona il cavallo, un altro lo manda a destinazione: il percorso si illumina e il cavallo lo segue, con il numero di mosse sotto la scacchiera. Si possono anche scrivere le coordinate, o lasciare che Casuale scelga entrambe le caselle.",
   "The code is part of the page":
     "Il codice fa parte della pagina",
-  "A how it works button opens a commented copy of the solver without leaving the app, which is the point: the algorithm is the thing on display, not the chessboard.":
-    "Il pulsante Come funziona apre una copia commentata del risolutore senza uscire dall'app, ed è proprio questo il punto: l'algoritmo è la cosa in mostra, non la scacchiera.",
+  "A <strong>how it works</strong> button opens a commented copy of the solver inside the app: the algorithm is what's on display, not the chessboard.":
+    "Il pulsante <strong>Come funziona</strong> apre una copia commentata del risolutore dentro l'app: in mostra c'è l'algoritmo, non la scacchiera.",
   "Room for the board":
     "Spazio alla scacchiera",
   "On a phone the side panel folds into a drawer that opens from the bottom, so the board keeps the whole screen.":
@@ -1390,12 +1390,12 @@ export default {
     "Spiegare il codice nell'interfaccia",
   "Graphs":
     "Grafi",
-  "Insert and delete and watch the diagram rebuild. Commands are split between the ones that change the tree and the ones that only read it.":
-    "Inserisci ed elimina e guarda il diagramma ricostruirsi. I comandi sono divisi tra quelli che modificano l'albero e quelli che lo leggono soltanto.",
+  "Insert, delete and watch the diagram rebuild. Commands are split between those that change the tree and those that only read it.":
+    "Si inserisce, si elimina e il diagramma si ricostruisce. I comandi sono divisi tra quelli che modificano l'albero e quelli che lo leggono soltanto.",
   "Starting tree":
     "Albero iniziale",
   "The tree drawn from its starting values. Insert, delete and query from the panels below, and the diagram redraws after every command.":
-    "L'albero disegnato dai suoi valori iniziali. Inserisci, elimina e interroga dai pannelli qui sotto, e il diagramma si ridisegna dopo ogni comando.",
+    "L'albero disegnato dai suoi valori iniziali. Dai pannelli sotto si inserisce, si elimina e si interroga, e il diagramma si ridisegna a ogni comando.",
   "Unbalanced":
     "Sbilanciato",
   "A run of inserts piles nodes down one side, and isBalanced() now answers false.":
@@ -1406,20 +1406,20 @@ export default {
     "rebalance() ricostruisce l'albero dai suoi valori ordinati in una forma regolare, e il controllo torna true.",
   "A tree that starts balanced":
     "Un albero che parte bilanciato",
-  "Each node holds a value and a left and right child: everything smaller goes left, everything bigger goes right. That rule is what makes lookup, insert and delete take as long as the tree is tall rather than as long as it is wide. Building from an array sorts and dedupes it, then picks the middle value as the root of every subtree, so the tree starts out balanced.":
-    "Ogni nodo contiene un valore e un figlio sinistro e uno destro: tutto ciò che è più piccolo va a sinistra, tutto ciò che è più grande va a destra. È questa regola che fa durare ricerca, inserimento ed eliminazione quanto l'albero è alto e non quanto è largo. Quando lo si costruisce da un array, i valori vengono ordinati e ripuliti dai duplicati, poi si sceglie il valore centrale come radice di ogni sottoalbero, così l'albero parte bilanciato.",
+  "Each node has a value and two children: smaller goes left, bigger goes right. That rule makes lookup, insert and delete cost the tree's <strong>height</strong>, not its width. Building from an array sorts and dedupes it, then takes the middle as each root, so the tree starts <strong>balanced</strong>.":
+    "Ogni nodo ha un valore e due figli: i più piccoli a sinistra, i più grandi a destra. Questa regola fa costare ricerca, inserimento ed eliminazione quanto l'<strong>altezza</strong> dell'albero, non la larghezza. Da un array, i valori vengono ordinati e ripuliti dai duplicati, poi il centro diventa ogni radice, così l'albero parte <strong>bilanciato</strong>.",
   "Every operation":
     "Ogni operazione",
-  "Insert and delete keep the rule intact, and deleting a node with two children swaps in the next value in order. Queries cover includes, height, depth and isBalanced, plus the four traversals: level order, in order, pre order and post order. rebalance() reads the values back in order and builds the tree again.":
-    "Inserimento ed eliminazione mantengono intatta la regola, e quando si elimina un nodo con due figli, al suo posto va il valore successivo in ordine. Le interrogazioni coprono includes, height, depth e isBalanced, più le quattro visite: per livelli, in ordine, in pre-ordine e in post-ordine. rebalance() rilegge i valori in ordine e ricostruisce l'albero.",
+  "Insert and delete keep the rule intact. Queries cover includes, height, depth and isBalanced, plus the four <strong>traversals</strong>. rebalance() reads the values back in order and rebuilds the tree.":
+    "Inserimento ed eliminazione mantengono la regola. Le interrogazioni coprono includes, height, depth e isBalanced, più le quattro <strong>visite</strong>. rebalance() rilegge i valori in ordine e ricostruisce l'albero.",
   "Seeing the rebalance":
     "Vedere il ribilanciamento",
-  "A balanced tree is hard to believe in until you watch it happen. Nodes are laid out by an in-order pass, so left children always stay on the left, joined by SVG lines, and the diagram is redrawn after every command. The log at the bottom keeps the latest commands and errors, and the tree survives a reload.":
-    "È difficile credere in un albero bilanciato finché non lo vedi all'opera. I nodi sono disposti con una visita in ordine, così i figli sinistri restano sempre a sinistra, uniti da linee SVG, e il diagramma si ridisegna dopo ogni comando. Il log in basso tiene gli ultimi comandi e gli errori, e l'albero sopravvive a un ricaricamento.",
+  "A balanced tree is hard to believe until you <strong>watch it happen</strong>. Nodes are laid out in order and joined by SVG lines, the diagram redraws after every command, and the tree survives a reload.":
+    "È difficile credere in un albero bilanciato finché non lo si <strong>vede all'opera</strong>. I nodi sono disposti in ordine e uniti da linee SVG, il diagramma si ridisegna dopo ogni comando e l'albero sopravvive a un ricaricamento.",
   "Readers and writers, kept apart":
     "Lettori e scrittori, tenuti separati",
-  "Traversals and lookups cannot modify the tree, while insert, delete and rebalance can. Keeping the two sets separate, in the code and in the two panels, is what makes the structure safe to reason about. The classes are covered by Jest tests, and a commented copy of them opens from the how it works button.":
-    "Visite e ricerche non possono modificare l'albero, mentre inserimento, eliminazione e ribilanciamento sì. Tenere separati i due gruppi, nel codice e nei due pannelli, è ciò che rende facile ragionare sulla struttura. Le classi sono coperte da test Jest, e una loro copia commentata si apre dal pulsante Come funziona.",
+  "Traversals and lookups can't modify the tree, insert, delete and rebalance can. Keeping the two <strong>apart</strong>, in code and in the panels, makes the structure easy to reason about. The classes are covered by Jest tests.":
+    "Visite e ricerche non possono modificare l'albero, inserimento, eliminazione e ribilanciamento sì. Tenerli <strong>separati</strong>, nel codice e nei pannelli, rende facile ragionare sulla struttura. Le classi sono coperte da test Jest.",
   "Recursion":
     "Ricorsione",
   "Self-balancing trees":
@@ -1428,8 +1428,8 @@ export default {
     "Visualizzazione in tempo reale",
   "Data structures":
     "Strutture dati",
-  "A HashMap that stores key-value pairs and a HashSet that only cares whether a key is there, both written bucket by bucket. They grow when the load factor passes its threshold, and a small page lets you add, remove and look things up while the table reshapes itself.":
-    "Una HashMap che memorizza coppie chiave-valore e un HashSet a cui interessa solo se una chiave c'è, entrambi scritti bucket per bucket. Crescono quando il fattore di carico supera la soglia, e una piccola pagina permette di aggiungere, rimuovere e cercare mentre la tabella si riorganizza.",
+  "A HashMap for key-value pairs and a HashSet for keys alone, both written <strong>bucket by bucket</strong>. They grow past their load factor, and a small page shows the table reshaping.":
+    "Una HashMap per coppie chiave-valore e un HashSet solo per chiavi, entrambi scritti <strong>bucket per bucket</strong>. Crescono oltre il fattore di carico, e una piccola pagina mostra la tabella che si riorganizza.",
   "Key/value pairs set one by one. The header keeps count of entries, capacity and load factor.":
     "Coppie chiave/valore inserite una alla volta. L'intestazione tiene il conto di voci, capacità e fattore di carico.",
   "HashMap queries":
@@ -1444,28 +1444,28 @@ export default {
     "Verificare l'appartenenza: has() è false per un nome mai aggiunto e true per uno che c'è.",
   "One base, two tables":
     "Una base, due tabelle",
-  "HashMap and HashSet both extend one HashTable class that owns the buckets, the hash function, key checks, length, the load factor and clear. The two differ only in what a bucket holds: pairs for the map, bare values for the set. Collisions are handled by chaining, with several entries sharing a bucket.":
-    "HashMap e HashSet estendono entrambe un'unica classe HashTable che gestisce i bucket, la funzione di hash, i controlli sulle chiavi, la lunghezza, il fattore di carico e clear. Le due differiscono solo in cosa contiene un bucket: coppie per la mappa, valori semplici per il set. Le collisioni sono gestite con il chaining, con più voci che condividono lo stesso bucket.",
+  "Both extend one <strong>HashTable</strong> class that owns buckets, hashing, key checks, length and load factor. They differ only in what a bucket holds: pairs or bare values. Collisions are handled by chaining.":
+    "Entrambe estendono un'unica classe <strong>HashTable</strong> che gestisce bucket, hash, controlli sulle chiavi, lunghezza e fattore di carico. Cambia solo cosa contiene un bucket: coppie o valori semplici. Le collisioni si gestiscono con il chaining.",
   "Growing on purpose":
     "Crescere al momento giusto",
-  "When the load factor, entries divided by capacity, goes past 0.75, the capacity doubles and every entry is hashed again into the new buckets. The header above the entries shows count, capacity and load live, so the step can be watched as it happens.":
-    "Quando il fattore di carico, le voci divise per la capacità, supera 0,75, la capacità raddoppia e ogni voce viene ridistribuita nei nuovi bucket con un nuovo hash. L'intestazione sopra le voci mostra in tempo reale conteggio, capacità e carico, così si può vedere il passaggio mentre avviene.",
+  "When the load factor passes <strong>0.75</strong>, capacity doubles and every entry is rehashed. The header shows count, capacity and load live, so the step can be watched.":
+    "Quando il fattore di carico supera <strong>0,75</strong>, la capacità raddoppia e ogni voce viene ridistribuita. L'intestazione mostra conteggio, capacità e carico in tempo reale, così il passaggio si vede mentre avviene.",
   "Giving a data structure a face":
     "Dare un volto a una struttura dati",
-  "A hash table has no interface of its own, so I designed one: a tab for each structure, commands split into mutate and query, one box per entry updated after every command, and a log that keeps every call and every error. The design question was the same as for any illustration: what should the eye land on first? A how it works button opens the source with comments on hashing, collisions and resizing, line by line.":
-    "Una tabella hash non ha un'interfaccia sua, quindi ne ho progettata una: una scheda per ogni struttura, comandi divisi tra modifica e interrogazione, un riquadro per voce aggiornato dopo ogni comando, e un log che tiene ogni chiamata e ogni errore. La domanda di design era la stessa di qualsiasi illustrazione: dove deve cadere prima l'occhio? Il pulsante Come funziona apre il sorgente con commenti su hashing, collisioni e ridimensionamento, riga per riga.",
+  "A hash table has no interface, so I <strong>designed one</strong>: a tab per structure, commands split into mutate and query, a box per entry and a log of every call. The question was the same as for any illustration: <strong>where should the eye land first?</strong>":
+    "Una tabella hash non ha un'interfaccia, quindi l'ho <strong>progettata</strong>: una scheda per struttura, comandi divisi tra modifica e interrogazione, un riquadro per voce e un log di ogni chiamata. La domanda era la stessa di qualsiasi illustrazione: <strong>dove deve cadere prima l'occhio?</strong>",
   "One key, one value":
     "Una chiave, un valore",
-  "Setting a key that already exists overwrites its value instead of adding a second entry, and the set ignores a value it already holds. Both behaviours are covered by Jest tests, and both tables survive a reload.":
-    "Impostare una chiave che esiste già ne sovrascrive il valore invece di aggiungere una seconda voce, e il set ignora un valore che contiene già. Entrambi i comportamenti sono coperti da test Jest, ed entrambe le tabelle sopravvivono a un ricaricamento.",
+  "Setting an existing key <strong>overwrites</strong> it, and the set ignores duplicates. Both are covered by Jest tests, and both tables survive a reload.":
+    "Impostare una chiave già esistente la <strong>sovrascrive</strong>, e il set ignora i duplicati. Entrambi i comportamenti sono coperti da test Jest, ed entrambe le tabelle sopravvivono a un ricaricamento.",
   "Hashing and collisions":
     "Hashing e collisioni",
   "Dynamic resizing":
     "Ridimensionamento dinamico",
   "Designing for data":
     "Progettare per i dati",
-  "A singly linked list written node by node: append, prepend, insert at an index, remove, find. The page draws every node and every pointer, so rearranging the list is something you watch rather than something you log.":
-    "Una lista concatenata semplice scritta nodo per nodo: append, prepend, inserimento a un indice, rimozione, ricerca. La pagina disegna ogni nodo e ogni puntatore, così riordinare la lista è qualcosa che guardi e non qualcosa che leggi in un log.",
+  "A singly linked list written node by node, with every node and <strong>pointer</strong> drawn on the page, so rearranging it is something to watch.":
+    "Una lista concatenata semplice scritta nodo per nodo, con ogni nodo e <strong>puntatore</strong> disegnato sulla pagina, così riordinarla è qualcosa da guardare.",
   "Building the list":
     "Costruire la lista",
   "Values appended one at a time. The chain at the top redraws after each command and always ends in null.":
@@ -1476,18 +1476,18 @@ export default {
     "Fare domande alla lista su se stessa: at, contains, find index, size e tail, ogni risposta registrata in basso.",
   "Only the head":
     "Solo la testa",
-  "Each node holds a value and a pointer to the next one, or null at the end. The list itself only knows its head, and every other node is reached by following the pointers, which is why prepend is instant and append has to walk. Size is counted by walking too, so there is no length field that could drift out of step.":
-    "Ogni nodo contiene un valore e un puntatore al successivo, o null alla fine. La lista conosce solo la sua testa, e ogni altro nodo si raggiunge seguendo i puntatori, ed è per questo che prepend è istantaneo mentre append deve percorrerla tutta. Anche la dimensione si calcola percorrendola, così non c'è un campo di lunghezza che possa perdere la sincronia.",
-  "Append, prepend, insert one or more values at an index, remove at an index and pop the head, then at, contains, find index, size and tail to ask it questions. An index out of range throws a RangeError instead of quietly doing nothing.":
-    "Append, prepend, inserimento di uno o più valori a un indice, rimozione a un indice e pop della testa, poi at, contains, find index, size e tail per farle domande. Un indice fuori intervallo lancia un RangeError invece di non fare niente in silenzio.",
+  "Each node holds a value and a pointer to the next, or null. The list only knows its <strong>head</strong>, which is why prepend is instant and append has to walk. Size is counted by walking too, so no length field can drift.":
+    "Ogni nodo contiene un valore e un puntatore al successivo, o null. La lista conosce solo la sua <strong>testa</strong>, per questo prepend è istantaneo mentre append deve percorrerla. Anche la dimensione si calcola percorrendola, così nessun campo lunghezza può perdere la sincronia.",
+  "Append, prepend, insert at an index, remove, pop, plus at, contains, find index, size and tail. An index out of range throws a <strong>RangeError</strong> instead of failing quietly.":
+    "Append, prepend, inserimento a un indice, rimozione, pop, più at, contains, find index, size e tail. Un indice fuori intervallo lancia un <strong>RangeError</strong> invece di fallire in silenzio.",
   "Pointers you can see":
     "Puntatori che si vedono",
-  "The state line at the top prints the chain as it stands, ( a )-&gt; ( b )-&gt; null, and is redrawn after every command, so an insert in the middle shows exactly where the chain was cut and joined again. The log keeps each call with its answer, and a how it works modal explains how every method walks or rewires the chain.":
-    "La riga di stato in alto stampa la catena com'è, ( a )-&gt; ( b )-&gt; null, e si ridisegna dopo ogni comando, così un inserimento nel mezzo mostra esattamente dove la catena è stata tagliata e riunita. Il log tiene ogni chiamata con la sua risposta, e la finestra Come funziona spiega come ogni metodo percorre o ricollega la catena.",
+  "The state line prints the chain as it stands, ( a )-&gt; ( b )-&gt; null, redrawn after every command, so an insert shows exactly where the chain was <strong>cut and rejoined</strong>.":
+    "La riga di stato stampa la catena com'è, ( a )-&gt; ( b )-&gt; null, e si ridisegna a ogni comando, così un inserimento mostra esattamente dove la catena è stata <strong>tagliata e ricucita</strong>.",
   "Where the bugs live":
     "Dove vivono i bug",
-  "Inserting at index zero, removing the last node, searching an empty list: almost all of the work was in the edges, and each edge case was covered by a Jest test before the interface existed.":
-    "Inserire all'indice zero, rimuovere l'ultimo nodo, cercare in una lista vuota: quasi tutto il lavoro stava nei casi limite, e ognuno è stato coperto da un test Jest prima che esistesse l'interfaccia.",
+  "Index zero, the last node, an empty list: almost all the work was in the <strong>edge cases</strong>, each covered by a Jest test before the interface existed.":
+    "Indice zero, ultimo nodo, lista vuota: quasi tutto il lavoro stava nei <strong>casi limite</strong>, ognuno coperto da un test Jest prima che esistesse l'interfaccia.",
   "Nodes and pointers":
     "Nodi e puntatori",
   "Edge cases first":
@@ -1535,7 +1535,7 @@ export default {
   "close ✕":
     "chiudi ✕",
   "Choose language":
-    "Scegli la lingua",
+    "Lingua",
   "Italian":
     "Italiano",
   "own server":

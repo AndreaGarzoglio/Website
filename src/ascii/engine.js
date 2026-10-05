@@ -36,12 +36,6 @@ const perFrame = (rate) => 1 - (1 - rate) ** (FRAME_MS / 50);
 // heat is not cached and stays at the full frame rate.
 const FIELD_PHASES = 4;
 
-// The glow is an eased state rather than a timeline, so a click never snaps it
-// back to full: it always moves on from wherever it currently is.
-const GLOW_MUTE_MS = 1000;
-const GLOW_FALL = perFrame(0.43);
-const GLOW_RISE = perFrame(0.27);
-
 // Only crests of the field draw a ramp glyph; below this the grid falls back to
 // a resting dot so it never breaks up into holes.
 const THRESHOLD = 0.5;
@@ -83,11 +77,11 @@ const BUCKET_STRIDE = HEAT_STEPS * DENSITY_STEPS;
 
 const POINTER_RADIUS = 175;
 const POINTER_R2 = POINTER_RADIUS * POINTER_RADIUS;
-const POINTER_CUTOFF = POINTER_RADIUS * 2.6;
+// Past this distance the heat is under one colour step and under the
+// scramble threshold, so a cell draws as it would unheated: it is not worth
+// computing at all.
+const POINTER_CUTOFF = POINTER_RADIUS * 1.75;
 const POINTER_CUTOFF2 = POINTER_CUTOFF * POINTER_CUTOFF;
-// Past this distance the heat is under one colour step, so a cell draws
-// exactly as it would unheated and can be left to the per-cell repaint.
-const HEAT_REACH = POINTER_RADIUS * 1.75;
 
 // The halo itself sits on the cursor with no easing, so there is no lag while
 // moving. Only the samples it drops behind linger, which is what fades out.
@@ -95,13 +89,12 @@ const TRAIL_MAX = 22;
 const TRAIL_DECAY = 1 - perFrame(0.08);
 const TRAIL_MIN_DIST2 = 18 * 18;
 
-// A click turns the glow into a single travelling ring. At radius zero a
-// gaussian ring of this sigma is exactly the glow's own falloff, so the wave is
-// born as the glow itself and only becomes a ring as it moves out.
-const RIPPLE_SPEED = 360;
-const RIPPLE_LIFE = 2.2;
-const RIPPLE_BIRTH = 0.15;
-const RIPPLE_SIGMA = POINTER_RADIUS / Math.SQRT2;
+// A click sends a single ring of denser, scrambled glyphs across the field.
+// It is kept narrow and short-lived: every cell it crosses has to be redrawn.
+const RIPPLE_SPEED = 420;
+const RIPPLE_LIFE = 1.6;
+const RIPPLE_BIRTH = 0.12;
+const RIPPLE_SIGMA = 38;
 const RIPPLE_SPREAD = 0.35;
 
 // Field value that maps back to each ramp index once draw() re-derives the
@@ -303,8 +296,6 @@ export function createAsciiField(canvas, theme) {
   let stampCells = null;
   let lastDraw = 0;
   let rafId = null;
-  let glowGain = 1;
-  let muteUntil = 0;
   // What each cell showed last frame (bucket * 128 + char code), so a frame
   // only repaints the cells that changed. The field drifts slowly, so most
   // of the grid holds still from one frame to the next.
@@ -318,9 +309,10 @@ export function createAsciiField(canvas, theme) {
   // The cells around the pointer, last frame: glyphs there grow past their
   // own cell, so that whole block is cleared and redrawn instead.
   let lastBlock = null;
-  // The rows the heat reached, last frame: a row neither band touches, whose
-  // noise is not due and that is not being repainted, cannot have changed.
-  let lastBand = null;
+  // The rows the heat and the ripples reached, last frame: a row none of them
+  // touches, whose noise is not due and that is not being repainted, cannot
+  // have changed.
+  let lastBands = [];
 
   function resize() {
     scale = Math.min(window.devicePixelRatio || 1, 2);
@@ -507,17 +499,6 @@ export function createAsciiField(canvas, theme) {
   function updateHeatBox() {
     heatBox.any = false;
 
-    if (ripples.length > 0) {
-      heatBox.any = true;
-      heatBox.minX = -Infinity;
-      heatBox.minY = -Infinity;
-      heatBox.maxX = Infinity;
-      heatBox.maxY = Infinity;
-      return;
-    }
-
-    if (glowGain <= 0) return;
-
     if (!pointer.active && trail.length === 0) return;
 
     let minX = Infinity;
@@ -544,48 +525,44 @@ export function createAsciiField(canvas, theme) {
   function heatAt(cellX, cellY) {
     let heat = 0;
 
-    if (glowGain > 0) {
-      if (pointer.active) {
-        const dx = cellX - pointer.x;
-        const dy = cellY - pointer.y;
-        const d2 = dx * dx + dy * dy;
-        if (d2 < POINTER_CUTOFF2) heat = Math.exp(-d2 / POINTER_R2);
-      }
-
-      for (const p of trail) {
-        if (p.s <= heat) continue;
-        const dx = cellX - p.x;
-        const dy = cellY - p.y;
-        const d2 = dx * dx + dy * dy;
-        if (d2 > POINTER_CUTOFF2) continue;
-        const g = Math.exp(-d2 / POINTER_R2) * p.s;
-        if (g > heat) heat = g;
-      }
-
-      heat *= glowGain;
+    if (pointer.active) {
+      const dx = cellX - pointer.x;
+      const dy = cellY - pointer.y;
+      const d2 = dx * dx + dy * dy;
+      if (d2 < POINTER_CUTOFF2) heat = Math.exp(-d2 / POINTER_R2);
     }
 
+    for (const p of trail) {
+      if (p.s <= heat) continue;
+      const dx = cellX - p.x;
+      const dy = cellY - p.y;
+      const d2 = dx * dx + dy * dy;
+      if (d2 > POINTER_CUTOFF2) continue;
+      const g = Math.exp(-d2 / POINTER_R2) * p.s;
+      if (g > heat) heat = g;
+    }
+
+    return heat;
+  }
+
+  function waveAt(cellX, cellY) {
+    let wave = 0;
     for (const ripple of ripples) {
       const dx = cellX - ripple.x;
       const dy = cellY - ripple.y;
       const phase = Math.sqrt(dx * dx + dy * dy) - ripple.radius;
-      if (phase > ripple.cutoff || phase < -ripple.cutoff) continue;
-      heat += Math.exp(-(phase * phase) / ripple.denom) * ripple.power;
+      if (phase < ripple.cutoff && phase > -ripple.cutoff) wave += Math.exp(-(phase * phase) / ripple.denom) * ripple.power;
     }
-
-    return heat > 1 ? 1 : heat;
+    return wave;
   }
 
-  // The visibly heated area as a block of whole cells, one cell wider all
-  // round. heatBox reaches as far as any heat at all; this only as far as
-  // heat that changes how a cell looks.
+  // The heated area as a block of whole cells, one cell wider all round.
   function blockOf(box) {
-    const trim = POINTER_CUTOFF - HEAT_REACH;
     return {
-      c0: Math.max(0, Math.floor((box.minX + trim) / CELL_W) - 1),
-      c1: Math.min(cols - 1, Math.ceil((box.maxX - trim) / CELL_W) + 1),
-      r0: Math.max(0, Math.floor((box.minY + trim) / CELL_H) - 1),
-      r1: Math.min(rows - 1, Math.ceil((box.maxY - trim) / CELL_H) + 1),
+      c0: Math.max(0, Math.floor(box.minX / CELL_W) - 1),
+      c1: Math.min(cols - 1, Math.ceil(box.maxX / CELL_W) + 1),
+      r0: Math.max(0, Math.floor(box.minY / CELL_H) - 1),
+      r1: Math.min(rows - 1, Math.ceil(box.maxY / CELL_H) + 1),
     };
   }
 
@@ -629,12 +606,6 @@ export function createAsciiField(canvas, theme) {
     const tz = t * 0.09;
     const twarp = t * 0.05;
 
-    // Eased from its current value, so a click mid-recovery carries on from
-    // where the glow actually is instead of snapping back to full.
-    const target = time >= muteUntil ? 1 : 0;
-    glowGain += (target - glowGain) * (target > glowGain ? GLOW_RISE : GLOW_FALL);
-    if (glowGain < 0.01) glowGain = 0;
-
     for (const bucket of BUCKETS) bucket.length = 0;
 
     for (let i = ripples.length - 1; i >= 0; i--) {
@@ -649,25 +620,27 @@ export function createAsciiField(canvas, theme) {
 
         ripple.radius = age * RIPPLE_SPEED;
         ripple.denom = 2 * sigma * sigma;
-        ripple.cutoff = sigma * 3;
-        // Rises as the glow hands over, then thins out as it travels.
+        ripple.cutoff = sigma * 2.5;
+        // Rises as it is born, then thins out as it travels.
         ripple.power = Math.min(1, age / RIPPLE_BIRTH) * (1 - life) * (1 - life);
       }
     }
 
     updateHeatBox();
 
-    // Everything is repainted while a ripple crosses the screen; otherwise
-    // only the block the pointer heats, plus the cells that changed.
-    const full = repaintAll || ripples.length > 0;
+    // Only the block the pointer heats is repainted whole; elsewhere only the
+    // cells that changed, ripples included, since they never grow a glyph.
+    const full = repaintAll;
     repaintAll = false;
     const block = full || !heatBox.any ? null : blockOf(heatBox);
     const paint = full ? null : mergeBlocks(block, lastBlock);
     lastBlock = block;
     const changed = [];
-    const band = heatBox.any ? [heatBox.minY, heatBox.maxY] : null;
-    const bands = [band, lastBand].filter(Boolean);
-    lastBand = band;
+    // The rows anything can reach this frame or could have last frame.
+    const reach = ripples.map((w) => [w.y - w.radius - w.cutoff, w.y + w.radius + w.cutoff]);
+    if (heatBox.any) reach.push([heatBox.minY, heatBox.maxY]);
+    const bands = reach.concat(lastBands);
+    lastBands = reach;
     const everyRow = refreshAll;
     refreshAll = false;
     fieldPhase = (fieldPhase + 1) % FIELD_PHASES;
@@ -709,10 +682,10 @@ export function createAsciiField(canvas, theme) {
           field = fieldCache[r * cols + c];
         }
 
-        const heat =
-          inRowBand && cellX >= heatBox.minX && cellX <= heatBox.maxX
-            ? heatAt(cellX, cellY)
-            : 0;
+        const glow = inRowBand && cellX >= heatBox.minX && cellX <= heatBox.maxX ? heatAt(cellX, cellY) : 0;
+        // A ripple only thickens and scrambles the glyphs; size and colour
+        // follow the pointer alone, so a ripple never repaints a whole block.
+        const heat = Math.min(1, glow + (ripples.length ? waveAt(cellX, cellY) : 0));
 
         // Screen blend, so heat overrides the field instead of adding to it:
         // a heated cell reaches full density whatever the wave was doing.
@@ -742,7 +715,7 @@ export function createAsciiField(canvas, theme) {
           }
         }
 
-        const h = Math.min(HEAT_STEPS - 1, Math.floor(heat * HEAT_STEPS));
+        const h = Math.min(HEAT_STEPS - 1, Math.floor(glow * HEAT_STEPS));
         const b = (ink ? BUCKET_STRIDE : 0) + h * DENSITY_STEPS + d;
         const code = b * 128 + glyph.charCodeAt(0);
         const idx = r * cols + c;
@@ -800,8 +773,6 @@ export function createAsciiField(canvas, theme) {
       ripples.length = 0;
       trail.length = 0;
       pointer.active = false;
-      glowGain = 1;
-      muteUntil = 0;
       refreshAll = true;
       draw(0);
       return;
@@ -840,7 +811,6 @@ export function createAsciiField(canvas, theme) {
       // Fires on the spot; RIPPLE_BIRTH is what keeps it from popping in.
       ripples.push({ x: event.clientX, y: event.clientY, start: performance.now() });
       if (ripples.length > 4) ripples.shift();
-      muteUntil = performance.now() + GLOW_MUTE_MS;
     },
     { passive: true },
   );
