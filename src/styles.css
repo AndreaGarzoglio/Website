@@ -298,9 +298,9 @@ main,
   display: flex;
   align-items: center;
   border-bottom: 1px solid var(--line);
-  background: rgba(8, 8, 10, 0.7);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+  /* Opaque enough to need no blur: a blur here would be redone on every
+     frame of the background canvas moving underneath. */
+  background: rgba(8, 8, 10, 0.9);
 }
 
 .nav-inner {
@@ -553,8 +553,6 @@ main,
   flex-direction: column;
   border: 1px solid var(--line);
   background: var(--surface);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
   transition: border-color 0.25s ease, background-color 0.25s ease;
 }
 
@@ -1455,9 +1453,7 @@ main,
   top: var(--nav-h);
   z-index: 9;
   border-bottom: 1px solid var(--line);
-  background: rgba(8, 8, 10, 0.7);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+  background: rgba(8, 8, 10, 0.9);
 }
 
 .subnav-inner {
@@ -3205,19 +3201,21 @@ main,
   --bright: 0.85;
 }
 
-/* The whole card is a link to the project page. The panel sits above it
-   but lets clicks through everywhere except its own links. */
+/* A card with a cover is a link as a whole (the project, or the work a
+   job or a school led to). The panel sits above it but lets clicks through
+   everywhere except its own links. */
 .entry-cover {
   position: absolute;
   inset: 0;
   z-index: 0;
 }
 
-.entries--pages .entry-panel {
+.entry:has(> .entry-cover) .entry-panel {
+  position: relative;
   pointer-events: none;
 }
 
-.entries--pages .entry-panel a {
+.entry:has(> .entry-cover) .entry-panel a {
   pointer-events: auto;
 }
 

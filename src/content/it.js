@@ -284,8 +284,14 @@ export default {
     "Programma open source, dalle basi fino al livello professionale",
   "Project-based throughout: everything I build is on GitHub":
     "Tutto basato su progetti, e tutto quello che costruisco è su GitHub",
-  "Front end in JavaScript, HTML and CSS; back end in Ruby, Java and Python":
+  "Front end in JavaScript, HTML and CSS, back end in Ruby, Java and Python":
     "Front end in JavaScript, HTML e CSS, back end in Ruby, Java e Python",
+  "See the drawings on the Art page →":
+    "Vedi i disegni nella pagina Arte →",
+  "See the specialization project →":
+    "Vedi il progetto di specializzazione →",
+  "See where it led on the Art page →":
+    "Vedi dove mi ha portato nella pagina Arte →",
   "See the projects on the Code page →":
     "Vedi i progetti nella pagina Codice →",
   "Event Horizon School on Instagram":

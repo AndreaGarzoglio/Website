@@ -30,6 +30,11 @@ const FONT_MAX = 23;
 // 50ms and rescaled to the frame length, so the feel does not depend on it.
 const FRAME_MS = 33;
 const perFrame = (rate) => 1 - (1 - rate) ** (FRAME_MS / 50);
+// The noise is most of a frame's cost, and the field drifts slowly, so each
+// frame recomputes it for one row in this many and the rest reuse last
+// time's value: every cell still moves several times a second. The pointer
+// heat is not cached and stays at the full frame rate.
+const FIELD_PHASES = 4;
 
 // The glow is an eased state rather than a timeline, so a click never snaps it
 // back to full: it always moves on from wherever it currently is.
@@ -315,6 +320,10 @@ export function createAsciiField(canvas, theme) {
   // only repaints the cells that changed. The field drifts slowly, so most
   // of the grid holds still from one frame to the next.
   let shown = null;
+  // The noise field per cell, refreshed a row phase at a time (FIELD_PHASES).
+  let fieldCache = null;
+  let fieldPhase = 0;
+  let refreshAll = true;
   let repaintAll = true;
   let scale = 1;
   // The cells around the pointer, last frame: glyphs there grow past their
@@ -340,6 +349,8 @@ export function createAsciiField(canvas, theme) {
 
     buildStamps(w);
     shown = new Uint16Array(cols * rows);
+    fieldCache = new Float32Array(cols * rows);
+    refreshAll = true;
     repaintAll = true;
     lastBlock = null;
   }
@@ -662,9 +673,13 @@ export function createAsciiField(canvas, theme) {
     const paint = full ? null : mergeBlocks(block, lastBlock);
     lastBlock = block;
     const changed = [];
+    const everyRow = refreshAll;
+    refreshAll = false;
+    fieldPhase = (fieldPhase + 1) % FIELD_PHASES;
 
     for (let r = 0; r < rows; r++) {
       const cellY = r * CELL_H;
+      const refresh = everyRow || r % FIELD_PHASES === fieldPhase;
       const stampRow = stampCells ? r * cols : -1;
       const inRowBand = heatBox.any && cellY >= heatBox.minY && cellY <= heatBox.maxY;
 
@@ -682,7 +697,7 @@ export function createAsciiField(canvas, theme) {
           field = STAMP_FIELD[cell - STAMP_INK_BASE];
         } else if (cell === STAMP_HOLE) {
           field = 0;
-        } else {
+        } else if (refresh) {
           // Warping the sample position before reading the noise is what keeps
           // the blobs irregular rather than rounded.
           const warp = noise3(c * 0.03, r * 0.03, twarp) - 0.5;
@@ -693,6 +708,9 @@ export function createAsciiField(canvas, theme) {
               noise3(wx * FREQ_DETAIL, wy * FREQ_DETAIL, tz * 1.4) * DETAIL_WEIGHT) /
             (1 + DETAIL_WEIGHT);
           field = 0.5 + (raw - 0.5) * CONTRAST;
+          fieldCache[r * cols + c] = field;
+        } else {
+          field = fieldCache[r * cols + c];
         }
 
         const heat =
@@ -788,6 +806,7 @@ export function createAsciiField(canvas, theme) {
       pointer.active = false;
       glowGain = 1;
       muteUntil = 0;
+      refreshAll = true;
       draw(0);
       return;
     }
