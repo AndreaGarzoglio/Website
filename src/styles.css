@@ -353,34 +353,41 @@ main,
   transform: scaleX(1);
 }
 
-/* EN · IT, after the links. The language in use is lit. */
+/* A flag per language, after the links. The language in use is lit, the
+   other waits faded. */
 .lang-switch {
   display: flex;
-  font-size: 0.6875rem;
-  letter-spacing: 0.08em;
+  gap: 6px;
 }
 
 .lang-switch button {
-  padding: 3px 7px;
+  width: 24px;
+  height: 16px;
+  padding: 0;
   border: 1px solid var(--line);
-  background: none;
-  color: var(--text-faint);
-  font: inherit;
+  background: center / cover no-repeat;
   cursor: pointer;
-  transition: color 0.2s ease, border-color 0.2s ease;
+  opacity: 0.45;
+  filter: grayscale(0.6);
+  transition: opacity 0.2s ease, filter 0.2s ease, border-color 0.2s ease;
 }
 
-.lang-switch button + button {
-  border-left: 0;
+.lang-switch [data-lang="en"] {
+  background-image: url("./assets/flag-en.svg");
 }
 
-.lang-switch button:hover {
-  color: var(--text);
+.lang-switch [data-lang="it"] {
+  background-image: url("./assets/flag-it.svg");
+}
+
+.lang-switch button:hover,
+.lang-switch [aria-pressed="true"] {
+  opacity: 1;
+  filter: none;
 }
 
 .lang-switch [aria-pressed="true"] {
-  border-color: var(--accent-2);
-  color: var(--accent-lt);
+  border-color: var(--accent-lt);
 }
 
 /* Until the Italian is in (src/i18n.js), the English is not shown. */

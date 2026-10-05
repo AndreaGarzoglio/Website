@@ -33,8 +33,8 @@ const nav = (root, current) => `
         ).join("\n        ")}
       </ul>
       <div class="lang-switch" role="group" aria-label="Choose language">
-        <button type="button" data-lang="en" lang="en">EN</button>
-        <button type="button" data-lang="it" lang="it">IT</button>
+        <button type="button" data-lang="en" aria-label="English" title="English"></button>
+        <button type="button" data-lang="it" aria-label="Italian" title="Italian"></button>
       </div>
     </div>
   </nav>`;

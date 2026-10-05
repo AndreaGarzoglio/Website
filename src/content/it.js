@@ -1530,6 +1530,8 @@ export default {
     "chiudi ✕",
   "Choose language":
     "Scegli la lingua",
+  "Italian":
+    "Italiano",
   "own server":
     "server proprio",
   "Found The Odin Project":
