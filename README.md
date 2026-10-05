@@ -18,26 +18,6 @@ It started as the final project of [The Odin Project](https://www.theodinproject
 - **Pages built from data.** Every Art and Code page is generated from plain content files, so a new project is an object in a list, not a new file.
 - **Light on purpose.** No framework and no UI library. The background repaints only the cells that change, pictures load lazily as WebP, and every animation stands still for anyone who asked their system for reduced motion.
 
-## Getting started
-
-You need [Node.js](https://nodejs.org/) 22 or later.
-
-```bash
-npm install
-npm run dev
-```
-
-The site is then at <http://localhost:8080>. Add `?lang=it` to the address to open it in Italian.
-
-| Command         | What it does                                                                               |
-| --------------- | ------------------------------------------------------------------------------------------ |
-| `npm run dev`   | Starts the development server with live reload                                             |
-| `npm run build` | Writes a production build to `docs/`: minified JavaScript, CSS and HTML, and hashed assets |
-| `npm run lint`  | Checks the code with ESLint                                                                |
-| `npm test`      | Runs the Jest tests                                                                        |
-
-`webpack.config.js` and `src/layout.js` are only read when the server starts, so restart `npm run dev` after editing either of them, or after adding a page.
-
 ## How it is put together
 
 ```
@@ -103,10 +83,6 @@ Each page has one `--hue`: a default per section in `styles.css`, or the collect
 ### The ASCII field
 
 `src/ascii/engine.js` draws a grid of characters on a fixed canvas at 30 frames a second. The field comes from warped value noise, and a frame only repaints the cells whose character or colour changed. To stay cheap, the noise is recomputed for a quarter of the rows each frame, rows nothing can have touched are skipped, and the pointer's heat is only computed where it is visible. A click sends out a ring that thickens and scrambles the glyphs without resizing them, so only the cells it crosses are redrawn. The drawings stamped into the grid are plain text files in `src/assets/`, placed by the files in `src/ascii/themes/`.
-
-## Deploying
-
-`npm run build` writes the finished site to `docs/`, ready for any static host. To publish it with GitHub Pages, commit `docs/` and set the repository's Pages source to the `docs` folder of the `main` branch.
 
 ## Built with
 
