@@ -1,0 +1,3 @@
+# The image script is a local tool, not part of the site: keep it out of
+# GitHub's language stats.
+scripts/*.py linguist-detectable=false
