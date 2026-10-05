@@ -17,7 +17,7 @@ export const intro = {
     "The work is split into four collections. MSR is my own universe, and Nemixar holds what I drew during my internship at Undo Studios. Personal Drawings brings together commissions, school projects and the characters I make for myself, and YMDIR is the game I am building with Mad Burger Studio.",
   ],
   stats: [
-    ["2017", "first put a pen down, seriously"],
+    ["2017", "first put pen to paper, seriously"],
     ["27/30", "Concept Artist, Event Horizon School"],
     ["05+", "years freelancing for clients"],
   ],
@@ -130,7 +130,7 @@ export const series = {
     },
     lead: "Six months of campaigns for Undo Studios SA, the first time my drawing had to answer to a metric instead of a mood.",
     body: [
-      "For half of 2024 I was the person turning the game's world into content: one splash illustration per character, the season pass artwork, and a guide for the Land Invasion mode.",
+      "For half of 2024 I was the person turning the game's world into content: one splash illustration per character, the Season Pass artwork, and a guide for the Land Invasion mode.",
       "The process was different from anything I do for myself. There was a brief, a calendar, and a date on which every piece had to go live, and feedback came back as numbers. I learned to pitch a scene in one thumbnail, to plan the logo and the crop before painting a single stroke, and to let go of a piece once it did its job.",
       "What you find here is not everything I made in those six months. A big part of the job was posts made to get people talking and interacting, useful for the pages but not much to look at as drawings. I left those out and kept the illustration work, the pieces where the drawing itself was the point.",
     ],
@@ -281,12 +281,12 @@ export const series = {
         images: "art/personal-drawings/nora",
         note: "A platformer hero, with a light bulb for an idea.",
         concept: [
-          "Nora is another cartoon character, this time finished in cell shading. She is also a nod to a character from my story, retold as a cartoon and in a much brighter key.",
+          "Nora is another cartoon character, this time finished in cel shading. She is also a nod to a character from my story, retold as a cartoon and in a much brighter key.",
           "I imagined her as the protagonist of a platform game: an artist who rides her own brushstrokes, with a little light bulb companion that stands for an idea.",
         ],
         brief: [
           ["Stages", "Inspiration, sketch, palettes, details, render"],
-          ["Medium", "Digital painting, cell shading"],
+          ["Medium", "Digital painting, cel shading"],
         ],
       },
     ],
