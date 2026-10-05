@@ -10,15 +10,15 @@
 export const intro = {
   index: "02",
   title: "Art",
-  lead: "It started with a manga summer school in 2017, and it has not stopped since.",
+  lead: "Every character starts with a story. Event Horizon taught me how to give it a shape.",
   body: [
     "What I love most is <strong>telling stories</strong>. Every character starts with one, worked out before the first sketch: who they are, where they come from, what they want. Costume, colours and shapes grow out of it, so the design speaks before anyone reads a word.",
     "Almost everything here went through the same <strong>process</strong>: moodboard and references, silhouettes, sketches, palettes, and only then the render. Event Horizon taught me to trust it, and teamwork taught me it's how others understand my ideas, so I show the in-between steps too.",
     "Four collections: <strong>MSR</strong>, my own universe, <strong>Nemixar</strong>, from my internship at Undo Studios, <strong>Personal Drawings</strong>, with commissions, school projects and my own characters, and <strong>YMDIR</strong>, the game I'm making with Mad Burger Studio.",
   ],
   stats: [
-    ["2017", "first put pen to paper, seriously"],
-    ["27/30", "Concept Artist, Event Horizon School"],
+    ["3 years", "of concept art training at Event Horizon"],
+    ["27/30", "final grade, Concept Artist specialization"],
     ["05+", "years freelancing for clients"],
   ],
 };

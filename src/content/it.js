@@ -16,14 +16,18 @@ export default {
     "contatti",
   "Language":
     "Linguaggio",
-  "Programmer, illustrator, media designer. Three names for one restless urge: to make things, and to know how every piece of them works.":
-    "Programmatore, illustratore, media designer. Tre nomi per un'unica spinta irrequieta: creare cose, e capire come funziona ogni loro pezzo.",
+  "Programmer, illustrator, media designer. Three names for one restless urge: to <strong>make things</strong>, and to know how every piece of them works. I draw characters with a story behind them, write the worlds they live in, and build the interfaces that bring them to the screen, from the first sketch to the last line of code.":
+    "Programmatore, illustratore, media designer. Tre nomi per un'unica spinta irrequieta: <strong>creare</strong>, e capire come funziona ogni pezzo di ciò che creo. Disegno personaggi con una storia alle spalle, scrivo i mondi in cui vivono e costruisco le interfacce che li portano sullo schermo, dal primo schizzo all'ultima riga di codice.",
   "<span class=\"status-dot\" aria-hidden=\"true\"></span> Open to junior front-end, UI/UX, game concept art and media design roles · remote or Genoa":
     "<span class=\"status-dot\" aria-hidden=\"true\"></span> Disponibile per ruoli junior in front-end, UI/UX, concept art per videogiochi e media design · da remoto o a Genova",
   "10 years":
     "10 anni",
-  "of art study, from manga school to concept art":
-    "di studio artistico, dalla scuola di manga alla concept art",
+  "of drawing, sharpened into concept art at Event Horizon":
+    "di disegno, affinato nella concept art alla Event Horizon",
+  "3 years":
+    "3 anni",
+  "final grade, Concept Artist specialization":
+    "voto finale, specializzazione Concept Artist",
   "6 months":
     "6 mesi",
   "paid, full-time internship in game marketing":
@@ -66,10 +70,10 @@ export default {
     "B",
   "About me":
     "Chi sono",
-  "<strong>Making things</strong> has always been my favourite way to spend time. Drawing came first, at a manga summer school in 2017, and I never stopped: characters, worlds, and stories to hold them together.":
-    "<strong>Creare</strong> è sempre stato il mio modo preferito di passare il tempo. Prima è arrivato il disegno, a una scuola estiva di manga nel 2017, e da lì non mi sono più fermato: personaggi, mondi e storie che li tengano insieme.",
-  "I trained as a concept artist at Event Horizon School, then came <strong>code</strong>, because I wanted to see the things I design come to life. Today I move between the two with the same <strong>curiosity</strong>.":
-    "Mi sono formato come concept artist alla Event Horizon School, poi è arrivato il <strong>codice</strong>, perché volevo vedere prendere vita le cose che progetto. Oggi passo dall'uno all'altro con la stessa <strong>curiosità</strong>.",
+  "<strong>Making things</strong> has always been my favourite way to spend time. Drawing came first, and it never stopped: characters, worlds, and the stories that hold them together.":
+    "<strong>Creare</strong> è sempre stato il mio modo preferito di passare il tempo. Prima è arrivato il disegno, e non si è più fermato: personaggi, mondi e le storie che li tengono insieme.",
+  "At <strong>Event Horizon School</strong> that habit became a craft: three years of concept art, learning to design with a reason behind every line. Then came <strong>code</strong>, because I wanted to see the things I design actually come to life.":
+    "Alla <strong>Event Horizon School</strong> quell'abitudine è diventata un mestiere: tre anni di concept art in cui ho imparato a progettare con un motivo dietro ogni linea. Poi è arrivato il <strong>codice</strong>, perché volevo vedere prendere vita davvero le cose che progetto.",
   "Every project starts the same way, with an idea I can't stop thinking about. The <strong>passion</strong> for turning it into something real, a character, an interface or a game, is the part of this work I love most.":
     "Ogni progetto parte allo stesso modo, da un'idea che non riesco a togliermi dalla testa. La <strong>passione</strong> di trasformarla in qualcosa di reale, un personaggio, un'interfaccia o un gioco, è la parte di questo lavoro che amo di più.",
   "Email":
@@ -348,8 +352,8 @@ export default {
     "quello che so usare davvero",
   "Art &amp; design":
     "Arte e design",
-  "Manga summer schools first, then three years at Event Horizon. Photoshop is where I've spent most of my waking hours since.":
-    "Prima i corsi estivi di manga, poi tre anni alla Event Horizon. Da allora, gran parte delle mie giornate le passo su Photoshop.",
+  "Three years at <strong>Event Horizon</strong> turned drawing into concept art. Photoshop has been my second home ever since.":
+    "Tre anni alla <strong>Event Horizon</strong> hanno trasformato il disegno in concept art. Da allora Photoshop è la mia seconda casa.",
   "Photoshop <span class=\"chip-level\">expert</span>":
     "Photoshop <span class=\"chip-level\">esperto</span>",
   "expert":
@@ -440,16 +444,16 @@ export default {
     "Panoramica",
   "Breadcrumb":
     "Percorso",
-  "It started with a manga summer school in 2017, and it has not stopped since.":
-    "È cominciato con una scuola estiva di manga nel 2017, e da allora non si è più fermato.",
+  "Every character starts with a story. Event Horizon taught me how to give it a shape.":
+    "Ogni personaggio nasce da una storia. La Event Horizon mi ha insegnato a darle una forma.",
   "What I love most is <strong>telling stories</strong>. Every character starts with one, worked out before the first sketch: who they are, where they come from, what they want. Costume, colours and shapes grow out of it, so the design speaks before anyone reads a word.":
     "Quello che amo di più è <strong>raccontare storie</strong>. Ogni personaggio ne ha una, pensata prima del primo schizzo: chi è, da dove viene, cosa vuole. Costume, colori e forme nascono da lì, così il design parla prima ancora che si legga una parola.",
   "Almost everything here went through the same <strong>process</strong>: moodboard and references, silhouettes, sketches, palettes, and only then the render. Event Horizon taught me to trust it, and teamwork taught me it's how others understand my ideas, so I show the in-between steps too.":
     "Quasi tutto, qui, è passato dallo stesso <strong>processo</strong>: moodboard e riferimenti, silhouette, sketch, palette, e solo alla fine il render. La Event Horizon mi ha insegnato a fidarmi, il lavoro in team che è così che gli altri capiscono le mie idee, per questo mostro anche i passaggi intermedi.",
   "Four collections: <strong>MSR</strong>, my own universe, <strong>Nemixar</strong>, from my internship at Undo Studios, <strong>Personal Drawings</strong>, with commissions, school projects and my own characters, and <strong>YMDIR</strong>, the game I'm making with Mad Burger Studio.":
     "Quattro raccolte: <strong>MSR</strong>, il mio universo, <strong>Nemixar</strong>, dal tirocinio in Undo Studios, <strong>Disegni personali</strong>, tra commissioni, progetti di scuola e personaggi miei, e <strong>YMDIR</strong>, il videogioco che sto realizzando con Mad Burger Studio.",
-  "first put pen to paper, seriously":
-    "la prima volta con la matita in mano, sul serio",
+  "of concept art training at Event Horizon":
+    "di formazione in concept art alla Event Horizon",
   "years freelancing for clients":
     "anni da freelance per clienti",
   "Collections":
