@@ -16,7 +16,10 @@ const EMAIL = "andrea.garzoglio@gmail.com";
 
 const links = (list) =>
   list
-    .map(([name, href, current]) => `<li><a href="${href}"${current ? ' aria-current="page"' : ""}>${name}</a></li>`)
+    .map(
+      ([name, href, current]) =>
+        `<li><a href="${href}"${current ? ' aria-current="page"' : ""}>${name}</a></li>`,
+    )
     .join("\n        ");
 
 // Top-level destinations, in reading order.
@@ -71,7 +74,9 @@ const footer = (root) => `
 
 /* Fonts and the script that has to run before the first paint, on every page:
    the home (src/index.html) gets it through html-loader in webpack.config.js. */
-export const head = (root) => `  <link rel="preconnect" href="https://fonts.googleapis.com" />
+export const head = (
+  root,
+) => `  <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="${FONTS}" rel="stylesheet" />
   <!-- The crossfade between pages (styles.css) is skipped when there is
@@ -106,7 +111,15 @@ export const head = (root) => `  <link rel="preconnect" href="https://fonts.goog
     }
   </script>`;
 
-const page = ({ root, title, description, section, hue, sub, main }) => `<!doctype html>
+const page = ({
+  root,
+  title,
+  description,
+  section,
+  hue,
+  sub,
+  main,
+}) => `<!doctype html>
 <html lang="en">
 
 <head>
@@ -117,6 +130,7 @@ const page = ({ root, title, description, section, hue, sub, main }) => `<!docty
   <meta property="og:type" content="website" />
   <meta property="og:title" content="${title}" />
   <meta property="og:description" content="${esc(description)}" />
+  <link rel="icon" href="${root}favicon.svg" />
 ${head(root)}
 </head>
 
@@ -144,7 +158,11 @@ const sectionSub = (section, root, currentId) => {
   const [label, items] = SECTION_PAGES[section];
   return subnav(label, [
     ["Overview", `${root}${section}.html`, !currentId],
-    ...items.map(([id, title]) => [title, `${root}${section}/${id}.html`, id === currentId]),
+    ...items.map(([id, title]) => [
+      title,
+      `${root}${section}/${id}.html`,
+      id === currentId,
+    ]),
   ]);
 };
 
@@ -178,7 +196,15 @@ export function pages() {
   );
   for (const id of order) {
     const s = series[id];
-    add(`art/${id}.html`, "art", id, s.title, `${s.title}: ${s.tagline}`, "series", s.hue);
+    add(
+      `art/${id}.html`,
+      "art",
+      id,
+      s.title,
+      `${s.title}: ${s.tagline}`,
+      "series",
+      s.hue,
+    );
   }
 
   add(
@@ -189,7 +215,16 @@ export function pages() {
     "Projects built from scratch while working through The Odin Project: games, algorithms and interfaces.",
     "code",
   );
-  for (const p of projects) add(`code/${p.id}.html`, "code", p.id, p.title, p.tagline, "code-project", p.hue);
+  for (const p of projects)
+    add(
+      `code/${p.id}.html`,
+      "code",
+      p.id,
+      p.title,
+      p.tagline,
+      "code-project",
+      p.hue,
+    );
 
   return out;
 }

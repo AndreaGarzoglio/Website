@@ -10,6 +10,9 @@ import { pages, head } from "./src/layout.js";
    there adds its page here. Restart the dev server after editing layout.js or
    the page list: webpack only reads this file once. */
 const generated = pages();
+/* Only the home page emits the favicon: with every page emitting its own copy,
+   an edit to it in watch mode makes them disagree and webpack stops on a
+   conflict. The generated pages link it from page() in layout.js. */
 const FAVICON = "./src/assets/favicon.svg";
 
 /* `npm run dev` serves a development build; `npm run build` writes a
@@ -47,7 +50,6 @@ export default (env, argv) => {
           new HtmlWebpackPlugin({
             templateContent: html,
             filename,
-            favicon: FAVICON,
           }),
       ),
       new MiniCssExtractPlugin(),
