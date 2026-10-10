@@ -10,10 +10,6 @@ import { pages, head } from "./src/layout.js";
    there adds its page here. Restart the dev server after editing layout.js or
    the page list: webpack only reads this file once. */
 const generated = pages();
-/* Only the home page emits the favicon: with every page emitting its own copy,
-   an edit to it in watch mode makes them disagree and webpack stops on a
-   conflict. The generated pages link it from page() in layout.js. */
-const FAVICON = "./src/assets/favicon.svg";
 
 /* `npm run dev` serves a development build; `npm run build` writes a
    production one to docs/: minified, without the eval source maps that make a
@@ -43,7 +39,6 @@ export default (env, argv) => {
       new HtmlWebpackPlugin({
         template: "./src/index.html",
         filename: "index.html",
-        favicon: FAVICON,
       }),
       ...generated.map(
         ({ filename, html }) =>
@@ -67,8 +62,17 @@ export default (env, argv) => {
             preprocessor: (html) => html.replace(/ *<!-- head:.*-->/, head("")),
           },
         },
+        // The site icon keeps its name at the root, where every page links it:
+        // the home page through html-loader, the generated ones from page()
+        // in layout.js.
+        {
+          test: /[\\/]favicon\.svg$/,
+          type: "asset/resource",
+          generator: { filename: "[name][ext]" },
+        },
         {
           test: /\.(png|svg|jpg|jpeg|gif|webp)$/i,
+          exclude: /[\\/]favicon\.svg$/,
           type: "asset/resource",
         },
         {
